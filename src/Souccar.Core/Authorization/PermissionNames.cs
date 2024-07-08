@@ -2,35 +2,8 @@
 {
     public static class PermissionNames
     {
-        #region Others
         public const string Pages_Tenants = "Pages.Tenants";
         public const string Pages_Users_Activation = "Pages.Users.Activation";
-
-        //Employee
-        public const string Pages_Employee = "Pages.Employee";
-        public const string Pages_Employee_Create = "Pages.Employee.Create";
-        public const string Pages_Employee_Edit = "Pages.Employee.Edit";
-        public const string Pages_Employee_Delete = "Pages.Employee.Delete";
-
-        //Child
-        public const string Pages_Child = "Pages.Child";
-        public const string Pages_Child_Create = "Pages.Child.Create";
-        public const string Pages_Child_Edit = "Pages.Child.Edit";
-        public const string Pages_Child_Delete = "Pages.Child.Delete";
-
-
-        //Nationalities
-        public const string Pages_Nationalities = "Pages.Nationalities";
-        public const string Pages_Nationalities_Create = "Pages.Nationalities.Create";
-        public const string Pages_Nationalities_Edit = "Pages.Nationalities.Edit";
-        public const string Pages_Nationalities_Delete = "Pages.Nationalities.Delete";
-
-        //Hangfire
-        public const string Pages_Administration_HangfireDashboard = "Pages.Administration.HangfireDashboard";
-        #endregion
-
-
-        #region Security Module
         //Users
         public const string Security_Users = "Security.Users";
         public const string Security_Users_Create = "Security.Users.Create";
@@ -44,109 +17,68 @@
         public const string Security_Roles_Create = "Security.Roles.Create";
         public const string Security_Roles_Edit = "Security.Roles.Edit";
         public const string Security_Roles_Delete = "Security.Roles.Delete";
-        #endregion
 
 
-        #region Setting Module
-        //Materials
-        public const string Setting_Materials = "Setting.Materials";
-        public const string Setting_Materials_Create = "Setting.Materials.Create";
-        public const string Setting_Materials_Edit = "Setting.Materials.Edit";
-        public const string Setting_Materials_Delete = "Setting.Materials.Delete";
+        //Stocks
+        public const string Pages_Stocks = "Pages.Stocks";
+        public const string Actions_Stocks_Create = "Actions.Stocks.Create";
+        public const string Actions_Stocks_Update = "Actions.Stocks.Update";
+        public const string Actions_Stocks_Delete = "Actions.Stocks.Delete";
 
-        //Products
-        public const string Setting_Products = "Setting.Products";
-        public const string Setting_Products_Create = "Setting.Products.Create";
-        public const string Setting_Products_Edit = "Setting.Products.Edit";
-        public const string Setting_Products_Delete = "Setting.Products.Delete";
-
-        //Categories
-        public const string Setting_Categories = "Setting.Categories";
-        public const string Setting_Categories_Create = "Setting.Categories.Create";
-        public const string Setting_Categories_Edit = "Setting.Categories.Edit";
-        public const string Setting_Categories_Delete = "Setting.Categories.Delete";
-
-        //Suppliers
-        public const string Setting_Suppliers = "Setting.Suppliers";
-        public const string Setting_Suppliers_Create = "Setting.Suppliers.Create";
-        public const string Setting_Suppliers_Edit = "Setting.Suppliers.Edit";
-        public const string Setting_Suppliers_Delete = "Setting.Suppliers.Delete";
+        //Sizes
+        public const string Pages_Sizes = "Pages.Sizes";
+        public const string Actions_Sizes_Create = "Actions.Sizes.Create";
+        public const string Actions_Sizes_Update = "Actions.Sizes.Update";
+        public const string Actions_Sizes_Delete = "Actions.Sizes.Delete";
 
         //Units
-        public const string Setting_Units = "Setting.Units";
-        public const string Setting_Units_Create = "Setting.Units.Create";
-        public const string Setting_Units_Edit = "Setting.Units.Edit";
-        public const string Setting_Units_Delete = "Setting.Units.Delete";
+        public const string Pages_Units = "Pages.Units";
+        public const string Actions_Units_Create = "Actions.Units.Create";
+        public const string Actions_Units_Update = "Actions.Units.Update";
+        public const string Actions_Units_Delete = "Actions.Units.Delete";
 
-        //Transfers
-        public const string Setting_Transfers = "Setting.Transfers";
-        public const string Setting_Transfers_Create = "Setting.Transfers.Create";
-        public const string Setting_Transfers_Edit = "Setting.Transfers.Edit";
-        public const string Setting_Transfers_Delete = "Setting.Transfers.Delete";
+        //UnitSizes
+        public const string Pages_UnitSizes = "Pages.UnitSizes";
+        public const string Actions_UnitSizes_Create = "Actions.UnitSizes.Create";
+        public const string Actions_UnitSizes_Update = "Actions.UnitSizes.Update";
+        public const string Actions_UnitSizes_Delete = "Actions.UnitSizes.Delete";
 
-        //GeneralSettings
-        public const string Setting_GeneralSettings = "Setting.GeneralSettings";
-        public const string Setting_GeneralSettings_Create = "Setting.GeneralSettings.Create";
-        public const string Setting_GeneralSettings_Edit = "Setting.GeneralSettings.Edit";
-        public const string Setting_GeneralSettings_Delete = "Setting.GeneralSettings.Delete";
-        #endregion
+        //Stores
+        public const string Pages_Stores = "Pages.Stores";
+        public const string Actions_Stores_Create = "Actions.Stores.Create";
+        public const string Actions_Stores_Update = "Actions.Stores.Update";
+        public const string Actions_Stores_Delete = "Actions.Stores.Delete";
 
+        //Materials
+        public const string Pages_Materials = "Pages.Materials";
+        public const string Actions_Materials_Create = "Actions.Materials.Create";
+        public const string Actions_Materials_Update = "Actions.Materials.Update";
+        public const string Actions_Materials_Delete = "Actions.Materials.Delete";
 
-        #region Warehouses Module
-        //WarehouseMaterials
-        public const string Warehouses_WarehouseMaterials = "Warehouses.WarehouseMaterials";
-        public const string Warehouses_WarehouseMaterials_Create = "Warehouses.WarehouseMaterials.Create";
-        public const string Warehouses_WarehouseMaterials_Edit = "Warehouses.WarehouseMaterials.Edit";
-        public const string Warehouses_WarehouseMaterials_Delete = "Warehouses.WarehouseMaterials.Delete";
+        //Customers
+        public const string Pages_Customers = "Pages.Customers";
+        public const string Actions_Customers_Create = "Actions.Customers.Create";
+        public const string Actions_Customers_Update = "Actions.Customers.Update";
+        public const string Actions_Customers_Delete = "Actions.Customers.Delete";
 
-        //Warehouses
-        public const string Warehouses_Warehouses = "Warehouses.Warehouses";
-        public const string Warehouses_Warehouses_Create = "Warehouses.Warehouses.Create";
-        public const string Warehouses_Warehouses_Edit = "Warehouses.Warehouses.Edit";
-        public const string Warehouses_Warehouses_Delete = "Warehouses.Warehouses.Delete";
+        //Companies
+        public const string Pages_Companies = "Pages.Companies";
+        public const string Actions_Companies_Create = "Actions.Companies.Create";
+        public const string Actions_Companies_Update = "Actions.Companies.Update";
+        public const string Actions_Companies_Delete = "Actions.Companies.Delete";
 
-        //OutputRquests
-        public const string Warehouses_OutputRquests = "Warehouses.OutputRquests";
-        public const string Warehouses_OutputRquests_Create = "Warehouses.OutputRquests.Create";
-        public const string Warehouses_OutputRquests_Edit = "Warehouses.OutputRquests.Edit";
-        public const string Warehouses_OutputRquests_Delete = "Warehouses.OutputRquests.Delete";
-        #endregion
+        //Categories
+        public const string Pages_Categories = "Pages.Categories";
+        public const string Actions_Categories_Create = "Actions.Categories.Create";
+        public const string Actions_Categories_Update = "Actions.Categories.Update";
+        public const string Actions_Categories_Delete = "Actions.Categories.Delete";
 
+        //Offers
+        public const string Pages_Offers = "Pages.Offers";
+        public const string Actions_Offers_Create = "Actions.Offers.Create";
+        public const string Actions_Offers_Update = "Actions.Offers.Update";
+        public const string Actions_Offers_Delete = "Actions.Offers.Delete";
 
-        #region Production Module
-        //Plans
-        public const string Production_Plans = "Production.Plans";
-        public const string Production_Plans_Create = "Production.Plans.Create";
-        public const string Production_Plans_Edit = "Production.Plans.Edit";
-        public const string Production_Plans_Delete = "Production.Plans.Delete";
-
-        //DailyProductions
-        public const string Production_DailyProductions = "Production.DailyProductions";
-        public const string Production_DailyProductions_Create = "Production.DailyProductions.Create";
-        public const string Production_DailyProductions_Edit = "Production.DailyProductions.Edit";
-        public const string Production_DailyProductions_Delete = "Production.DailyProductions.Delete";
-        #endregion
-
-
-        #region Workflow Module
-        //Workflows
-        public const string Workflow = "Workflow.Workflow";
-        public const string Workflow_Create = "Workflow.Workflow.Create";
-        public const string Workflow_Edit = "Workflow.Workflow.Edit";
-        public const string Workflow_Delete = "Workflow.Workflow.Delete";
-
-        //Workflow Steps
-        public const string Workflow_Step = "Workflow.WorkflowStep";
-        public const string Workflow_Step_Create = "Workflow.WorkflowStep.Create";
-        public const string Workflow_Step_Edit = "Workflow.WorkflowStep.Edit";
-        public const string Workflow_Step_Delete = "Workflow.WorkflowStep.Delete";
-
-        //Workflow Steps Indexes
-        public const string Workflow_Step_Index = "Workflow.StepIndex";
-        public const string Workflow_Step_Index_Create = "Workflow.StepIndex.Create";
-        public const string Workflow_Step_Index_Edit = "Workflow.StepIndex.Edit";
-        public const string Workflow_Step_Index_Delete = "Workflow.StepIndex.Delete";
-        #endregion
 
     }
 }

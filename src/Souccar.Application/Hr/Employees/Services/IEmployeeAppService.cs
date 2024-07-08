@@ -6,6 +6,5 @@ namespace Souccar.Hr.Employees.Services
 {
     public interface IEmployeeAppService : IAsyncSouccarAppService<EmployeeDto, int, FullPagedRequestDto, CreateEmployeeDto, UpdateEmployeeDto>
     {
-
     }
 }

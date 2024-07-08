@@ -116,424 +116,83 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
-    <text name="The{0}MaterialWillExpireOn{1}" value="The {0} material will expire on {1}">
-    </text>
-    <text name="Description" value="Description">
-    </text>
-    <text name="Suppliers" value="Suppliers">
-    </text>
-    <text name="AddSupplier" value="Add Supplier">
-    </text>
-    <text name="leadTime" value="lead Time">
-    </text>
-    <text name="Quantity" value="Quantity">
-    </text>
-    <text name="Code" value="Code">
-    </text>
-    <text name="ExpirationDate" value="Expiration Date">
-    </text>
-    <text name="OutputRequest" value="Output Request">
-    </text>
-    <text name="Supplier" value="Supplier">
-    </text>
-    <text name="NewProduct" value="New Product">
-    </text>
-    <text name="TotalQuantity" value="Total Quantity">
-    </text>
-    <text name="Price" value="Price">
-    </text>
-    <text name="Action" value="Action">
-    </text>
-    <text name="From" value="From">
-    </text>
-    <text name="To" value="To">
-    </text>
-    <text name="Value" value="Value">
-    </text>
-    <text name="ExpiryDurationNotify" value="Expiry Duration Notify">
-    </text>
-    <text name="Stock" value="Stock">
-    </text>
-    <text name="Material" value="Material">
-    </text>
-    <text name="Warehouse" value="Warehouse">
-    </text>
-    <text name="WarehouseMaterialCode" value="Warehouse Material Code">
-    </text>
-    <text name="Withdrawn" value="Withdrawn">
-    </text>
-    <text name="EntryDate" value="Entry Date">
-    </text>
-    <text name="Unit" value="Unit">
-    </text>
-    <text name="InitialQuantity" value="Initial Quantity">
-    </text>
-    <text name="CurrentQuantity" value="Current Quantity">
-    </text>
-    <text name="PriceUnit" value="Price Unit">
-    </text>
-    <text name="RequiredQuantity" value="Required Quantity">
-    </text>
-    <text name="Place" value="Place">
-    </text>
-    <text name="Storekeeper" value="Storekeeper">
-    </text>
-    <text name="Title" value="Title">
-    </text>
-    <text name="DailyProduction" value="Daily Production">
-    </text>
-    <text name="Duration" value="Duration">
-    </text>
-    <text name="ProductionRatio" value="Production Ratio">
-    </text>
-    <text name="StartDate" value="Start Date">
-    </text>
-    <text name="NumberOfItems" value="Number Of Items">
-    </text>
-    <text name="Plan" value="Plan">
-    </text>
-    <text name="Products" value="Products">
-    </text>
-    <text name="Status" value="Status">
-    </text>
-    <text name="Pending" value="Pending">
-    </text>
-    <text name="CanProduce" value="Can Produce">
-    </text>
-    <text name="DurationInDays" value="Duration In Days">
-    </text>
-    <text name="InProduction" value="In Production">
-    </text>
-    <text name="Inventory" value="Inventory">
-    </text>
-    <text name="Finished" value="Finished">
-    </text>
-    <text name="PlanLogs" value="Plan Logs">
-    </text>
-    <text name="OutputDate" value="Output Date">
-    </text>
-    <text name="LastLogins" value="Last Logins">
-    </text>
-    <text name="NewOutputRequest" value="New Output Request">
-    </text>
-    <text name="NewOutputRequestMaterial" value="New Output Request Material">
-    </text>
-    <text name="OutputRequestMaterial" value="Output Request Material">
-    </text>
-    <text name="EditOutputRequest" value="Edit Output Request">
-    </text>
-    <text name="EditProduct" value="Edit Product">
-    </text>
-    <text name="ExpiryDurationNotifyInDays" value="Expiry Duration Notify In Days">
-    </text>
-    <text name="GeneralSetting" value="General Setting">
-    </text>
-    <text name="AddGeneralSetting" value="Add General Setting">
-    </text>
-    <text name="EditGeneralSetting" value="Edit General Setting">
-    </text>
-    <text name="CreateNewTransfer" value="Create New Transfer">
-    </text>
-    <text name="EditTransfer" value="Edit Transfer">
-    </text>
-    <text name="ViewMoreDetails" value="View More Details">
-    </text>
-    <text name="CreateNewUnit" value="Create New Unit">
-    </text>
-    <text name="EditUnit" value="Edit Unit">
-    </text>
-    <text name="CreateNewMaterial" value="Create New Material">
-    </text>
-    <text name="EditMaterial" value="Edit Material">
-    </text>
-    <text name="CreateNewPlan" value="Create New Plan">
-    </text>
-    <text name="EditPlan" value="Edit Plan">
-    </text>
-    <text name="CreateNewSupplier" value="Create New Supplier">
-    </text>
-    <text name="EditSupplier" value="Edit Supplier">
-    </text>
-    <text name="AddNewWarehouse" value="Add New Warehouse">
-    </text>
-    <text name="EditWarehouse" value="Edit Warehouse">
-    </text>
-    <text name="AddNewItemInWarehouse" value="Add New Item In Warehouse">
-    </text>
-    <text name="EditItemInWarehouse" value="Edit Item In Warehouse">
-    </text>
-    <text name="ThereIsNoPlan,PleaseAddANewOne" value="There Is No Plan,Please Add A New One">
-    </text>
-    <text name="GoToPlansList" value="Go To Plans List">
-    </text>
-    <text name="TotalQuentity" value="Total Quentity">
-    </text>
-    <text name="AddDailyProduction" value="Add Daily Production">
-    </text>
-    <text name="AmountWasted" value="Amount Wasted">
-    </text>
-    <text name="TotalSalesAmount" value="Total Sales Amount">
-    </text>
-    <text name="ProduceCost" value="Produce Cost">
-    </text>
-    <text name="Arbitrage" value="Arbitrage">
-    </text>
-    <text name="Cost" value="Cost">
-    </text>
-    <text name="SellingPrice" value="Selling Price">
-    </text>
-    <text name="AddNew" value="Add New">
-    </text>
-    <text name="OrderBy" value="Order By">
-    </text>
-    <text name="PerPage" value="Per Page">
-    </text>
-    <text name="PlanProduct" value="Plan Product">
-    </text>
-    <text name="AreYouSureYouWantToArchivedThisPlan" value="Are You Sure You Want To Archived This Plan?">
-    </text>
-    <text name="Warning" value="Warning">
-    </text>
-    <text name="ArchivePlan" value="Archive Plan">
-    </text>
-    <text name="Confirmation" value="Confirmation">
-    </text>
-    <text name="DeleteUser" value="Delete user">
-    </text>
-    <text name="ChangePermissions" value="Change permissions">
-    </text>
-    <text name="DeleteRole" value="Delete role">
-    </text>
-    <text name="DailyProductions" value="Daily productions">
-    </text>
-    <text name="CreateNewDailyProduction" value="Create new daily production">
-    </text>
-    <text name="EditDailyProduction" value="Edit daily production">
-    </text>
-    <text name="DeleteDailyProduction" value="Delete daily production">
-    </text>
-    <text name="GeneralSettings" value="General settings">
-    </text>
-    <text name="CreateNewGeneralSetting" value="Create new general setting">
-    </text>
-    <text name="DeleteGeneralSetting" value="Delete general setting">
-    </text>
-    <text name="Materials" value="Materials">
-    </text>
-    <text name="DeleteMaterial" value="Delete material">
-    </text>
-    <text name="Plans" value="Plans">
-    </text>
-    <text name="DeletePlan" value="Delete plan">
-    </text>
-    <text name="CreateNewProduct" value="Create new product">
-    </text>
-    <text name="DeleteProduct" value="Delete product">
-    </text>
-    <text name="DeleteSupplier" value="Delete supplier">
-    </text>
-    <text name="Units" value="Units">
-    </text>
-    <text name="DeleteUnit" value="Delete unit">
-    </text>
-    <text name="Transfers" value="Transfers">
-    </text>
-    <text name="TransferToImplementation" value="Transfer to implementation">
-    </text>
-    <text name="DeleteTransfer" value="Delete transfer">
-    </text>
-    <text name="Warehouses" value="Warehouses">
-    </text>
-    <text name="CreateNewWarehouse" value="Create new warehouse">
-    </text>
-    <text name="DeleteWarehouse" value="Delete warehouse">
-    </text>
-    <text name="WarehouseMaterials" value="Warehouse materials">
-    </text>
-    <text name="CreateNewWarehouseMaterial" value="Create new warehouse material">
-    </text>
-    <text name="EditWarehouseMaterial" value="Edit warehouse material">
-    </text>
-    <text name="DeleteWarehouseMaterial" value="Delete warehouse material">
-    </text>
-    <text name="OutputRquests" value="Output rquests">
-    </text>
-    <text name="CreateNewOutputRquest" value="Create new output rquest">
-    </text>
-    <text name="EditOutputRquest" value="Edit output rquest">
-    </text>
-    <text name="DeleteOutputRquest" value="Delete output rquest">
-    </text>
-    <text name="ProductionPercentage" value="Production Percentage">
-    </text>
-    <text name="RequiredNumber" value="Required Number">
-    </text>
-    <text name="NumberProduced" value="Number Produced">
-    </text>
-    <text name="Formula" value="Formula">
-    </text>
-    <text name="MaterialRequest" value="Material Request">
-    </text>
-    <text name="RequestDate" value="RequestDate">
-    </text>
-    <text name="Note" value="Note">
-    </text>
-    <text name="ActuallyActually" value="Actually">
-    </text>
-    <text name="Search" value="Search">
-    </text>
-    <text name="Day" value="Day">
-    </text>
-    <text name="AddOneSupplierAtLeast" value="Add One Supplier At Least">
-    </text>
-    <text name="AddOneFormulaAtLeast" value="Add One Formula At Least">
-    </text>
-    <text name="ExpiryDurationNotifyCanNotBeNegativeOrZereo" value="Expiry Duration Notify Can Not Be Less Than Zero ">
-    </text>
-    <text name="PriceCanNotBeNegativeOrZero" value="Price Can Not Be Less Than Zero">
-    </text>
-    <text name="QuantityCanNotBeNegativeOrZero" value="Quantity Can Not Be Less Than Zero">
-    </text>
-    <text name="FillSupplierAndLeadTimeFieldBefoe" value="Fill Supplier And Lead Time Field Befoe">
-    </text>
-    <text name="InDays" value="In Days">
-    </text>
-    <text name="FillRequiredFieldPleas" value="Fill Required Field Pleas">
-    </text>
-    <text name="ThisFieldIsRequired" value="This field is required">
-    </text>
-    <text name="ThisFieldCannotBeNegative" value="This field cannot be negative">
-    </text>
-    <text name="InvalidDate" value="Invalid Date">
-    </text>
-    <text name="ThisListCannotBeEmpty" value="This list cannot be empty">
-    </text>
-    <text name="FillSupplierAndLeadTimeFieldFirst" value="Fill Supplier And LeadTime Field First">
-    </text>
-    <text name="MaterialDetails" value="Material Details">
-    </text>
-    <text name="ChooseDifferentUnits" value="Choose DifferentUnits">
-    </text>
-    <text name="leadTimeCanNotBeNegativeOrZero" value="leadTime Can Not Be Negative Or Zero">
-    </text>
-    <text name="ExpiryDurationNotifyCanNotBeNegativeOrZero" value="Expiry Duration Notify Can Not Be Negative Or Zero">
-    </text>
-    <text name="MoveToProduction" value="Move To Production">
-    </text>
-    <text name="WarehouseCode" value="Warehouse Code">
-    </text>
-    <text name="GoToPlanList" value="Go To Plan List">
-    </text>
-    <text name="RelatedProduct" value="Related Product">
-    </text>
-    <text name="Date" value="Date">
-    </text>
-    <text name="TheNumberRequiredToBeProduced" value="The Number Required To Be Produced">
-    </text>
-    <text name="NumberProducedSoFar" value="Number Produced So Far">
-    </text>
-    <text name="TheNumberThatCanBeProducedAccordingToTheQuantitiesOfMaterialsPresentInTheWarehouses" value="The Number That Can Be Produced According To The Quantities Of Materials Present In The Warehouses">
-    </text>
-    <text name="TheCostOfProducingOnePackage/TheCostOfProducingTheNumberThatCanBeProduced" value="The Cost Of Producing One Package / The Cost Of Producing The Number That Can Be Produced">
-    </text>
-    <text name="ProductBalancing" value="Product Balancing">
-    </text>
-    <text name="TotalSalesAmountAccordingToTheNumberOfPackagesProduced/ProductPrice" value="Total Sales Amount According To The Number Of Packages Produced / Product Price">
-    </text>
-    <text name="PlanCanProduce" value="Plan Can Produce">
-    </text>
-    <text name="PlanCanNotProduce" value="Plan Can Not Produce">
-    </text>
-    <text name="TotalSalesAmountAccordingToTheNumberOfPackagesProduced " value="Total Sales Amount According To The Number Of Packages Produced">
-    </text>
-    <text name="CostOfPackagingProducedToDate" value="Cost Of Packaging Produced To Date">
-    </text>
-    <text name="TheValueOfTheAmountWastedFromTheProductionProcess" value="The Value Of The Amount Wasted From The Production Process">
-    </text>
-    <text name="Produced" value="Produced">
-    </text>
-    <text name="Remaining" value="Remaining">
-    </text>
-    <text name="RequestTitle" value="Request Title">
-    </text>
-    <text name="Hello" value="Hello">
-    </text>
-    <text name="ThereIsNoPlan,PleaseAddANewPlan" value="There is no plan,Please add a new plan">
-    </text>
-    <text name="EmptyList" value="The list is empty">
-    </text>
-    <text name="SimpleStringMaxLength" value="You have exceeded the maximum character limit">
-    </text>
-    <text name="AddOnePlanProductAtLeast" value="Add One Plan Product At Least">
-    </text>
-    <text name="ProductIsAlreadyExist" value="Product is already exist">
-    </text>
-    <text name="AddOneProductAtLeast" value="Add One Product At Least">
-    </text>
-    <text name="Test">Test</text>
-    <text name="Tests">Tests</text>
-    <text name="CreateNewTest">Create New Test</text>
-    <text name="EditTest">Edit Test</text>
-    <text name="DeleteTest">Delete Test</text>
-    <text name="Tenant">Tenant</text>
-    <text name="FirstName">First Name</text>
-    <text name="LastName">Last Name</text>
-    <text name="Age">Age</text>
-    <text name="DateOfBirth">Date Of Birth</text>
-    <text name="IsDeleted">Is Deleted</text>
-    <text name="DeleterUser">Deleter User</text>
-    <text name="DeletionTime">Deletion Time</text>
-    <text name="LastModificationTime">Last Modification Time</text>
-    <text name="LastModifierUser">Last Modifier User</text>
-    <text name="CreationTime">Creation Time</text>
-    <text name="CreatorUser">Creator User</text>
-    <text name="DomainEvents">Domain Events</text>
-	  <text name="AddNewEmployee">Add New Employee</text>
+	  <text name="Employee">Employee</text>
+	  <text name="Employees">Employees</text>
+	  <text name="CreateNewEmployee">Create New Employee</text>
 	  <text name="EditEmployee">Edit Employee</text>
 	  <text name="DeleteEmployee">Delete Employee</text>
-	  <text name="Employee">Employee</text>
-	  <text name="Child">Child</text>
-	  <text name="AddNewChild">Add New Child</text>
-	  <text name="EditChild">Edit Child</text>
-	  <text name="TheSupplierCannotBeDuplicated">The Supplier Cannot Be Duplicated</text>
-	  <text name="Details">Details</text>
-	  <text name="BackTo">Back To</text>
-	  <text name=" List"> List</text>
-	  <text name="PercentageCanNotBeNegativeOrZero" value="Percentage cannot be less than or equal zero">
-	  </text>
-	  <text name="PercentageCanNotBeGreaterThan100" value="Percentage cannot be greater Than 100">
-	  </text>
-
-	  <text name="Workflow">Workflow</text>
-	  <text name="CreateWorkflow">Create Workflow</text>
-	  <text name="EditWorkflow">Edit Workflow</text>
-	  <text name="DeleteWorkflow">Delete Workflow</text>
-	  <text name="WorkflowStep">Workflow Step</text>
-	  <text name="CreateWorkflowStep">Create Workflow Step</text>
-	  <text name="EditWorkflowStep">Edit Workflow Step</text>
-	  <text name="DeleteWorkflowStep">Delete Workflow Step</text>
-	  <text name="WorkflowStepIndex">Workflow Step Index</text>
-	  <text name="CreateWorkflowStepIndex">Create Workflow Step Index</text>
-	  <text name="EditWorkflowStepIndex">Edit Workflow Step Index</text>
-	  
-	  <text name="CreateNewCategories">Create New Category</text>
-	  <text name="DeleteCategory">Delete Category</text>
-	  <text name="EditCategory">Edit Category</text>
-	  <text name="Categories">Categories</text>
-	  
-	  <text name="BackToRoleList">Back To Role List</text>
-	  <text name="BackToAllProduct">Back To All Product</text>
-	  <text name="Contains">Contains</text>
-	  <text name="StartsWith">Starts With</text>
-	  <text name="EndsWith">EndsWith</text>
-	  <text name="Account">Account</text>
-	  <text name="AddNewWorkFlowStep">Add New WorkFlow Step</text>
-	  <text name="CreateNewWorkFlowStepIndex">Create New Work Flow Step Index</text>
-
-	 
-
-
-
+	  <text name="PhoneNumber">Phone Number</text>
+	  <text name="Address">Address</text>
+	  <text name="Salary">Salary</text>
+	  <text name="Email">Email</text>
+	  <text name="Tenant">Tenant</text>
+	  <text name="IsDeleted">Is Deleted</text>
+	  <text name="DeleterUser">Deleter User</text>
+	  <text name="DeletionTime">Deletion Time</text>
+	  <text name="LastModificationTime">Last Modification Time</text>
+	  <text name="LastModifierUser">Last Modifier User</text>
+	  <text name="CreationTime">Creation Time</text>
+	  <text name="CreatorUser">Creator User</text>
+	  <text name="Stock">Stock</text>
+	  <text name="Stocks">Stocks</text>
+	  <text name="CreateNewStock">Create New Stock</text>
+	  <text name="EditStock">Edit Stock</text>
+	  <text name="DeleteStock">Delete Stock</text>
+	  <text name="Barcode">Barcode</text>
+	  <text name="Note">Note</text>
+	  <text name="Count">Count</text>
+	  <text name="NumberInLargeUnit">Number In Large Unit</text>
+	  <text name="NumberInSmallUnit">Number In Small Unit</text>
+	  <text name="QuantityInLargeUnit">Quantity In Large Unit</text>
+	  <text name="TotalNumberInSmallUnit">Total Number In Small Unit</text>
+	  <text name="Unit">Unit</text>
+	  <text name="Size">Size</text>
+	  <text name="Material">Material</text>
+	  <text name="Store">Store</text>
+	  <text name="UnitSize">Unit Size</text>
+	  <text name="UnitSizes">Unit Sizes</text>
+	  <text name="CreateNewUnitSize">Create New Unit Size</text>
+	  <text name="EditUnitSize">Edit Unit Size</text>
+	  <text name="DeleteUnitSize">Delete Unit Size</text>
+	  <text name="Description">Description</text>
+	  <text name="Specification">Specification</text>
+	  <text name="Category">Category</text>
+	  <text name="Customer">Customer</text>
+	  <text name="Customers">Customers</text>
+	  <text name="CreateNewCustomer">Create New Customer</text>
+	  <text name="EditCustomer">Edit Customer</text>
+	  <text name="DeleteCustomer">Delete Customer</text>
+	  <text name="BalanceInDollar">Balance In Dollar</text>
+	  <text name="BalanceInDinar">Balance In Dinar</text>
+	  <text name="InitialBalance">Initial Balance</text>
+	  <text name="Type">Type</text>
+	  <text name="ClearanceCompany">Clearance Company</text>
+	  <text name="ClearanceCompanies">Clearance Companies</text>
+	  <text name="CreateNewClearanceCompany">Create New Clearance Company</text>
+	  <text name="EditClearanceCompany">Edit Clearance Company</text>
+	  <text name="DeleteClearanceCompany">Delete Clearance Company</text>
+	  <text name="TransportCompany">Transport Company</text>
+	  <text name="TransportCompanies">Transport Companies</text>
+	  <text name="CreateNewTransportCompany">Create New Transport Company</text>
+	  <text name="EditTransportCompany">Edit Transport Company</text>
+	  <text name="DeleteTransportCompany">Delete Transport Company</text>
+	  <text name="CustomerType">Customer Type</text>
+	  <text name="CustomerTypes">Customer Types</text>
+	  <text name="CreateNewCustomerType">Create New Customer Type</text>
+	  <text name="EditCustomerType">Edit Customer Type</text>
+	  <text name="DeleteCustomerType">Delete Customer Type</text>
+	  <text name="Company">Company</text>
+	  <text name="Companies">Companies</text>
+	  <text name="CreateNewCompany">Create New Company</text>
+	  <text name="EditCompany">Edit Company</text>
+	  <text name="DeleteCompany">Delete Company</text>
+	  <text name="Offer">Offer</text>
+	  <text name="Offers">Offers</text>
+	  <text name="CreateNewOffer">Create New Offer</text>
+	  <text name="EditOffer">Edit Offer</text>
+	  <text name="DeleteOffer">Delete Offer</text>
+	  <text name="Title">Title</text>
+	  <text name="Price">Price</text>
 
 
   </texts>

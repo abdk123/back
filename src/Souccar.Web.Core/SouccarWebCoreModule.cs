@@ -14,7 +14,6 @@ using Souccar.Configuration;
 using Souccar.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Abp.Threading.BackgroundWorkers;
-using Souccar.Jobs;
 
 namespace Souccar
 {
@@ -22,7 +21,7 @@ namespace Souccar
          typeof(SouccarApplicationModule),
          typeof(SouccarEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
-        ,typeof(AbpAspNetCoreSignalRModule)
+        , typeof(AbpAspNetCoreSignalRModule)
      )]
     public class SouccarWebCoreModule : AbpModule
     {
@@ -51,7 +50,7 @@ namespace Souccar
 
             ConfigureTokenAuth();
 
-            
+
         }
 
         private void ConfigureTokenAuth()
@@ -77,8 +76,6 @@ namespace Souccar
                 .AddApplicationPartsIfNotAddedBefore(typeof(SouccarWebCoreModule).Assembly);
 
             //Workers
-            var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
-            workManager.Add(IocManager.Resolve<CheckMaterialExpiryBackgroundWorker>());
         }
     }
 }
