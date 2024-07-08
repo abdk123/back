@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="ar">
+	<texts>
+		<text name="HomePage" value="Home page" />
+		<text name="About" value="About" />
+		<text name="WelcomeMessage" value="Welcome to Souccar!" />
+		<text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
+		<text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
+		<text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+		<text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
+		<text name="TenantIsNotActive" value="Tenant {0} is not active." />
+		<text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
+		<text name="UserEmailIsNotConfirmedAndCanNotLogin">Your email address is not confirmed. You can not login.</text>
+		<text name="UserLockedOutMessage">The user account has been locked out. Please try again later.</text>
+		<text name="PleaseEnterLoginInformation" value="Please enter login information" />
+		<text name="TenancyName" value="Tenancy name" />
+		<text name="UserNameOrEmail" value="User name or email" />
+		<text name="Password" value="كلمة السر" />
+		<text name="ResetPassword" value="Reset Password" />
+		<text name="UpdatePassword" value="Update Password" />
+		<text name="RememberMe" value="حفظ الحساب " />
+		<text name="LogIn" value="تسجيل الدخول" />
+		<text name="LoginFailed" value="فشل في عملية تسجيل الدخول" />
+		<text name="NameSurname" value="Name surname" />
+		<text name="UserName" value="اسم المستخدم" />
+		<text name="Name" value="الاسم" />
+		<text name="Surname" value="Surname" />
+		<text name="EmailAddress" value="عنوان البريد الإلكتروني" />
+		<text name="Tenants" value="Tenants" />
+		<text name="SavedSuccessfully" value="تم الحفظ بنجاح" />
+		<text name="CreateNewTenant" value="Create new tenant" />
+		<text name="AdminEmailAddress" value="Admin email address" />
+		<text name="AdminPassword" value="Admin password" />
+		<text name="Save" value="حفظ" />
+		<text name="Cancel" value="إلغاء" />
+		<text name="TenantName_Regex_Description" value="Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore." />
+		<text name="DefaultPasswordIs" value="Default password is {0}" />
+		<text name="CanBeEmptyToLoginAsHost" value="Can be empty to login as host." />
+		<text name="Register" value="Register" />
+		<text name="OrLoginWith" value="Or login with" />
+		<text name="WaitingForActivationMessage" value="Your account is waiting to be activated by system admin." />
+		<text name="TenantSelection" value="Tenant Selection" />
+		<text name="TenantSelection_Detail" value="Please select one of the following tenants." />
+		<text name="Logout" value="Logout" />
+		<text name="RegisterFormUserNameInvalidMessage">Please don't enter an email address for username.</text>
+		<text name="DatabaseConnectionString" value="Database connection string" />
+		<text name="Users" value="Users" />
+		<text name="IsActive" value="Is active" />
+		<text name="FullName" value="Full name" />
+		<text name="CreateNewUser" value="Create new user" />
+		<text name="Yes" value="Yes" />
+		<text name="No" value="No" />
+		<text name="Optional" value="Optional" />
+		<text name="LeaveEmptyToSwitchToHost">Leave empty to switch to the host</text>
+		<text name="CurrentTenant">Current tenant</text>
+		<text name="NotSelected">Not selected</text>
+		<text name="Change">Change</text>
+		<text name="ChangeTenant">Change tenant</text>
+		<text name="MultiLevelMenu">Multi Level Menu</text>
+		<text name="Back">رجوع</text>
+		<text name="SuccessfullyRegistered">Successfully registered</text>
+		<text name="WaitingForEmailActivation">Your email address should be activated</text>
+		<text name="DisplayName">الاسم الظاهر</text>
+		<text name="Permissions">الصلاحيات</text>
+		<text name="Edit">تعديل</text>
+		<text name="Delete">حذف</text>
+		<text name="CreateNewRole">Create new role</text>
+		<text name="RoleName">Role Name</text>
+		<text name="NewRole">دور جديد</text>
+		<text name="Actions">Actions</text>
+		<text name="CouldNotCompleteLoginOperation">Could not complete login operation. Please try again later.</text>
+		<text name="CouldNotValidateExternalUser">Could not validate external user</text>
+		<text name="EditRole">Edit role</text>
+		<text name="EditTenant">Edit tenant</text>
+		<text name="EditUser">Edit user</text>
+		<text name="TenantIdIsNotActive{0}">TenantId {0} is not active</text>
+		<text name="UnknownTenantId{0}">Unknown tenantId {0}</text>
+		<text name="PleaseWait">انتظر من فضلك ...</text>
+		<text name="Administration">Administration</text>
+		<text name="ClearAll">Clear all</text>
+		<text name="ClearOthers">Clear others</text>
+		<text name="LabelOptions">Label options</text>
+		<text name="RoleDescription">Role description</text>
+		<text name="Refresh">تحديث</text>
+		<text name="Create">إنشاء</text>
+		<text name="UserDetails">User details</text>
+		<text name="UserRoles">User roles</text>
+		<text name="ConfirmPassword">Confirm password</text>
+		<text name="Version">Version</text>
+		<text name="On">On</text>
+		<text name="Off">Off</text>
+		<text name="AreYouSureWantToDelete">هل أنت متأكد من أنك تريد الحذف {0}؟</text>
+		<text name="SuccessfullyDeleted">تم الحذف بنجاح</text>
+		<text name="StartTyping">Start Typing</text>
+		<text name="Skins">Skins</text>
+		<text name="Filter">التصفية</text>
+		<text name="CurrentPassword">Current Password</text>
+		<text name="NewPassword">كلمة المرور الجديدة</text>
+		<text name="ConfirmNewPassword">تأكيد كلمة المرور الجديدة</text>
+		<text name="PasswordsDoNotMatch">كلمة المرور غير مطابقة</text>
+		<text name="PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber">يجب أن تحتوي كلمات المرور على 8 أحرف على الأقل، وأحرف صغيرة، وأحرف كبيرة، ورقم</text>
+		<text name="UserDeleteWarningMessage">User {0} will be deleted.</text>
+		<text name="RoleDeleteWarningMessage">Role {0} will be deleted and unassigned from all assigned users.</text>
+		<text name="TenantDeleteWarningMessage">Tenant {0} will be deleted.</text>
+		<text name="SearchWithThreeDot">البحث...</text>
+		<text name="PleaseEnterAtLeastNCharacter">الرجاء إدخال {0} حرف على الأقل</text>
+		<text name="PleaseEnterNoMoreThanNCharacter">Please enter no more than {0} characters</text>
+		<text name="InvalidEmailAddress">Invalid email address</text>
+		<text name="InvalidPattern">Invalid</text>
+		<text name="PairsDoNotMatch">Do not match</text>
+		<text name="All">All</text>
+		<text name="TotalRecordsCount">Total: {0}</text>
+		<text name="Clear">Clear</text>
+		<text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
+		<text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
+		<text name="UsersActivation">Users activation</text>
+		<text name="The{0}MaterialWillExpireOn{1}" value="The {0} material will expire on {1}"></text>
+		<text name="Roles">الأدوار</text>
+		<text name="Description" value="الوصف"></text>
+		<text name="Warehouses" value="المستودعات"></text>
+		<text name="Production" value="الإنتاج"></text>
+		<text name="Settings" value="الإعدادات"></text>
+		<text name="Security" value="الأمن"></text>
+		<text name="Role" value="الدور"></text>
+		<text name="User" value="المستخدم"></text>
+		<text name="Suppliers" value="الموردين"></text>
+		<text name="AddSupplier" value="إضافة مورد"></text>
+		<text name="leadTime" value="المهلة"></text>
+		<text name="Quantity" value="الكمية"></text>
+		<text name="Code" value="الرمز"></text>
+		<text name="ExpirationDate" value="تاريخ انتهاء الصلاحية"></text>
+		<text name="OutputRequest" value="طلب الإخراج"></text>
+		<text name="Supplier" value="المورد"></text>
+		<text name="NewProduct" value="منتج جديد"></text>
+		<text name="TotalQuantity" value="الكمية الإجمالية"></text>
+		<text name="Price" value="السعر"></text>
+		<text name="Action" value="العملية"></text>
+		<text name="From" value="من"></text>
+		<text name="To" value="إلى"></text>
+		<text name="Value" value="القيمة"></text>
+		<text name="ExpiryDurationNotify" value="إشعار انتهاء الصلاحية"></text>
+		<text name="Stock" value="المخزون"></text>
+		<text name="Material" value="المادة"></text>
+		<text name="Warehouse" value="المستودع"></text>
+		<text name="WarehouseMaterialCode" value="رمز مواد المستودع"></text>
+		<text name="WarehouseCode" value="رمز المستودع"></text>
+		<text name="Withdrawn" value="المنسحب"></text>
+		<text name="EntryDate" value="تاريخ الإدخال"></text>
+		<text name="Unit" value="الوحدة"></text>
+		<text name="InitialQuantity" value="الكمية الأولية"></text>
+		<text name="CurrentQuantity" value="الكمية الحالية"></text>
+		<text name="PriceUnit" value="واحدة السعر"></text>
+		<text name="RequiredQuantity" value="الكمية المطلوبة"></text>
+		<text name="Place" value="المكان"></text>
+		<text name="Storekeeper" value="امين المخزن"></text>
+		<text name="Title" value="العنوان"></text>
+		<text name="DailyProduction" value="الإنتاج اليومي"></text>
+		<text name="Duration" value="المدة"></text>
+		<text name="ProductionRatio" value="نسبة الإنتاج"></text>
+		<text name="StartDate" value="تاريخ البدء"></text>
+		<text name="NumberOfItems" value="عدد العناصر"></text>
+		<text name="Plan" value="الخطة"></text>
+		<text name="Products" value="المنتجات"></text>
+		<text name="Status" value="الحالة"></text>
+		<text name="Pending" value="قيد الانتظار"></text>
+		<text name="CanProduce" value="الممكن إنتاجه"></text>
+		<text name="TransferToImplementation" value="النقل للإنتاج"></text>
+		<text name="DurationInDays" value="المدة بالأيام"></text>
+		<text name="InProduction" value="في الانتاج"></text>
+		<text name="Inventory" value="موجودات المخزون"></text>
+		<text name="Finished" value="منتهي"></text>
+		<text name="PlanLogs" value="سجلات الخطة"></text>
+		<text name="OutputDate" value="تاريخ الإخراج"></text>
+		<text name="LastLogins" value="آخر تسجيلات الدخول"></text>
+		<text name="NewOutputRequest" value="طلب إخراج جديد"></text>
+		<text name="NewOutputRequestMaterial" value=" طلب إخراج مادة جديدة"></text>
+		<text name="OutputRequestMaterial" value="طلب إخراج المواد "></text>
+		<text name="EditOutputRequest" value="تعديل طلب الإخراج"></text>
+		<text name="EditProduct" value="تعديل المنتج"></text>
+		<text name="ExpiryDurationNotifyInDays" value="إشعار مدة انتهاء الصلاحية بالأيام"></text>
+		<text name="GeneralSetting" value="الإعدادات العامة"></text>
+		<text name="AddGeneralSetting" value="إضافة إعدادات جديدة"></text>
+		<text name="EditGeneralSetting" value="تعديل الإعدادات"></text>
+		<text name="CreateNewTransfer" value="إنشاء تحويل جديد"></text>
+		<text name="EditTransfer" value="تعديل التحويل"></text>
+		<text name="ViewMoreDetails" value="عرض المزيد من التفاصيل"></text>
+		<text name="CreateNewUnit" value="إنشاء وحدة جديدة"></text>
+		<text name="EditUnit" value="تعديل الوحدة"></text>
+		<text name="CreateNewMaterial" value="إنشاء مادة جديدة"></text>
+		<text name="EditMaterial" value="تعديل المواد"></text>
+		<text name="CreateNewPlan" value="إنشاء خطة جديدة"></text>
+		<text name="EditPlan" value="تعديل الخطة"></text>
+		<text name="CreateNewSupplier" value="إضافة مورد جديد"></text>
+		<text name="EditSupplier" value="تعديل المورد"></text>
+		<text name="AddNewWarehouse" value="إضافة مستودع جديد"></text>
+		<text name="EditWarehouse" value="تعديل المستودع"></text>
+		<text name="AddNewItemInWarehouse" value="إضافة عنصر جديد في المستودع"></text>
+		<text name="EditItemInWarehouse" value="تعديل العنصر في المستودع"></text>
+		<text name="ThereIsNoPlan,PleaseAddANewOne" value="لا توجد خطة، الرجاء إضافة خطة جديدة"></text>
+		<text name="GoToPlansList" value=" عرض كافةالخطط"></text>
+		<text name="Plans" value="الخطط"></text>
+		<text name="TotalQuentity" value="الكمية الإجمالية"></text>
+		<text name="AddDailyProduction" value="إضافة الإنتاج اليومي"></text>
+		<text name="AmountWasted" value="الكمية الضائع"></text>
+		<text name="TotalSalesAmount" value="إجمالي مبلغ المبيعات"></text>
+		<text name="ProduceCost" value="تكلفة الإنتاج"></text>
+		<text name="Arbitrage" value="الموازنة"></text>
+		<text name="Cost" value="الكلفة"></text>
+		<text name="SellingPrice" value="سعر البيع"></text>
+		<text name="AddNew" value="اضف جديد"></text>
+		<text name="OrderBy" value="ترتيب حسب"></text>
+		<text name="PerPage" value="لكل صفحة"></text>
+		<text name="Product" value="المنتج"></text>
+		<text name="Transfer" value="المحول"></text>
+		<text name="PlanProduct" value="منتج الخطة"></text>
+		<text name="Formula" value="التركيبة"></text>
+		<text name="AreYouSureYouWantToArchivedThisPlan" value="هل أنت متأكد أنك تريد أرشفة الخطة؟"></text>
+		<text name="Warning" value="تحذير"></text>
+		<text name="ArchivePlan" value="أرشفة الخطة"></text>
+		<text name="Confirmation" value="تأكيد"></text>
+		<text name="DeleteUser" value="حذف مستخدم"></text>
+		<text name="ChangePermissions" value="تعديل الصلاحيات"></text>
+		<text name="DeleteRole" value="حذف دور"></text>
+		<text name="DailyProductions" value="الإنتاجات اليومية"></text>
+		<text name="CreateNewDailyProduction" value="إنشاء إنتاج يومي جديد"></text>
+		<text name="EditDailyProduction" value="تعديل إنتاج يومي"></text>
+		<text name="DeleteDailyProduction" value="حذف إنتاج يومي"></text>
+		<text name="GeneralSettings" value="الإعدادات العامة"></text>
+		<text name="CreateNewGeneralSetting" value="إنشاء إعداد عام جديد"></text>
+		<text name="DeleteGeneralSetting" value="حذف إعداد عام"></text>
+		<text name="Materials" value="المواد"></text>
+		<text name="DeleteMaterial" value="حذف مادة"></text>
+		<text name="DeletePlan" value="حذف خطة"></text>
+		<text name="CreateNewProduct" value="إنشاء منتج جديد"></text>
+		<text name="DeleteProduct" value="حذف منتج"></text>
+		<text name="DeleteSupplier" value="حذف مورد"></text>
+		<text name="Units" value="الواحدات"></text>
+		<text name="DeleteUnit" value="حذف واحدة"></text>
+		<text name="Transfers" value="التحويلات"></text>
+		<text name="DeleteTransfer" value="حذف تحويل"></text>
+		<text name="CreateNewWarehouse" value="إنشاء مستودع جديد"></text>
+		<text name="DeleteWarehouse" value="حذف مستودع"></text>
+		<text name="WarehouseMaterials" value="مواد المستودع"></text>
+		<text name="CreateNewWarehouseMaterial" value="إدخال مادة إالى المستودع"></text>
+		<text name="EditWarehouseMaterial" value="تعديل مادة ضمن المستودع"></text>
+		<text name="DeleteWarehouseMaterial" value="حذف مادة من المستودع"></text>
+		<text name="OutputRquests" value="طلبات الإخراج"></text>
+		<text name="CreateNewOutputRquest" value="إنشاء طلب إخراج جديد"></text>
+		<text name="EditOutputRquest" value="تعديل طلب إخراج"></text>
+		<text name="DeleteOutputRquest" value="حذف طلب إخراج"></text>
+		<text name="ProductionPercentage" value="نسبة الإنتاج"></text>
+		<text name="RequiredNumber" value="الكمية المطلوبة"></text>
+		<text name="NumberProduced" value="الأعداد المنتجة"></text>
+		<text name="MaterialRequest" value="طلب المواد"></text>
+		<text name="RequestDate" value="تاريخ الطلب"></text>
+		<text name="Note" value="الملاحظات"></text>
+		<text name="Actually" value="الخطة الفعلية"></text>
+		<text name="Search" value="البحث"></text>
+		<text name="Day" value="يوم"></text>
+		<text name="AddOneSupplierAtLeast" value="أضف مورد واحد على الأقل "></text>
+		<text name="AddOneFormulaAtLeast" value="أضف تركيبة واحدة على الأقل "></text>
+		<text name="ExpiryDurationNotifyCanNotBeNegativeOrZereo" value="لا يمكن أن يكون إشعار مدة انتهاء الصلاحية أصغر من صفر"></text>
+		<text name="PriceCanNotBeNegativeOrZero" value="السعر لا يمكن أن يكون أصفر من صفر"></text>
+		<text name="QuantityCanNotBeNegativeOrZero" value="لا يمكن أن تكون الكمية أصغر من صفر"></text>
+		<text name="FillSupplierAndLeadTimeFieldFirst" value="املأ حقل المورد والمهلة الزمنية أولاً"></text>
+		<text name="FillRequiredFieldPlease" value="املأ الحقول المطلوبة من فضلك"></text>
+		<text name="View" value="عرض"></text>
+		<text name="InDays" value="بالأيام"></text>
+		<text name="ThisFieldIsRequired" value="هذ الحقل مطلوب"></text>
+		<text name="ThisFieldCannotBeNegative" value="هذا الحقل لا يمكن أن يكون سالباً"></text>
+		<text name="InvalidDate" value="التاريخ غير صالح"></text>
+		<text name="ThisListCannotBeEmpty" value="هذه القائمة لا يمكن أن تكون فارغة"></text>
+		<text name="MaterialDetails" value="تفاصيل المادة"></text>
+		<text name="ChooseDifferentUnits" value="اختر وحدتين مختلفتين "></text>
+		<text name="leadTimeCanNotBeNegativeOrZero" value="المهلة لا يمكن أن تكون سالبة أو صفر"></text>
+		<text name="ExpiryDurationNotifyCanNotBeNegativeOrZero" value="إشعار انتهاء الصلاحية لا يمكن أن تكون سالبة أو صفر"></text>
+		<text name="MoveToProduction" value="انتقل للإنتاج"></text>
+		<text name="GoToPlanList" value="انتقل إلى قائمة الخطط"></text>
+		<text name="RelatedProduct" value="المنتجات ذات الصلة"></text>
+		<text name="TheNumberRequiredToBeProduced" value="العدد المطلوب انتاجه"></text>
+		<text name="TheNumberThatCanBeProducedAccordingToTheQuantitiesOfMaterialsPresentInTheWarehouses" value="العدد الممكن إنتاجه حسب كميات المواد الموجودة في المستودعات"></text>
+		<text name="NumberProducedSoFar" value="العدد الذي تم إنتاجه حتى اليوم"></text>
+		<text name="ProductBalancing" value="موازنة المنتج"></text>
+		<text name="TotalSalesAmountAccordingToTheNumberOfPackagesProduced/ProductPrice" value="مبلغ المبيع الإجمالي حسب عدد العبوات المنتجة / سعر المنتج"></text>
+		<text name="TheCostOfProducingOnePackage/TheCostOfProducingTheNumberThatCanBeProduced" value="تكلفة إنتاج العبوة الواحدة / تكلفة إنتاج العدد الذي يمكن إنتاجه"></text>
+		<text name="RequiedQuantity" value="الكمية المطلوبة"></text>
+		<text name="PlanCanProduce" value="يمكن إنتاج الخطة"></text>
+		<text name="PlanCanNotProduce" value="لا يمكن إنتاج الخطة"></text>
+		<text name="CostOfPackagingProducedToDate" value="تكلفة العبوات المنتجة حتى اليوم"></text>
+		<text name="TotalSalesAmountAccordingToTheNumberOfPackagesProduced " value="مبلغ المبيع الإجمالي حسب عدد العبوات المنتجة"></text>
+		<text name="TheValueOfTheAmountWastedFromTheProductionProcess" value="قيمة المبلغ المهدور من عملية الإنتاج"></text>
+		<text name="Remaining" value="المتبقي"></text>
+		<text name="RequestTitle" value="عنوان الطلب"></text>
+		<text name="Date" value="التاريخ"></text>
+		<text name="Produced" value="تم إنتاج"></text>
+		<text name="Hello" value="مرحباً"></text>
+		<text name="ThereIsNoPlan,PleaseAddANewPlan" value="لا توجد خطة، الرجاء إضافة خطة جديدة"></text>
+		<text name="EmptyList" value="سلسلة فارغة"></text>
+		<text name="SimpleStringMaxLength" value="لقد تجاوزت الحد الأعلى من المحارف"></text>
+		<text name="AddOnePlanProductAtLeast" value="يجب إضافة منتج واحد على الأقل"></text>
+		<text name="ProductIsAlreadyExist" value="المنتج موجود بالفعل"></text>
+		<text name="AddOneProductToLeast" value="أضف منتج واحد على الأقل"></text>
+		<text name="AddNewEmployee">إنشاء موظف جديد</text>
+		<text name="EditEmployee">تعديل موظف</text>
+		<text name="DeleteEmployee">حذف موظف</text>
+		<text name="Employee">الموظف</text>
+		<text name="Child">الابن</text>
+		<text name="AddNewChild">إضافة ابن جديد</text>
+		<text name="EditChild">تعديل ابن</text>
+		<text name="TheSupplierCannotBeDuplicated">لا يمكن تكرار الموورد</text>
+		<text name="Details">التفاصيل</text>
+		<text name="BackTo">الرجوع إلى</text>
+		<text name=" List"> القائمة</text>
+		<text name="CreatorUser">إضافة مستخدم</text>
+		<text name="PercentageCanNotBeNegativeOrZero" value="النسبة المئوية لا يمكن أن تكون أصغر أو تساوي الصفر">
+		</text>
+		<text name="PercentageCanNotBeGreaterThan100" value="النسبة المئوية لا يمكن أن تكون أكبر من 100">
+		</text>
+
+		
+		<text name=" Workflow"> تدفق العمل</text>
+		<text name=" CreateWorkflow"> إضافة تدفق عمل</text>
+		<text name=" EditWorkflow"> تعديل تدفق عمل</text>
+		<text name=" DeleteWorkflow"> حذف تدفق عمل</text>
+		<text name=" WorkflowStep"> خطوات تدفق عمل</text>
+		<text name=" CreateWorkflowStep"> إضافة خطوات تدفق عمل</text>
+		<text name=" EditWorkflowStep"> تعديل خطوات تدفق عمل</text>
+		<text name=" DeleteWorkflowStep"> حذف خطوات تدفق عمل</text>
+		<text name=" WorkflowStepIndex"> Workflow Step Index</text>
+		<text name=" CreateWorkflowStepIndex"> Create Workflow Step Index</text>
+		<text name=" EditWorkflowStepIndex"> Edit Workflow Step Index</text>
+		<text name=" DeleteWorkflowStepIndex"> Delete Workflow Step Index</text>
+
+		<text name="CreateNewCategories">إضافة فئات جديدة </text>
+		<text name="DeleteCategory">حذف الفئة</text>
+		<text name="EditCategory">تعديل الفئة</text>
+		<text name="Categories">فئات</text>
+
+		<text name="BackToRoleList">العودة إلى قائمة الأدوار</text>
+		<text name="BackToAllProduct">العودة إلى جميع المنتجات</text>
+		<text name="Contains">يحتوي</text>
+		<text name="StartsWith">يبدأ ب</text>
+		<text name="EndsWith">ينتهي ب</text>
+		<text name="AddNewWorkFlowStep">إضافة خطوة سير عمل جديدة</text>
+		<text name="CreateNewWorkFlowStepIndex">إنشاء فهرس خطوة سير العمل الجديد</text>
+
+
+
+
+
+
+	</texts>
+</localizationDictionary>
