@@ -20,7 +20,7 @@ namespace Souccar.Web
             }
 
             var directoryInfo = new DirectoryInfo(coreAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "Souccar.sln"))
+            while (!DirectoryContains(directoryInfo.FullName, "SaleManagment.sln"))
             {
                 if (directoryInfo.Parent == null)
                 {

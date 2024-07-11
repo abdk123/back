@@ -1577,890 +1577,6 @@ namespace Souccar.Migrations
                     b.ToTable("AbpUsers");
                 });
 
-            modelBuilder.Entity("Souccar.Hcpc.Categories.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProduction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("OutputRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OutputRequestId");
-
-                    b.HasIndex("PlanId");
-
-                    b.ToTable("DailyProductions");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProductionDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("DailyProductionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DailyProductionId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("DailyProductionDetails");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProductionNote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("DailyProductionId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DailyProductionId");
-
-                    b.ToTable("DailyProductionNotes");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.GeneralSettings.GeneralSetting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ExpiryDurationNotify")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GeneralSettings");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Materials.Material", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Materials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Materials.MaterialSuppliers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("LeadTime")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("MaterialSuppliers");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.Plan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalItems")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Plans");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanMaterial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("InventoryQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("PlanId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("PlanMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanProduct", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("NumberOfItems")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlanId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("PlanProducts");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanProductMaterial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PlanProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("RequiredQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("PlanProductId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("PlanProductMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Products.FormulaItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Percentage")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("Formulas");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Products.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Size")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Suppliers.Supplier", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Suppliers");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Units.Transfer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("FromId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ToId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromId");
-
-                    b.HasIndex("ToId");
-
-                    b.ToTable("Transfers");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Units.Unit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ParentUnitId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentUnitId");
-
-                    b.ToTable("Units");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("OutputDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlanId");
-
-                    b.ToTable("OutputRequests");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequestMaterial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("OutputRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WarehouseMaterialId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OutputRequestId");
-
-                    b.HasIndex("UnitId");
-
-                    b.HasIndex("WarehouseMaterialId");
-
-                    b.ToTable("OutputRequestMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequestProduct", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("OutputRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OutputRequestId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OutputRequestProduct");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.Warehouse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Place")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("WarehouseKeeperId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WarehouseKeeperId");
-
-                    b.ToTable("Warehouses");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.WarehouseMaterial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("AboutToFinish")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("CurrentQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("EntryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("InitialQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("PriceSYP")
-                        .HasColumnType("float");
-
-                    b.Property<double>("PriceUSD")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.HasIndex("UnitId");
-
-                    b.HasIndex("WarehouseId");
-
-                    b.ToTable("WarehouseMaterials");
-                });
-
             modelBuilder.Entity("Souccar.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
@@ -2525,7 +1641,7 @@ namespace Souccar.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.Workflow", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Offers.Offer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2557,21 +1673,18 @@ namespace Souccar.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Workflows");
+                    b.ToTable("Offer");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStep", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Categories.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2591,8 +1704,8 @@ namespace Souccar.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Index")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -2603,26 +1716,212 @@ namespace Souccar.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("WorkflowId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkflowId");
-
-                    b.ToTable("WorkflowSteps");
+                    b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStepAction", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("BalanceInDinar")
+                        .HasColumnType("float");
+
+                    b.Property<double>("BalanceInDollar")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Company");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("BalanceInDinar")
+                        .HasColumnType("float");
+
+                    b.Property<double>("BalanceInDollar")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("InitialBalance")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Material");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Stores.Store", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Store");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2654,194 +1953,12 @@ namespace Souccar.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkflowIndexId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkflowStepId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkflowIndexId");
-
-                    b.HasIndex("WorkflowStepId");
-
-                    b.ToTable("WorkflowStepActions");
+                    b.ToTable("Size");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStepGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkflowStepId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WorkflowStepId");
-
-                    b.ToTable("WorkflowStepGroups");
-                });
-
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStepIndex", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ActionName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkflowIndexes");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Personnel.Employees.Child", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Children");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Personnel.Employees.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("NationalityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NationalityId");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Shared.Nationalities.Nationality", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.Unit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2873,12 +1990,104 @@ namespace Souccar.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TenantId")
+                    b.HasKey("Id");
+
+                    b.ToTable("Unit");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.UnitSize", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Nationalities");
+                    b.HasIndex("SizeId");
+
+                    b.HasIndex("UnitId");
+
+                    b.ToTable("UnitSize");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Stocks.Stock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Barcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("NumberInLargeUnit")
+                        .HasColumnType("float");
+
+                    b.Property<double>("NumberInSmallUnit")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("SizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnitId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("SizeId");
+
+                    b.HasIndex("StoreId");
+
+                    b.HasIndex("UnitId");
+
+                    b.ToTable("Stock");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2932,6 +2141,20 @@ namespace Souccar.Migrations
                     b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", b =>
+                {
+                    b.HasBaseType("Souccar.SaleManagement.Settings.Companies.Company");
+
+                    b.HasDiscriminator().HasValue("ClearanceCompany");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompany", b =>
+                {
+                    b.HasBaseType("Souccar.SaleManagement.Settings.Companies.Company");
+
+                    b.HasDiscriminator().HasValue("TransportCompany");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
@@ -3099,263 +2322,6 @@ namespace Souccar.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("Souccar.Hcpc.Categories.Category", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Categories.Category", "ParentCategory")
-                        .WithMany()
-                        .HasForeignKey("ParentCategoryId");
-
-                    b.Navigation("ParentCategory");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProduction", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Warehouses.OutputRequest", "OutputRequest")
-                        .WithMany("DailyProductions")
-                        .HasForeignKey("OutputRequestId");
-
-                    b.HasOne("Souccar.Hcpc.Plans.Plan", "Plan")
-                        .WithMany()
-                        .HasForeignKey("PlanId");
-
-                    b.Navigation("OutputRequest");
-
-                    b.Navigation("Plan");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProductionDetail", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.DailyProductions.DailyProduction", "DailyProduction")
-                        .WithMany("DailyProductionDetails")
-                        .HasForeignKey("DailyProductionId");
-
-                    b.HasOne("Souccar.Hcpc.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("DailyProduction");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProductionNote", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.DailyProductions.DailyProduction", "DailyProduction")
-                        .WithMany("DailyProductionNotes")
-                        .HasForeignKey("DailyProductionId");
-
-                    b.Navigation("DailyProduction");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Materials.MaterialSuppliers", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Materials.Material", "Material")
-                        .WithMany("Suppliers")
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.Hcpc.Suppliers.Supplier", "Supplier")
-                        .WithMany("MaterialSuppliers")
-                        .HasForeignKey("SupplierId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanMaterial", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Materials.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.Hcpc.Plans.Plan", "Plan")
-                        .WithMany()
-                        .HasForeignKey("PlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Plan");
-
-                    b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanProduct", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Plans.Plan", "Plan")
-                        .WithMany("PlanProducts")
-                        .HasForeignKey("PlanId");
-
-                    b.HasOne("Souccar.Hcpc.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Plan");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanProductMaterial", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Materials.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.Hcpc.Plans.PlanProduct", "PlanProduct")
-                        .WithMany("PlanProductMaterials")
-                        .HasForeignKey("PlanProductId");
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("PlanProduct");
-
-                    b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Products.FormulaItem", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Materials.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.Hcpc.Products.Product", "Product")
-                        .WithMany("Formulas")
-                        .HasForeignKey("ProductId");
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Products.Product", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Categories.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Units.Transfer", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "From")
-                        .WithMany()
-                        .HasForeignKey("FromId");
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "To")
-                        .WithMany()
-                        .HasForeignKey("ToId");
-
-                    b.Navigation("From");
-
-                    b.Navigation("To");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Units.Unit", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "ParentUnit")
-                        .WithMany()
-                        .HasForeignKey("ParentUnitId");
-
-                    b.Navigation("ParentUnit");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequest", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Plans.Plan", "Plan")
-                        .WithMany("OutputRequests")
-                        .HasForeignKey("PlanId");
-
-                    b.Navigation("Plan");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequestMaterial", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Warehouses.OutputRequest", "OutputRequest")
-                        .WithMany("OutputRequestMaterials")
-                        .HasForeignKey("OutputRequestId");
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.HasOne("Souccar.Hcpc.Warehouses.WarehouseMaterial", "WarehouseMaterial")
-                        .WithMany()
-                        .HasForeignKey("WarehouseMaterialId");
-
-                    b.Navigation("OutputRequest");
-
-                    b.Navigation("Unit");
-
-                    b.Navigation("WarehouseMaterial");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequestProduct", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Warehouses.OutputRequest", "OutputRequest")
-                        .WithMany("OutputRequestProducts")
-                        .HasForeignKey("OutputRequestId");
-
-                    b.HasOne("Souccar.Hcpc.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("OutputRequest");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.Warehouse", b =>
-                {
-                    b.HasOne("Souccar.Authorization.Users.User", "WarehouseKeeper")
-                        .WithMany()
-                        .HasForeignKey("WarehouseKeeperId");
-
-                    b.Navigation("WarehouseKeeper");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.WarehouseMaterial", b =>
-                {
-                    b.HasOne("Souccar.Hcpc.Materials.Material", "Material")
-                        .WithMany("WarehouseMaterials")
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.Hcpc.Suppliers.Supplier", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
-
-                    b.HasOne("Souccar.Hcpc.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.HasOne("Souccar.Hcpc.Warehouses.Warehouse", "Warehouse")
-                        .WithMany("WarehouseMaterials")
-                        .HasForeignKey("WarehouseId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Supplier");
-
-                    b.Navigation("Unit");
-
-                    b.Navigation("Warehouse");
-                });
-
             modelBuilder.Entity("Souccar.MultiTenancy.Tenant", b =>
                 {
                     b.HasOne("Souccar.Authorization.Users.User", "CreatorUser")
@@ -3383,55 +2349,55 @@ namespace Souccar.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStep", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>
                 {
-                    b.HasOne("Souccar.Workflows.Workflow", "Workflow")
-                        .WithMany("Steps")
-                        .HasForeignKey("WorkflowId");
-
-                    b.Navigation("Workflow");
-                });
-
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStepAction", b =>
-                {
-                    b.HasOne("Souccar.Workflows.WorkflowStepIndex", "WorkflowIndex")
+                    b.HasOne("Souccar.SaleManagement.Settings.Categories.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("WorkflowIndexId");
+                        .HasForeignKey("CategoryId");
 
-                    b.HasOne("Souccar.Workflows.WorkflowStep", "WorkflowStep")
-                        .WithMany("Actions")
-                        .HasForeignKey("WorkflowStepId");
-
-                    b.Navigation("WorkflowIndex");
-
-                    b.Navigation("WorkflowStep");
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStepGroup", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.UnitSize", b =>
                 {
-                    b.HasOne("Souccar.Workflows.WorkflowStep", "WorkflowStep")
-                        .WithMany("Groups")
-                        .HasForeignKey("WorkflowStepId");
-
-                    b.Navigation("WorkflowStep");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Personnel.Employees.Child", b =>
-                {
-                    b.HasOne("Souccar.hr.Personnel.Employees.Employee", "Employee")
-                        .WithMany("Children")
-                        .HasForeignKey("EmployeeId");
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Personnel.Employees.Employee", b =>
-                {
-                    b.HasOne("Souccar.hr.Shared.Nationalities.Nationality", "Nationality")
+                    b.HasOne("Souccar.SaleManagement.Settings.Units.Size", "Size")
                         .WithMany()
-                        .HasForeignKey("NationalityId");
+                        .HasForeignKey("SizeId");
 
-                    b.Navigation("Nationality");
+                    b.HasOne("Souccar.SaleManagement.Settings.Units.Unit", "Unit")
+                        .WithMany()
+                        .HasForeignKey("UnitId");
+
+                    b.Navigation("Size");
+
+                    b.Navigation("Unit");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Stocks.Stock", b =>
+                {
+                    b.HasOne("Souccar.SaleManagement.Settings.Materials.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialId");
+
+                    b.HasOne("Souccar.SaleManagement.Settings.Units.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId");
+
+                    b.HasOne("Souccar.SaleManagement.Settings.Stores.Store", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreId");
+
+                    b.HasOne("Souccar.SaleManagement.Settings.Units.Unit", "Unit")
+                        .WithMany()
+                        .HasForeignKey("UnitId");
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Size");
+
+                    b.Navigation("Store");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -3503,78 +2469,6 @@ namespace Souccar.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Categories.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.DailyProductions.DailyProduction", b =>
-                {
-                    b.Navigation("DailyProductionDetails");
-
-                    b.Navigation("DailyProductionNotes");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Materials.Material", b =>
-                {
-                    b.Navigation("Suppliers");
-
-                    b.Navigation("WarehouseMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.Plan", b =>
-                {
-                    b.Navigation("OutputRequests");
-
-                    b.Navigation("PlanProducts");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Plans.PlanProduct", b =>
-                {
-                    b.Navigation("PlanProductMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Products.Product", b =>
-                {
-                    b.Navigation("Formulas");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Suppliers.Supplier", b =>
-                {
-                    b.Navigation("MaterialSuppliers");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.OutputRequest", b =>
-                {
-                    b.Navigation("DailyProductions");
-
-                    b.Navigation("OutputRequestMaterials");
-
-                    b.Navigation("OutputRequestProducts");
-                });
-
-            modelBuilder.Entity("Souccar.Hcpc.Warehouses.Warehouse", b =>
-                {
-                    b.Navigation("WarehouseMaterials");
-                });
-
-            modelBuilder.Entity("Souccar.Workflows.Workflow", b =>
-                {
-                    b.Navigation("Steps");
-                });
-
-            modelBuilder.Entity("Souccar.Workflows.WorkflowStep", b =>
-                {
-                    b.Navigation("Actions");
-
-                    b.Navigation("Groups");
-                });
-
-            modelBuilder.Entity("Souccar.hr.Personnel.Employees.Employee", b =>
-                {
-                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

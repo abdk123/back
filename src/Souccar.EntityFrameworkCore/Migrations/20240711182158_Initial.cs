@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Souccar.Migrations
 {
     /// <inheritdoc />
-    public partial class initmigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -448,36 +448,13 @@ namespace Souccar.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GeneralSettings",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    ExpiryDurationNotify = table.Column<int>(type: "int", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GeneralSettings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Materials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -488,17 +465,21 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Materials", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Nationalities",
+                name: "Company",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BalanceInDollar = table.Column<double>(type: "float", nullable: false),
+                    BalanceInDinar = table.Column<double>(type: "float", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -509,44 +490,42 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Nationalities", x => x.Id);
+                    table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Plans",
+                name: "Customer",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BalanceInDollar = table.Column<double>(type: "float", nullable: false),
+                    BalanceInDinar = table.Column<double>(type: "float", nullable: false),
+                    InitialBalance = table.Column<double>(type: "float", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customer", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Offer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Duration = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    TotalItems = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Plans", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Size = table.Column<double>(type: "float", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
@@ -558,17 +537,37 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Offer", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Suppliers",
+                name: "Size",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Size", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
@@ -580,18 +579,16 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Suppliers", x => x.Id);
+                    table.PrimaryKey("PK_Store", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Units",
+                name: "Unit",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ParentUnitId = table.Column<int>(type: "int", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -602,80 +599,7 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Units", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Units_Units_ParentUnitId",
-                        column: x => x.ParentUnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Warehouses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Place = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WarehouseKeeper = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Warehouses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkflowIndexes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    ActionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Order = table.Column<int>(type: "int", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkflowIndexes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Workflows",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Workflows", x => x.Id);
+                    table.PrimaryKey("PK_Unit", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -998,16 +922,14 @@ namespace Souccar.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Material",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    NationalityId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1018,273 +940,36 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Material", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_Nationalities_NationalityId",
-                        column: x => x.NationalityId,
-                        principalTable: "Nationalities",
+                        name: "FK_Material_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "OutputRequests",
+                name: "UnitSize",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OutputDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    PlanId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    SizeId = table.Column<int>(type: "int", nullable: true),
+                    UnitId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OutputRequests", x => x.Id);
+                    table.PrimaryKey("PK_UnitSize", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OutputRequests_Plans_PlanId",
-                        column: x => x.PlanId,
-                        principalTable: "Plans",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlanProducts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    NumberOfItems = table.Column<int>(type: "int", nullable: false),
-                    Priority = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    PlanId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlanProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlanProducts_Plans_PlanId",
-                        column: x => x.PlanId,
-                        principalTable: "Plans",
+                        name: "FK_UnitSize_Size_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Size",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PlanProducts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MaterialSuppliers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true),
-                    LeadTime = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MaterialSuppliers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MaterialSuppliers_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_MaterialSuppliers_Suppliers_SupplierId",
-                        column: x => x.SupplierId,
-                        principalTable: "Suppliers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Formulas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Percentage = table.Column<double>(type: "float", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: true),
-                    UnitId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Formulas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Formulas_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Formulas_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Formulas_Units_UnitId",
+                        name: "FK_UnitSize_Unit_UnitId",
                         column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlanMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    TotalQuantity = table.Column<double>(type: "float", nullable: false),
-                    InventoryQuantity = table.Column<double>(type: "float", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    PlanId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlanMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlanMaterials_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PlanMaterials_Plans_PlanId",
-                        column: x => x.PlanId,
-                        principalTable: "Plans",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PlanMaterials_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transfers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    FromId = table.Column<int>(type: "int", nullable: true),
-                    ToId = table.Column<int>(type: "int", nullable: true),
-                    Value = table.Column<double>(type: "float", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transfers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transfers_Units_FromId",
-                        column: x => x.FromId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Transfers_Units_ToId",
-                        column: x => x.ToId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WarehouseMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    EntryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    InitialQuantity = table.Column<double>(type: "float", nullable: false),
-                    CurrentQuantity = table.Column<double>(type: "float", nullable: false),
-                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PriceUSD = table.Column<double>(type: "float", nullable: false),
-                    PriceSYP = table.Column<double>(type: "float", nullable: false),
-                    AboutToFinish = table.Column<bool>(type: "bit", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true),
-                    WarehouseId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WarehouseMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WarehouseMaterials_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_WarehouseMaterials_Suppliers_SupplierId",
-                        column: x => x.SupplierId,
-                        principalTable: "Suppliers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_WarehouseMaterials_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_WarehouseMaterials_Warehouses_WarehouseId",
-                        column: x => x.WarehouseId,
-                        principalTable: "Warehouses",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkflowSteps",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Index = table.Column<int>(type: "int", nullable: false),
-                    WorkflowId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkflowSteps", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkflowSteps_Workflows_WorkflowId",
-                        column: x => x.WorkflowId,
-                        principalTable: "Workflows",
+                        principalTable: "Unit",
                         principalColumn: "Id");
                 });
 
@@ -1393,243 +1078,20 @@ namespace Souccar.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Children",
+                name: "Stock",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EmployeeId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Children", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Children_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DailyProductions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    PlanId = table.Column<int>(type: "int", nullable: true),
-                    OutputRequestId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DailyProductions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DailyProductions_OutputRequests_OutputRequestId",
-                        column: x => x.OutputRequestId,
-                        principalTable: "OutputRequests",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_DailyProductions_Plans_PlanId",
-                        column: x => x.PlanId,
-                        principalTable: "Plans",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OutputRequestProduct",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    OutputRequestId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OutputRequestProduct", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OutputRequestProduct_OutputRequests_OutputRequestId",
-                        column: x => x.OutputRequestId,
-                        principalTable: "OutputRequests",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OutputRequestProduct_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlanProductMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    RequiredQuantity = table.Column<double>(type: "float", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    PlanProductId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlanProductMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlanProductMaterials_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PlanProductMaterials_PlanProducts_PlanProductId",
-                        column: x => x.PlanProductId,
-                        principalTable: "PlanProducts",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PlanProductMaterials_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OutputRequestMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Quantity = table.Column<double>(type: "float", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: true),
-                    WarehouseMaterialId = table.Column<int>(type: "int", nullable: true),
-                    OutputRequestId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OutputRequestMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OutputRequestMaterials_OutputRequests_OutputRequestId",
-                        column: x => x.OutputRequestId,
-                        principalTable: "OutputRequests",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OutputRequestMaterials_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OutputRequestMaterials_WarehouseMaterials_WarehouseMaterialId",
-                        column: x => x.WarehouseMaterialId,
-                        principalTable: "WarehouseMaterials",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkflowStepActions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    WorkflowStepId = table.Column<int>(type: "int", nullable: true),
-                    WorkflowIndexId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkflowStepActions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkflowStepActions_WorkflowIndexes_WorkflowIndexId",
-                        column: x => x.WorkflowIndexId,
-                        principalTable: "WorkflowIndexes",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_WorkflowStepActions_WorkflowSteps_WorkflowStepId",
-                        column: x => x.WorkflowStepId,
-                        principalTable: "WorkflowSteps",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkflowStepGroups",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    WorkflowStepId = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkflowStepGroups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkflowStepGroups_WorkflowSteps_WorkflowStepId",
-                        column: x => x.WorkflowStepId,
-                        principalTable: "WorkflowSteps",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DailyProductionDetails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    DailyProductionId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DailyProductionDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DailyProductionDetails_DailyProductions_DailyProductionId",
-                        column: x => x.DailyProductionId,
-                        principalTable: "DailyProductions",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_DailyProductionDetails_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DailyProductionNotes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    Barcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DailyProductionId = table.Column<int>(type: "int", nullable: true),
+                    Count = table.Column<double>(type: "float", nullable: false),
+                    NumberInLargeUnit = table.Column<double>(type: "float", nullable: false),
+                    NumberInSmallUnit = table.Column<double>(type: "float", nullable: false),
+                    UnitId = table.Column<int>(type: "int", nullable: true),
+                    SizeId = table.Column<int>(type: "int", nullable: true),
+                    MaterialId = table.Column<int>(type: "int", nullable: true),
+                    StoreId = table.Column<int>(type: "int", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1640,11 +1102,26 @@ namespace Souccar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DailyProductionNotes", x => x.Id);
+                    table.PrimaryKey("PK_Stock", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DailyProductionNotes_DailyProductions_DailyProductionId",
-                        column: x => x.DailyProductionId,
-                        principalTable: "DailyProductions",
+                        name: "FK_Stock_Material_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Material",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Stock_Size_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Size",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Stock_Store_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Store",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Stock_Unit_UnitId",
+                        column: x => x.UnitId,
+                        principalTable: "Unit",
                         principalColumn: "Id");
                 });
 
@@ -2001,189 +1478,39 @@ namespace Souccar.Migrations
                 column: "WebhookEventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Children_EmployeeId",
-                table: "Children",
-                column: "EmployeeId");
+                name: "IX_Material_CategoryId",
+                table: "Material",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DailyProductionDetails_DailyProductionId",
-                table: "DailyProductionDetails",
-                column: "DailyProductionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DailyProductionDetails_ProductId",
-                table: "DailyProductionDetails",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DailyProductionNotes_DailyProductionId",
-                table: "DailyProductionNotes",
-                column: "DailyProductionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DailyProductions_OutputRequestId",
-                table: "DailyProductions",
-                column: "OutputRequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DailyProductions_PlanId",
-                table: "DailyProductions",
-                column: "PlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_NationalityId",
-                table: "Employees",
-                column: "NationalityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Formulas_MaterialId",
-                table: "Formulas",
+                name: "IX_Stock_MaterialId",
+                table: "Stock",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Formulas_ProductId",
-                table: "Formulas",
-                column: "ProductId");
+                name: "IX_Stock_SizeId",
+                table: "Stock",
+                column: "SizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Formulas_UnitId",
-                table: "Formulas",
+                name: "IX_Stock_StoreId",
+                table: "Stock",
+                column: "StoreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_UnitId",
+                table: "Stock",
                 column: "UnitId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialSuppliers_MaterialId",
-                table: "MaterialSuppliers",
-                column: "MaterialId");
+                name: "IX_UnitSize_SizeId",
+                table: "UnitSize",
+                column: "SizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialSuppliers_SupplierId",
-                table: "MaterialSuppliers",
-                column: "SupplierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequestMaterials_OutputRequestId",
-                table: "OutputRequestMaterials",
-                column: "OutputRequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequestMaterials_UnitId",
-                table: "OutputRequestMaterials",
+                name: "IX_UnitSize_UnitId",
+                table: "UnitSize",
                 column: "UnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequestMaterials_WarehouseMaterialId",
-                table: "OutputRequestMaterials",
-                column: "WarehouseMaterialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequestProduct_OutputRequestId",
-                table: "OutputRequestProduct",
-                column: "OutputRequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequestProduct_ProductId",
-                table: "OutputRequestProduct",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutputRequests_PlanId",
-                table: "OutputRequests",
-                column: "PlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanMaterials_MaterialId",
-                table: "PlanMaterials",
-                column: "MaterialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanMaterials_PlanId",
-                table: "PlanMaterials",
-                column: "PlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanMaterials_UnitId",
-                table: "PlanMaterials",
-                column: "UnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanProductMaterials_MaterialId",
-                table: "PlanProductMaterials",
-                column: "MaterialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanProductMaterials_PlanProductId",
-                table: "PlanProductMaterials",
-                column: "PlanProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanProductMaterials_UnitId",
-                table: "PlanProductMaterials",
-                column: "UnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanProducts_PlanId",
-                table: "PlanProducts",
-                column: "PlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlanProducts_ProductId",
-                table: "PlanProducts",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transfers_FromId",
-                table: "Transfers",
-                column: "FromId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transfers_ToId",
-                table: "Transfers",
-                column: "ToId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Units_ParentUnitId",
-                table: "Units",
-                column: "ParentUnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseMaterials_MaterialId",
-                table: "WarehouseMaterials",
-                column: "MaterialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseMaterials_SupplierId",
-                table: "WarehouseMaterials",
-                column: "SupplierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseMaterials_UnitId",
-                table: "WarehouseMaterials",
-                column: "UnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseMaterials_WarehouseId",
-                table: "WarehouseMaterials",
-                column: "WarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkflowStepActions_WorkflowIndexId",
-                table: "WorkflowStepActions",
-                column: "WorkflowIndexId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkflowStepActions_WorkflowStepId",
-                table: "WorkflowStepActions",
-                column: "WorkflowStepId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkflowStepGroups_WorkflowStepId",
-                table: "WorkflowStepGroups",
-                column: "WorkflowStepId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkflowSteps_WorkflowId",
-                table: "WorkflowSteps",
-                column: "WorkflowId");
         }
 
         /// <inheritdoc />
@@ -2271,43 +1598,19 @@ namespace Souccar.Migrations
                 name: "AbpWebhookSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "Children");
+                name: "Company");
 
             migrationBuilder.DropTable(
-                name: "DailyProductionDetails");
+                name: "Customer");
 
             migrationBuilder.DropTable(
-                name: "DailyProductionNotes");
+                name: "Offer");
 
             migrationBuilder.DropTable(
-                name: "Formulas");
+                name: "Stock");
 
             migrationBuilder.DropTable(
-                name: "GeneralSettings");
-
-            migrationBuilder.DropTable(
-                name: "MaterialSuppliers");
-
-            migrationBuilder.DropTable(
-                name: "OutputRequestMaterials");
-
-            migrationBuilder.DropTable(
-                name: "OutputRequestProduct");
-
-            migrationBuilder.DropTable(
-                name: "PlanMaterials");
-
-            migrationBuilder.DropTable(
-                name: "PlanProductMaterials");
-
-            migrationBuilder.DropTable(
-                name: "Transfers");
-
-            migrationBuilder.DropTable(
-                name: "WorkflowStepActions");
-
-            migrationBuilder.DropTable(
-                name: "WorkflowStepGroups");
+                name: "UnitSize");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicEntityProperties");
@@ -2325,22 +1628,16 @@ namespace Souccar.Migrations
                 name: "AbpWebhookEvents");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Material");
 
             migrationBuilder.DropTable(
-                name: "DailyProductions");
+                name: "Store");
 
             migrationBuilder.DropTable(
-                name: "WarehouseMaterials");
+                name: "Size");
 
             migrationBuilder.DropTable(
-                name: "PlanProducts");
-
-            migrationBuilder.DropTable(
-                name: "WorkflowIndexes");
-
-            migrationBuilder.DropTable(
-                name: "WorkflowSteps");
+                name: "Unit");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicProperties");
@@ -2352,31 +1649,7 @@ namespace Souccar.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
-                name: "Nationalities");
-
-            migrationBuilder.DropTable(
-                name: "OutputRequests");
-
-            migrationBuilder.DropTable(
-                name: "Materials");
-
-            migrationBuilder.DropTable(
-                name: "Suppliers");
-
-            migrationBuilder.DropTable(
-                name: "Units");
-
-            migrationBuilder.DropTable(
-                name: "Warehouses");
-
-            migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Workflows");
-
-            migrationBuilder.DropTable(
-                name: "Plans");
+                name: "Category");
         }
     }
 }
