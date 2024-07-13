@@ -1,9 +1,10 @@
-﻿using Souccar.SaleManagement.PurchaseOrders.Invoises;
+﻿using Abp.Domain.Entities;
+using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives
 {
-    public class ReceivingItem
+    public class ReceivingItem:Entity
     {
         public double ReceivedQuantity { get; set; }
 
