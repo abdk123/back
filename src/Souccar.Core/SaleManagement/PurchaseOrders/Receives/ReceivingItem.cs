@@ -1,6 +1,4 @@
-﻿using Souccar.SaleManagement.PurchaseInvoises;
-using Souccar.SaleManagement.Settings.Companies;
-using Souccar.SaleManagement.Settings.Currencies;
+﻿using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives

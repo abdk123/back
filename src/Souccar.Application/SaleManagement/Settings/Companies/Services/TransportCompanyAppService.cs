@@ -7,10 +7,9 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
     public class TransportCompanyAppService :
         AsyncSouccarAppService<TransportCompany, TransportCompanyDto, int, FullPagedRequestDto, CreateTransportCompanyDto, UpdateTransportCompanyDto>, ITransportCompanyAppService
     {
-        private readonly ITransportCompanyDomainService _transportCompanyDomainService;
         public TransportCompanyAppService(ITransportCompanyDomainService transportCompanyDomainService) : base(transportCompanyDomainService)
         {
-            _transportCompanyDomainService = transportCompanyDomainService;
+           
         }
     }
 }

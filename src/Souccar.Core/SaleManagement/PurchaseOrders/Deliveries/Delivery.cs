@@ -4,7 +4,7 @@ using Souccar.SaleManagement.Settings.Customers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Souccar.SaleManagement.Deliveries
+namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
 {
     public class Delivery : FullAuditedAggregateRoot
     {

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PluralizeService.Core" Version="1.2.21147.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Souccar.Application\Souccar.Application.csproj" />
+    <ProjectReference Include="..\Souccar.Core\Souccar.Core.csproj" />
+  </ItemGroup>
+
+</Project>

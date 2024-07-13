@@ -1,4 +1,4 @@
-﻿namespace Souccar.SaleManagement.PurchaseInvoises
+﻿namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
     public enum InvoiceStatus
     {

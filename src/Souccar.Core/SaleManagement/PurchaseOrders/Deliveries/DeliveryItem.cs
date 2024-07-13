@@ -1,8 +1,8 @@
 ﻿using Abp.Domain.Entities;
-using Souccar.SaleManagement.PurchaseInvoises;
+using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Souccar.SaleManagement.Deliveries
+namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
 {
     public class DeliveryItem : Entity
     {

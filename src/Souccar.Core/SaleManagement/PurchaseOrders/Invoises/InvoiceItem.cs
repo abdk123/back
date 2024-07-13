@@ -1,9 +1,9 @@
 ﻿using Abp.Domain.Entities;
-using Souccar.SaleManagement.Offers;
+using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Souccar.SaleManagement.PurchaseInvoises
+namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
     public class InvoiceItem : Entity
     {

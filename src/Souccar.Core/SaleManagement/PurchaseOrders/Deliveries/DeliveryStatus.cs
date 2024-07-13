@@ -1,4 +1,4 @@
-﻿namespace Souccar.SaleManagement.Deliveries
+﻿namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
 {
     public enum DeliveryStatus
     {

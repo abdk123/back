@@ -1,7 +1,6 @@
 using Souccar.Core.Services.Interfaces;
-using Souccar.SaleManagement.Offers;
 
-namespace Souccar.SaleManagement.Offers.Services
+namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
     public interface IOfferDomainService : ISouccarDomainService<Offer, int>
     {

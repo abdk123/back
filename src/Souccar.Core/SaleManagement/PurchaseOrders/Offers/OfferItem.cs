@@ -5,7 +5,7 @@ using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Units;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Souccar.SaleManagement.Offers
+namespace Souccar.SaleManagement.PurchaseOrders.Offers
 {
     public class OfferItem : Entity
     {

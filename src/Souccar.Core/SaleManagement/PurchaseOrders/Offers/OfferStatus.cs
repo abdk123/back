@@ -1,4 +1,4 @@
-﻿namespace Souccar.SaleManagement.Offers
+﻿namespace Souccar.SaleManagement.PurchaseOrders.Offers
 {
     public enum OfferStatus
     {
