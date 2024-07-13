@@ -28,63 +28,63 @@ namespace Souccar.Authorization
 
             //Stocks
             context.CreatePermission(PermissionNames.Pages_Stocks, L("Stock"));
-            context.CreatePermission(PermissionNames.Actions_Stocks_Create, L("CreateNewStock"));
-            context.CreatePermission(PermissionNames.Actions_Stocks_Update, L("EditStock"));
-            context.CreatePermission(PermissionNames.Actions_Stocks_Delete, L("DeleteStock"));
+            context.CreatePermission(PermissionNames.Setting_Stocks_Create, L("CreateNewStock"));
+            context.CreatePermission(PermissionNames.Setting_Stocks_Update, L("EditStock"));
+            context.CreatePermission(PermissionNames.Setting_Stocks_Delete, L("DeleteStock"));
 
             //Sizes
             context.CreatePermission(PermissionNames.Pages_Sizes, L("Size"));
-            context.CreatePermission(PermissionNames.Actions_Sizes_Create, L("CreateNewSize"));
-            context.CreatePermission(PermissionNames.Actions_Sizes_Update, L("EditSize"));
-            context.CreatePermission(PermissionNames.Actions_Sizes_Delete, L("DeleteSize"));
+            context.CreatePermission(PermissionNames.Setting_Sizes_Create, L("CreateNewSize"));
+            context.CreatePermission(PermissionNames.Setting_Sizes_Update, L("EditSize"));
+            context.CreatePermission(PermissionNames.Setting_Sizes_Delete, L("DeleteSize"));
 
             //Units
             context.CreatePermission(PermissionNames.Pages_Units, L("Unit"));
-            context.CreatePermission(PermissionNames.Actions_Units_Create, L("CreateNewUnit"));
-            context.CreatePermission(PermissionNames.Actions_Units_Update, L("EditUnit"));
-            context.CreatePermission(PermissionNames.Actions_Units_Delete, L("DeleteUnit"));
+            context.CreatePermission(PermissionNames.Setting_Units_Create, L("CreateNewUnit"));
+            context.CreatePermission(PermissionNames.Setting_Units_Update, L("EditUnit"));
+            context.CreatePermission(PermissionNames.Setting_Units_Delete, L("DeleteUnit"));
 
             //UnitSizes
             context.CreatePermission(PermissionNames.Pages_UnitSizes, L("UnitSize"));
-            context.CreatePermission(PermissionNames.Actions_UnitSizes_Create, L("CreateNewUnitSize"));
-            context.CreatePermission(PermissionNames.Actions_UnitSizes_Update, L("EditUnitSize"));
-            context.CreatePermission(PermissionNames.Actions_UnitSizes_Delete, L("DeleteUnitSize"));
+            context.CreatePermission(PermissionNames.Setting_UnitSizes_Create, L("CreateNewUnitSize"));
+            context.CreatePermission(PermissionNames.Setting_UnitSizes_Update, L("EditUnitSize"));
+            context.CreatePermission(PermissionNames.Setting_UnitSizes_Delete, L("DeleteUnitSize"));
 
             //Stores
             context.CreatePermission(PermissionNames.Pages_Stores, L("Store"));
-            context.CreatePermission(PermissionNames.Actions_Stores_Create, L("CreateNewStore"));
-            context.CreatePermission(PermissionNames.Actions_Stores_Update, L("EditStore"));
-            context.CreatePermission(PermissionNames.Actions_Stores_Delete, L("DeleteStore"));
+            context.CreatePermission(PermissionNames.Setting_Stores_Create, L("CreateNewStore"));
+            context.CreatePermission(PermissionNames.Setting_Stores_Update, L("EditStore"));
+            context.CreatePermission(PermissionNames.Setting_Stores_Delete, L("DeleteStore"));
 
             //Materials
             context.CreatePermission(PermissionNames.Pages_Materials, L("Material"));
-            context.CreatePermission(PermissionNames.Actions_Materials_Create, L("CreateNewMaterial"));
-            context.CreatePermission(PermissionNames.Actions_Materials_Update, L("EditMaterial"));
-            context.CreatePermission(PermissionNames.Actions_Materials_Delete, L("DeleteMaterial"));
+            context.CreatePermission(PermissionNames.Setting_Materials_Create, L("CreateNewMaterial"));
+            context.CreatePermission(PermissionNames.Setting_Materials_Update, L("EditMaterial"));
+            context.CreatePermission(PermissionNames.Setting_Materials_Delete, L("DeleteMaterial"));
 
             //Customers
             context.CreatePermission(PermissionNames.Pages_Customers, L("Customer"));
-            context.CreatePermission(PermissionNames.Actions_Customers_Create, L("CreateNewCustomer"));
-            context.CreatePermission(PermissionNames.Actions_Customers_Update, L("EditCustomer"));
-            context.CreatePermission(PermissionNames.Actions_Customers_Delete, L("DeleteCustomer"));
+            context.CreatePermission(PermissionNames.Setting_Customers_Create, L("CreateNewCustomer"));
+            context.CreatePermission(PermissionNames.Setting_Customers_Update, L("EditCustomer"));
+            context.CreatePermission(PermissionNames.Setting_Customers_Delete, L("DeleteCustomer"));
 
             //Companies
             context.CreatePermission(PermissionNames.Pages_Companies, L("Company"));
-            context.CreatePermission(PermissionNames.Actions_Companies_Create, L("CreateNewCompany"));
-            context.CreatePermission(PermissionNames.Actions_Companies_Update, L("EditCompany"));
-            context.CreatePermission(PermissionNames.Actions_Companies_Delete, L("DeleteCompany"));
+            context.CreatePermission(PermissionNames.Setting_Companies_Create, L("CreateNewCompany"));
+            context.CreatePermission(PermissionNames.Setting_Companies_Update, L("EditCompany"));
+            context.CreatePermission(PermissionNames.Setting_Companies_Delete, L("DeleteCompany"));
 
             //Categories
             context.CreatePermission(PermissionNames.Pages_Categories, L("Category"));
-            context.CreatePermission(PermissionNames.Actions_Categories_Create, L("CreateNewCategory"));
-            context.CreatePermission(PermissionNames.Actions_Categories_Update, L("EditCategory"));
-            context.CreatePermission(PermissionNames.Actions_Categories_Delete, L("DeleteCategory"));
+            context.CreatePermission(PermissionNames.Setting_Categories_Create, L("CreateNewCategory"));
+            context.CreatePermission(PermissionNames.Setting_Categories_Update, L("EditCategory"));
+            context.CreatePermission(PermissionNames.Setting_Categories_Delete, L("DeleteCategory"));
 
             //Offers
             context.CreatePermission(PermissionNames.Pages_Offers, L("Offer"));
-            context.CreatePermission(PermissionNames.Actions_Offers_Create, L("CreateNewOffer"));
-            context.CreatePermission(PermissionNames.Actions_Offers_Update, L("EditOffer"));
-            context.CreatePermission(PermissionNames.Actions_Offers_Delete, L("DeleteOffer"));
+            context.CreatePermission(PermissionNames.Setting_Offers_Create, L("CreateNewOffer"));
+            context.CreatePermission(PermissionNames.Setting_Offers_Update, L("EditOffer"));
+            context.CreatePermission(PermissionNames.Setting_Offers_Delete, L("DeleteOffer"));
 
 
         }

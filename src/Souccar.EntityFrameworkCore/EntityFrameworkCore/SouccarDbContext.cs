@@ -27,8 +27,10 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<ClearanceCompany> ClearanceCompany { get; set; }
         public DbSet<TransportCompany> TransportCompany { get; set; }
         public DbSet<Category> Category { get; set; }
-        public DbSet<Company> Company { get; set; }
         public DbSet<Offer> Offer { get; set; }
+        public DbSet<ClearanceCompanyBalance> ClearanceCompanyBalance { get; set; }
+        public DbSet<TransportCompanyBalance> TransportCompanyBalance { get; set; }
+
         public SouccarDbContext(DbContextOptions<SouccarDbContext> options)
             : base(options)
         {
