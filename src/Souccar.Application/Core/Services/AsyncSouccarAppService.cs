@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Abp.Domain.Entities.Auditing;
 using Souccar.Core.Services.Interfaces;
 using System.Linq.Dynamic.Core;
+using System.Collections.Generic;
+using Souccar.Core.Dto;
 
 namespace Souccar.Core.Services
 {
@@ -58,6 +60,7 @@ namespace Souccar.Core.Services
             );
         }
 
+        
         public virtual async Task<PagedResultDto<TEntityDto>> ReadAsync(TGetAllInput input)
         {
           CheckGetAllPermission();

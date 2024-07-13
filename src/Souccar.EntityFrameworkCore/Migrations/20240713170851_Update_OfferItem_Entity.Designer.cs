@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240713170851_Update_OfferItem_Entity")]
+    partial class Update_OfferItem_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1879,7 +1882,7 @@ namespace Souccar.Migrations
                     b.Property<int?>("MaterialId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OfferId")
+                    b.Property<int?>("PurchaseOrderId")
                         .HasColumnType("int");
 
                     b.Property<double>("Quantity")
@@ -1901,7 +1904,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("MaterialId");
 
-                    b.HasIndex("OfferId");
+                    b.HasIndex("PurchaseOrderId");
 
                     b.HasIndex("SizeId");
 
@@ -2928,9 +2931,9 @@ namespace Souccar.Migrations
                         .WithMany()
                         .HasForeignKey("MaterialId");
 
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "Offer")
+                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "PurchaseOrder")
                         .WithMany("OfferItems")
-                        .HasForeignKey("OfferId");
+                        .HasForeignKey("PurchaseOrderId");
 
                     b.HasOne("Souccar.SaleManagement.Settings.Units.Size", "Size")
                         .WithMany()
@@ -2942,7 +2945,7 @@ namespace Souccar.Migrations
 
                     b.Navigation("Material");
 
-                    b.Navigation("Offer");
+                    b.Navigation("PurchaseOrder");
 
                     b.Navigation("Size");
 

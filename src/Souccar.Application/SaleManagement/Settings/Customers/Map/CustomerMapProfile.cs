@@ -1,4 +1,5 @@
 using AutoMapper;
+using Souccar.Core.Dto;
 using Souccar.SaleManagement.Settings.Customers.Dto;
 
 namespace Souccar.SaleManagement.Settings.Customers.Map
@@ -13,6 +14,8 @@ namespace Souccar.SaleManagement.Settings.Customers.Map
             CreateMap<Customer, CreateCustomerDto>();
             CreateMap<UpdateCustomerDto, Customer>();
             CreateMap<Customer, UpdateCustomerDto>();
+            CreateMap<Customer, DropdownDto>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(x => x.FullName));
         }
     }
 }

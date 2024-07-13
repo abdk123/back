@@ -1,6 +1,7 @@
 using Souccar.SaleManagement.PurchaseOrders.Offers.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
+using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -14,6 +15,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         {
             _offerDomainService = offerDomainService;
         }
+
+        
     }
 }
 

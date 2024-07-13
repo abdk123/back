@@ -9,10 +9,10 @@ namespace Bwire.CodeGenerator
         {
             Console.WriteLine("Files : ");
             var assembly = typeof(Company).Assembly;
-            ModulesBuilder.Generate(assembly, "SaleManagement");
+            //ModulesBuilder.Generate(assembly, "SaleManagement");
             //LocalizationBuilder.Generate(assembly, "SaleManagement");
             //DbContextBuilder.Generate(assembly, "SaleManagement");
-            //PermissionsBuilder.Generate(assembly, "SaleManagement");
+            PermissionsBuilder.Generate(assembly, "SaleManagement");
 
             Console.WriteLine("Files : " + GeneralSetting.FileCount);
         }

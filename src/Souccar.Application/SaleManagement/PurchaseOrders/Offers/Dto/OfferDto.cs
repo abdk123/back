@@ -1,9 +1,11 @@
 using System;
 using Abp.Application.Services.Dto;
+using Abp.Domain.Entities.Auditing;
+using Souccar.SaleManagement.Settings.Customers.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
 {
-   public class OfferDto : EntityDto<int>
+    public class OfferDto : EntityDto<int>, IHasCreationTime
     {
         public string PorchaseOrderId { get; set; }
         public string OrderNumber { get; set; }
@@ -14,6 +16,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public int? SupplierId { get; set; }
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
+        public CustomerDto Customer { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }
 
