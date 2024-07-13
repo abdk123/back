@@ -30,6 +30,11 @@
         public const string Setting_Sizes_Create = "Setting.Sizes.Create";
         public const string Setting_Sizes_Update = "Setting.Sizes.Update";
         public const string Setting_Sizes_Delete = "Setting.Sizes.Delete";
+        //Setting
+        public const string Pages_Setting = "Pages.Setting";
+        public const string Setting_Setting_Create = "Setting.Setting.Create";
+        public const string Setting_Setting_Update = "Setting.Setting.Update";
+        public const string Setting_Setting_Delete = "Setting.Setting.Delete";
 
         //Units
         public const string Setting_Units = "Setting.Units";
@@ -42,6 +47,11 @@
         public const string Setting_UnitSizes_Create = "Setting.UnitSizes.Create";
         public const string Setting_UnitSizes_Update = "Setting.UnitSizes.Update";
         public const string Setting_UnitSizes_Delete = "Setting.UnitSizes.Delete";
+        //UnitSetting
+        public const string Pages_UnitSetting = "Pages.UnitSetting";
+        public const string Setting_UnitSetting_Create = "Setting.UnitSetting.Create";
+        public const string Setting_UnitSetting_Update = "Setting.UnitSetting.Update";
+        public const string Setting_UnitSetting_Delete = "Setting.UnitSetting.Delete";
 
         //Stores
         public const string Setting_Stores = "Setting.Stores";

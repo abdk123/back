@@ -21,6 +21,17 @@ namespace Souccar.SaleManagement.Settings.Categories.Services
             var categories = await Task.FromResult(_categoryDomainService.GetAll().ToList());
             return ObjectMapper.Map<List<CategoryForDropdownDto>>(categories);
         }
+
+        public IList<CategoryForDropdownDto> GetForDropdown(string keyword)
+        {
+            var categories = _categoryDomainService.GetAll();
+            if(!string.IsNullOrEmpty(keyword))
+            {
+                categories = categories.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
+            }
+
+            return ObjectMapper.Map<List<CategoryForDropdownDto>>(categories);
+        }
     }
 }
 

@@ -22,4 +22,8 @@
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="8.4.0" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="4.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SaleManagement\PurchaseOrders\Deliveries\Services\" />
+    <Folder Include="SaleManagement\PurchaseOrders\Offers\Events\" />
+  </ItemGroup>
 </Project>
