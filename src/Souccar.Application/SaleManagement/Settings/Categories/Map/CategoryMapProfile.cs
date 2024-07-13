@@ -13,6 +13,7 @@ namespace Souccar.SaleManagement.Settings.Categories.Map
             CreateMap<Category, CreateCategoryDto>();
             CreateMap<UpdateCategoryDto, Category>();
             CreateMap<Category, UpdateCategoryDto>();
+            CreateMap<Category, CategoryForDropdownDto>();
         }
     }
 }

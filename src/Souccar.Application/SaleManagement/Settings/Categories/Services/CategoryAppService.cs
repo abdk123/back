@@ -1,6 +1,9 @@
 using Souccar.SaleManagement.Settings.Categories.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Souccar.SaleManagement.Settings.Categories.Services
 {
@@ -11,6 +14,12 @@ namespace Souccar.SaleManagement.Settings.Categories.Services
         public CategoryAppService(ICategoryDomainService categoryDomainService) : base(categoryDomainService)
         {
             _categoryDomainService = categoryDomainService;
+        }
+
+        public async Task<List<CategoryForDropdownDto>> GetForDropdown()
+        {
+            var categories = await Task.FromResult(_categoryDomainService.GetAll().ToList());
+            return ObjectMapper.Map<List<CategoryForDropdownDto>>(categories);
         }
     }
 }

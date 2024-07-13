@@ -1,6 +1,7 @@
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.Settings.Customers.Dto;
+using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.Settings.Customers.Services
 {
@@ -12,6 +13,12 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
         {
             _customerDomainService = customerDomainService;
         }
+
+        //public override Task<CustomerDto> CreateAsync(CreateCustomerDto input)
+        //{
+        //    var customer = ObjectMapper.Map<Customer>(input);
+        //    customer.Type = input.Type;
+        //}
     }
 }
 
