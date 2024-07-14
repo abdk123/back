@@ -13,6 +13,7 @@ namespace Souccar.SaleManagement.Settings.Customers.Map
             CreateMap<Customer, CreateCustomerDto>();
             CreateMap<UpdateCustomerDto, Customer>();
             CreateMap<Customer, UpdateCustomerDto>();
+            CreateMap<Customer, CustomerForDropdownDto>();
         }
     }
 }

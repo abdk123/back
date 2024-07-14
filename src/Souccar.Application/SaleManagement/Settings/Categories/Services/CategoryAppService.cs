@@ -16,7 +16,7 @@ namespace Souccar.SaleManagement.Settings.Categories.Services
             _categoryDomainService = categoryDomainService;
         }
 
-        public async Task<List<CategoryForDropdownDto>> GetForDropdown()
+        public async Task<List<CategoryForDropdownDto>> GetAllForDropdown()
         {
             var categories = await Task.FromResult(_categoryDomainService.GetAll().ToList());
             return ObjectMapper.Map<List<CategoryForDropdownDto>>(categories);

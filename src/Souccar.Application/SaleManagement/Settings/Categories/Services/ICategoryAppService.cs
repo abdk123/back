@@ -8,7 +8,7 @@ namespace Souccar.SaleManagement.Settings.Categories.Services
 {
     public interface ICategoryAppService : IAsyncSouccarAppService<CategoryDto, int, FullPagedRequestDto, CreateCategoryDto, UpdateCategoryDto>
     {
-        Task<List<CategoryForDropdownDto>> GetForDropdown();
+        Task<List<CategoryForDropdownDto>> GetAllForDropdown();
         IList<CategoryForDropdownDto> GetForDropdown(string keyword);
     }
 }
