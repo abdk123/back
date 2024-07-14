@@ -20,7 +20,7 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
         {
             var entities = _customerDomainService.GetAll();
             if (entities.Any())
-                ObjectMapper.Map<List<DropdownDto>>(entities.ToList());
+                return ObjectMapper.Map<List<DropdownDto>>(entities.ToList());
 
             return new List<DropdownDto>();
         }
