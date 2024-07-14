@@ -1,7 +1,10 @@
+using Souccar.Core.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.Settings.Customers.Dto;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Souccar.SaleManagement.Settings.Customers.Services
 {
@@ -14,11 +17,14 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
             _customerDomainService = customerDomainService;
         }
 
-        //public override Task<CustomerDto> CreateAsync(CreateCustomerDto input)
-        //{
-        //    var customer = ObjectMapper.Map<Customer>(input);
-        //    customer.Type = input.Type;
-        //}
+        public IList<DropdownDto> GetForDropdownAsync()
+        {
+            var entities = _customerDomainService.GetAll();
+            if (entities.Any())
+                return ObjectMapper.Map<List<DropdownDto>>(entities.ToList());
+
+            return new List<DropdownDto>();
+        }
     }
 }
 

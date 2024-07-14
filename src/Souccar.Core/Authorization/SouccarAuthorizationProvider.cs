@@ -8,8 +8,8 @@ namespace Souccar.Authorization
     {
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
-            context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"));
-            context.CreatePermission(PermissionNames.Pages_Users_Activation, L("UsersActivation"));
+            context.CreatePermission(PermissionNames.Setting_Tenants, L("Tenants"));
+            context.CreatePermission(PermissionNames.Setting_Users_Activation, L("UsersActivation"));
 
             //Users
             context.CreatePermission(PermissionNames.Security_Users, L("Users"));
@@ -80,11 +80,75 @@ namespace Souccar.Authorization
             context.CreatePermission(PermissionNames.Setting_Categories_Update, L("EditCategory"));
             context.CreatePermission(PermissionNames.Setting_Categories_Delete, L("DeleteCategory"));
 
+
+
+            //CustomerVouchers
+            context.CreatePermission(PermissionNames.Setting_CustomerVouchers, L("CustomerVoucher"));
+            context.CreatePermission(PermissionNames.Setting_CustomerVouchers_Create, L("CreateNewCustomerVoucher"));
+            context.CreatePermission(PermissionNames.Setting_CustomerVouchers_Update, L("EditCustomerVoucher"));
+            context.CreatePermission(PermissionNames.Setting_CustomerVouchers_Delete, L("DeleteCustomerVoucher"));
+
+            //ClearanceCompanyVouchers
+            context.CreatePermission(PermissionNames.Setting_ClearanceCompanyVouchers, L("ClearanceCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_ClearanceCompanyVouchers_Create, L("CreateNewClearanceCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_ClearanceCompanyVouchers_Update, L("EditClearanceCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_ClearanceCompanyVouchers_Delete, L("DeleteClearanceCompanyVoucher"));
+
+
+            //TransportCompanyVouchers
+            context.CreatePermission(PermissionNames.Setting_TransportCompanyVouchers, L("TransportCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_TransportCompanyVouchers_Create, L("CreateNewTransportCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_TransportCompanyVouchers_Update, L("EditTransportCompanyVoucher"));
+            context.CreatePermission(PermissionNames.Setting_TransportCompanyVouchers_Delete, L("DeleteTransportCompanyVoucher"));
+
+
+            //Receivings
+            context.CreatePermission(PermissionNames.Setting_Receivings, L("Receiving"));
+            context.CreatePermission(PermissionNames.Setting_Receivings_Create, L("CreateNewReceiving"));
+            context.CreatePermission(PermissionNames.Setting_Receivings_Update, L("EditReceiving"));
+            context.CreatePermission(PermissionNames.Setting_Receivings_Delete, L("DeleteReceiving"));
+
+            //ReceivingItems
+            context.CreatePermission(PermissionNames.Setting_ReceivingItems, L("ReceivingItem"));
+            context.CreatePermission(PermissionNames.Setting_ReceivingItems_Create, L("CreateNewReceivingItem"));
+            context.CreatePermission(PermissionNames.Setting_ReceivingItems_Update, L("EditReceivingItem"));
+            context.CreatePermission(PermissionNames.Setting_ReceivingItems_Delete, L("DeleteReceivingItem"));
+
             //Offers
             context.CreatePermission(PermissionNames.Setting_Offers, L("Offer"));
             context.CreatePermission(PermissionNames.Setting_Offers_Create, L("CreateNewOffer"));
             context.CreatePermission(PermissionNames.Setting_Offers_Update, L("EditOffer"));
             context.CreatePermission(PermissionNames.Setting_Offers_Delete, L("DeleteOffer"));
+
+            //OfferItems
+            context.CreatePermission(PermissionNames.Setting_OfferItems, L("OfferItem"));
+            context.CreatePermission(PermissionNames.Setting_OfferItems_Create, L("CreateNewOfferItem"));
+            context.CreatePermission(PermissionNames.Setting_OfferItems_Update, L("EditOfferItem"));
+            context.CreatePermission(PermissionNames.Setting_OfferItems_Delete, L("DeleteOfferItem"));
+
+            //Invoices
+            context.CreatePermission(PermissionNames.Setting_Invoices, L("Invoice"));
+            context.CreatePermission(PermissionNames.Setting_Invoices_Create, L("CreateNewInvoice"));
+            context.CreatePermission(PermissionNames.Setting_Invoices_Update, L("EditInvoice"));
+            context.CreatePermission(PermissionNames.Setting_Invoices_Delete, L("DeleteInvoice"));
+
+            //InvoiceItems
+            context.CreatePermission(PermissionNames.Setting_InvoiceItems, L("InvoiceItem"));
+            context.CreatePermission(PermissionNames.Setting_InvoiceItems_Create, L("CreateNewInvoiceItem"));
+            context.CreatePermission(PermissionNames.Setting_InvoiceItems_Update, L("EditInvoiceItem"));
+            context.CreatePermission(PermissionNames.Setting_InvoiceItems_Delete, L("DeleteInvoiceItem"));
+
+            //Deliveries
+            context.CreatePermission(PermissionNames.Setting_Deliveries, L("Delivery"));
+            context.CreatePermission(PermissionNames.Setting_Deliveries_Create, L("CreateNewDelivery"));
+            context.CreatePermission(PermissionNames.Setting_Deliveries_Update, L("EditDelivery"));
+            context.CreatePermission(PermissionNames.Setting_Deliveries_Delete, L("DeleteDelivery"));
+
+            //DeliveryItems
+            context.CreatePermission(PermissionNames.Setting_DeliveryItems, L("DeliveryItem"));
+            context.CreatePermission(PermissionNames.Setting_DeliveryItems_Create, L("CreateNewDeliveryItem"));
+            context.CreatePermission(PermissionNames.Setting_DeliveryItems_Update, L("EditDeliveryItem"));
+            context.CreatePermission(PermissionNames.Setting_DeliveryItems_Delete, L("DeleteDeliveryItem"));
 
 
         }

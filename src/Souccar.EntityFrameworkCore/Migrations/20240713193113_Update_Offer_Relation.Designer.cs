@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240713193113_Update_Offer_Relation")]
+    partial class Update_Offer_Relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +66,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpEditions", (string)null);
+                    b.ToTable("AbpEditions");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.FeatureSetting", b =>
@@ -99,7 +102,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpFeatures", (string)null);
+                    b.ToTable("AbpFeatures");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("FeatureSetting");
 
@@ -179,7 +182,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpAuditLogs", (string)null);
+                    b.ToTable("AbpAuditLogs");
                 });
 
             modelBuilder.Entity("Abp.Authorization.PermissionSetting", b =>
@@ -215,7 +218,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpPermissions", (string)null);
+                    b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PermissionSetting");
 
@@ -255,7 +258,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "ClaimType");
 
-                    b.ToTable("AbpRoleClaims", (string)null);
+                    b.ToTable("AbpRoleClaims");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserAccount", b =>
@@ -316,7 +319,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserName");
 
-                    b.ToTable("AbpUserAccounts", (string)null);
+                    b.ToTable("AbpUserAccounts");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserClaim", b =>
@@ -352,7 +355,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "ClaimType");
 
-                    b.ToTable("AbpUserClaims", (string)null);
+                    b.ToTable("AbpUserClaims");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserLogin", b =>
@@ -391,7 +394,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "LoginProvider", "ProviderKey");
 
-                    b.ToTable("AbpUserLogins", (string)null);
+                    b.ToTable("AbpUserLogins");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserLoginAttempt", b =>
@@ -440,7 +443,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenancyName", "UserNameOrEmailAddress", "Result");
 
-                    b.ToTable("AbpUserLoginAttempts", (string)null);
+                    b.ToTable("AbpUserLoginAttempts");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserOrganizationUnit", b =>
@@ -475,7 +478,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserOrganizationUnits", (string)null);
+                    b.ToTable("AbpUserOrganizationUnits");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserRole", b =>
@@ -509,7 +512,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserRoles", (string)null);
+                    b.ToTable("AbpUserRoles");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserToken", b =>
@@ -547,7 +550,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserTokens", (string)null);
+                    b.ToTable("AbpUserTokens");
                 });
 
             modelBuilder.Entity("Abp.BackgroundJobs.BackgroundJobInfo", b =>
@@ -593,7 +596,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("IsAbandoned", "NextTryTime");
 
-                    b.ToTable("AbpBackgroundJobs", (string)null);
+                    b.ToTable("AbpBackgroundJobs");
                 });
 
             modelBuilder.Entity("Abp.Configuration.Setting", b =>
@@ -637,7 +640,7 @@ namespace Souccar.Migrations
                     b.HasIndex("TenantId", "Name", "UserId")
                         .IsUnique();
 
-                    b.ToTable("AbpSettings", (string)null);
+                    b.ToTable("AbpSettings");
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicEntityProperty", b =>
@@ -666,7 +669,7 @@ namespace Souccar.Migrations
                         .IsUnique()
                         .HasFilter("[EntityFullName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
-                    b.ToTable("AbpDynamicEntityProperties", (string)null);
+                    b.ToTable("AbpDynamicEntityProperties");
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicEntityPropertyValue", b =>
@@ -694,7 +697,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("DynamicEntityPropertyId");
 
-                    b.ToTable("AbpDynamicEntityPropertyValues", (string)null);
+                    b.ToTable("AbpDynamicEntityPropertyValues");
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicProperty", b =>
@@ -727,7 +730,7 @@ namespace Souccar.Migrations
                         .IsUnique()
                         .HasFilter("[PropertyName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
-                    b.ToTable("AbpDynamicProperties", (string)null);
+                    b.ToTable("AbpDynamicProperties");
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicPropertyValue", b =>
@@ -752,7 +755,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("DynamicPropertyId");
 
-                    b.ToTable("AbpDynamicPropertyValues", (string)null);
+                    b.ToTable("AbpDynamicPropertyValues");
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityChange", b =>
@@ -789,7 +792,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("EntityTypeFullName", "EntityId");
 
-                    b.ToTable("AbpEntityChanges", (string)null);
+                    b.ToTable("AbpEntityChanges");
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityChangeSet", b =>
@@ -842,7 +845,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpEntityChangeSets", (string)null);
+                    b.ToTable("AbpEntityChangeSets");
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityPropertyChange", b =>
@@ -885,7 +888,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("EntityChangeId");
 
-                    b.ToTable("AbpEntityPropertyChanges", (string)null);
+                    b.ToTable("AbpEntityPropertyChanges");
                 });
 
             modelBuilder.Entity("Abp.Localization.ApplicationLanguage", b =>
@@ -941,7 +944,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpLanguages", (string)null);
+                    b.ToTable("AbpLanguages");
                 });
 
             modelBuilder.Entity("Abp.Localization.ApplicationLanguageText", b =>
@@ -991,7 +994,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "Source", "LanguageName", "Key");
 
-                    b.ToTable("AbpLanguageTexts", (string)null);
+                    b.ToTable("AbpLanguageTexts");
                 });
 
             modelBuilder.Entity("Abp.Notifications.NotificationInfo", b =>
@@ -1052,7 +1055,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpNotifications", (string)null);
+                    b.ToTable("AbpNotifications");
                 });
 
             modelBuilder.Entity("Abp.Notifications.NotificationSubscriptionInfo", b =>
@@ -1099,7 +1102,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "NotificationName", "EntityTypeName", "EntityId", "UserId");
 
-                    b.ToTable("AbpNotificationSubscriptions", (string)null);
+                    b.ToTable("AbpNotificationSubscriptions");
                 });
 
             modelBuilder.Entity("Abp.Notifications.TenantNotificationInfo", b =>
@@ -1149,7 +1152,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.ToTable("AbpTenantNotifications", (string)null);
+                    b.ToTable("AbpTenantNotifications");
                 });
 
             modelBuilder.Entity("Abp.Notifications.UserNotificationInfo", b =>
@@ -1181,7 +1184,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("UserId", "State", "CreationTime");
 
-                    b.ToTable("AbpUserNotifications", (string)null);
+                    b.ToTable("AbpUserNotifications");
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnit", b =>
@@ -1235,7 +1238,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "Code");
 
-                    b.ToTable("AbpOrganizationUnits", (string)null);
+                    b.ToTable("AbpOrganizationUnits");
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
@@ -1270,7 +1273,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "RoleId");
 
-                    b.ToTable("AbpOrganizationUnitRoles", (string)null);
+                    b.ToTable("AbpOrganizationUnitRoles");
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookEvent", b =>
@@ -1300,7 +1303,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpWebhookEvents", (string)null);
+                    b.ToTable("AbpWebhookEvents");
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSendAttempt", b =>
@@ -1334,7 +1337,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("WebhookEventId");
 
-                    b.ToTable("AbpWebhookSendAttempts", (string)null);
+                    b.ToTable("AbpWebhookSendAttempts");
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSubscriptionInfo", b =>
@@ -1371,7 +1374,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpWebhookSubscriptions", (string)null);
+                    b.ToTable("AbpWebhookSubscriptions");
                 });
 
             modelBuilder.Entity("Souccar.Authorization.Roles.Role", b =>
@@ -1446,7 +1449,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "NormalizedName");
 
-                    b.ToTable("AbpRoles", (string)null);
+                    b.ToTable("AbpRoles");
                 });
 
             modelBuilder.Entity("Souccar.Authorization.Users.User", b =>
@@ -1574,7 +1577,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "NormalizedUserName");
 
-                    b.ToTable("AbpUsers", (string)null);
+                    b.ToTable("AbpUsers");
                 });
 
             modelBuilder.Entity("Souccar.MultiTenancy.Tenant", b =>
@@ -1638,7 +1641,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenancyName");
 
-                    b.ToTable("AbpTenants", (string)null);
+                    b.ToTable("AbpTenants");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
@@ -1698,7 +1701,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Delivery", (string)null);
+                    b.ToTable("Delivery");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.DeliveryItem", b =>
@@ -1724,7 +1727,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("InvoiceItemId");
 
-                    b.ToTable("DeliveryItem", (string)null);
+                    b.ToTable("DeliveryItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", b =>
@@ -1766,7 +1769,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("OfferId");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Invoice");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", b =>
@@ -1803,7 +1806,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("OfferItemId");
 
-                    b.ToTable("InvoiceItem", (string)null);
+                    b.ToTable("InvoiceItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
@@ -1865,7 +1868,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Offer", (string)null);
+                    b.ToTable("Offer");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", b =>
@@ -1907,7 +1910,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("OfferItem", (string)null);
+                    b.ToTable("OfferItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.Receiving", b =>
@@ -1979,7 +1982,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TransportCompanyId");
 
-                    b.ToTable("Receiving", (string)null);
+                    b.ToTable("Receiving");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.ReceivingItem", b =>
@@ -2000,7 +2003,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("InvoiceItemId");
 
-                    b.ToTable("ReceivingItem", (string)null);
+                    b.ToTable("ReceivingItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Categories.Category", b =>
@@ -2040,7 +2043,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", b =>
@@ -2089,7 +2092,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClearanceCompany", (string)null);
+                    b.ToTable("ClearanceCompany");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompanyVoucher", b =>
@@ -2143,7 +2146,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("ClearanceCompanyId");
 
-                    b.ToTable("ClearanceCompanyBalance", (string)null);
+                    b.ToTable("ClearanceCompanyBalance");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompany", b =>
@@ -2192,7 +2195,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransportCompany", (string)null);
+                    b.ToTable("TransportCompany");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompanyVoucher", b =>
@@ -2246,7 +2249,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TransportCompanyId");
 
-                    b.ToTable("TransportCompanyBalance", (string)null);
+                    b.ToTable("TransportCompanyBalance");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.Customer", b =>
@@ -2296,12 +2299,9 @@ namespace Souccar.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.CustomerVoucher", b =>
@@ -2355,7 +2355,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("CustomerBalance", (string)null);
+                    b.ToTable("CustomerBalance");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>
@@ -2400,7 +2400,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Material", (string)null);
+                    b.ToTable("Material");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Stores.Store", b =>
@@ -2443,7 +2443,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store", (string)null);
+                    b.ToTable("Store");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.Size", b =>
@@ -2480,7 +2480,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Size", (string)null);
+                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.Unit", b =>
@@ -2517,7 +2517,7 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Unit", (string)null);
+                    b.ToTable("Unit");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Units.UnitSize", b =>
@@ -2543,7 +2543,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("UnitSize", (string)null);
+                    b.ToTable("UnitSize");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Stocks.Stock", b =>
@@ -2612,7 +2612,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Stock", (string)null);
+                    b.ToTable("Stock");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2624,7 +2624,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("EditionId", "Name");
 
-                    b.ToTable("AbpFeatures", (string)null);
+                    b.ToTable("AbpFeatures");
 
                     b.HasDiscriminator().HasValue("EditionFeatureSetting");
                 });
@@ -2635,7 +2635,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpFeatures", (string)null);
+                    b.ToTable("AbpFeatures");
 
                     b.HasDiscriminator().HasValue("TenantFeatureSetting");
                 });
@@ -2649,7 +2649,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AbpPermissions", (string)null);
+                    b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("RolePermissionSetting");
                 });
@@ -2663,7 +2663,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpPermissions", (string)null);
+                    b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
                 });

@@ -13,7 +13,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
     {
         public Offer()
         {
-            OfferDetails = new List<OfferItem>();
+            OfferItems = new List<OfferItem>();
         }
 
         /// <summary>
@@ -25,6 +25,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// تسلسل العرض
         /// </summary>
         public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// ملاحظات العرض
+        /// </summary>
+        public string Note { get; set; }
 
         /// <summary>
         /// حالة العرض
@@ -61,11 +66,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         public Customer Supplier { get; set; }
         #endregion
 
-        public IList<OfferItem> OfferDetails { get; set; }
+        public IList<OfferItem> OfferItems { get; set; }
 
         #region Getters
-        public double TotalQuantity => OfferDetails.Any() ? OfferDetails.Sum(x => x.Quantity) : 0;
-        public double TotalPrice => OfferDetails.Any() ? OfferDetails.Sum(x => x.TotalPrice) : 0;
+        public double TotalQuantity => OfferItems.Any() ? OfferItems.Sum(x => x.Quantity) : 0;
+        public double TotalPrice => OfferItems.Any() ? OfferItems.Sum(x => x.TotalPrice) : 0;
         #endregion
     }
 }

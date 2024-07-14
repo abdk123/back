@@ -20,6 +20,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         public double UnitPrice { get; set; }
 
         /// <summary>
+        /// مواصفات المادة
+        /// </summary>
+        public string Specefecation { get; set; }
+
+        /// <summary>
         /// السعر الكلي
         /// </summary>
         public double TotalPrice => UnitPrice * Quantity;
@@ -29,15 +34,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// </summary>
         public bool AddedBySmallUnit;
 
-        /// <summary>
-        /// المورد
-        /// </summary>
-        #region Customer
-        public int? SupplierId { get; set; }
+        ///// <summary>
+        ///// العرض
+        ///// </summary>
+        //#region Offer
+        //public int? OfferId { get; set; }
 
-        [ForeignKey(nameof(SupplierId))]
-        public Customer Supplier { get; set; }
-        #endregion
+        //[ForeignKey(nameof(OfferId))]
+        //public Offer Offer { get; set; }
+        //#endregion
 
         /// <summary>
         /// المادة
@@ -52,11 +57,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// <summary>
         /// طلب المشتريات
         /// </summary>
-        #region Purchase Order
-        public int? PurchaseOrderId { get; set; }
+        #region Offer
+        public int? OfferId { get; set; }
 
-        [ForeignKey(nameof(PurchaseOrderId))]
-        public Offer PurchaseOrder { get; set; }
+        [ForeignKey(nameof(OfferId))]
+        public Offer Offer { get; set; }
         #endregion
 
         /// <summary>

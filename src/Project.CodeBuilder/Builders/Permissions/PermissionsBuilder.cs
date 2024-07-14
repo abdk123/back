@@ -16,8 +16,7 @@ namespace Project.CodeGenerator
             var entities = assembly.GetTypes()
                 .Where(t => t.Namespace.Contains($"{GeneralSetting.ProjectName}.{moduleName}")
                 && t.BaseType != null
-                && (t.BaseType.Name.Contains("BwireEntity") || t.BaseType.Name.Contains("IndexEntity"))
-                && t.Name != "IndexEntity"
+                && (t.BaseType.Name.Contains("FullAuditedAggregateRoot") || t.BaseType.Name.Contains("Entity"))
                 && t.IsClass == true).ToList();
 
             if (entities.Any())
@@ -40,10 +39,10 @@ namespace Project.CodeGenerator
                 foreach (var entity in entities)
                 {
                     
-                    var page = $"Pages_{entity.Name.Plural()}";
-                    var create = $"Actions_{entity.Name.Plural()}_Create";
-                    var update = $"Actions_{entity.Name.Plural()}_Update";
-                    var delete = $"Actions_{entity.Name.Plural()}_Delete";
+                    var page = $"PurchaseOrder_{entity.Name.Plural()}";
+                    var create = $"PurchaseOrder_{entity.Name.Plural()}_Create";
+                    var update = $"PurchaseOrder_{entity.Name.Plural()}_Update";
+                    var delete = $"PurchaseOrder_{entity.Name.Plural()}_Delete";
 
                     var permissionViewModel = new PermissionViewModel()
                     {
@@ -80,22 +79,22 @@ namespace Project.CodeGenerator
 
                 if(!item.Create)
                 {
-                    var pageStr = $"Actions_{item.Entity.Plural()}_Create";
-                    permissionBuilder.AppendLine($"public const string {pageStr} = \"Actions.{item.Entity.Plural()}.Create\";");
+                    var pageStr = $"PurshaseOrder_{item.Entity.Plural()}_Create";
+                    permissionBuilder.AppendLine($"public const string {pageStr} = \"PurshaseOrder.{item.Entity.Plural()}.Create\";");
                     providerBuilder.AppendLine($"context.CreatePermission(PermissionNames.{pageStr}, L(\"CreateNew{item.Entity}\"));");
                 }
 
                 if (!item.Update)
                 {
-                    var pageStr = $"Actions_{item.Entity.Plural()}_Update";
-                    permissionBuilder.AppendLine($"public const string {pageStr} = \"Actions.{item.Entity.Plural()}.Update\";");
+                    var pageStr = $"PurshaseOrder_{item.Entity.Plural()}_Update";
+                    permissionBuilder.AppendLine($"public const string {pageStr} = \"PurshaseOrder.{item.Entity.Plural()}.Update\";");
                     providerBuilder.AppendLine($"context.CreatePermission(PermissionNames.{pageStr}, L(\"Edit{item.Entity}\"));");
                 }
 
                 if (!item.Delete)
                 {
-                    var pageStr = $"Actions_{item.Entity.Plural()}_Delete";
-                    permissionBuilder.AppendLine($"public const string {pageStr} = \"Actions.{item.Entity.Plural()}.Delete\";");
+                    var pageStr = $"PurshaseOrder_{item.Entity.Plural()}_Delete";
+                    permissionBuilder.AppendLine($"public const string {pageStr} = \"PurshaseOrder.{item.Entity.Plural()}.Delete\";");
                     providerBuilder.AppendLine($"context.CreatePermission(PermissionNames.{pageStr}, L(\"Delete{item.Entity}\"));");
                 }
             }

@@ -46,5 +46,7 @@ namespace Souccar.EntityFrameworkCore
             : base(options)
         {
         }
+
+        
     }
 }

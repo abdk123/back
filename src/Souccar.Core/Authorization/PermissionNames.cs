@@ -2,8 +2,8 @@
 {
     public static class PermissionNames
     {
-        public const string Pages_Tenants = "Pages.Tenants";
-        public const string Pages_Users_Activation = "Pages.Users.Activation";
+        public const string Setting_Tenants = "Setting.Tenants";
+        public const string Setting_Users_Activation = "Setting.Users.Activation";
         //Users
         public const string Security_Users = "Security.Users";
         public const string Security_Users_Create = "Security.Users.Create";
@@ -31,7 +31,7 @@
         public const string Setting_Sizes_Update = "Setting.Sizes.Update";
         public const string Setting_Sizes_Delete = "Setting.Sizes.Delete";
         //Setting
-        public const string Pages_Setting = "Pages.Setting";
+        public const string Setting_Setting = "Setting.Setting";
         public const string Setting_Setting_Create = "Setting.Setting.Create";
         public const string Setting_Setting_Update = "Setting.Setting.Update";
         public const string Setting_Setting_Delete = "Setting.Setting.Delete";
@@ -48,7 +48,7 @@
         public const string Setting_UnitSizes_Update = "Setting.UnitSizes.Update";
         public const string Setting_UnitSizes_Delete = "Setting.UnitSizes.Delete";
         //UnitSetting
-        public const string Pages_UnitSetting = "Pages.UnitSetting";
+        public const string Setting_UnitSetting = "Setting.UnitSetting";
         public const string Setting_UnitSetting_Create = "Setting.UnitSetting.Create";
         public const string Setting_UnitSetting_Update = "Setting.UnitSetting.Update";
         public const string Setting_UnitSetting_Delete = "Setting.UnitSetting.Delete";
@@ -88,6 +88,66 @@
         public const string Setting_Offers_Create = "Setting.Offers.Create";
         public const string Setting_Offers_Update = "Setting.Offers.Update";
         public const string Setting_Offers_Delete = "Setting.Offers.Delete";
+
+        //CustomerVouchers
+        public const string Setting_CustomerVouchers = "PurshaseOrder.CustomerVouchers";
+        public const string Setting_CustomerVouchers_Create = "PurshaseOrder.CustomerVouchers.Create";
+        public const string Setting_CustomerVouchers_Update = "PurshaseOrder.CustomerVouchers.Update";
+        public const string Setting_CustomerVouchers_Delete = "PurshaseOrder.CustomerVouchers.Delete";
+
+        //ClearanceCompanyVouchers
+        public const string Setting_ClearanceCompanyVouchers = "PurshaseOrder.ClearanceCompanyVouchers";
+        public const string Setting_ClearanceCompanyVouchers_Create = "PurshaseOrder.ClearanceCompanyVouchers.Create";
+        public const string Setting_ClearanceCompanyVouchers_Update = "PurshaseOrder.ClearanceCompanyVouchers.Update";
+        public const string Setting_ClearanceCompanyVouchers_Delete = "PurshaseOrder.ClearanceCompanyVouchers.Delete";
+
+          //TransportCompanyVouchers
+        public const string Setting_TransportCompanyVouchers = "PurshaseOrder.TransportCompanyVouchers";
+        public const string Setting_TransportCompanyVouchers_Create = "PurshaseOrder.TransportCompanyVouchers.Create";
+        public const string Setting_TransportCompanyVouchers_Update = "PurshaseOrder.TransportCompanyVouchers.Update";
+        public const string Setting_TransportCompanyVouchers_Delete = "PurshaseOrder.TransportCompanyVouchers.Delete";
+
+              //Receivings
+        public const string Setting_Receivings = "PurshaseOrder.Receivings";
+        public const string Setting_Receivings_Create = "PurshaseOrder.Receivings.Create";
+        public const string Setting_Receivings_Update = "PurshaseOrder.Receivings.Update";
+        public const string Setting_Receivings_Delete = "PurshaseOrder.Receivings.Delete";
+
+        //ReceivingItems
+        public const string Setting_ReceivingItems = "PurshaseOrder.ReceivingItems";
+        public const string Setting_ReceivingItems_Create = "PurshaseOrder.ReceivingItems.Create";
+        public const string Setting_ReceivingItems_Update = "PurshaseOrder.ReceivingItems.Update";
+        public const string Setting_ReceivingItems_Delete = "PurshaseOrder.ReceivingItems.Delete";
+
+        //OfferItems
+        public const string Setting_OfferItems = "PurshaseOrder.OfferItems";
+        public const string Setting_OfferItems_Create = "PurshaseOrder.OfferItems.Create";
+        public const string Setting_OfferItems_Update = "PurshaseOrder.OfferItems.Update";
+        public const string Setting_OfferItems_Delete = "PurshaseOrder.OfferItems.Delete";
+
+        //Invoices
+        public const string Setting_Invoices = "PurshaseOrder.Invoices";
+        public const string Setting_Invoices_Create = "PurshaseOrder.Invoices.Create";
+        public const string Setting_Invoices_Update = "PurshaseOrder.Invoices.Update";
+        public const string Setting_Invoices_Delete = "PurshaseOrder.Invoices.Delete";
+
+        //InvoiceItems
+        public const string Setting_InvoiceItems = "PurshaseOrder.InvoiceItems";
+        public const string Setting_InvoiceItems_Create = "PurshaseOrder.InvoiceItems.Create";
+        public const string Setting_InvoiceItems_Update = "PurshaseOrder.InvoiceItems.Update";
+        public const string Setting_InvoiceItems_Delete = "PurshaseOrder.InvoiceItems.Delete";
+
+        //Deliveries
+        public const string Setting_Deliveries = "PurshaseOrder.Deliveries";
+        public const string Setting_Deliveries_Create = "PurshaseOrder.Deliveries.Create";
+        public const string Setting_Deliveries_Update = "PurshaseOrder.Deliveries.Update";
+        public const string Setting_Deliveries_Delete = "PurshaseOrder.Deliveries.Delete";
+
+        //DeliveryItems
+        public const string Setting_DeliveryItems = "PurshaseOrder.DeliveryItems";
+        public const string Setting_DeliveryItems_Create = "PurshaseOrder.DeliveryItems.Create";
+        public const string Setting_DeliveryItems_Update = "PurshaseOrder.DeliveryItems.Update";
+        public const string Setting_DeliveryItems_Delete = "PurshaseOrder.DeliveryItems.Delete";
 
 
     }

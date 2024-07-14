@@ -109,7 +109,7 @@ namespace Souccar.Users
             await _userManager.DeleteAsync(user);
         }
 
-        [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
+        [AbpAuthorize(PermissionNames.Setting_Users_Activation)]
         public async Task Activate(EntityDto<long> user)
         {
             await Repository.UpdateAsync(user.Id, async (entity) =>
@@ -118,7 +118,7 @@ namespace Souccar.Users
             });
         }
 
-        [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
+        [AbpAuthorize(PermissionNames.Setting_Users_Activation)]
         public async Task DeActivate(EntityDto<long> user)
         {
             await Repository.UpdateAsync(user.Id, async (entity) =>
