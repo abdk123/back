@@ -19,7 +19,7 @@ namespace Souccar.SaleManagement.Stocks.Services
 
         public IList<StockDto> GetAllByMaterialId(int materialId)
         {
-            var stocks = _stockDomainService.GetAll()
+            var stocks = _stockDomainService.GetAllWithIncluding("Material")
                 .Where(x => x.MaterialId == materialId);
             if(stocks.Any())
             {

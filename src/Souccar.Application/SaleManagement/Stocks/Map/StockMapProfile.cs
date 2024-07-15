@@ -9,7 +9,13 @@ namespace Souccar.SaleManagement.Stocks.Map
     {
         public StockMapProfile()
         {
-            CreateMap<Stock, StockDto>();
+            CreateMap<Stock, StockDto>()
+                .ForMember(x => x.Material, opt => opt.MapFrom((src, des, i, context) =>
+                {
+                    if(src.Material != null)
+                        return src.Material.Name;
+                    return string.Empty;
+                }));
             CreateMap<Stock, ReadStockDto>();
             CreateMap<CreateStockDto, Stock>();
             CreateMap<Stock, CreateStockDto>();
