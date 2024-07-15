@@ -15,6 +15,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public DateTime? OfferEndDate { get; set; }
         public int Currency { get; set; }
         public int? CustomerId { get; set; }
+        public string Note { get; set; }
+        public OfferStatus Status { get; set; }
         public IList<CreateOfferItemDto> OfferItems { get; set; }
     }
 }

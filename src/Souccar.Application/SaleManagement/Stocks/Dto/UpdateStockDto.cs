@@ -10,8 +10,6 @@ namespace Souccar.SaleManagement.Stocks.Dto
         public double Count { get; set; }
         public double NumberInLargeUnit { get; set; }
         public double NumberInSmallUnit { get; set; }
-        public double QuantityInLargeUnit { get; set; }
-        public double TotalNumberInSmallUnit { get; set; }
         public int? UnitId { get; set; }
         public int? SizeId { get; set; }
         public int? MaterialId { get; set; }

@@ -1,6 +1,9 @@
 using Souccar.SaleManagement.Settings.Materials.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
+using Souccar.Core.Dto;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Souccar.SaleManagement.Settings.Materials.Services
 {
@@ -12,6 +15,17 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
         {
             _materialDomainService = materialDomainService;
         }
+
+        public IList<DropdownDto> GetForDropdown()
+        {
+            var entities = _materialDomainService.GetAll();
+            if (entities.Any())
+                return ObjectMapper.Map<List<DropdownDto>>(entities.ToList());
+
+            return new List<DropdownDto>();
+        }
+
+        
     }
 }
 
