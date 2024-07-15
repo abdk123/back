@@ -54,11 +54,11 @@ namespace Souccar.SaleManagement.Stocks.Services
             return list;
         }
 
-        public async Task<List<StockDto>> GetAllByMaterialIdAsync(int materialId)
-        {
-            var stocks = await _stockDomainService.GetAllByMaterialIdAsync(materialId);
-            return ObjectMapper.Map<List<StockDto>>(stocks);
-        }
+        //public async Task<List<StockDto>> GetAllByMaterialIdAsync(int materialId)
+        //{
+        //    var stocks = await _stockDomainService.GetAllByMaterialIdAsync(materialId);
+        //    return ObjectMapper.Map<List<StockDto>>(stocks);
+        //}
     }
 }
 
