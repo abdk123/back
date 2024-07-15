@@ -13,6 +13,7 @@ namespace Souccar.SaleManagement.Settings.Units.Map
             CreateMap<Size, CreateSizeDto>();
             CreateMap<UpdateSizeDto, Size>();
             CreateMap<Size, UpdateSizeDto>();
+            CreateMap<Size, SizeForDropdownDto>();
         }
     }
 }

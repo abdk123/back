@@ -1,8 +1,9 @@
 using Souccar.SaleManagement.Stocks.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
-using Souccar.Core.Dto;
+using System.Threading.Tasks;
 using System.Collections.Generic;
+using Souccar.Core.Dto;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -52,6 +53,12 @@ namespace Souccar.SaleManagement.Stocks.Services
 
             return list;
         }
+
+        //public async Task<List<StockDto>> GetAllByMaterialIdAsync(int materialId)
+        //{
+        //    var stocks = await _stockDomainService.GetAllByMaterialIdAsync(materialId);
+        //    return ObjectMapper.Map<List<StockDto>>(stocks);
+        //}
     }
 }
 

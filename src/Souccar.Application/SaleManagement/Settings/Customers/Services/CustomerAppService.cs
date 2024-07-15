@@ -2,6 +2,7 @@ using Souccar.Core.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.Settings.Customers.Dto;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -25,6 +25,11 @@
         public const string Setting_Stocks_Update = "Setting.Stocks.Update";
         public const string Setting_Stocks_Delete = "Setting.Stocks.Delete";
 
+        //Sizes
+        public const string Setting_Sizes = "Setting.Sizes";
+        public const string Setting_Sizes_Create = "Setting.Sizes.Create";
+        public const string Setting_Sizes_Update = "Setting.Sizes.Update";
+        public const string Setting_Sizes_Delete = "Setting.Sizes.Delete";
         //Setting
         public const string Setting_Setting = "Setting.Setting";
         public const string Setting_Setting_Create = "Setting.Setting.Create";
@@ -37,6 +42,11 @@
         public const string Setting_Units_Update = "Setting.Units.Update";
         public const string Setting_Units_Delete = "Setting.Units.Delete";
 
+        //UnitSizes
+        public const string Setting_UnitSizes = "Setting.UnitSizes";
+        public const string Setting_UnitSizes_Create = "Setting.UnitSizes.Create";
+        public const string Setting_UnitSizes_Update = "Setting.UnitSizes.Update";
+        public const string Setting_UnitSizes_Delete = "Setting.UnitSizes.Delete";
         //UnitSetting
         public const string Setting_UnitSetting = "Setting.UnitSetting";
         public const string Setting_UnitSetting_Create = "Setting.UnitSetting.Create";
@@ -55,23 +65,11 @@
         public const string Setting_Materials_Update = "Setting.Materials.Update";
         public const string Setting_Materials_Delete = "Setting.Materials.Delete";
 
-        //Sizes
-        public const string Setting_Sizes = "Setting.Sizes";
-        public const string Setting_Sizes_Create = "Setting.Sizes.Create";
-        public const string Setting_Sizes_Update = "Setting.Sizes.Update";
-        public const string Setting_Sizes_Delete = "Setting.Sizes.Delete";
-
         //Customers
         public const string Setting_Customers = "Setting.Customers";
         public const string Setting_Customers_Create = "Setting.Customers.Create";
         public const string Setting_Customers_Update = "Setting.Customers.Update";
         public const string Setting_Customers_Delete = "Setting.Customers.Delete";
-
-        //UnitSizes
-        public const string Setting_UnitSizes = "Setting.UnitSizes";
-        public const string Setting_UnitSizes_Create = "Setting.UnitSizes.Create";
-        public const string Setting_UnitSizes_Update = "Setting.UnitSizes.Update";
-        public const string Setting_UnitSizes_Delete = "Setting.UnitSizes.Delete";
 
         //Companies
         public const string Setting_Companies = "Setting.Companies";

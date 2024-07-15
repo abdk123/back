@@ -37,6 +37,6 @@ namespace Souccar.SaleManagement.Settings.Customers
         /// <summary>
         /// النوع 
         /// </summary>
-        public CustomerType Type { get; }
+        public CustomerType Type { get; set; }
     }
 }

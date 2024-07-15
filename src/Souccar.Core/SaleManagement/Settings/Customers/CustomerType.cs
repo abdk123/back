@@ -5,16 +5,16 @@
         /// <summary>
         /// زبون
         /// </summary>
-        Customer,
+        Customer = 0,
 
         /// <summary>
         /// مورد
         /// </summary>
-        Supplier,
+        Supplier = 1,
 
         /// <summary>
         /// مورد وزبون
         /// </summary>
-        CustomerAndSupplier
+        CustomerAndSupplier = 2
     }
 }
