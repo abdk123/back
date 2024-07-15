@@ -19,7 +19,7 @@ namespace Souccar.EntityFrameworkCore.Seed.Host
         private void CreateUnits()
         {
 
-            if (_context.Languages.IgnoreQueryFilters().Any(l => l.Name.Contains("طن")))
+            if (_context.Unit.IgnoreQueryFilters().Any(l => l.Name.Contains("طن")))
             {
                 return;
             }

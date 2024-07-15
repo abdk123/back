@@ -8,6 +8,8 @@ namespace Souccar.SaleManagement.Stocks.Services
 {
     public interface IStockAppService : IAsyncSouccarAppService<StockDto, int, FullPagedRequestDto, CreateStockDto, UpdateStockDto>
     {
+        IList<MaterialUnitDto> GetMaterialUnits(int materialId);
+        IList<StockDto> GetAllByMaterialId(int materialId);
         Task<List<StockDto>> GetAllByMaterialIdAsync(int materialId);
     }
 }

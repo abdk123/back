@@ -34,16 +34,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// </summary>
         public bool AddedBySmallUnit;
 
-        ///// <summary>
-        ///// العرض
-        ///// </summary>
-        //#region Offer
-        //public int? OfferId { get; set; }
-
-        //[ForeignKey(nameof(OfferId))]
-        //public Offer Offer { get; set; }
-        //#endregion
-
         /// <summary>
         /// المادة
         /// </summary>

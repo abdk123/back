@@ -1,4 +1,6 @@
 using AutoMapper;
+using Souccar.Core.Dto;
+using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Stocks.Dto;
 
 namespace Souccar.SaleManagement.Stocks.Map
@@ -13,6 +15,7 @@ namespace Souccar.SaleManagement.Stocks.Map
             CreateMap<Stock, CreateStockDto>();
             CreateMap<UpdateStockDto, Stock>();
             CreateMap<Stock, UpdateStockDto>();
+            
         }
     }
 }

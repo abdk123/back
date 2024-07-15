@@ -1,9 +1,10 @@
 using AutoMapper;
+using Souccar.Core.Dto;
 using Souccar.SaleManagement.Settings.Materials.Dto;
 
 namespace Souccar.SaleManagement.Settings.Materials.Map
 {
-   public class MaterialMapProfile : Profile
+    public class MaterialMapProfile : Profile
     {
         public MaterialMapProfile()
         {
@@ -13,6 +14,8 @@ namespace Souccar.SaleManagement.Settings.Materials.Map
             CreateMap<Material, CreateMaterialDto>();
             CreateMap<UpdateMaterialDto, Material>();
             CreateMap<Material, UpdateMaterialDto>();
+            CreateMap<Material, DropdownDto>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
         }
     }
 }
