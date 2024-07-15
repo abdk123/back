@@ -8,7 +8,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
     public class OfferDto : EntityDto<int>, IHasCreationTime
     {
         public string PorchaseOrderId { get; set; }
-        public string OrderNumber { get; set; }
         public int Status { get; set; }
         public DateTime? OfferEndDate { get; set; }
         public int Currency { get; set; }
