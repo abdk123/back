@@ -36,7 +36,7 @@ namespace Souccar.SaleManagement.Settings.Companies
         public int? TransportCompanyId { get; set; }
 
         [ForeignKey(nameof(TransportCompanyId))]
-        public Customer TransportCompany { get; set; }
+        public TransportCompany TransportCompany { get; set; }
         #endregion
     }
 }

@@ -345,6 +345,9 @@
 		<text name="CreateNewWorkFlowStepIndex">إنشاء فهرس خطوة سير العمل الجديد</text>
 
 
+		<text name="TransportCompanyVoucher">سند شركة النقل</text>
+		<text name="ClearanceCompanyVoucher">سند شركة التخليص</text>
+		<text name="Vouchers">السندات</text>
 
 
 

@@ -13,6 +13,7 @@ namespace Souccar.SaleManagement.Settings.Stores.Map
             CreateMap<Store, CreateStoreDto>();
             CreateMap<UpdateStoreDto, Store>();
             CreateMap<Store, UpdateStoreDto>();
+            CreateMap<Store, StoreForDropdownDto>();
         }
     }
 }

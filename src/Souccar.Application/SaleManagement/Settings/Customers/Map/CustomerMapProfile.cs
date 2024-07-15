@@ -16,6 +16,7 @@ namespace Souccar.SaleManagement.Settings.Customers.Map
             CreateMap<Customer, UpdateCustomerDto>();
             CreateMap<Customer, DropdownDto>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.FullName));
+            CreateMap<Customer, CustomerForDropdownDto>();
         }
     }
 }

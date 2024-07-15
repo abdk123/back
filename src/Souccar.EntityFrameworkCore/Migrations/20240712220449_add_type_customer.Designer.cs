@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240712220449_add_type_customer")]
+    partial class add_type_customer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1641,93 +1644,7 @@ namespace Souccar.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DriverName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DriverPhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TransportCost")
-                        .HasColumnType("float");
-
-                    b.Property<int>("TransportCostCurrency")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TransportedQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<string>("VehicleNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Delivery");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.DeliveryItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BatchNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DeliveryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("InvoiceItemId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeliveryId");
-
-                    b.HasIndex("InvoiceItemId");
-
-                    b.ToTable("DeliveryItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Offers.Offer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1747,90 +1664,8 @@ namespace Souccar.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("OfferId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OfferId");
-
-                    b.ToTable("Invoice");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("InvoiceItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OfferItemId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ReceivedQuantity")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TotalMaterilPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.HasIndex("InvoiceItemId");
-
-                    b.HasIndex("OfferItemId");
-
-                    b.ToTable("InvoiceItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1841,166 +1676,15 @@ namespace Souccar.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Note")
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OfferEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PorchaseOrderId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("SupplierId");
 
                     b.ToTable("Offer");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OfferId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Specefecation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("UnitPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("OfferId");
-
-                    b.HasIndex("SizeId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("OfferItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.Receiving", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ClearanceCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ClearanceCost")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ClearanceCostCurrency")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DriverName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DriverPhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TransportCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TransportCost")
-                        .HasColumnType("float");
-
-                    b.Property<int>("TransportCostCurrency")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClearanceCompanyId");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.HasIndex("TransportCompanyId");
-
-                    b.ToTable("Receiving");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.ReceivingItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("InvoiceItemId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ReceivedQuantity")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceItemId");
-
-                    b.ToTable("ReceivingItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Categories.Category", b =>
@@ -2043,7 +1727,7 @@ namespace Souccar.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", b =>
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2072,108 +1756,9 @@ namespace Souccar.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClearanceCompany");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompanyVoucher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("ClearanceCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("VoucherDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("VoucherNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VoucherType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClearanceCompanyId");
-
-                    b.ToTable("ClearanceCompanyBalance");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompany", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("BalanceInDinar")
-                        .HasColumnType("float");
-
-                    b.Property<double>("BalanceInDollar")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -2192,61 +1777,11 @@ namespace Souccar.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransportCompany");
-                });
+                    b.ToTable("Company");
 
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompanyVoucher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Company");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("TransportCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("VoucherDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("VoucherNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VoucherType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TransportCompanyId");
-
-                    b.ToTable("TransportCompanyBalance");
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.Customer", b =>
@@ -2302,60 +1837,6 @@ namespace Souccar.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.CustomerVoucher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("VoucherDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("VoucherNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VoucherType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("CustomerBalance");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>
@@ -2668,6 +2149,20 @@ namespace Souccar.Migrations
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
                 });
 
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", b =>
+                {
+                    b.HasBaseType("Souccar.SaleManagement.Settings.Companies.Company");
+
+                    b.HasDiscriminator().HasValue("ClearanceCompany");
+                });
+
+            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompany", b =>
+                {
+                    b.HasBaseType("Souccar.SaleManagement.Settings.Companies.Company");
+
+                    b.HasDiscriminator().HasValue("TransportCompany");
+                });
+
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
                 {
                     b.HasOne("Souccar.Authorization.Roles.Role", null)
@@ -2860,161 +2355,6 @@ namespace Souccar.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.DeliveryItem", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", "Delivery")
-                        .WithMany("DeliveryItems")
-                        .HasForeignKey("DeliveryId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", "InvoiceItem")
-                        .WithMany()
-                        .HasForeignKey("InvoiceItemId");
-
-                    b.Navigation("Delivery");
-
-                    b.Navigation("InvoiceItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "Offer")
-                        .WithMany()
-                        .HasForeignKey("OfferId");
-
-                    b.Navigation("Offer");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", null)
-                        .WithMany("InvoiseDetails")
-                        .HasForeignKey("InvoiceId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", null)
-                        .WithMany("InvoiceItems")
-                        .HasForeignKey("InvoiceItemId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", "OfferItem")
-                        .WithMany()
-                        .HasForeignKey("OfferItemId");
-
-                    b.Navigation("OfferItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Materials.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "Offer")
-                        .WithMany("OfferItems")
-                        .HasForeignKey("OfferId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Units.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Offer");
-
-                    b.Navigation("Size");
-
-                    b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.Receiving", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", "ClearanceCompany")
-                        .WithMany()
-                        .HasForeignKey("ClearanceCompanyId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", "Invoice")
-                        .WithMany()
-                        .HasForeignKey("InvoiceId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Companies.TransportCompany", "TransportCompany")
-                        .WithMany()
-                        .HasForeignKey("TransportCompanyId");
-
-                    b.Navigation("ClearanceCompany");
-
-                    b.Navigation("Invoice");
-
-                    b.Navigation("Supplier");
-
-                    b.Navigation("TransportCompany");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Receives.ReceivingItem", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", "InvoiceItem")
-                        .WithMany()
-                        .HasForeignKey("InvoiceItemId");
-
-                    b.Navigation("InvoiceItem");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompanyVoucher", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", "ClearanceCompany")
-                        .WithMany()
-                        .HasForeignKey("ClearanceCompanyId");
-
-                    b.Navigation("ClearanceCompany");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.TransportCompanyVoucher", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Companies.TransportCompany", "TransportCompany")
-                        .WithMany()
-                        .HasForeignKey("TransportCompanyId");
-
-                    b.Navigation("TransportCompany");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Settings.Customers.CustomerVoucher", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>
                 {
                     b.HasOne("Souccar.SaleManagement.Settings.Categories.Category", "Category")
@@ -3135,26 +2475,6 @@ namespace Souccar.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
-                {
-                    b.Navigation("DeliveryItems");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", b =>
-                {
-                    b.Navigation("InvoiseDetails");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Invoises.InvoiceItem", b =>
-                {
-                    b.Navigation("InvoiceItems");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
-                {
-                    b.Navigation("OfferItems");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Application.Services;
 using System.Threading.Tasks;
+using Souccar.Core.Filter;
+using System.Collections.Generic;
 
 namespace Souccar.Core.Services
 {

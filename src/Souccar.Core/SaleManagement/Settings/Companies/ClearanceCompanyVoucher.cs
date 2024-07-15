@@ -37,7 +37,7 @@ namespace Souccar.SaleManagement.Settings.Companies
         public int? ClearanceCompanyId { get; set; }
 
         [ForeignKey(nameof(ClearanceCompanyId))]
-        public Customer ClearanceCompany { get; set; }
+        public ClearanceCompany ClearanceCompany { get; set; }
         #endregion
     }
 }

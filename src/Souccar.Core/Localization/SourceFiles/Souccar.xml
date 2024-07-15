@@ -221,6 +221,9 @@
 		<text name="PoNumber">PO Number</text>
 		<text name="OfferNumber">Offer Number</text>
 		<text name="BackToOfferList">Back to offer list</text>
+		<text name="TransportCompanyVoucher">Transport company voucher</text>
+		<text name="ClearanceCompanyVoucher">Clearance company voucher</text>
+		<text name="Vouchers">Vouchers</text>
 
 	</texts>
 </localizationDictionary>
