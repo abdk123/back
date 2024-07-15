@@ -228,6 +228,9 @@
 		<text name="CategoryDeleteWarningMessage">Category {0} will be deleted.</text>
 		<text name="MaterialDeleteWarningMessage">Material {0} will be deleted.</text>
 		<text name="OfferDeleteWarningMessage">Offer {0} will be deleted.</text>
-
+		<text name="PleaseAddAtLeastOneMaterial">Please add at least one material</text>
+		<text name="PoNumberIsRequired">Po number is required</text>
+		<text name="AddOfferMaterials">Add Offer Materials</text>
+		<text name="OfferInfo">Offer Info</text>
 	</texts>
 </localizationDictionary>
