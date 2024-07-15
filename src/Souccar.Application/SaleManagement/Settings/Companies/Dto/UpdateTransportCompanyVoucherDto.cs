@@ -9,7 +9,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Dto
         public int Currency { get; set; }
         public double Amount { get; set; }
         public string VoucherNumber { get; set; }
-        public DateTime? VoucherDate { get; set; }
+        public string VoucherDate { get; set; }
         public int? TransportCompanyId { get; set; }
     }
 }
