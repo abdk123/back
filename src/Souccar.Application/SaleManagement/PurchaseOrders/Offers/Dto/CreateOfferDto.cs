@@ -11,12 +11,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         {
             OfferItems = new List<CreateOfferItemDto>();
         }
-        public string OrderNumber { get; set; }
         public DateTime? OfferEndDate { get; set; }
         public int Currency { get; set; }
         public int? CustomerId { get; set; }
         public string Note { get; set; }
         public OfferStatus Status { get; set; }
+        public string PorchaseOrderId { get; set; }
         public IList<CreateOfferItemDto> OfferItems { get; set; }
     }
 }

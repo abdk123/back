@@ -224,6 +224,10 @@
 		<text name="TransportCompanyVoucher">Transport company voucher</text>
 		<text name="ClearanceCompanyVoucher">Clearance company voucher</text>
 		<text name="Vouchers">Vouchers</text>
+		<text name="WaitingApproved">Waiting approve</text>
+		<text name="CategoryDeleteWarningMessage">Category {0} will be deleted.</text>
+		<text name="MaterialDeleteWarningMessage">Material {0} will be deleted.</text>
+		<text name="OfferDeleteWarningMessage">Offer {0} will be deleted.</text>
 
 	</texts>
 </localizationDictionary>
