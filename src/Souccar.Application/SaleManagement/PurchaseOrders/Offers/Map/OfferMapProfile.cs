@@ -13,9 +13,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Map
             CreateMap<Offer, CreateOfferDto>();
             CreateMap<UpdateOfferDto, Offer>();
             CreateMap<Offer, UpdateOfferDto>();
+            CreateMap<OfferItem, UpdateOfferItemDto>();
 
             //Offer Item
             CreateMap<CreateOfferItemDto, OfferItem>();
+            CreateMap<UpdateOfferItemDto, OfferItem>();
+            CreateMap<OfferItem, OfferItemDto>();
             //CreateMap<UpdateOfferItemDto, OfferItem>();
             //CreateMap<OfferItem, OfferItemDto>();
         }

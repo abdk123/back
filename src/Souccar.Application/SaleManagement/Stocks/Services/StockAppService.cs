@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Souccar.Core.Dto;
 using System.Linq;
 using System.Xml.Linq;
+using Abp.Collections.Extensions;
 
 namespace Souccar.SaleManagement.Stocks.Services
 {
@@ -42,11 +43,42 @@ namespace Souccar.SaleManagement.Stocks.Services
                     list.AddRange(units.Select(x => new MaterialUnitDto(x.Id, x.Name, false)));
                 }
                 var sizes = stocks.Select(x => x.Size);
-                if (sizes.Any())
+                if (sizes.Any() && sizes.Any(x=>x != null))
                 {
                     foreach (var size in sizes)
                     {
                         list.Add(new MaterialUnitDto(size.Id, size.Name, true));
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public IList<MaterialUnitDto> GetAllMaterialUnits()
+        {
+            var list = new List<MaterialUnitDto>();
+            var stocks = _stockDomainService.GetAllWithIncluding("Size,Unit").ToList();
+            if (stocks.Any())
+            {
+                var units = stocks.Select(x => x.Unit);
+                if (units.Any() && units.Any(x => x != null))
+                {
+                    list.AddRange(units.Select(x => new MaterialUnitDto(x.Id, x.Name, false)));
+                }
+                var sizes = stocks.Select(x => x.Size);
+
+                if (sizes.Any() && sizes.Any(x => x != null))
+                {
+                    foreach (var size in sizes)
+                    {
+                        if (size != null)
+                        {
+                            if(!list.Any(x=>x.Id == size.Id && x.Name == size.Name))
+                            {
+                              list.Add(new MaterialUnitDto(size.Id, size.Name, true));
+                            }
+                        }
                     }
                 }
             }
