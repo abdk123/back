@@ -10,6 +10,7 @@ namespace Souccar.SaleManagement.Stocks.Services
     {
         IList<MaterialUnitDto> GetMaterialUnits(int materialId);
         IList<StockDto> GetAllByMaterialId(int materialId);
+        IList<MaterialUnitDto> GetAllMaterialUnits();
         //Task<List<StockDto>> GetAllByMaterialIdAsync(int materialId);
     }
 }
