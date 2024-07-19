@@ -22,6 +22,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
         public CustomerDto Customer { get; set; }
+        public CustomerDto Supplier { get; set; }
         public DateTime CreationTime { get; set; }
         public IList<OfferItemDto> OfferItems { get; set; }
     }

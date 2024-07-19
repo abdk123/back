@@ -232,5 +232,7 @@
 		<text name="PoNumberIsRequired">Po number is required</text>
 		<text name="AddOfferMaterials">Add Offer Materials</text>
 		<text name="OfferInfo">Offer Info</text>
+		<text name="TheOfferMustBeApprovedFirst">The offer must be approved first</text>
+		<text name="PoIsRequired">PO is required</text>
 	</texts>
 </localizationDictionary>

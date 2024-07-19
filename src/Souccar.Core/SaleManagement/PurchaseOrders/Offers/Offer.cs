@@ -42,6 +42,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         public DateTime OfferEndDate { get; set; }
 
         /// <summary>
+        /// تاريخ الموافقة على العرض
+        /// </summary>
+        public DateTime ApproveDate { get; set; }
+
+        /// <summary>
         /// العملة
         /// </summary>
         public Currency Currency { get; set; }

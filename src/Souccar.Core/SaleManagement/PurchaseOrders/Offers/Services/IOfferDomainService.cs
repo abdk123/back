@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
     {
         IList<OfferItem> GetItemsByOfferId(int offerId);
         Task DeleteItemAsync(int itemId);
+        Offer GetOfferWithDetail(int offerId);
     }
 }
 
