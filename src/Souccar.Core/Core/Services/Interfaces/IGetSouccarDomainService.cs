@@ -1,6 +1,8 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Services;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Souccar.Core.Services.Interfaces
@@ -10,6 +12,7 @@ namespace Souccar.Core.Services.Interfaces
     {
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetAllWithIncluding(string including);
+        TEntity GetWithIncluding(TPrimaryKey id, Expression<Func<TEntity, object>> [] includes);
         TEntity Get(TPrimaryKey id);
         Task<TEntity> GetAsync(TPrimaryKey id);
         Task<TEntity> GetAgreggateAsync(TPrimaryKey id);

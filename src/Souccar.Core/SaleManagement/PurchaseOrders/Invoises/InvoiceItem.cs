@@ -7,10 +7,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
     public class InvoiceItem : Entity
     {
-        public InvoiceItem()
-        {
-            InvoiceItems = new List<InvoiceItem>();
-        }
         /// <summary>
         /// الكمية الجديدة     
         /// </summary>
@@ -33,6 +29,5 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         public OfferItem OfferItem { get; set; }
         #endregion
 
-        public IList<InvoiceItem> InvoiceItems { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             
             if (string.IsNullOrEmpty(input.PorchaseOrderId))
             {
-                throw new UserFriendlyException(this.L(ValidationMessage.PoIsRequired));
+                throw new UserFriendlyException(ValidationMessage.PoIsRequired);
             }
             
             offer.PorchaseOrderId = input.PorchaseOrderId;
@@ -46,13 +46,18 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             {
                 if (input.Status == (int)OfferStatus.Pending)
                 {
-                    throw new UserFriendlyException(this.L(ValidationMessage.TheOfferMustBeApprovedFirst));
+                    throw new UserFriendlyException(ValidationMessage.TheOfferMustBeApprovedFirst);
                 }
                 if (input.SupplierId == null)
                 {
-                    throw new UserFriendlyException(this.L(ValidationMessage.SupplierIsRequired));
+                    throw new UserFriendlyException(ValidationMessage.SupplierIsRequired);
                 }
-                await EventBus.Default.TriggerAsync(new CreateInvoiceEventData(offer));
+                var offerItems = _offerDomainService.GetItemsByOfferId(offer.Id);
+                await EventBus.Default.TriggerAsync(new CreateInvoiceEventData()
+                {
+                    OfferId = offer.Id,
+                    OfferItems = offerItems
+                });
             }
             return GetOfferWithDetailId(input.Id);
         }
@@ -84,6 +89,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             }
             return ObjectMapper.Map<OfferDto>(newOffer);
 
+        }
+        protected override IQueryable<Offer> ApplySearching(IQueryable<Offer> query, Type typeDto, FullPagedRequestDto input)
+        {
+            if (string.IsNullOrEmpty(input.Keyword))
+                return query;
+            return query.Where(x => x.Customer.FullName.Contains(input.Keyword));
         }
     }
 }
