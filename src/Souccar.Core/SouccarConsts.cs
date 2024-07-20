@@ -22,5 +22,6 @@ namespace Souccar
     {
         public const string TheOfferMustBeApprovedFirst = "TheOfferMustBeApprovedFirst";
         public const string PoIsRequired = "PoIsRequired";
+        public const string SupplierIsRequired = "SupplierIsRequired";
     }
 }

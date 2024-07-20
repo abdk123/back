@@ -234,5 +234,7 @@
 		<text name="OfferInfo">Offer Info</text>
 		<text name="TheOfferMustBeApprovedFirst">The offer must be approved first</text>
 		<text name="PoIsRequired">PO is required</text>
+		<text name="SupplierIsRequired">Supplier is required</text>
+		<text name="ConvertToPurchaseInvoice">Convert to purchase invoice</text>
 	</texts>
 </localizationDictionary>

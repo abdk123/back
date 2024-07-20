@@ -7,6 +7,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public int Status { get; set; }
         public string PorchaseOrderId { get; set; }
         public string ApproveDate { get; set; }
+        public int? SupplierId { get; set; }
         public bool GenerateInvoice { get; set; }
     }
 }

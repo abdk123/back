@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.UI;
 using System;
+using Abp.Events.Bus.Entities;
+using Abp.Events.Bus;
+using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -23,24 +26,33 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         public async Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
         {
             var offer = await _offerDomainService.GetAsync(input.Id);
-            if(input.Status == (int)OfferStatus.Pending)
-            {
-                throw new UserFriendlyException(this.L(ValidationMessage.TheOfferMustBeApprovedFirst));
-            }
+            
             if (string.IsNullOrEmpty(input.PorchaseOrderId))
             {
                 throw new UserFriendlyException(this.L(ValidationMessage.PoIsRequired));
             }
-
+            
             offer.PorchaseOrderId = input.PorchaseOrderId;
             var approveDate = DateTime.Now;
             DateTime.TryParse(input.ApproveDate,out approveDate);
             offer.ApproveDate = approveDate;
             offer.Status = (OfferStatus)input.Status;
+            if (input.SupplierId != null)
+            {
+                offer.SupplierId = input.SupplierId;
+            }
             await _offerDomainService.UpdateAsync(offer);
             if (input.GenerateInvoice)
             {
-                //Event
+                if (input.Status == (int)OfferStatus.Pending)
+                {
+                    throw new UserFriendlyException(this.L(ValidationMessage.TheOfferMustBeApprovedFirst));
+                }
+                if (input.SupplierId == null)
+                {
+                    throw new UserFriendlyException(this.L(ValidationMessage.SupplierIsRequired));
+                }
+                await EventBus.Default.TriggerAsync(new CreateInvoiceEventData(offer));
             }
             return GetOfferWithDetailId(input.Id);
         }
