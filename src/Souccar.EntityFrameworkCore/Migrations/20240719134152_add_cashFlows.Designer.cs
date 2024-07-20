@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240719134152_add_cashFlows")]
+    partial class add_cashFlows
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1691,7 +1694,7 @@ namespace Souccar.Migrations
                     b.Property<int>("TransactionName")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransportCompanyId")
+                    b.Property<int>("TransportCompanyId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -1715,7 +1718,7 @@ namespace Souccar.Migrations
                     b.Property<double>("AmountDollar")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ClearanceCompanyId")
+                    b.Property<int>("ClearanceCompanyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
@@ -1787,7 +1790,7 @@ namespace Souccar.Migrations
                     b.Property<double>("CurrentBalanceDollar")
                         .HasColumnType("float");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<long?>("DeleterUserId")
@@ -3044,7 +3047,9 @@ namespace Souccar.Migrations
                 {
                     b.HasOne("Souccar.SaleManagement.Settings.Companies.TransportCompany", "TransportCompany")
                         .WithMany()
-                        .HasForeignKey("TransportCompanyId");
+                        .HasForeignKey("TransportCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TransportCompany");
                 });
@@ -3053,7 +3058,9 @@ namespace Souccar.Migrations
                 {
                     b.HasOne("Souccar.SaleManagement.Settings.Companies.ClearanceCompany", "ClearanceCompany")
                         .WithMany()
-                        .HasForeignKey("ClearanceCompanyId");
+                        .HasForeignKey("ClearanceCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ClearanceCompany");
                 });
@@ -3062,7 +3069,9 @@ namespace Souccar.Migrations
                 {
                     b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });
