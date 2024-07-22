@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Map
         public ClearanceCompanyVoucherMapProfile()
         {
             CreateMap<ClearanceCompanyVoucher, ClearanceCompanyVoucherDto>();
+            CreateMap<ClearanceCompanyVoucherDto, ClearanceCompanyVoucher>();
             CreateMap<ClearanceCompanyVoucher, ReadClearanceCompanyVoucherDto>();
             CreateMap<CreateClearanceCompanyVoucherDto, ClearanceCompanyVoucher>();
             CreateMap<ClearanceCompanyVoucher, CreateClearanceCompanyVoucherDto>();
