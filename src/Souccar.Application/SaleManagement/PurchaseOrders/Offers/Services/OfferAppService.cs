@@ -4,6 +4,11 @@ using Souccar.Core.Services;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Abp.UI;
+using System;
+using Abp.Events.Bus.Entities;
+using Abp.Events.Bus;
+using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -18,10 +23,55 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             _offerDomainService = offerDomainService;
         }
 
+        public async Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
+        {
+            var offer = await _offerDomainService.GetAsync(input.Id);
+            
+            if (string.IsNullOrEmpty(input.PorchaseOrderId))
+            {
+                throw new UserFriendlyException(ValidationMessage.PoIsRequired);
+            }
+            
+            offer.PorchaseOrderId = input.PorchaseOrderId;
+            var approveDate = DateTime.Now;
+            DateTime.TryParse(input.ApproveDate,out approveDate);
+            offer.ApproveDate = approveDate;
+            offer.Status = (OfferStatus)input.Status;
+            if (input.SupplierId != null)
+            {
+                offer.SupplierId = input.SupplierId;
+            }
+            await _offerDomainService.UpdateAsync(offer);
+            if (input.GenerateInvoice)
+            {
+                if (input.Status == (int)OfferStatus.Pending)
+                {
+                    throw new UserFriendlyException(ValidationMessage.TheOfferMustBeApprovedFirst);
+                }
+                if (input.SupplierId == null)
+                {
+                    throw new UserFriendlyException(ValidationMessage.SupplierIsRequired);
+                }
+                var offerItems = _offerDomainService.GetItemsByOfferId(offer.Id);
+                await EventBus.Default.TriggerAsync(new CreateInvoiceEventData()
+                {
+                    OfferId = offer.Id,
+                    OfferItems = offerItems
+                });
+            }
+            return GetOfferWithDetailId(input.Id);
+        }
+
         public IList<UpdateOfferItemDto> GetItemsByOfferId(int offerId)
         {
             var items = _offerDomainService.GetItemsByOfferId(offerId);
             return ObjectMapper.Map<IList<UpdateOfferItemDto>>(items);
+        }
+
+        public OfferDto GetOfferWithDetailId(int offerId)
+        {
+            var offer = _offerDomainService.GetOfferWithDetail(offerId);
+            return ObjectMapper.Map<OfferDto>(offer);
         }
 
         public override async Task<OfferDto> UpdateAsync(UpdateOfferDto input)
@@ -39,6 +89,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             }
             return ObjectMapper.Map<OfferDto>(newOffer);
 
+        }
+        protected override IQueryable<Offer> ApplySearching(IQueryable<Offer> query, Type typeDto, FullPagedRequestDto input)
+        {
+            if (string.IsNullOrEmpty(input.Keyword))
+                return query;
+            return query.Where(x => x.Customer.FullName.Contains(input.Keyword));
         }
     }
 }

@@ -221,6 +221,7 @@
 		<text name="PoNumber">PO Number</text>
 		<text name="OfferNumber">Offer Number</text>
 		<text name="BackToOfferList">Back to offer list</text>
+		<text name="BackToInvoiceList">Back to invoices list</text>
 		<text name="TransportCompanyVoucher">Transport company voucher</text>
 		<text name="ClearanceCompanyVoucher">Clearance company voucher</text>
 		<text name="Vouchers">Vouchers</text>
@@ -232,5 +233,10 @@
 		<text name="PoNumberIsRequired">Po number is required</text>
 		<text name="AddOfferMaterials">Add Offer Materials</text>
 		<text name="OfferInfo">Offer Info</text>
+		<text name="TheOfferMustBeApprovedFirst">The offer must be approved first</text>
+		<text name="PoIsRequired">PO is required</text>
+		<text name="SupplierIsRequired">Supplier is required</text>
+		<text name="ConvertToPurchaseInvoice">Convert to purchase invoice</text>
+		<text name="SaveInvoiceDetail">Save invoice detail</text>
 	</texts>
 </localizationDictionary>

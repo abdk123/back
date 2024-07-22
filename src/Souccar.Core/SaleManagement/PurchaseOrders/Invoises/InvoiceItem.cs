@@ -7,14 +7,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
     public class InvoiceItem : Entity
     {
-        public InvoiceItem()
-        {
-            InvoiceItems = new List<InvoiceItem>();
-        }
         /// <summary>
         /// الكمية الجديدة     
         /// </summary>
-        public double Quantity { get; set; } // من الممكن ان لا يكون لدى المورد المادةالمطلوبة بشكل كامل لذا سنعدل الكمية من الفاتورة ونحتفظ بالطمية المدخلة في العرض دون تعديل ككمية قديمة
+        public double Quantity { get; set; } // من الممكن ان لا يكون لدى المورد المادةالمطلوبة بشكل كامل لذا سنعدل الكمية من الفاتورة ونحتفظ بالكمية المدخلة في العرض دون تعديل ككمية قديمة
 
         /// <summary>
         /// السعر الكلي الجديد
@@ -33,6 +29,5 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         public OfferItem OfferItem { get; set; }
         #endregion
 
-        public IList<InvoiceItem> InvoiceItems { get; set; }
     }
 }

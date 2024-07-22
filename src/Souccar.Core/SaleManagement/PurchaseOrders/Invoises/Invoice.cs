@@ -2,6 +2,7 @@
 using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
@@ -21,5 +22,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         #endregion
 
         public IList<InvoiceItem> InvoiseDetails { get; set; }
+
+        #region Getters
+        public double TotalQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.Quantity) : 0;
+        public double TotalPrice => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.TotalMaterilPrice) : 0;
+        #endregion
     }
 }

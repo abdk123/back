@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Souccar.Core.Services.Implements
 {
-    public class GetSouccarDomainService<TEntity, TPrimaryKey>: IGetSouccarDomainService<TEntity, TPrimaryKey>
+    public class GetSouccarDomainService<TEntity, TPrimaryKey> : IGetSouccarDomainService<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
         private readonly IRepository<TEntity, TPrimaryKey> _repository;
@@ -109,6 +109,12 @@ namespace Souccar.Core.Services.Implements
         public virtual async Task<TEntity> GetAsync(TPrimaryKey id)
         {
             return await _repository.GetAsync(id);
+        }
+
+        public TEntity GetWithIncluding(TPrimaryKey id, Expression<Func<TEntity, object>>[] includes)
+        {
+            return _repository.GetAllIncluding(includes)
+                .FirstOrDefault<TEntity>(x=>x.Id.Equals(id));
         }
     }
 }

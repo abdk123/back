@@ -3,7 +3,7 @@
     public enum InvoiceStatus
     {
         /// <summary>
-        /// لم يستر بعد
+        /// لم يسعر بعد
         /// </summary>
         NotPriced,
         /// <summary>

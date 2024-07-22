@@ -17,4 +17,11 @@ namespace Souccar
         public static readonly string DefaultPassPhrase =
             DebugHelper.IsDebug ? "gsKxGZ012HLL3MI5" : "f48fc498a3ae485fa2d3bfa5043900fd";
     }
+
+    public class ValidationMessage
+    {
+        public const string TheOfferMustBeApprovedFirst = "TheOfferMustBeApprovedFirst";
+        public const string PoIsRequired = "PoIsRequired";
+        public const string SupplierIsRequired = "SupplierIsRequired";
+    }
 }
