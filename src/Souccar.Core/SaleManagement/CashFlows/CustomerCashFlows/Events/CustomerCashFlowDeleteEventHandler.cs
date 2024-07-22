@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
 {
-    public class CustomerCashFlowDeleteEventHandler : IAsyncEventHandler<CustomerCashFlowCreateEventData>, ITransientDependency
+    public class CustomerCashFlowDeleteEventHandler : IAsyncEventHandler<CustomerCashFlowDeleteEventData>, ITransientDependency
     {
         private readonly ICustomerCashFlowDomainService _customerCashFlowDomainService;
 
@@ -14,7 +14,7 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
             _customerCashFlowDomainService = customerCashFlowDomainService;
         }
 
-        public async Task HandleEventAsync(CustomerCashFlowCreateEventData eventData)
+        public async Task HandleEventAsync(CustomerCashFlowDeleteEventData eventData)
         {
             var customerCashFlow = await _customerCashFlowDomainService.GetByInfo(eventData.CustomerId, eventData.AmountDollar, eventData.AmountDinar, eventData.TransactionDetails, eventData.Note, eventData.TransactionName);
             if (customerCashFlow != null)

@@ -14,18 +14,5 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
         {
             _repository = repository;
         }
-
-        public override async Task<ClearanceCompanyVoucher> InsertAsync(ClearanceCompanyVoucher input)
-        {
-            var voucher = await base.InsertAsync(input);
-            EventBus.Default.Trigger(
-                    new ClearanceCompanyCashFlowCreateEventData(
-                        input.Currency == Currencies.Currency.Dollar? input.Amount : 0,
-                        input.Currency == Currencies.Currency.Dinar? input.Amount : 0,
-                        "","",input.VoucherType == Customers.VoucherType.Receive? CashFlows.TransactionName.Receive: CashFlows.TransactionName.Spend,
-                        input.ClearanceCompanyId
-                        ));
-            return voucher;
-        }
     }
 }

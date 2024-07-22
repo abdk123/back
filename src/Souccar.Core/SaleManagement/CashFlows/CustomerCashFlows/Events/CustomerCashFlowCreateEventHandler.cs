@@ -24,16 +24,8 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
             var oldCurrentBalanceDinar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dinar, DateTime.Now);
             var oldCurrentBalanceDollar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dinar, DateTime.Now);
 
-            if (eventData.TransactionName == TransactionName.Spend)
-            {
-                newCurrentBalanceDinar = oldCurrentBalanceDinar - eventData.AmountDinar;
-                newCurrentBalanceDollar = oldCurrentBalanceDollar - eventData.AmountDollar;
-            }
-            else if (eventData.TransactionName == TransactionName.Receive)
-            {
-                newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
-                newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
-            }
+            newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
+            newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
 
             var customerCashFlow = new CustomerCashFlow()
             {

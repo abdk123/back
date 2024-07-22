@@ -64,11 +64,11 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             {
                 if (currency == Currency.Dinar)
                 {
-                    clearanceCompanyBalance += clearanceCompanyCashFlows.Sum(x => x.CurrentBalanceDinar);
+                    clearanceCompanyBalance += clearanceCompanyCashFlows.Sum(x => x.AmountDinar);
                 }
                 else
                 {
-                    clearanceCompanyBalance += clearanceCompanyCashFlows.Sum(x => x.CurrentBalanceDollar);
+                    clearanceCompanyBalance += clearanceCompanyCashFlows.Sum(x => x.AmountDollar);
                 }
             }
 

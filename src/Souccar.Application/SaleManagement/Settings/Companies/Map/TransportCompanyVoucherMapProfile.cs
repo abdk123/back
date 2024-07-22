@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Map
         public TransportCompanyVoucherMapProfile()
         {
             CreateMap<TransportCompanyVoucher, TransportCompanyVoucherDto>();
+            CreateMap<TransportCompanyVoucherDto, TransportCompanyVoucher>();
             CreateMap<TransportCompanyVoucher, ReadTransportCompanyVoucherDto>();
             CreateMap<CreateTransportCompanyVoucherDto, TransportCompanyVoucher>();
             CreateMap<TransportCompanyVoucher, CreateTransportCompanyVoucherDto>();

@@ -25,16 +25,8 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
             var oldCurrentBalanceDinar = await _transportCompanyCashFlowDomainService.GetLastBalance(eventData.TransportCompanyId, Currency.Dinar, DateTime.Now);
             var oldCurrentBalanceDollar = await _transportCompanyCashFlowDomainService.GetLastBalance(eventData.TransportCompanyId, Currency.Dollar, DateTime.Now);
 
-            if (eventData.TransactionName == TransactionName.Spend)
-            {
-                newCurrentBalanceDinar = oldCurrentBalanceDinar - eventData.AmountDinar;
-                newCurrentBalanceDollar = oldCurrentBalanceDollar - eventData.AmountDollar;
-            }
-            else if (eventData.TransactionName == TransactionName.Receive)
-            {
                 newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
                 newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
-            }
 
             var transportCompanyCashFlow = new TransportCompanyCashFlow()
             {

@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Abp.Events.Bus;
+using System;
 
 namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
 {
-    public class TransportCompanyCashFlowDeleteEventData : EventArgs
+    public class TransportCompanyCashFlowDeleteEventData : EventData
     {
-        public TransportCompanyCashFlowDeleteEventData(double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName, int? clearanceCompanyId)
+        public TransportCompanyCashFlowDeleteEventData(double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName, int? transportCompanyId)
         {
             AmountDollar = amountDollar;
             AmountDinar = amountDinar;
             TransactionDetails = transactionDetails;
             Note = note;
             TransactionName = transactionName;
-            ClearanceCompanyId = clearanceCompanyId;
+            TransportCompanyId = transportCompanyId;
         }
 
         public double AmountDollar { get; set; }
@@ -19,6 +20,6 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
         public string TransactionDetails { get; set; }
         public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
-        public int? ClearanceCompanyId { get; set; }
+        public int? TransportCompanyId { get; set; }
     }
 }

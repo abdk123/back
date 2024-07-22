@@ -23,7 +23,7 @@ namespace Souccar.Workflows.Services.Implements
             return ObjectMapper.Map<List<WorkflowStepDto>>(steps);
         }
 
-        public async override Task<WorkflowStepDto> UpdateAsync(UpdateWorkflowStepDto input)
+        public override async Task<WorkflowStepDto> UpdateAsync(UpdateWorkflowStepDto input)
         {
             var workflowStep = _WorkflowStepDomainService.GetWithDetails(input.Id);
 
