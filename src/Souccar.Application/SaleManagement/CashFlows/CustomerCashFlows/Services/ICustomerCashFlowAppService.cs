@@ -1,10 +1,13 @@
 ﻿using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Dto;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
 {
     public interface ICustomerCashFlowAppService : IAsyncSouccarAppService<CustomerCashFlowDto, int, FullPagedRequestDto, CustomerCashFlowDto, CustomerCashFlowDto>
     {
+        Task<List<CustomerCashFlowDto>> GetAllByCustomerId(int customerId);
     }
 }

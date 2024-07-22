@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.Settings.Companies.Dto;
 
 namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Dto
 {
@@ -12,5 +13,6 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Dto
         public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
         public int? ClearanceCompanyId { get; set; }
+        public ClearanceCompanyDto ClearanceCompany { get; set; }
     }
 }
