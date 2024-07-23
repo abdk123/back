@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.Settings.Customers.Dto;
 
 namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Dto
 {
@@ -12,5 +13,6 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Dto
         public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
         public int? CustomerId { get; set; }
+        public CustomerDto Customer { get; set; }
     }
 }

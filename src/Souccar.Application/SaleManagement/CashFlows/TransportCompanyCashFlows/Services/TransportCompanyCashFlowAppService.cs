@@ -2,6 +2,9 @@
 using Souccar.Core.Services;
 using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Dto;
 using Souccar.SaleManagement.CachFlows.TransportCompanyCachFlows;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
 {
@@ -13,6 +16,14 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
         public TransportCompanyCashFlowAppService(ITransportCompanyCashFlowDomainService transportCompanyCashFlowDomainService) : base(transportCompanyCashFlowDomainService)
         {
             _transportCompanyCashFlowDomainService = transportCompanyCashFlowDomainService;
+        }
+
+        public async Task<List<TransportCompanyCashFlowDto>> GetAllByTransportCompanyId(int transportCompanyId)
+        {
+            var cashFlows = await
+                 Task.FromResult(_transportCompanyCashFlowDomainService.GetAllWithIncluding("TransportCompany")
+                 .Where(x => x.TransportCompanyId == transportCompanyId).ToList());
+            return ObjectMapper.Map<List<TransportCompanyCashFlowDto>>(cashFlows);
         }
     }
 }
