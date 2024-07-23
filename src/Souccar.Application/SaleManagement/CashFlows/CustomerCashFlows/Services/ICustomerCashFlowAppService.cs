@@ -8,6 +8,6 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
 {
     public interface ICustomerCashFlowAppService : IAsyncSouccarAppService<CustomerCashFlowDto, int, FullPagedRequestDto, CustomerCashFlowDto, CustomerCashFlowDto>
     {
-        Task<List<CustomerCashFlowDto>> GetAllByCustomerId(int customerId);
+        Task<List<CustomerCashFlowDto>> GetAllByCustomerId(int customerId); 
     }
 }
