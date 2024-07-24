@@ -8,6 +8,6 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
 {
     public interface IClearanceCompanyCashFlowAppService : IAsyncSouccarAppService<ClearanceCompanyCashFlowDto, int, FullPagedRequestDto, ClearanceCompanyCashFlowDto, ClearanceCompanyCashFlowDto>
     {
-        Task<List<ClearanceCompanyCashFlowDto>> GetAllByClearanceCompanyId(int clearanceCompanyId);
+        Task<List<ClearanceCompanyCashFlowDto>> GetAllByClearanceCompanyId(int clearanceCompanyId, string fromDate, string toDate);
     }
 }
