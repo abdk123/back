@@ -8,7 +8,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Map
         public InvoiceMapProfile()
         {
             CreateMap<Invoice, InvoiceDto>()
-                .ForMember(x => x.Currency, op => op.MapFrom((src, des) => src.Offer.Currency))
+                .ForMember(x => x.Currency, op => op.MapFrom((src, des) =>
+                {
+                    if (src.Offer != null)
+                    {
+                        return (int)src.Offer.Currency;
+                    }
+                    return 0;
+                }))
+
                 .ForMember(x => x.PoNumber, op => op.MapFrom(src=>src.Offer.PorchaseOrderId))
                 .ForMember(x => x.OfferDate, op => op.MapFrom(src=>src.Offer.CreationTime))
                 .ForMember(x => x.SupplierName, op => op.MapFrom((src, des) =>

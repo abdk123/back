@@ -4,7 +4,7 @@ using Souccar.Core.Services;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives.Services
 {
-    public interface IReceivingAppService : IAsyncSouccarAppService<ReceivingDto, int, FullPagedRequestDto, CreateReceivingDto, UpdateReceivingDto>
+    public interface IReceivingAppService : IAsyncSouccarAppService<ReceivingDto, int, FullPagedRequestDto, ReceivingDto, ReceivingDto>
     {
         
     }

@@ -14,5 +14,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives
         [ForeignKey(nameof(InvoiceItemId))]
         public InvoiceItem InvoiceItem { get; set; }
         #endregion
+
+        #region Receiving Item
+        public int? ReceivingId { get; set; }
+
+        [ForeignKey(nameof(ReceivingId))]
+        public Receiving Receiving { get; set; }
+        #endregion
     }
 }

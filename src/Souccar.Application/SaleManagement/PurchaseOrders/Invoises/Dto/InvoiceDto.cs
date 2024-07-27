@@ -15,6 +15,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Dto
         public DateTime? OfferDate { get; set; }
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
+        public double TotalReceivedQuantity { get; set; }
         public IList<InvoiceItemDto> InvoiseDetails { get; set; }
     }
 }

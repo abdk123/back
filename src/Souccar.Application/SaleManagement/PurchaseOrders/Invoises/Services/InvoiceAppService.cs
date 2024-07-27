@@ -4,6 +4,8 @@ using Souccar.Core.Services;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
+using Abp.Events.Bus;
+using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
 {
@@ -43,11 +45,16 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
             {
                 var dto = input.InvoiseDetails.FirstOrDefault(x => x.Id == item.Id);
                 item.TotalMaterilPrice = dto.TotalMaterilPrice;
-                item.ReceivedQuantity = dto.ReceivedQuantity;
                 item.Quantity = dto.Quantity;
             }
 
             await _invoiceDomainService.UpdateAsync(invoice);
+            return ObjectMapper.Map<InvoiceDto>(invoice);
+        }
+
+        public async Task<InvoiceDto> GetByOfferId(int offerId)
+        {
+            var invoice = _invoiceDomainService.GetByOfferIdAsync(offerId);
             return ObjectMapper.Map<InvoiceDto>(invoice);
         }
     }

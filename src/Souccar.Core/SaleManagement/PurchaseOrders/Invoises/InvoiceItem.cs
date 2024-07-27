@@ -1,12 +1,18 @@
 ﻿using Abp.Domain.Entities;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
+using Souccar.SaleManagement.PurchaseOrders.Receives;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises
 {
     public class InvoiceItem : Entity
     {
+        public InvoiceItem()
+        {
+            ReceivingItems = new List<ReceivingItem>();
+        }
         /// <summary>
         /// الكمية الجديدة     
         /// </summary>
@@ -20,7 +26,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         /// <summary>
         /// الكمية المستلمة
         /// </summary>
-        public double ReceivedQuantity { get; set; }
+        public double ReceivedQuantity => ReceivingItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
 
         #region Offer Item
         public int? OfferItemId { get; set; }
@@ -28,6 +34,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         [ForeignKey(nameof(OfferItemId))]
         public OfferItem OfferItem { get; set; }
         #endregion
+
+        #region Invoice
+        public int? InvoiceId { get; set; }
+
+        [ForeignKey(nameof(InvoiceId))]
+        public Invoice Invoice { get; set; }
+        #endregion
+
+        public IList<ReceivingItem> ReceivingItems { get; set; }
 
     }
 }

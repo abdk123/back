@@ -26,6 +26,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         #region Getters
         public double TotalQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.Quantity) : 0;
         public double TotalPrice => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.TotalMaterilPrice) : 0;
+        public double TotalReceivedQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.ReceivedQuantity) : 0;
         #endregion
     }
 }

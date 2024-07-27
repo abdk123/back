@@ -27,6 +27,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         public async Task<Invoice> GetByOfferIdAsync(int offerId)
         {
             var invoice = await _invoiceRepository.FirstOrDefaultAsync(x=>x.OfferId == offerId);
+            await _invoiceRepository.EnsurePropertyLoadedAsync(invoice, x => x.InvoiseDetails);
             return invoice;
         }
 

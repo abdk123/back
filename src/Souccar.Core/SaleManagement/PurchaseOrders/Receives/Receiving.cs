@@ -14,6 +14,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives
 {
     public class Receiving : FullAuditedAggregateRoot
     {
+        public Receiving()
+        {
+            ReceivingItems = new List<ReceivingItem>();
+        }
+
         #region Transport Company Info
         /// <summary>
         /// كلفة النقل للوحدة الكبيرة
@@ -52,14 +57,14 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives
         public Invoice Invoice { get; set; }
         #endregion
 
-        /// <summary>
-        /// المورد
-        /// </summary>
         #region Supplier
         public int? SupplierId { get; set; }
 
         [ForeignKey(nameof(SupplierId))]
         public Customer Supplier { get; set; }
         #endregion
+
+        public virtual IList<ReceivingItem> ReceivingItems { get; set; }
+        
     }
 }

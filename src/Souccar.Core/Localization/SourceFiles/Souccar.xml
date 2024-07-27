@@ -238,5 +238,6 @@
 		<text name="SupplierIsRequired">Supplier is required</text>
 		<text name="ConvertToPurchaseInvoice">Convert to purchase invoice</text>
 		<text name="SaveInvoiceDetail">Save invoice detail</text>
+		<text name ="PurchaseInvoices">Purchase invoices</text>
 	</texts>
 </localizationDictionary>
