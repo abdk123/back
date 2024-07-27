@@ -16,6 +16,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Dto
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
         public double TotalReceivedQuantity { get; set; }
+        public double TotalNotReceivedQuantity => TotalQuantity - TotalReceivedQuantity;
         public IList<InvoiceItemDto> InvoiseDetails { get; set; }
     }
 }
