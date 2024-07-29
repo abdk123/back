@@ -218,6 +218,7 @@
 		<text name="CreateOffers">Create Offers</text>
 		<text name="OffersList">Offers List</text>
 		<text name="OfferDate">Offer Date</text>
+		<text name="InvoiceDate">Invoice Date</text>
 		<text name="PoNumber">PO Number</text>
 		<text name="OfferNumber">Offer Number</text>
 		<text name="BackToOfferList">Back to offer list</text>
@@ -238,6 +239,12 @@
 		<text name="SupplierIsRequired">Supplier is required</text>
 		<text name="ConvertToPurchaseInvoice">Convert to purchase invoice</text>
 		<text name="SaveInvoiceDetail">Save invoice detail</text>
-		<text name ="PurchaseInvoices">Purchase invoices</text>
+		<text name ="PurchaseInvoices">Purchase Invoices</text>
+		<text name="InvoiceInfo">Invoice Info</text>
+		<text name="InvoiceNumber">Invoice Number</text>
+		<text name="ReveivingMaterials">Reveiving Materials</text>
+		<text name="BackToReceivingList">Back to receiving list</text>
+		<text name="TransportInfo">Transport Info</text>
+		<text name="ClearanceInfo">Clearance Info</text>
 	</texts>
 </localizationDictionary>

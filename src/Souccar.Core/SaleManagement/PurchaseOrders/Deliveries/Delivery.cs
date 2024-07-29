@@ -3,6 +3,7 @@ using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
 {
@@ -22,7 +23,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         /// <summary>
         /// الكمية المنقولة
         /// </summary>
-        public double TransportedQuantity { get; set; }
+        public double TotalTransportedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.TransportedQuantity):0;
+        public double TotalApprovedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.ApprovedQuantity):0;
+        public double TotalRejectedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.RejectedQuantity):0;
 
         #region Customer
         public int? CustomerId { get; set; }
