@@ -4,6 +4,7 @@ using Souccar.SaleManagement.Settings.Customers;
 using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Units;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers
 {
@@ -73,5 +74,21 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         [ForeignKey("SizeId")]
         public Size Size { get; set; }
         #endregion
+
+        /// <summary>
+        /// قيمة التحويل بين العملة الصغيرة والكبيرة
+        /// </summary>
+        public double TransitionValue
+        {
+            get
+            {
+                var stocks = Material.Stocks.FirstOrDefault(x => x.UnitId == UnitId && x.SizeId == SizeId);
+                if(stocks == null)
+                {
+                    return stocks.Count;
+                }
+                return 0;
+            }
+        }
     }
 }

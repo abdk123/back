@@ -2,6 +2,7 @@
 using Souccar.SaleManagement.PurchaseOrders.Deliveries;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
 using Souccar.SaleManagement.PurchaseOrders.Receives;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,21 +21,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         /// </summary>
         public double Quantity { get; set; } // من الممكن ان لا يكون لدى المورد المادةالمطلوبة بشكل كامل لذا سنعدل الكمية من الفاتورة ونحتفظ بالكمية المدخلة في العرض دون تعديل ككمية قديمة
 
-        /// <summary>
-        /// السعر الكلي الجديد
-        /// </summary>
-        public double TotalMaterilPrice { get; set; }
-
-        /// <summary>
-        /// الكمية المستلمة
-        /// </summary>
-        public double ReceivedQuantity => ReceivingItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
-
-        /// <summary>
-        /// المواد المسلمة الموافق عليها
-        /// </summary>
-        public double DeliveredQuantity => DeliveryItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
-
+        
         #region Offer Item
         public int? OfferItemId { get; set; }
 
@@ -52,5 +39,39 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         public IList<ReceivingItem> ReceivingItems { get; set; }
         public IList<DeliveryItem> DeliveryItems { get; set; }
 
+        #region
+        /// <summary>
+        /// السعر الكلي الجديد
+        /// </summary>
+        public double TotalMaterilPrice { get; set; }
+
+        /// <summary>
+        /// الكمية المستلمة
+        /// </summary>
+        public double ReceivedQuantity => ReceivingItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
+
+        /// <summary>
+        /// المواد المسلمة الموافق عليها
+        /// </summary>
+        public double DeliveredQuantity => DeliveryItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
+
+        /// <summary>
+        /// العدد بالوحدة الصغيرة
+        /// </summary>
+        public double NumberInSmallUnit
+        {
+            get
+            {
+                if (OfferItem == null)
+                    return 0;
+                if (OfferItem.AddedBySmallUnit)
+                {
+                    return OfferItem.TransitionValue > 0 ? Math.Round(Quantity / OfferItem.TransitionValue, 1) : 0;
+                }
+
+                return Quantity;
+            }
+        }
+        #endregion
     }
 }

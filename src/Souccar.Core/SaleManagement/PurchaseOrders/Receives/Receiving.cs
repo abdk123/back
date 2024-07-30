@@ -27,6 +27,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives
         public Currency TransportCostCurrency { get; set; }
         public string DriverName { get; set; }
         public string DriverPhoneNumber { get; set; }
+        public double TotalReceivedQuantity => ReceivingItems.Any() ? ReceivingItems.Sum(x => x.ReceivedQuantity) : 0;
 
         #region Transport Company
         public int? TransportCompanyId { get; set; }

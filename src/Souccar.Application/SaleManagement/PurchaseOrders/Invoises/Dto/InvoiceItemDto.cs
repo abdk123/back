@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Dto
         public double Quantity { get; set; }
         public double TotalMaterilPrice { get; set; }
         public double ReceivedQuantity { get; set; }
+        public double NumberInSmallUnit { get; set; }
         public OfferItemDto OfferItem { get; set; }
         public int? OfferItemId { get; set; }
     }

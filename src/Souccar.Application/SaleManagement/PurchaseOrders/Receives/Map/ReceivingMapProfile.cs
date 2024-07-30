@@ -7,12 +7,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Map
     {
         public ReceivingMapProfile()
         {
-            CreateMap<Receiving, ReceivingDto>();
+            CreateMap<Receiving, ReceivingDto>().ReverseMap();
+            CreateMap<ReceivingItem, ReceivingItemDto>().ReverseMap();
             CreateMap<Receiving, ReadReceivingDto>();
-            CreateMap<CreateReceivingDto, Receiving>();
-            CreateMap<Receiving, CreateReceivingDto>();
-            CreateMap<UpdateReceivingDto, Receiving>();
-            CreateMap<Receiving, UpdateReceivingDto>();
+            CreateMap<CreateReceivingDto, Receiving>().ReverseMap();
+            CreateMap<CreateReceivingItemDto, ReceivingItem>().ReverseMap();
+            CreateMap<UpdateReceivingDto, Receiving>().ReverseMap();
+            CreateMap<UpdateReceivingItemDto, ReceivingItem>().ReverseMap();
         }
     }
 }

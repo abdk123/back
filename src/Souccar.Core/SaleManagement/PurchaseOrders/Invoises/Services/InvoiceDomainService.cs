@@ -18,10 +18,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         public IQueryable<Invoice> GetAllWithDetail()
         {
             return _invoiceRepository.GetAll()
-                .Include(s=>s.Offer).ThenInclude(s=>s.Supplier)
+                .Include(s => s.Offer).ThenInclude(s => s.Supplier)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size);
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems);
         }
 
         public async Task<Invoice> GetByOfferIdAsync(int offerId)
@@ -35,9 +36,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         {
             return _invoiceRepository.GetAll()
                 .Include(s => s.Offer).ThenInclude(s => s.Supplier)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x=>x.Stocks)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

@@ -16,7 +16,7 @@ namespace Project.CodeGenerator
             var entities = assembly.GetTypes()
                 .Where(t => t.Namespace.Contains($"{GeneralSetting.ProjectName}.{moduleName}")
                 && t.BaseType != null
-                && (t.BaseType.Name.Contains("BwireEntity") || t.BaseType.Name.Contains("IndexEntity"))
+                && (t.BaseType.Name.Contains("FullAuditedAggregateRoot") || t.BaseType.Name.Contains("Entity"))
                 && t.Name != "IndexEntity"
                 && t.IsClass == true).ToList();
 
