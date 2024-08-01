@@ -9,6 +9,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         IQueryable<Invoice> GetAllWithDetail();
         Task<Invoice> GetByOfferIdAsync(int offerId);
         Invoice GetWithDetail(int id);
+        IQueryable<Invoice> GetForDelivery(int customerId);
     }
 }
 

@@ -13,10 +13,10 @@
         /// <summary>
         /// تم إرجاع الشحنة وعدم استلاما
         /// </summary>
-        Returend,
+        Rejected,
         /// <summary>
         /// تم ارجاع جزء من الشحنة
         /// </summary>
-        PartialReturned
+        PartialRejected
     }
 }

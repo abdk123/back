@@ -17,6 +17,14 @@
         /// <summary>
         /// استلام كامل للمواد
         /// </summary>
-        Received
+        Received,
+        /// <summary>
+        /// تسليم جزئي للمواد
+        /// </summary>
+        PartialDelivered,
+        /// <summary>
+        /// تسليم كامل للمواد
+        /// </summary>
+        Delivered,
     }
 }

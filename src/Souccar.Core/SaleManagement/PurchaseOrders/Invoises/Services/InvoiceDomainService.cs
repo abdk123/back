@@ -25,9 +25,23 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems);
         }
 
+        public IQueryable<Invoice> GetForDelivery(int customerId)
+        {
+            InvoiceStatus[] statusList = { InvoiceStatus.PartialRecieved, InvoiceStatus.Received, InvoiceStatus.PartialDelivered};
+            return _invoiceRepository.GetAll()
+                .Include(s => s.Offer).ThenInclude(s => s.Supplier)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems)
+                .Where(x => x.Offer.CustomerId == customerId && statusList.Contains(x.Status));
+        }
+
         public async Task<Invoice> GetByOfferIdAsync(int offerId)
         {
             var invoice = await _invoiceRepository.FirstOrDefaultAsync(x=>x.OfferId == offerId);
+            if (invoice == null)
+                return null;
             await _invoiceRepository.EnsurePropertyLoadedAsync(invoice, x => x.InvoiseDetails);
             return invoice;
         }
