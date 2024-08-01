@@ -33,7 +33,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// <summary>
         /// الإضافة من خلال الوحدة الصغيرة
         /// </summary>
-        public bool AddedBySmallUnit;
+        public bool AddedBySmallUnit { get; set; }
 
         /// <summary>
         /// المادة

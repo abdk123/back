@@ -334,5 +334,8 @@
 		<text name="TransactionDetails">Transaction Details</text>
 		<text name="TransactionName">Transaction Name</text>
 		<text name="NotReceivedQuantity">Unreceived Quantity</text>
+		<text name="InvoiceMaterials">Invoice Materials</text>
+		<text name="SendDelivery">Send Delivery</text>
+		<text name="BackToDeliveriesManagerList">Back to deliveries manager list</text>
 	</texts>
 </localizationDictionary>

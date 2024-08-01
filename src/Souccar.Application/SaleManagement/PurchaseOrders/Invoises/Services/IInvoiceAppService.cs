@@ -2,6 +2,7 @@ using Souccar.SaleManagement.PurchaseOrders.Invoises.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
 {
@@ -10,6 +11,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
         InvoiceDto GetWithDetail(int id);
         Task<InvoiceDto> SaveInvoiceDetail(InvoiceDto input);
         Task<InvoiceDto> GetByOfferId(int offerId);
+        IList<InvoiceItemForDeliveryDto> GetForDelivery(int customerId);
     }
 }
 

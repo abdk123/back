@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Abp.Events.Bus;
 using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
+using System.Collections.Generic;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
 {
@@ -56,6 +57,35 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
         {
             var invoice = _invoiceDomainService.GetByOfferIdAsync(offerId);
             return ObjectMapper.Map<InvoiceDto>(invoice);
+        }
+
+        public IList<InvoiceItemForDeliveryDto> GetForDelivery(int customerId)
+        {
+            var list = new List<InvoiceItemForDeliveryDto>();
+            var invoices = _invoiceDomainService.GetForDelivery(customerId);
+            foreach (var invoice in invoices)
+            {
+                foreach (var item in invoice.InvoiseDetails)
+                {
+                    list.Add(new InvoiceItemForDeliveryDto()
+                    {
+                        DeliveredQuantity = item.DeliveredQuantity,
+                        MaterialName = item.OfferItem?.Material?.Name,
+                        InvoiceItemId = item.Id,
+                        NumberInSmallUnit = item.NumberInSmallUnit,
+                        ReceivedQuantity = item.ReceivedQuantity,
+                        RequiredQuantity = item.Quantity,
+                        Unit = item.OfferItem?.Unit?.Name,
+                        SmallUnit = item.OfferItem?.Size?.Name,
+                        PoNumber = invoice.Offer.PorchaseOrderId,
+                        TotalMaterilPrice = item.TotalMaterilPrice,
+                        AddedBySmallUnit = item.OfferItem.AddedBySmallUnit,
+                        InvoiceId = invoice.Id
+                    });
+                }
+            }
+
+            return list;
         }
     }
 }
