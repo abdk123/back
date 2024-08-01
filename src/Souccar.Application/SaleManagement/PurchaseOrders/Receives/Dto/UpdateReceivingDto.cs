@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives.Dto
@@ -15,6 +16,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Dto
         public int? ClearanceCompanyId { get; set; }
         public int? InvoiceId { get; set; }
         public int? SupplierId { get; set; }
+        public IList<UpdateReceivingItemDto> ReceivingItems { get; set; }
     }
 }
 

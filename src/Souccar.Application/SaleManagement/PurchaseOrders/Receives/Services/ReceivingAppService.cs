@@ -41,6 +41,22 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Services
             await _invoiceDomainService.UpdateAsync(invoice);
             return receiving;
         }
+
+        public override async Task<ReceivingDto> UpdateAsync(UpdateReceivingDto input)
+        {
+            var oldOffer = await _receivingDomainService.GetAsync(input.Id);
+            ObjectMapper.Map<UpdateReceivingDto, Receiving>(input, oldOffer);
+            var newOffer = await _receivingDomainService.UpdateAsync(oldOffer);
+            var items = await Task.FromResult(_receivingDomainService.GetItemsByReceivingId(oldOffer.Id));
+            foreach (var item in items)
+            {
+                if (!input.ReceivingItems.Any(x => x.Id == item.Id))
+                {
+                    await _receivingDomainService.DeleteItemAsync(item.Id);
+                }
+            }
+            return ObjectMapper.Map<ReceivingDto>(newOffer);
+        }
     }
 }
 
