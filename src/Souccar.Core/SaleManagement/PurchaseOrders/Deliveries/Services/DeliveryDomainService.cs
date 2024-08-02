@@ -1,6 +1,8 @@
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Implements;
+using Souccar.SaleManagement.PurchaseOrders.Receives;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
@@ -26,6 +28,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 .ThenInclude(ofii => ofii.OfferItem).ThenInclude(u=>u.Unit)
                 .FirstOrDefaultAsync(z => z.Id == id);
             return delivery;
+        }
+
+        public IQueryable<Delivery> GetAllByInvoiceId(int invoiceId)
+        {
+            return _deliveryRepository.GetAllIncluding(s => s.Customer)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Where(x => x.InvoiceId == invoiceId);
         }
 
     }

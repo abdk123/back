@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
 using System.Collections.Generic;
@@ -32,6 +33,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
 
         [ForeignKey(nameof(CustomerId))]
         public Customer Customer { get; set; }
+        #endregion
+
+        #region Invoice
+        public int? InvoiceId { get; set; }
+
+        [ForeignKey(nameof(InvoiceId))]
+        public Invoice Invoice { get; set; }
         #endregion
 
         public IList<DeliveryItem> DeliveryItems { get; set; }

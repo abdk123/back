@@ -19,6 +19,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Map
 
                 .ForMember(x => x.PoNumber, op => op.MapFrom(src=>src.Offer.PorchaseOrderId))
                 .ForMember(x => x.OfferDate, op => op.MapFrom(src=>src.Offer.CreationTime))
+                .ForMember(x => x.ApproveDate, op => op.MapFrom(src=>src.Offer.ApproveDate))
                 .ForMember(x => x.SupplierName, op => op.MapFrom((src, des) =>
                 {
                     if (src.Offer?.Supplier != null)
@@ -26,6 +27,18 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Map
                         return src.Offer.Supplier.FullName;
                     }
                     return "";
+                }))
+                .ForMember(x => x.CustomerName, op => op.MapFrom((src, des) =>
+                {
+                    if (src.Offer?.Customer != null)
+                    {
+                        return src.Offer.Customer.FullName;
+                    }
+                    return "";
+                }))
+                .ForMember(x => x.CustomerId, op => op.MapFrom((src, des) =>
+                {
+                    return src.Offer?.CustomerId;
                 }));
             CreateMap<Invoice, ReadInvoiceDto>();
             CreateMap<CreateInvoiceDto, Invoice>();

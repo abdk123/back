@@ -30,6 +30,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
             InvoiceStatus[] statusList = { InvoiceStatus.PartialRecieved, InvoiceStatus.Received, InvoiceStatus.PartialDelivered};
             return _invoiceRepository.GetAll()
                 .Include(s => s.Offer).ThenInclude(s => s.Supplier)
+                .Include(s => s.Offer).ThenInclude(s => s.Customer)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
@@ -50,6 +51,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
         {
             return _invoiceRepository.GetAll()
                 .Include(s => s.Offer).ThenInclude(s => s.Supplier)
+                .Include(s => s.Offer).ThenInclude(s => s.Customer)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x=>x.Stocks)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)

@@ -18,6 +18,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public int Status { get; set; } = 0;
         public double TransportedQuantity { get; set; }
         public int? CustomerId { get; set; }
+        public int? InvoiceId { get; set; }
         public IList<CreateDeliveryItemDto> DeliveryItems { get; set; }
     }
 }
