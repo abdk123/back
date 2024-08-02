@@ -1,6 +1,7 @@
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
+using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
 {
@@ -11,6 +12,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         public DeliveryAppService(IDeliveryDomainService deliveryDomainService) : base(deliveryDomainService)
         {
             _deliveryDomainService = deliveryDomainService;
+        }
+
+        public async Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId) 
+        {
+            var delivery = await _deliveryDomainService.GetWithDetailsByIdAsync(deliveryId);
+            return ObjectMapper.Map<DeliveryDto>(delivery);
         }
     }
 }

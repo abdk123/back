@@ -13,6 +13,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Map
             CreateMap<Delivery, CreateDeliveryDto>();
             CreateMap<UpdateDeliveryDto, Delivery>();
             CreateMap<Delivery, UpdateDeliveryDto>();
+            CreateMap<DeliveryItem, DeliveryItemDto>().ReverseMap();
         }
     }
 }

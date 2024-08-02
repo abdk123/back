@@ -16,6 +16,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public SizeDto Size { get; set; }
         public MaterialDto Material { get; set; }
         public UnitDto Unit{ get; set; }
+        public PoOfferDto Offer { get; set; }
 
 
     }
