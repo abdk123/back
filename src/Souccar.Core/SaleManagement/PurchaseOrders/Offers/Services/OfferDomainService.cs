@@ -38,6 +38,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             return offer;
 
         }
+
+        public async Task<string> GetPoForByOfferItemId(int offerItemId)
+        {
+            var offer = await _offerRepository.GetAll().Where(x=>x.OfferItems.Any(z=>z.Id == offerItemId))
+                .FirstOrDefaultAsync();
+            return offer != null ? offer.PorchaseOrderId : "";
+        }
     }
 }
 

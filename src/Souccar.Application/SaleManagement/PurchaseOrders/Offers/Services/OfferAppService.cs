@@ -26,15 +26,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         public async Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
         {
             var offer = await _offerDomainService.GetAsync(input.Id);
-            
+
             if (string.IsNullOrEmpty(input.PorchaseOrderId))
             {
                 throw new UserFriendlyException(ValidationMessage.PoIsRequired);
             }
-            
+
             offer.PorchaseOrderId = input.PorchaseOrderId;
             var approveDate = DateTime.Now;
-            DateTime.TryParse(input.ApproveDate,out approveDate);
+            DateTime.TryParse(input.ApproveDate, out approveDate);
             offer.ApproveDate = approveDate;
             offer.Status = (OfferStatus)input.Status;
             if (input.SupplierId != null)
@@ -80,11 +80,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             ObjectMapper.Map<UpdateOfferDto, Offer>(input, oldOffer);
             var newOffer = await _offerDomainService.UpdateAsync(oldOffer);
             var items = await Task.FromResult(_offerDomainService.GetItemsByOfferId(oldOffer.Id));
-            foreach(var item in items)
+            foreach (var item in items)
             {
-                if(!input.OfferItems.Any(x=>x.Id == item.Id))
+                if (!input.OfferItems.Any(x => x.Id == item.Id))
                 {
-                  await _offerDomainService.DeleteItemAsync(item.Id);
+                    await _offerDomainService.DeleteItemAsync(item.Id);
                 }
             }
             return ObjectMapper.Map<OfferDto>(newOffer);
@@ -95,6 +95,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             if (string.IsNullOrEmpty(input.Keyword))
                 return query;
             return query.Where(x => x.Customer.FullName.Contains(input.Keyword));
+        }
+
+        public async Task<string> GetPoForByOfferItemId(int offerItemId)
+        {
+            var po = await _offerDomainService.GetPoForByOfferItemId(offerItemId);
+            return po;
         }
     }
 }
