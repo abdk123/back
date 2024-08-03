@@ -7,12 +7,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Map
     {
         public DeliveryMapProfile()
         {
-            CreateMap<Delivery, DeliveryDto>();
+            CreateMap<Delivery, DeliveryDto>().ReverseMap();
             CreateMap<Delivery, ReadDeliveryDto>();
-            CreateMap<CreateDeliveryDto, Delivery>();
-            CreateMap<Delivery, CreateDeliveryDto>();
-            CreateMap<UpdateDeliveryDto, Delivery>();
-            CreateMap<Delivery, UpdateDeliveryDto>();
+            CreateMap<CreateDeliveryDto, Delivery>().ReverseMap();
+            CreateMap<CreateDeliveryItemDto, DeliveryItem>().ReverseMap();
+            CreateMap<UpdateDeliveryDto, Delivery>().ReverseMap();
+            CreateMap<UpdateDeliveryItemDto, DeliveryItem>().ReverseMap();
             CreateMap<DeliveryItem, DeliveryItemDto>().ReverseMap();
         }
     }

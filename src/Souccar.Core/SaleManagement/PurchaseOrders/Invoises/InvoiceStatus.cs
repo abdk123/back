@@ -19,6 +19,10 @@
         /// </summary>
         Received,
         /// <summary>
+        /// بأنتظار التسليم
+        /// </summary>
+        PendingDelivered,
+        /// <summary>
         /// تسليم جزئي للمواد
         /// </summary>
         PartialDelivered,

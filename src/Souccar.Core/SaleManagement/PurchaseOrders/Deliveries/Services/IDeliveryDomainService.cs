@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
     public interface IDeliveryDomainService : ISouccarDomainService<Delivery, int>
     {
         IQueryable<Delivery> GetAllByInvoiceId(int invoiceId);
+        IQueryable<Delivery> GetAllWithDetail();
         Task<Delivery> GetWithDetailsByIdAsync(int id);
     }
 }
