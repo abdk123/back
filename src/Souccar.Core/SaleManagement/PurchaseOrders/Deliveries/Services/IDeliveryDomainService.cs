@@ -1,5 +1,5 @@
 using Souccar.Core.Services.Interfaces;
-using Souccar.SaleManagement.PurchaseOrders.Receives;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +9,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
     {
         IQueryable<Delivery> GetAllByInvoiceId(int invoiceId);
         Task<Delivery> GetWithDetailsByIdAsync(int id);
+        Task<IQueryable<Delivery>> GetAllDeliverdAsync();
     }
 }
 

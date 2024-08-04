@@ -1,7 +1,6 @@
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
-using Souccar.SaleManagement.PurchaseOrders.Receives.Dto;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             _deliveryDomainService = deliveryDomainService;
         }
 
-        public async Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId) 
+        public async Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId)
         {
             var delivery = await _deliveryDomainService.GetWithDetailsByIdAsync(deliveryId);
             return ObjectMapper.Map<DeliveryDto>(delivery);
@@ -27,6 +26,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         {
             var receiving = _deliveryDomainService.GetAllByInvoiceId(invoiceId).ToList();
             return ObjectMapper.Map<List<DeliveryDto>>(receiving);
+        }
+
+        public async Task<List<DeliveryDto>> GetAllDeliverdAsync()
+        {
+            var deliveries = await _deliveryDomainService.GetAllDeliverdAsync();
+            return ObjectMapper.Map<List<DeliveryDto>>(deliveries);
         }
     }
 }

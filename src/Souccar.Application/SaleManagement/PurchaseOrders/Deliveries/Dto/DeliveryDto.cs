@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Abp.Application.Services.Dto;
+using Souccar.Core.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
 {
@@ -12,8 +14,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public string VehicleNumber { get; set; }
         public string DriverPhoneNumber { get; set; }
         public int Status { get; set; }
-        public double TransportedQuantity { get; set; }
+        public double TotalTransportedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.TransportedQuantity) : 0;
         public int? CustomerId { get; set; }
+        public DropdownDto Customer { get; set; }
         public int? InvoiceId { get; set; }
         public IList<DeliveryItemDto> DeliveryItems { get; set; }
     }
