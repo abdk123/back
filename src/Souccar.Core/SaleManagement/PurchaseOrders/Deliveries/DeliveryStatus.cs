@@ -3,6 +3,14 @@
     public enum DeliveryStatus
     {
         /// <summary>
+        /// بأنتظار الموافقة
+        /// </summary>
+        WaitingApprove,
+        /// <summary>
+        /// موافق عليه
+        /// </summary>
+        Approved,
+        /// <summary>
         /// تم ارسال الشحنة
         /// </summary>
         Shipped,

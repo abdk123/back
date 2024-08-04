@@ -336,5 +336,7 @@
 		<text name="SendDelivery">ارسال دلفري</text>
 		<text name="BackToDeliveriesManagerList">رجوع إلى قائمة إدارة الدلفري</text>
 		<text name="BackToDeliveriesList">رجوع إلى قائمة الدلفري</text>
+		<text name="AddDeliveryReport">إضافة تقرير دلفري</text>
+		<text name="DeliveryManagement">إدارة الدلفري</text>
 	</texts>
 </localizationDictionary>

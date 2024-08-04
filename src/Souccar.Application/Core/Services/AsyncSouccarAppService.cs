@@ -74,10 +74,11 @@ namespace Souccar.Core.Services
 
             var entities = await AsyncQueryableExecuter.ToListAsync(query);
 
-            return new PagedResultDto<TEntityDto>(
+            var data = new PagedResultDto<TEntityDto>(
                 totalCount,
                 entities.Select(MapToEntityDto).ToList()
             );
+            return data;
         }
 
         public virtual async Task<TEntityDto> CreateAsync(TCreateInput input)

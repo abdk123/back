@@ -46,6 +46,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 .Where(c => c.Status == DeliveryStatus.Delivered));
             return deliveries;
         }
+        public IQueryable<Delivery> GetAllWithDetail()
+        {
+            return _deliveryRepository.GetAllIncluding(s => s.Customer)
+                .Include(i => i.Invoice).ThenInclude(x => x.Offer);
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+using Abp.Application.Services.Dto;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
@@ -33,6 +34,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             var deliveries = await _deliveryDomainService.GetAllDeliverdAsync();
             return ObjectMapper.Map<List<DeliveryDto>>(deliveries);
         }
+
+        protected override IQueryable<Delivery> CreateFilteredQuery(FullPagedRequestDto input)
+        {
+            var data = _deliveryDomainService.GetAllWithDetail();
+            return data;
+        }
+
     }
 }
 
