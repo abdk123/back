@@ -1,5 +1,6 @@
 ﻿using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
+using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
 using Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Dto;
 using System;
 using System.Threading.Tasks;
@@ -20,6 +21,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
         {
             input.DateForPaid = DateTime.Now.AddDays(input.DaysForPaid).ToString();
             return base.CreateAsync(input);
+        }
+
+        public async Task<SaleInvoiceDto> GetWithDetailsByIdAsync(int saleInvoiceId)
+        {
+            var invoice = await _saleInvoiceDomainService.GetWithDetailsByIdAsync(saleInvoiceId);
+            return ObjectMapper.Map<SaleInvoiceDto>(invoice);
         }
     }
 }

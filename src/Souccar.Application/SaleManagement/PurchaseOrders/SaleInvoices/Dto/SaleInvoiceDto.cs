@@ -73,7 +73,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Dto
 
         #region Cusromer
         public int? CustomerId { get; set; }
-        public CustomerForDropdownDto Customer { get; set; }
+        public CustomerDto Customer { get; set; }
         #endregion
 
         public IList<SaleInvoiceItemDto> SaleInvoiceItems { get; set; }
