@@ -1,7 +1,7 @@
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Implements;
-using Souccar.SaleManagement.PurchaseOrders.Receives;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,9 +23,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
                 .ThenInclude(ofi => ofi.OfferItem).ThenInclude(of => of.Offer)
                 .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(ofi=>ofi.OfferItem).ThenInclude(m=>m.Material)
+                .ThenInclude(ofi => ofi.OfferItem).ThenInclude(m => m.Material)
                 .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(ofii => ofii.OfferItem).ThenInclude(u=>u.Unit)
+                .ThenInclude(ofii => ofii.OfferItem).ThenInclude(u => u.Unit)
                 .FirstOrDefaultAsync(z => z.Id == id);
             return delivery;
         }
@@ -39,6 +39,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 .Where(x => x.InvoiceId == invoiceId);
         }
 
+        public async Task<IQueryable<Delivery>> GetAllDeliverdAsync()
+        {
+            var deliveries = await Task.FromResult(_deliveryRepository.GetAllIncluding(x => x.Customer)
+                .Include(z => z.DeliveryItems).ThenInclude(s=>s.InvoiceItem).ThenInclude(a=>a.Invoice)
+                .Where(c => c.Status == DeliveryStatus.Delivered));
+            return deliveries;
+        }
         public IQueryable<Delivery> GetAllWithDetail()
         {
             return _deliveryRepository.GetAllIncluding(s => s.Customer)

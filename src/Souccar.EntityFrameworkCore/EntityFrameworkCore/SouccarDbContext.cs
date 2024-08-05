@@ -17,6 +17,7 @@ using Souccar.SaleManagement.PurchaseOrders.Deliveries;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows;
 using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows;
 using Souccar.SaleManagement.CachFlows.TransportCompanyCachFlows;
+using Souccar.SaleManagement.PurchaseOrders.SaleInvoices;
 
 namespace Souccar.EntityFrameworkCore
 {
@@ -47,6 +48,8 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<CustomerCashFlow> CustomerCashFlow { get; set; }
         public DbSet<ClearanceCompanyCashFlow> ClearanceCompanyCashFlow { get; set; }
         public DbSet<TransportCompanyCashFlow> TransportCompanyCashFlow { get; set; }
+        public DbSet<SaleInvoice> SaleInvoices { get; set; }
+        public DbSet<SaleInvoiceItem> SaleInvoiceItems { get; set; }
 
 
         public SouccarDbContext(DbContextOptions<SouccarDbContext> options)
