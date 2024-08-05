@@ -2,6 +2,7 @@
 using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public double TransportCost { get; set; }
         public Currency TransportCostCurrency { get; set; }
         public string DriverName { get; set; }
+        public string GrNumber { get; set; }
+        public DateTime? ApproveDate { get; set; }
         public string VehicleNumber { get; set; }
         public string DriverPhoneNumber { get; set; }
         public DeliveryStatus Status { get; set; }
