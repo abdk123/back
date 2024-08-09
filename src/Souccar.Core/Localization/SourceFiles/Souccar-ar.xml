@@ -46,7 +46,7 @@
 		<text name="DatabaseConnectionString" value="Database connection string" />
 		<text name="Users" value="Users" />
 		<text name="IsActive" value="Is active" />
-		<text name="FullName" value="Full name" />
+		<text name="FullName" value="الاسم الكامل" />
 		<text name="CreateNewUser" value="Create new user" />
 		<text name="Yes" value="Yes" />
 		<text name="No" value="No" />
@@ -119,8 +119,8 @@
 		<text name="CreateNewEmployee">إضافة Employee</text>
 		<text name="EditEmployee">تعديل Employee</text>
 		<text name="DeleteEmployee">حذف Employee</text>
-		<text name="PhoneNumber">Phone Number</text>
-		<text name="Address">Address</text>
+		<text name="PhoneNumber">رقم الجوال</text>
+		<text name="Address">العنوان</text>
 		<text name="Salary">Salary</text>
 		<text name="Email">Email</text>
 		<text name="Tenant">Tenant</text>
@@ -191,17 +191,17 @@
 		<text name="DeleteOffer">حذف Offer</text>
 		<text name="Title">Title</text>
 		<text name="Price">Price</text>
-		<text name="VoucherType">Voucher Type</text>
-		<text name="VoucherTypes">Voucher Types</text>
+		<text name="VoucherType">نوع السند</text>
+		<text name="VoucherTypes">انواع السندات</text>
 		<text name="CreateNewVoucherType">إضافة Voucher Type</text>
 		<text name="EditVoucherType">تعديل Voucher Type</text>
 		<text name="DeleteVoucherType">حذف Voucher Type</text>
-		<text name="Currency">Currency</text>
-		<text name="Currencies">Currencies</text>
-		<text name="CreateNewCurrency">إضافة Currency</text>
-		<text name="EditCurrency">تعديل Currency</text>
-		<text name="DeleteCurrency">حذف Currency</text>
-		<text name="OfferStatus">Offer Status</text>
+		<text name="Currency">العملة</text>
+		<text name="Currencies">العملات</text>
+		<text name="CreateNewCurrency">إضافة عملة</text>
+		<text name="EditCurrency">تعديل عملة</text>
+		<text name="DeleteCurrency">حذف عملة</text>
+		<text name="OfferStatus">حالة العرض</text>
 		<text name="CreateNewOfferStatus">إضافة Offer Status</text>
 		<text name="EditOfferStatus">تعديل Offer Status</text>
 		<text name="DeleteOfferStatus">حذف Offer Status</text>
@@ -223,7 +223,7 @@
 		<text name="BackToInvoiceList">عودة إلى قائمة فواتير الشاء</text>
 		<text name="TransportCompanyVoucher">سندات شركات النقل</text>
 		<text name="ClearanceCompanyVoucher">سندات شركات التخليص</text>
-		<text name="Vouchers">فواتير الشاء</text>
+		<text name="Vouchers">السندات</text>
 		<text name="WaitingApproved">بأنتظار الموافقة</text>
 		<text name="CategoryDeleteWarningMessage">سيتم حذف الفئة {0}</text>
 		<text name="MaterialDeleteWarningMessage">سيتم حذف المادة {0}</text>
@@ -340,5 +340,17 @@
 		<text name="DeliveryManagement">إدارة الدلفري</text>
 		<text name="RejectAndReturnToSupplier">رفض وإرجاع للمورد</text>
 		<text name="RejectAndRecordAsDamaged">رفض وتسجيل كتالف</text>
+
+
+		<!--//////-->
+		<text name="AddNew">إضافة</text>
+		<text name="Search">بحث</text>
+		<text name="PerPage">العناصر في الصفحة</text>
+		<text name="View">عرض</text>
+		<text name="CashFlow">تقرير</text>
+		<text name="Settings">الإعدادات</text>
+		<text name="ReturnedDeliveries">دليفريات راجع للمورد</text>
+		<text name="RejectedDeliveries">نقليات مرفوضة</text>
+		<text name="RejectDate">تاريخ الرفض</text>
 	</texts>
 </localizationDictionary>
