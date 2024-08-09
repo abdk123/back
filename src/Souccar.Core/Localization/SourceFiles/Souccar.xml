@@ -337,5 +337,16 @@
 		<text name="InvoiceMaterials">Invoice Materials</text>
 		<text name="SendDelivery">Send Delivery</text>
 		<text name="BackToDeliveriesManagerList">Back to deliveries manager list</text>
+		
+		
+		<!--//////-->
+		<text name="AddNew">Add New</text>
+		<text name="Search">Search</text>
+		<text name="PerPage">Per Page</text>
+		<text name="View">View</text>
+		<text name="CashFlow">Cash Flow</text>
+		<text name="ReturnedDeliveries">Returned Deliveries</text>
+		<text name="RejectedDeliveries">Rejected Deliveries</text>
+		<text name="RejectDate">Reject Date</text>
 	</texts>
 </localizationDictionary>
