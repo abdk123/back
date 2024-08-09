@@ -11,6 +11,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
         public InvoiceItemDto InvoiceItem { get; set; }
+        public DeliveryItemStatus DeliveryItemStatus { get; set; }
 
     }
 }
