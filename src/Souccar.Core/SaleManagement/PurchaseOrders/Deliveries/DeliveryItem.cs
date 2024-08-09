@@ -11,6 +11,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public double TransportedQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
+        public DeliveryItemStatus DeliveryItemStatus { get; set; }
 
         #region Delivery
         public int? DeliveryId { get; set; }
