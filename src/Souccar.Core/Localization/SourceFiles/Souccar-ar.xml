@@ -138,7 +138,7 @@
 		<text name="DeleteStock">حذف المخزون</text>
 		<text name="Barcode">باركود</text>
 		<text name="Note">ملاحظات</text>
-		<text name="Count">Count</text>
+		<text name="Count">العدد</text>
 		<text name="NumberInLargeUnit">العدد بالوحدة الكبيرة</text>
 		<text name="NumberInSmallUnit">العدد بالوحدة الصغيرة</text>
 		<text name="QuantityInLargeUnit">الكمية بالوحدة الكبيرة</text>
@@ -352,5 +352,16 @@
 		<text name="ReturnedDeliveries">دليفريات راجع للمورد</text>
 		<text name="RejectedDeliveries">نقليات مرفوضة</text>
 		<text name="RejectDate">تاريخ الرفض</text>
+		<text name="AddNewMaterial">إضافة مادة جديدة</text>
+		<text name="BackToMaterialList">الرجوع الى قائمة المواد</text>
+		<text name="SaveMaterial">حفظ المادة</text>
+		<text name="MaterialInfo">تفاصيل المادة</text>
+		<text name="Add">إضافة</text>
+		<text name="EditMaterial">تعديل المادة</text>
+		<text name="StockList">قائمة المخزون</text>
+		<text name="MaterialDetails">تفاصيل المادة</text>
+		<text name="EditStore">تعديل المخزن</text>
+		<text name="StoreDeleteWarningMessage">هل تريد حذف المخزن؟</text>
+		<text name="ViewMoreDetails">تفاصيل</text>
 	</texts>
 </localizationDictionary>
