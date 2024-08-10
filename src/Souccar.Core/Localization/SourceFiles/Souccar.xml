@@ -117,10 +117,6 @@
 		<text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
 		<text name="UsersActivation">Users activation</text>
 		<text name="Employee">Employee</text>
-		<text name="Employees">Employees</text>
-		<text name="CreateNewEmployee">Create New Employee</text>
-		<text name="EditEmployee">Edit Employee</text>
-		<text name="DeleteEmployee">Delete Employee</text>
 		<text name="PhoneNumber">Phone Number</text>
 		<text name="Address">Address</text>
 		<text name="Salary">Salary</text>
@@ -358,6 +354,11 @@
 		<text name="MaterialDetails">Material details</text>
 		<text name="EditStore">Edit store</text>
 		<text name="StoreDeleteWarningMessage">Store delete warning message</text>
-		<text name="ViewMoreDetails">View more details</text>		
+		<text name="ViewMoreDetails">View more details</text>
+		<text name="Employees">Employees</text>
+		<text name="CreateNewEmployee">Create new employee</text>
+		<text name="EditEmployee">Edit employee</text>
+		<text name="DeleteEmployee">Delete employee</text>
+		<text name="EmployeeDeleteWarningMessage">Employee delete warning message</text>
 	</texts>
 </localizationDictionary>
