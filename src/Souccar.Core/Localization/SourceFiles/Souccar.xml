@@ -119,7 +119,6 @@
 		<text name="Employee">Employee</text>
 		<text name="PhoneNumber">Phone Number</text>
 		<text name="Address">Address</text>
-		<text name="Salary">Salary</text>
 		<text name="Email">Email</text>
 		<text name="Tenant">Tenant</text>
 		<text name="IsDeleted">Is Deleted</text>
@@ -360,5 +359,25 @@
 		<text name="EditEmployee">Edit employee</text>
 		<text name="DeleteEmployee">Delete employee</text>
 		<text name="EmployeeDeleteWarningMessage">Employee delete warning message</text>
+		<text name="Order">Order</text>
+		<text name="Orders">Orders</text>
+		<text name="SaleInvoice">Sale invoice</text>
+		<text name="SaleInvoices">Sale invoices</text>
+		<text name="SaleInvoiceList">Sale invoice list</text>
+		<text name="ConvertSaleInvoices">Convert sale invoices</text>
+		<text name="Salary">Salary</text>
+		<text name="PleaseSelectCustomerAndDaysAndDeliveries">Please select customer and days and deliveries</text>
+		<text name="DaysForPaid">Days for paid</text>
+		<text name="BackToSaleInvoices">Back to sale invoices</text>
+		<text name="Number">Number</text>
+		<text name="GrCode">Gr code</text>
+		<text name="Date">Date</text>
+		<text name="PrintSaleInvoice">Print sale invoice</text>
+		<text name="UnpaidSalesInvoice">Unpaid sales invoice</text>
+		<text name="NotPaid">Not paid</text>
+		<text name="Pdf+Urn">Pdf + Urn</text>
+		<text name="FileUploadedSuccessfully">File uploaded successfully</text>
+		<text name="ErrorWhenUploadFilePleaseTryAgain">Error when upload file, please try again</text>
+		<text name="UrnNumberSavedSuccessfully">Urn number saved successfully</text>
 	</texts>
 </localizationDictionary>

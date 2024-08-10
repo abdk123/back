@@ -117,7 +117,6 @@
 		<text name="Employee">الموظف</text>
 		<text name="PhoneNumber">رقم الجوال</text>
 		<text name="Address">العنوان</text>
-		<text name="Salary">Salary</text>
 		<text name="Email">الإيميل</text>
 		<text name="Tenant">Tenant</text>
 		<text name="IsDeleted">Is Deleted</text>
@@ -364,5 +363,26 @@
 		<text name="EditEmployee">تعديل موظف</text>
 		<text name="DeleteEmployee">حذف موظف</text>
 		<text name="EmployeeDeleteWarningMessage">هل تريد حذف الموظف؟</text>
+		<text name="Order">الطلب</text>
+		<text name="Orders">الطلبات</text>
+		<text name="SaleInvoice">فاتورة مبيعات</text>
+		<text name="SaleInvoices">فواتير المبيعات</text>
+		<text name="SaleInvoiceList">قائمة فواتير المبيعات</text>
+		<text name="ConvertSaleInvoices">تحويل فاتورة مبيعات</text>
+		<text name="ConvertSaleInvoice">إنشاء فاتورة مبيعات</text>
+		<text name="Salary">الراتب</text>
+		<text name="PleaseSelectCustomerAndDaysAndDeliveries">الرجاء اختيار زبون وعدد ايام الدفع بالاضافة الى اختيار عنصر واحد على الاقل</text>
+		<text name="DaysForPaid">عدد الايام لاستحقاق الدفع</text>
+		<text name="BackToSaleInvoices">العدودة الى فواتير المبيعات</text>
+		<text name="Number">الرقم</text>
+		<text name="GrCode">رقم GR</text>
+		<text name="Date">التاريخ</text>
+		<text name="PrintSaleInvoice">طباعة فاتورة المبيعات</text>
+		<text name="UnpaidSalesInvoice">فاتورة مبيعات بدون تسديد</text>		
+		<text name="NotPaid">غير مسدد</text>
+		<text name="Pdf+Urn">Pdf + Urn</text>
+		<text name="FileUploadedSuccessfully">تم تحميل الملف بنجاح</text>
+		<text name="ErrorWhenUploadFilePleaseTryAgain">حصل خطأ عند تحميل الملف, الرجاء المحاولة مرة أخرى</text>
+		<text name="UrnNumberSavedSuccessfully">تم حفظ الرقم بنجاح</text>
 	</texts>
 </localizationDictionary>
