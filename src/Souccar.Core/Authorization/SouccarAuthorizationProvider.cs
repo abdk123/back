@@ -150,7 +150,11 @@ namespace Souccar.Authorization
             context.CreatePermission(PermissionNames.Setting_DeliveryItems_Update, L("EditDeliveryItem"));
             context.CreatePermission(PermissionNames.Setting_DeliveryItems_Delete, L("DeleteDeliveryItem"));
 
-
+            //Employees
+            context.CreatePermission(PermissionNames.Hr_Employees, L("Employees"));
+            context.CreatePermission(PermissionNames.Hr_Employees_Create, L("CreateNewEmployee"));
+            context.CreatePermission(PermissionNames.Hr_Employees_Update, L("EditEmployee"));
+            context.CreatePermission(PermissionNames.Hr_Employees_Delete, L("DeleteEmployee"));
         }
 
         private static ILocalizableString L(string name)

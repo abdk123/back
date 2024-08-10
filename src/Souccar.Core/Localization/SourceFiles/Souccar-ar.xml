@@ -114,15 +114,11 @@
 		<text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
 		<text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
 		<text name="UsersActivation">Users activation</text>
-		<text name="Employee">Employee</text>
-		<text name="Employees">Employees</text>
-		<text name="CreateNewEmployee">إضافة Employee</text>
-		<text name="EditEmployee">تعديل Employee</text>
-		<text name="DeleteEmployee">حذف Employee</text>
+		<text name="Employee">الموظف</text>
 		<text name="PhoneNumber">رقم الجوال</text>
 		<text name="Address">العنوان</text>
 		<text name="Salary">Salary</text>
-		<text name="Email">Email</text>
+		<text name="Email">الإيميل</text>
 		<text name="Tenant">Tenant</text>
 		<text name="IsDeleted">Is Deleted</text>
 		<text name="DeleterUser">Deleter User</text>
@@ -138,7 +134,7 @@
 		<text name="DeleteStock">حذف المخزون</text>
 		<text name="Barcode">باركود</text>
 		<text name="Note">ملاحظات</text>
-		<text name="Count">Count</text>
+		<text name="Count">العدد</text>
 		<text name="NumberInLargeUnit">العدد بالوحدة الكبيرة</text>
 		<text name="NumberInSmallUnit">العدد بالوحدة الصغيرة</text>
 		<text name="QuantityInLargeUnit">الكمية بالوحدة الكبيرة</text>
@@ -352,5 +348,21 @@
 		<text name="ReturnedDeliveries">دليفريات راجع للمورد</text>
 		<text name="RejectedDeliveries">نقليات مرفوضة</text>
 		<text name="RejectDate">تاريخ الرفض</text>
+		<text name="AddNewMaterial">إضافة مادة جديدة</text>
+		<text name="BackToMaterialList">الرجوع الى قائمة المواد</text>
+		<text name="SaveMaterial">حفظ المادة</text>
+		<text name="MaterialInfo">تفاصيل المادة</text>
+		<text name="Add">إضافة</text>
+		<text name="EditMaterial">تعديل المادة</text>
+		<text name="StockList">قائمة المخزون</text>
+		<text name="MaterialDetails">تفاصيل المادة</text>
+		<text name="EditStore">تعديل المخزن</text>
+		<text name="StoreDeleteWarningMessage">هل تريد حذف المخزن؟</text>
+		<text name="ViewMoreDetails">تفاصيل</text>
+		<text name="Employees">الموظفين</text>
+		<text name="CreateNewEmployee">إضافة موظف</text>
+		<text name="EditEmployee">تعديل موظف</text>
+		<text name="DeleteEmployee">حذف موظف</text>
+		<text name="EmployeeDeleteWarningMessage">هل تريد حذف الموظف؟</text>
 	</texts>
 </localizationDictionary>
