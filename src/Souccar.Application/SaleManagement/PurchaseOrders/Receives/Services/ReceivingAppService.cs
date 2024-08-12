@@ -35,7 +35,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Services
                 throw new UserFriendlyException("Not Found");
 
             invoice.Status = InvoiceStatus.PartialRecieved;
-            if(invoice.TotalReceivedQuantity == receiving.TotalReceivedQuantity)
+            if(invoice.TotalQuantity == (invoice.TotalReceivedQuantity))
                 invoice.Status = InvoiceStatus.Received;
 
             await _invoiceDomainService.UpdateAsync(invoice);

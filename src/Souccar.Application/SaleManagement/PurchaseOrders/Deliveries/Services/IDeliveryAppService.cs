@@ -10,6 +10,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
     {
         Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId);
         Task<List<DeliveryDto>> GetAllDeliverdAsync();
+        IList<DeliveryDto> GetAllByCustomerId(int customerId);
+        Task<DeliveryItemDto> ChangeItemStatusAsync(ChangeItemStatusInputDto input);
     }
 }
 

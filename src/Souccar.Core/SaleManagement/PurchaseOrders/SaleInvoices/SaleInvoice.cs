@@ -33,7 +33,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices
         /// <summary>
         /// مجموع كميات الفاتورة
         /// </summary>
-        public decimal InvoiceTotalQuantity => SaleInvoiceItems.Any() ? SaleInvoiceItems.Sum(x => x.TotalQuantity) : 0;
+        public double InvoiceTotalQuantity => SaleInvoiceItems.Any() ? SaleInvoiceItems.Sum(x => x.TotalQuantity) : 0;
 
         /// <summary>
         /// ملاحظات الفاتورة

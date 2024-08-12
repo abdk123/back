@@ -23,9 +23,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             return ObjectMapper.Map<DeliveryDto>(delivery);
         }
 
-        public IList<DeliveryDto> GetAllByInvoiceId(int invoiceId)
+        public IList<DeliveryDto> GetAllByCustomerId(int customerId)
         {
-            var receiving = _deliveryDomainService.GetAllByInvoiceId(invoiceId).ToList();
+            var receiving = _deliveryDomainService.GetAllByCustomerId(customerId).ToList();
             return ObjectMapper.Map<List<DeliveryDto>>(receiving);
         }
 
@@ -33,6 +33,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         {
             var deliveries = await _deliveryDomainService.GetAllDeliverdAsync();
             return ObjectMapper.Map<List<DeliveryDto>>(deliveries);
+        }
+
+        public async Task<DeliveryItemDto> ChangeItemStatusAsync(ChangeItemStatusInputDto input)
+        {
+            var updatedDeliveryItem = await _deliveryDomainService.ChangeItemStatusAsync(input.Id, input.Status);
+            return ObjectMapper.Map<DeliveryItemDto>(updatedDeliveryItem);
         }
 
         protected override IQueryable<Delivery> CreateFilteredQuery(FullPagedRequestDto input)

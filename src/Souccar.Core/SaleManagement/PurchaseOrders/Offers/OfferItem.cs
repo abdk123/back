@@ -1,6 +1,4 @@
 ﻿using Abp.Domain.Entities;
-using Souccar.SaleManagement.Settings.Currencies;
-using Souccar.SaleManagement.Settings.Customers;
 using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Units;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -82,8 +80,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         {
             get
             {
-                var stocks = Material.Stocks.FirstOrDefault(x => x.UnitId == UnitId && x.SizeId == SizeId);
-                if(stocks == null)
+                var stocks = Material.Stocks.FirstOrDefault(x => x.SizeId == SizeId);
+                if(stocks != null)
                 {
                     return stocks.Count;
                 }

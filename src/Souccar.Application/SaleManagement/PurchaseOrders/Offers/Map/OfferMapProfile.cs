@@ -12,7 +12,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Map
             CreateMap<CreateOfferDto, Offer>();
             CreateMap<Offer, CreateOfferDto>();
             CreateMap<UpdateOfferDto, Offer>();
-            CreateMap<Offer, UpdateOfferDto>();
+            CreateMap<Offer, UpdateOfferDto>()
+                .ForMember(x => x.OfferEndDate, op => op.MapFrom((src, des) =>
+                {
+                    return src.OfferEndDate.ToString("dd-MM-yyyy hh:mm:ss");
+                }));
             CreateMap<OfferItem, UpdateOfferItemDto>();
 
             //Offer Item

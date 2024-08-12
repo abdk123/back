@@ -9,13 +9,12 @@ using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.ObjectMapping;
 using Souccar.Core.Filter;
-using Souccar.Core.Includes;
 using Souccar.Core.Search;
 using Souccar.Core.Services.Interfaces;
 
 namespace Souccar.Core.Services
 {
-    public abstract class CrudAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TCreateInput, TUpdateInput> : ApplicationService
+    public abstract class CrudAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TCreateInput, TUpdateInput> : SouccarAppServiceBase
         where TEntity : class, IEntity<TPrimaryKey>
         where TEntityDto : IEntityDto<TPrimaryKey>
         where TUpdateInput : IEntityDto<TPrimaryKey>

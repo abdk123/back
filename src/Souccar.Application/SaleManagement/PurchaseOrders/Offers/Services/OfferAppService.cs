@@ -9,6 +9,8 @@ using System;
 using Abp.Events.Bus.Entities;
 using Abp.Events.Bus;
 using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
+using Souccar.SaleManagement.Logs.Events;
+using Souccar.SaleManagement.Logs;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -58,6 +60,20 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
                     OfferId = offer.Id,
                     OfferItems = offerItems
                 });
+
+                var currentUser = await GetCurrentUserAsync();
+                await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+                {
+                    ActionId = offer.Id,
+                    OfferId = offer.Id,
+                    Type = OrderLogType.CreatePurchaseInvoice,
+                    FullName = currentUser?.FullName,
+                    Attributes = new List<OrderLogAttribute>()
+                        {
+                            new OrderLogAttribute("ApproveDate",input.ApproveDate),
+                            new OrderLogAttribute("PorchaseOrderId",input.PorchaseOrderId),
+                        }
+                }));
             }
             return GetOfferWithDetailId(input.Id);
         }
@@ -87,9 +103,39 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
                     await _offerDomainService.DeleteItemAsync(item.Id);
                 }
             }
+            var currentUser = await GetCurrentUserAsync();
+            await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+            {
+                ActionId = newOffer.Id,
+                OfferId = newOffer.Id,
+                Type = OrderLogType.UpdateOffer,
+                FullName = currentUser?.FullName,
+                Attributes = new List<OrderLogAttribute>()
+            }));
             return ObjectMapper.Map<OfferDto>(newOffer);
 
         }
+
+        public override async Task<OfferDto> CreateAsync(CreateOfferDto input)
+        {
+            var dto = await base.CreateAsync(input);
+            var currentUser = await GetCurrentUserAsync();
+            await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+            {
+                ActionId = dto.Id,
+                OfferId = dto.Id,
+                Type = OrderLogType.CreateOffer,
+                FullName = currentUser?.FullName,
+                Attributes = new List<OrderLogAttribute>()
+                {
+                    new OrderLogAttribute("OfferId",dto.Id.ToString()),
+                    new OrderLogAttribute("TotalQuantity",dto.TotalQuantity.ToString()),
+                    new OrderLogAttribute("TotalPrice",dto.TotalPrice.ToString()),
+                }
+            }));
+            return dto;
+        }
+
         protected override IQueryable<Offer> ApplySearching(IQueryable<Offer> query, Type typeDto, FullPagedRequestDto input)
         {
             if (string.IsNullOrEmpty(input.Keyword))

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
-using Souccar.SaleManagement.PurchaseOrders.Offers.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Dto
 {
@@ -16,6 +15,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Dto
         public int? OfferId { get; set; }
         public DateTime? OfferDate { get; set; }
         public DateTime? ApproveDate { get; set; }
+        public DateTime CreationTime { get; set; }
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
         public double TotalReceivedQuantity { get; set; }

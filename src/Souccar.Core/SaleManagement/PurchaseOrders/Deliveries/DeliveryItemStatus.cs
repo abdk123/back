@@ -2,7 +2,7 @@
 {
     public enum DeliveryItemStatus
     {
-        Shipped,
+        Pending,
         Approved,
         RejectAndReturnToSupplier,
         RejectAndRecordAsDamaged

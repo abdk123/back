@@ -38,13 +38,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public Customer Customer { get; set; }
         #endregion
 
-        #region Invoice
-        public int? InvoiceId { get; set; }
-
-        [ForeignKey(nameof(InvoiceId))]
-        public Invoice Invoice { get; set; }
-        #endregion
-
         public IList<DeliveryItem> DeliveryItems { get; set; }
     }
 }

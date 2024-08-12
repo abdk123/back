@@ -59,27 +59,30 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises.Services
             return ObjectMapper.Map<InvoiceDto>(invoice);
         }
 
-        public IList<InvoiceItemForDeliveryDto> GetForDelivery(int invoiceId)
+        public IList<InvoiceItemForDeliveryDto> GetForDelivery(int customerId)
         {
             var list = new List<InvoiceItemForDeliveryDto>();
-            var invoice = _invoiceDomainService.GetWithDetail(invoiceId);
-            foreach (var item in invoice.InvoiseDetails)
+            var invoices = _invoiceDomainService.GetForDelivery(customerId);
+            foreach (var invoice in invoices)
             {
-                list.Add(new InvoiceItemForDeliveryDto()
+                foreach (var item in invoice.InvoiseDetails)
                 {
-                    DeliveredQuantity = item.DeliveredQuantity,
-                    MaterialName = item.OfferItem?.Material?.Name,
-                    InvoiceItemId = item.Id,
-                    NumberInSmallUnit = item.NumberInSmallUnit,
-                    ReceivedQuantity = item.ReceivedQuantity,
-                    RequiredQuantity = item.Quantity,
-                    Unit = item.OfferItem?.Unit?.Name,
-                    SmallUnit = item.OfferItem?.Size?.Name,
-                    PoNumber = invoice.Offer.PorchaseOrderId,
-                    TotalMaterilPrice = item.TotalMaterilPrice,
-                    AddedBySmallUnit = item.OfferItem.AddedBySmallUnit,
-                    InvoiceId = invoice.Id
-                });
+                    list.Add(new InvoiceItemForDeliveryDto()
+                    {
+                        DeliveredQuantity = item.DeliveredQuantity,
+                        MaterialName = item.OfferItem?.Material?.Name,
+                        InvoiceItemId = item.Id,
+                        NumberInSmallUnit = item.NumberInSmallUnit,
+                        ReceivedQuantity = item.ReceivedQuantity,
+                        RequiredQuantity = item.Quantity,
+                        Unit = item.OfferItem?.Unit?.Name,
+                        SmallUnit = item.OfferItem?.Size?.Name,
+                        PoNumber = invoice.Offer.PorchaseOrderId,
+                        TotalMaterilPrice = item.TotalMaterilPrice,
+                        AddedBySmallUnit = item.OfferItem.AddedBySmallUnit,
+                        InvoiceId = invoice.Id
+                    });
+                }
             }
 
             return list;

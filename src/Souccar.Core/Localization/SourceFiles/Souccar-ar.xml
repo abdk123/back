@@ -224,7 +224,7 @@
 		<text name="TransportCompanyVoucher">سندات شركات النقل</text>
 		<text name="ClearanceCompanyVoucher">سندات شركات التخليص</text>
 		<text name="Vouchers">السندات</text>
-		<text name="WaitingApproved">بأنتظار الموافقة</text>
+		<text name="WaitingApprove">بأنتظار الموافقة</text>
 		<text name="CategoryDeleteWarningMessage">سيتم حذف الفئة {0}</text>
 		<text name="MaterialDeleteWarningMessage">سيتم حذف المادة {0}</text>
 		<text name="OfferDeleteWarningMessage">Offer {0} will be deleted.</text>
@@ -336,11 +336,36 @@
 		<text name="SendDelivery">ارسال دلفري</text>
 		<text name="BackToDeliveriesManagerList">رجوع إلى قائمة إدارة الدلفري</text>
 		<text name="BackToDeliveriesList">رجوع إلى قائمة الدلفري</text>
+		<text name="DeliveriesList">إضافة دلفري</text>
 		<text name="AddDeliveryReport">إضافة تقرير دلفري</text>
 		<text name="DeliveryManagement">إدارة الدلفري</text>
 		<text name="RejectAndReturnToSupplier">رفض وإرجاع للمورد</text>
 		<text name="RejectAndRecordAsDamaged">رفض وتسجيل كتالف</text>
-
+		<text name="Approved">موافق عليه</text>
+		<text name="orders">العروض</text>
+		<text name="MonitorPo">مراقبة ال PO</text>
+		<text name="AddByUnit">إضافة بواحدة</text>
+		<text name="MaterialPrice">سعر المادة</text>
+		<text name="PackingUnit">وحدة التعبئة</text>
+		<text name="QuantityInStore">الكمية في المخزن</text>
+		<text name="SaleType">نوع البيع</text>
+		<text name="Pending">بأنتظار الموافقة</text>
+		<text name="ManageOffer">إدارة العرض</text>
+		<text name="SmallUnit">وحدة صغيرة</text>
+		<text name="LargeUnit">وحدة كبيرة</text>
+		<text name="OfferId">رقم الطلب</text>
+		<text name="Dollar">دولار</text>
+		<text name="Dinar">دينار</text>
+		<text name="NotPriced">بأنتظار التسعير</text>
+		<text name="EnteredQuantity">الكميىة المدخلة</text>
+		<text name="SaveMaterial">حفظ المادة</text>
+		<text name="PendingReceived">بأنتظار الاستلام</text>
+		<text name="Receive">استلام</text>
+		<text name="Received">مستلم</text>
+		<text name="PartialReceive">استلام جزئي</text>
+		<text name="PrintDelivery">طباعة دلفري</text>
+		<text name="ThisFieldIsRequired">قيمة الحقل مطلوبة</text>
+		<text name="DeliveryInfo">معلومات الدلفري</text>
 
 		<!--//////-->
 		<text name="AddNew">إضافة</text>

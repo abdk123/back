@@ -7,5 +7,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public string BatchNumber { get; set; }
         public int? InvoiceItemId { get; set; }
         public double DeliveredQuantity { get; set; }
+        public int Status { get; set; }
     }
 }

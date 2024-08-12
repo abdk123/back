@@ -6,7 +6,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices
 {
     public class SaleInvoiceItem : Entity
     {
-        public decimal TotalQuantity { get; set; }
+        public double TotalQuantity { get; set; }
         public int TotalItemPrice { get; set; }
 
         #region SaleInvoice
