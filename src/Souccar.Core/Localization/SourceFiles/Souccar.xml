@@ -117,13 +117,8 @@
 		<text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
 		<text name="UsersActivation">Users activation</text>
 		<text name="Employee">Employee</text>
-		<text name="Employees">Employees</text>
-		<text name="CreateNewEmployee">Create New Employee</text>
-		<text name="EditEmployee">Edit Employee</text>
-		<text name="DeleteEmployee">Delete Employee</text>
 		<text name="PhoneNumber">Phone Number</text>
 		<text name="Address">Address</text>
-		<text name="Salary">Salary</text>
 		<text name="Email">Email</text>
 		<text name="Tenant">Tenant</text>
 		<text name="IsDeleted">Is Deleted</text>
@@ -340,13 +335,49 @@
 		
 		
 		<!--//////-->
-		<text name="AddNew">Add New</text>
+		<text name="AddNew">Add new</text>
 		<text name="Search">Search</text>
-		<text name="PerPage">Per Page</text>
+		<text name="PerPage">Per page</text>
 		<text name="View">View</text>
-		<text name="CashFlow">Cash Flow</text>
-		<text name="ReturnedDeliveries">Returned Deliveries</text>
-		<text name="RejectedDeliveries">Rejected Deliveries</text>
-		<text name="RejectDate">Reject Date</text>
+		<text name="CashFlow">Cash flow</text>
+		<text name="ReturnedDeliveries">Returned deliveries</text>
+		<text name="RejectedDeliveries">Rejected deliveries</text>
+		<text name="RejectDate">Reject date</text>
+		<text name="AddNewMaterial">Add new material</text>
+		<text name="BackToMaterialList">back to material list</text>
+		<text name="SaveMaterial">Save material</text>
+		<text name="MaterialInfo">Material info</text>
+		<text name="Add">Add</text>
+		<text name="EditMaterial">Edit material</text>
+		<text name="StockList">Stock list</text>
+		<text name="MaterialDetails">Material details</text>
+		<text name="EditStore">Edit store</text>
+		<text name="StoreDeleteWarningMessage">Store delete warning message</text>
+		<text name="ViewMoreDetails">View more details</text>
+		<text name="Employees">Employees</text>
+		<text name="CreateNewEmployee">Create new employee</text>
+		<text name="EditEmployee">Edit employee</text>
+		<text name="DeleteEmployee">Delete employee</text>
+		<text name="EmployeeDeleteWarningMessage">Employee delete warning message</text>
+		<text name="Order">Order</text>
+		<text name="Orders">Orders</text>
+		<text name="SaleInvoice">Sale invoice</text>
+		<text name="SaleInvoices">Sale invoices</text>
+		<text name="SaleInvoiceList">Sale invoice list</text>
+		<text name="ConvertSaleInvoices">Convert sale invoices</text>
+		<text name="Salary">Salary</text>
+		<text name="PleaseSelectCustomerAndDaysAndDeliveries">Please select customer and days and deliveries</text>
+		<text name="DaysForPaid">Days for paid</text>
+		<text name="BackToSaleInvoices">Back to sale invoices</text>
+		<text name="Number">Number</text>
+		<text name="GrCode">Gr code</text>
+		<text name="Date">Date</text>
+		<text name="PrintSaleInvoice">Print sale invoice</text>
+		<text name="UnpaidSalesInvoice">Unpaid sales invoice</text>
+		<text name="NotPaid">Not paid</text>
+		<text name="Pdf+Urn">Pdf + Urn</text>
+		<text name="FileUploadedSuccessfully">File uploaded successfully</text>
+		<text name="ErrorWhenUploadFilePleaseTryAgain">Error when upload file, please try again</text>
+		<text name="UrnNumberSavedSuccessfully">Urn number saved successfully</text>
 	</texts>
 </localizationDictionary>

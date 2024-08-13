@@ -19,6 +19,7 @@ using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows;
 using Souccar.SaleManagement.CachFlows.TransportCompanyCachFlows;
 using Souccar.SaleManagement.PurchaseOrders.SaleInvoices;
 using Souccar.SaleManagement.Logs;
+using Souccar.Hr.Employees;
 
 namespace Souccar.EntityFrameworkCore
 {
@@ -53,6 +54,8 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<OrderLog> OrderLogs { get; set; }
         public DbSet<OrderLogAttribute> OrderLogAttributes { get; set; }
 
+        public DbSet<SaleInvoiceItem> SaleInvoiceItems { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         public SouccarDbContext(DbContextOptions<SouccarDbContext> options)
             : base(options)

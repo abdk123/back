@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240810102633_Add_employee_table")]
+    partial class Add_employee_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1870,76 +1873,6 @@ namespace Souccar.Migrations
                     b.ToTable("CustomerCashFlow");
                 });
 
-            modelBuilder.Entity("Souccar.SaleManagement.Logs.OrderLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ActionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("RelatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderLogs");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Logs.OrderLogAttribute", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderLogId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderLogId");
-
-                    b.ToTable("OrderLogAttributes");
-                });
-
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
                 {
                     b.Property<int>("Id")
@@ -1975,6 +1908,9 @@ namespace Souccar.Migrations
                     b.Property<string>("GrNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("InvoiceId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1999,6 +1935,8 @@ namespace Souccar.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("InvoiceId");
 
                     b.ToTable("Delivery");
                 });
@@ -2409,8 +2347,8 @@ namespace Souccar.Migrations
                     b.Property<int>("TotalItemPrice")
                         .HasColumnType("int");
 
-                    b.Property<double>("TotalQuantity")
-                        .HasColumnType("float");
+                    b.Property<decimal>("TotalQuantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -2418,7 +2356,7 @@ namespace Souccar.Migrations
 
                     b.HasIndex("SaleInvoiceId");
 
-                    b.ToTable("SaleInvoiceItem");
+                    b.ToTable("SaleInvoiceItems");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Categories.Category", b =>
@@ -3305,22 +3243,19 @@ namespace Souccar.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Souccar.SaleManagement.Logs.OrderLogAttribute", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Logs.OrderLog", "OrderLog")
-                        .WithMany("Attributes")
-                        .HasForeignKey("OrderLogId");
-
-                    b.Navigation("OrderLog");
-                });
-
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>
                 {
                     b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
 
+                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.Invoises.Invoice", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("Invoice");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.DeliveryItem", b =>
@@ -3617,11 +3552,6 @@ namespace Souccar.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Logs.OrderLog", b =>
-                {
-                    b.Navigation("Attributes");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Deliveries.Delivery", b =>

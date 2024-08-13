@@ -149,6 +149,12 @@
         public const string Setting_DeliveryItems_Update = "PurshaseOrder.DeliveryItems.Update";
         public const string Setting_DeliveryItems_Delete = "PurshaseOrder.DeliveryItems.Delete";
 
+        //Employees
+        public const string Hr_Employees = "Hr.Employees";
+        public const string Hr_Employees_Create = "Hr.Employees.Create";
+        public const string Hr_Employees_Update = "Hr.Employees.Update";
+        public const string Hr_Employees_Delete = "Hr.Employees.Delete";
+
 
     }
 }
