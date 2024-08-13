@@ -19,7 +19,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public int Status { get; set; }
         public double TransportedQuantity { get; set; }
         public int? CustomerId { get; set; }
-        public int? InvoiceId { get; set; }
+        public DateTime? ApproveDate { get; set; }
         public IList<UpdateDeliveryItemDto> DeliveryItems { get; set; }
 
     }

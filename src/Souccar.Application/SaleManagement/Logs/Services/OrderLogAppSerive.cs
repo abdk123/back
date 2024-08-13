@@ -17,7 +17,7 @@ namespace Souccar.SaleManagement.Logs.Services
         public IList<OrderLogDto> GetAllByOfferId(int offerId)
         {
             var logs = _orderLogDomainService.GetAllWithIncluding("Attributes")
-                .Where(x => x.OfferId == offerId).ToList();
+                .Where(x => x.RelatedId == offerId).ToList();
 
             return ObjectMapper.Map<List<OrderLogDto>>(logs);
         }

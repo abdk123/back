@@ -1,10 +1,17 @@
 using Abp.Application.Services.Dto;
+using Abp.Events.Bus;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
+using Souccar.SaleManagement.Logs.Events;
+using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
+using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Souccar.SaleManagement.PurchaseOrders.Invoises;
+using System;
+using Abp.Domain.Entities;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
 {
@@ -12,9 +19,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         AsyncSouccarAppService<Delivery, DeliveryDto, int, FullPagedRequestDto, CreateDeliveryDto, UpdateDeliveryDto>, IDeliveryAppService
     {
         private readonly IDeliveryDomainService _deliveryDomainService;
-        public DeliveryAppService(IDeliveryDomainService deliveryDomainService) : base(deliveryDomainService)
+        private readonly IInvoiceDomainService _invoiceDomainService;
+        public DeliveryAppService(IDeliveryDomainService deliveryDomainService, IInvoiceDomainService invoiceDomainService) : base(deliveryDomainService)
         {
             _deliveryDomainService = deliveryDomainService;
+            _invoiceDomainService = invoiceDomainService;
         }
 
         public async Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId)
@@ -47,6 +56,38 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             return data;
         }
 
+        public async override Task<DeliveryDto> UpdateAsync(UpdateDeliveryDto input)
+        {
+            var delivery =  await GetEntityByIdAsync(input.Id);
+            delivery.Status = (DeliveryStatus)input.Status;
+            delivery.GrNumber = input.GrNumber;
+            delivery.ApproveDate = DateTime.Now;
+            foreach (var deliveryItem in delivery.DeliveryItems)
+            {
+                var item = input.DeliveryItems.FirstOrDefault(x => x.Id == deliveryItem.Id);
+                if(item is not null)
+                {
+                    deliveryItem.TransportedQuantity = item.DeliveredQuantity;
+                    deliveryItem.DeliveryItemStatus = DeliveryItemStatus.Approved;
+                }
+            }
+            var updatedDelivery = await _deliveryDomainService.UpdateAsync(delivery);
+            var invoiceItemsIds = updatedDelivery.DeliveryItems.Select(x => x.InvoiceItemId.Value).ToArray();
+            var offersIds = _invoiceDomainService.GetOffersIds(invoiceItemsIds);
+            var currentUser = await GetCurrentUserAsync();
+            foreach (var offerId in offersIds)
+            {
+                await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+                {
+                    ActionId = updatedDelivery.Id,
+                    RelatedId = offerId,
+                    Type = OrderLogType.UpdateDelivery,
+                    FullName = currentUser?.FullName
+                }));
+            }
+            
+            return ObjectMapper.Map<DeliveryDto>(updatedDelivery);
+        }
     }
 }
 

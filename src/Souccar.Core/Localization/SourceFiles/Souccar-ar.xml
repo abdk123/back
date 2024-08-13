@@ -366,6 +366,9 @@
 		<text name="PrintDelivery">طباعة دلفري</text>
 		<text name="ThisFieldIsRequired">قيمة الحقل مطلوبة</text>
 		<text name="DeliveryInfo">معلومات الدلفري</text>
+		<text name="Orders">العروض</text>
+		<text name="RequiredQuantity">الكمية المطلوبة</text>
+		<text name="GrNumber">رقم ال GR</text>
 
 		<!--//////-->
 		<text name="AddNew">إضافة</text>

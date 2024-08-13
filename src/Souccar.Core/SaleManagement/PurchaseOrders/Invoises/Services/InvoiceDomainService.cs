@@ -58,6 +58,19 @@ namespace Souccar.SaleManagement.PurchaseOrders.Invoises
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems)
                 .FirstOrDefault(x => x.Id == id);
         }
+
+        public IList<int> GetOffersIds(int[] invoiceItemsIds)
+        {
+            var offersIds = _invoiceRepository.GetAllIncluding(x => x.InvoiseDetails)
+                .Where(x => x.InvoiseDetails.Any(y => invoiceItemsIds.Contains(y.Id)))
+                .Select(x => x.OfferId.Value);
+            if (offersIds.Any())
+            {
+                return offersIds.ToList();
+            }
+
+            return new List<int>();
+        }
     }
 }
 

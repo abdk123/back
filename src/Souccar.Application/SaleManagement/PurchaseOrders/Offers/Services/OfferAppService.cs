@@ -65,14 +65,14 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
                 await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
                 {
                     ActionId = offer.Id,
-                    OfferId = offer.Id,
+                    RelatedId = offer.Id,
                     Type = OrderLogType.CreatePurchaseInvoice,
                     FullName = currentUser?.FullName,
                     Attributes = new List<OrderLogAttribute>()
-                        {
-                            new OrderLogAttribute("ApproveDate",input.ApproveDate),
-                            new OrderLogAttribute("PorchaseOrderId",input.PorchaseOrderId),
-                        }
+                    {
+                        new OrderLogAttribute("ApproveDate",input.ApproveDate),
+                        new OrderLogAttribute("PorchaseOrderId",input.PorchaseOrderId),
+                    }
                 }));
             }
             return GetOfferWithDetailId(input.Id);
@@ -107,7 +107,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
             {
                 ActionId = newOffer.Id,
-                OfferId = newOffer.Id,
+                RelatedId = newOffer.Id,
                 Type = OrderLogType.UpdateOffer,
                 FullName = currentUser?.FullName,
                 Attributes = new List<OrderLogAttribute>()
@@ -123,7 +123,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
             {
                 ActionId = dto.Id,
-                OfferId = dto.Id,
+                RelatedId = dto.Id,
                 Type = OrderLogType.CreateOffer,
                 FullName = currentUser?.FullName,
                 Attributes = new List<OrderLogAttribute>()

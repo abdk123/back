@@ -21,15 +21,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         {
             var delivery =
                 await _deliveryRepository.GetAll().AsNoTracking()
-                .Include(c => c.Customer).
-                Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(ofi => ofi.OfferItem).ThenInclude(of => of.Offer)
-                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(ofi => ofi.OfferItem).ThenInclude(m => m.Material).ThenInclude(x => x.Stocks)
-                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(ofii => ofii.OfferItem).ThenInclude(u => u.Unit)
-                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem)
-                .ThenInclude(rec=>rec.ReceivingItems)
+                .Include(c => c.Customer)
+                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem).ThenInclude(ofi => ofi.OfferItem).ThenInclude(of => of.Offer)
+                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem).ThenInclude(ofi => ofi.OfferItem).ThenInclude(m => m.Material).ThenInclude(x => x.Stocks)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.InvoiceItem).ThenInclude(rec => rec.ReceivingItems)
                 .FirstOrDefaultAsync(z => z.Id == id);
             return delivery;
         }
@@ -74,6 +71,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             }
             return await _deliveryItemRepository.UpdateAsync(deliveryItem);
         }
+
     }
 }
 
