@@ -377,7 +377,6 @@
 		<text name="RejectDate">تاريخ الرفض</text>
 		<text name="AddNewMaterial">إضافة مادة جديدة</text>
 		<text name="BackToMaterialList">الرجوع الى قائمة المواد</text>
-		<text name="SaveMaterial">حفظ المادة</text>
 		<text name="MaterialInfo">تفاصيل المادة</text>
 		<text name="Add">إضافة</text>
 		<text name="EditMaterial">تعديل المادة</text>
@@ -392,7 +391,6 @@
 		<text name="DeleteEmployee">حذف موظف</text>
 		<text name="EmployeeDeleteWarningMessage">هل تريد حذف الموظف؟</text>
 		<text name="Order">الطلب</text>
-		<text name="Orders">الطلبات</text>
 		<text name="SaleInvoice">فاتورة مبيعات</text>
 		<text name="SaleInvoices">فواتير المبيعات</text>
 		<text name="SaleInvoiceList">قائمة فواتير المبيعات</text>
