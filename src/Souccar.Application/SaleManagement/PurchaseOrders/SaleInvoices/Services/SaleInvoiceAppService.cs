@@ -1,7 +1,9 @@
-﻿using Abp.UI;
+﻿using Abp.Threading;
+using Abp.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nito.AsyncEx;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
@@ -107,6 +109,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
             {
                 throw new UserFriendlyException(ex.Message);
             }
+        }
+
+        public async Task SendNotifications()
+        {
+            _saleInvoiceDomainService.CheckSaleInvoiceAsync();
         }
     }
 }

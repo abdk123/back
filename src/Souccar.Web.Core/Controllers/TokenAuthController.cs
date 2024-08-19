@@ -14,6 +14,7 @@ using Souccar.Authorization;
 using Souccar.Authorization.Users;
 using Souccar.Models.TokenAuth;
 using Souccar.MultiTenancy;
+using Abp;
 
 namespace Souccar.Controllers
 {
@@ -47,7 +48,7 @@ namespace Souccar.Controllers
             );
 
             var accessToken = CreateAccessToken(CreateJwtClaims(loginResult.Identity));
-
+            UserIdentifierHelper.Identifier = loginResult.User.ToUserIdentifier();
             return new AuthenticateResultModel
             {
                 AccessToken = accessToken,

@@ -29,6 +29,6 @@
         /// <summary>
         /// تسليم كامل للمواد
         /// </summary>
-        Delivered,
+        
     }
 }

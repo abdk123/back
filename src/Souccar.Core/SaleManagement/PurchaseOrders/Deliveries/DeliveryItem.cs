@@ -11,6 +11,17 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public double TransportedQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
+        public double ToralPrice
+        {
+            get
+            {
+                if (InvoiceItem != null)
+                {
+                    return InvoiceItem.TotalMaterilPrice * TransportedQuantity;
+                }
+                return 0;
+            }
+        }
         public DeliveryItemStatus DeliveryItemStatus { get; set; }
 
         #region Delivery

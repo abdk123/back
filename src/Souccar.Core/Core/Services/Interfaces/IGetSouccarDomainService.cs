@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Dependency;
+using Abp.Domain.Entities;
 using Abp.Domain.Services;
 using System;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Souccar.Core.Services.Interfaces
 {
-    public interface IGetSouccarDomainService<TEntity, TPrimaryKey> : IDomainService
+    public interface IGetSouccarDomainService<TEntity, TPrimaryKey> : ISingletonDependency
         where TEntity : class, IEntity<TPrimaryKey>
     {
         IQueryable<TEntity> GetAll();

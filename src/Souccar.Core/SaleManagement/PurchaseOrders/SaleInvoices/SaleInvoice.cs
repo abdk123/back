@@ -74,6 +74,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices
         public string PDFFilePath { get; set; }
         public string PillURN { get; set; }
 
+        public bool Notified { get; set; }
+
         #region Cusromer
         public int? CustomerId { get; set; }
 

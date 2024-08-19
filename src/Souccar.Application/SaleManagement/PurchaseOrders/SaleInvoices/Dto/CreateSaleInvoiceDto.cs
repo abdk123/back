@@ -42,18 +42,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Dto
         /// </summary>
         public string DateForPaid { get; set; }
 
-
         /// <summary>
         /// نوع التسديد
         /// </summary>
         public PaidType PaidType { get; set; }
-
-
         public string PDFFilePath { get; set; }
         public string PillURN { get; set; }
-
         public int? CustomerId { get; set; }
-
         public IList<CreateSaleInvoiceItemDto> SaleInvoiceItems { get; set; }
     }
 }

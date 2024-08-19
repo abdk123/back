@@ -9,5 +9,6 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
     {
         Task<SaleInvoiceDto> GetWithDetailsByIdAsync(int saleInvoiceId);
         Task<PdfAndUrnDto> GetPdfAndUrnByIdAsync(int saleInvoiceId);
+        Task SendNotifications();
     }
 }

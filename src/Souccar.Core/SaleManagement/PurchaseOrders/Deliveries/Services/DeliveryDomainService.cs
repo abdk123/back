@@ -44,7 +44,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         {
             var deliveries = await Task.FromResult(_deliveryRepository.GetAllIncluding(x => x.Customer)
                 .Include(z => z.DeliveryItems).ThenInclude(s=>s.InvoiceItem).ThenInclude(a=>a.Invoice)
-                .Where(c => c.Status == DeliveryStatus.Delivered));
+                .Where(c => c.Status == DeliveryStatus.Approved));
             return deliveries;
         }
         public IQueryable<Delivery> GetAllWithDetail()

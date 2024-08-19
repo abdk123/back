@@ -332,8 +332,10 @@
 		<text name="InvoiceMaterials">Invoice Materials</text>
 		<text name="SendDelivery">Send Delivery</text>
 		<text name="BackToDeliveriesManagerList">Back to deliveries manager list</text>
-		
-		
+		<text name="CreateSaleInoice">تم إنشاء فاتورة بيع</text>
+		<text name="Paid">Paid</text>
+
+
 		<!--//////-->
 		<text name="AddNew">Add new</text>
 		<text name="Search">Search</text>

@@ -364,7 +364,12 @@
 		<text name="Orders">العروض</text>
 		<text name="RequiredQuantity">الكمية المطلوبة</text>
 		<text name="GrNumber">رقم ال GR</text>
-
+		<text name="CreateSaleInoice">تم إنشاء فاتورة بيع</text>
+		<text name="DateForPaid">تاريخ التسديد</text>
+		<text name="PaidType">نوع التسديد</text>
+		<text name="PillURN">رقم الURN</text>
+		<text name="RemainingDaysForPaid">عدد الايام المتبقية للدفع</text>
+			
 		<!--//////-->
 		<text name="AddNew">إضافة</text>
 		<text name="Search">بحث</text>
@@ -403,7 +408,7 @@
 		<text name="Number">الرقم</text>
 		<text name="GrCode">رقم GR</text>
 		<text name="Date">التاريخ</text>
-		<text name="PrintSaleInvoice">طباعة فاتورة المبيعات</text>
+		<text name="PrintSaleInvoice">طباعة فاتورة </text>
 		<text name="UnpaidSalesInvoice">فاتورة مبيعات بدون تسديد</text>		
 		<text name="NotPaid">غير مسدد</text>
 		<text name="Pdf+Urn">Pdf + Urn</text>

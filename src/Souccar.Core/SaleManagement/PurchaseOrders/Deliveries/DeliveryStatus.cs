@@ -25,6 +25,14 @@
         /// <summary>
         /// تم ارجاع جزء من الشحنة
         /// </summary>
-        PartialRejected
+        PartialRejected,
+        /// <summary>
+        /// تم إنشاء فاتورة مبيعات
+        /// </summary>
+        CreateSaleInoice,
+        /// <summary>
+        /// تم الدفع
+        /// </summary>
+        Paid,
     }
 }

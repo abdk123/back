@@ -41,7 +41,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         public async Task<List<DeliveryDto>> GetAllDeliverdAsync()
         {
             var deliveries = await _deliveryDomainService.GetAllDeliverdAsync();
-            return ObjectMapper.Map<List<DeliveryDto>>(deliveries);
+            var dto = ObjectMapper.Map<List<DeliveryDto>>(deliveries);
+            return dto;
         }
 
         public async Task<DeliveryItemDto> ChangeItemStatusAsync(ChangeItemStatusInputDto input)

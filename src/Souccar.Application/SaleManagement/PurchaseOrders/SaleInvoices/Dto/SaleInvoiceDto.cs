@@ -14,7 +14,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Dto
             SaleInvoiceItems = new List<SaleInvoiceItemDto>();
         }
 
-        public string CreationTime { get; set; }
+        public DateTime CreationTime { get; set; }
         public int SaleDescount { get; set; }
 
         /// <summary>
@@ -55,12 +55,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Dto
         /// <summary>
         /// تاريخ التسديد
         /// </summary>
-        public string DateForPaid { get; set; }
+        public DateTime DateForPaid { get; set; }
 
         /// <summary>
         /// عدد الايام المتبقية للتسديد
         /// </summary>
-        public int RemainingDaysForPaid => (DateTime.Parse(DateForPaid) - DateTime.Now).Days;
+        public int RemainingDaysForPaid => (DateForPaid.Date - DateTime.Now.Date).Days;
 
         /// <summary>
         /// نوع التسديد

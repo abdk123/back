@@ -5,6 +5,12 @@
         /// <summary>
         /// فاتورة مبيعات بدون تسديد
         /// </summary>
-        UnpaidSalesInvoice
+        UnpaidSalesInvoice,
+
+        /// <summary>
+        /// فاتورة مبيعات سديد
+        /// </summary>
+        Paid,
+        DelayInPaid
     }
 }
