@@ -1,5 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using Souccar.SaleManagement.PurchaseOrders.Invoises;
+using Souccar.SaleManagement.PurchaseOrders.Offers;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
 using System;

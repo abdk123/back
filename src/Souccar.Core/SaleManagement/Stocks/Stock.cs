@@ -31,9 +31,19 @@ namespace Souccar.SaleManagement.Stocks
         public double NumberInLargeUnit { get; set; }
 
         /// <summary>
-        /// العدد الموجود بالوحدة الصغيرة
+        /// العدد التالف الموجود بالوحدة الصغيرة
         /// </summary>
         public double NumberInSmallUnit { get; set; }
+
+        /// <summary>
+        /// العدد التالف الموجود بالوحدة الكبيرة
+        /// </summary>
+        public double DamagedNumberInLargeUnit { get; set; }
+
+        /// <summary>
+        /// العدد الموجود بالوحدة الصغيرة
+        /// </summary>
+        public double DamagedNumberInSmallUnit { get; set; }
 
         /// <summary>
         ///  كمية الوحدة الكبيرة
@@ -44,6 +54,17 @@ namespace Souccar.SaleManagement.Stocks
         /// العدد الكلي بالوحدة الصغيرة
         /// </summary>
         public double TotalNumberInSmallUnit => (QuantityInLargeUnit + NumberInSmallUnit);
+
+        /// <summary>
+        ///  كمية الوحدة الكبيرة التالفة
+        /// </summary>
+        public double DamagedQuantityInLargeUnit => Math.Round(DamagedNumberInLargeUnit * Count, 1);
+
+        /// <summary>
+        /// العدد الكلي بالوحدة الصغيرة التالفة
+        /// </summary>
+        public double DamagedTotalNumberInSmallUnit => (DamagedQuantityInLargeUnit + DamagedNumberInSmallUnit);
+
 
         #region الوحدة
         public int? UnitId { get; set; }

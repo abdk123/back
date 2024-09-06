@@ -6,11 +6,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.UI;
 using System;
-using Abp.Events.Bus.Entities;
 using Abp.Events.Bus;
-using Souccar.SaleManagement.PurchaseOrders.Invoises.Events;
 using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
+using Souccar.SaleManagement.PurchaseInvoices.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -39,42 +38,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             DateTime.TryParse(input.ApproveDate, out approveDate);
             offer.ApproveDate = approveDate;
             offer.Status = (OfferStatus)input.Status;
-            if (input.SupplierId != null)
-            {
-                offer.SupplierId = input.SupplierId;
-            }
             await _offerDomainService.UpdateAsync(offer);
-            if (input.GenerateInvoice)
-            {
-                if (input.Status == (int)OfferStatus.Pending)
-                {
-                    throw new UserFriendlyException(ValidationMessage.TheOfferMustBeApprovedFirst);
-                }
-                if (input.SupplierId == null)
-                {
-                    throw new UserFriendlyException(ValidationMessage.SupplierIsRequired);
-                }
-                var offerItems = _offerDomainService.GetItemsByOfferId(offer.Id);
-                await EventBus.Default.TriggerAsync(new CreateInvoiceEventData()
-                {
-                    OfferId = offer.Id,
-                    OfferItems = offerItems
-                });
-
-                var currentUser = await GetCurrentUserAsync();
-                await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
-                {
-                    ActionId = offer.Id,
-                    RelatedId = offer.Id,
-                    Type = OrderLogType.CreatePurchaseInvoice,
-                    FullName = currentUser?.FullName,
-                    Attributes = new List<OrderLogAttribute>()
-                    {
-                        new OrderLogAttribute("ApproveDate",input.ApproveDate),
-                        new OrderLogAttribute("PorchaseOrderId",input.PorchaseOrderId),
-                    }
-                }));
-            }
             return GetOfferWithDetailId(input.Id);
         }
 
@@ -147,6 +111,30 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         {
             var po = await _offerDomainService.GetPoForByOfferItemId(offerItemId);
             return po;
+        }
+
+        public async Task<OfferDto> ConvertToPurchaseInvoice(ConvertToPurchaseInvoiceDto input)
+        {
+            var offer = await _offerDomainService.GetAsync(input.OfferId);
+            if (offer is null)
+                throw new UserFriendlyException("Offer not found");
+
+            if(offer.Status != OfferStatus.Approved)
+            {
+                throw new UserFriendlyException(ValidationMessage.TheOfferMustBeApprovedFirst);
+            }
+            await EventBus.Default.TriggerAsync(new CreateInvoiceEventData(input.SupplierId,input.OfferId,input.OfferItemsIds,offer.Currency));
+
+            //var currentUser = await GetCurrentUserAsync();
+            //await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+            //{
+            //    ActionId = offerItem.Id,
+            //    RelatedId = offerItem.OfferId.Value,
+            //    Type = OrderLogType.TransformToPurchaseInvoice,
+            //    FullName = currentUser?.FullName,
+            //    Attributes = new List<OrderLogAttribute>()
+            //}));
+            return ObjectMapper.Map<OfferDto>(offer);
         }
     }
 }

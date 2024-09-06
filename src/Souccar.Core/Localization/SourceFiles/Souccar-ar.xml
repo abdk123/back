@@ -369,8 +369,6 @@
 		<text name="PaidType">نوع التسديد</text>
 		<text name="PillURN">رقم الURN</text>
 		<text name="RemainingDaysForPaid">عدد الايام المتبقية للدفع</text>
-			
-		<!--//////-->
 		<text name="AddNew">إضافة</text>
 		<text name="Search">بحث</text>
 		<text name="PerPage">العناصر في الصفحة</text>
@@ -383,6 +381,7 @@
 		<text name="AddNewMaterial">إضافة مادة جديدة</text>
 		<text name="BackToMaterialList">الرجوع الى قائمة المواد</text>
 		<text name="MaterialInfo">تفاصيل المادة</text>
+		<text name="MaterialsInfo">تفاصيل المواد</text>
 		<text name="Add">إضافة</text>
 		<text name="EditMaterial">تعديل المادة</text>
 		<text name="StockList">قائمة المخزون</text>
@@ -415,5 +414,11 @@
 		<text name="FileUploadedSuccessfully">تم تحميل الملف بنجاح</text>
 		<text name="ErrorWhenUploadFilePleaseTryAgain">حصل خطأ عند تحميل الملف, الرجاء المحاولة مرة أخرى</text>
 		<text name="UrnNumberSavedSuccessfully">تم حفظ الرقم بنجاح</text>
+		<text name="AddNewOffer">إضافة عرض جديد</text>
+		<text name="MaterialName">اسم المادة</text>
+		<text name="UnitName">الوحدة</text>
+		<text name="PorchaseInvoices">فواتير الشراء</text>
+		<text name="UpdateInvoice">تعديل فاتورة</text>
+		<text name="Receivings">استلام المواد</text>
 	</texts>
 </localizationDictionary>

@@ -19,6 +19,11 @@ namespace Souccar.SaleManagement.Stocks.Services
             var stocks = await Task.FromResult(_stockRepository.GetAll().Where(x => x.MaterialId == materialId).ToList());
             return stocks;
         }
+
+        public async Task<Stock> GetFirstByMaterialId(int? materialId)
+        {
+            return await _stockRepository.FirstOrDefaultAsync(x=>x.MaterialId == materialId);
+        }
     }
 }
 

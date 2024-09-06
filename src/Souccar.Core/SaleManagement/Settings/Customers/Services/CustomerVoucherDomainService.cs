@@ -30,10 +30,9 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
                         voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
-
-                        "", "",
                         voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
-                        voucher.CustomerId
+                        voucher.CustomerId,
+                        voucher.Id
                         ));
             return voucher;
         }
@@ -75,10 +74,9 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
                         voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
-
-                        "", "",
                         voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
-                        voucher.CustomerId
+                        voucher.CustomerId,
+                        voucher.Id
                         ));
 
             return voucher;

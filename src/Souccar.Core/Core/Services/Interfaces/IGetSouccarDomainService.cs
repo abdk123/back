@@ -12,10 +12,11 @@ namespace Souccar.Core.Services.Interfaces
         where TEntity : class, IEntity<TPrimaryKey>
     {
         IQueryable<TEntity> GetAll();
-        IQueryable<TEntity> GetAllWithIncluding(string including);
+        IQueryable<TEntity> GetAllWithIncluding(string including, bool multiLevel = false);
         TEntity GetWithIncluding(TPrimaryKey id, Expression<Func<TEntity, object>> [] includes);
         TEntity Get(TPrimaryKey id);
         Task<TEntity> GetAsync(TPrimaryKey id);
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicat);
         Task<TEntity> GetAgreggateAsync(TPrimaryKey id);
     }
 }

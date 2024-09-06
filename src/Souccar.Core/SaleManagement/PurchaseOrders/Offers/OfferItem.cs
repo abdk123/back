@@ -1,6 +1,11 @@
 ﻿using Abp.Domain.Entities;
+using Souccar.SaleManagement.PurchaseInvoices;
+using Souccar.SaleManagement.PurchaseInvoices.Receives;
+using Souccar.SaleManagement.PurchaseOrders.Deliveries;
+using Souccar.SaleManagement.Settings.Customers;
 using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Units;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -8,6 +13,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
 {
     public class OfferItem : Entity
     {
+        /// <summary>
+        /// اسم المادة من الزبون
+        /// </summary>
+        public string MaterialName { get; set; }
+
+        /// <summary>
+        /// اسم الوحدة من الزبون
+        /// </summary>
+        public string UnitName { get; set; }
         /// <summary>
         /// الكمية    
         /// </summary>
@@ -74,6 +88,16 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         #endregion
 
         /// <summary>
+        /// المورد
+        /// </summary>
+        #region Supplier
+        public int? SupplierId { get; set; }
+
+        [ForeignKey(nameof(SupplierId))]
+        public Customer Supplier { get; set; }
+        #endregion
+
+        /// <summary>
         /// قيمة التحويل بين العملة الصغيرة والكبيرة
         /// </summary>
         public double TransitionValue
@@ -81,12 +105,34 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
             get
             {
                 var stocks = Material.Stocks.FirstOrDefault(x => x.SizeId == SizeId);
-                if(stocks != null)
+                if (stocks != null)
                 {
                     return stocks.Count;
                 }
                 return 0;
             }
         }
+
+        public IList<PurchaseInvoiceItem> PurchaseInvoiceItems
+        {
+            get
+            {
+                if(Offer == null)
+                    return new List<PurchaseInvoiceItem>();
+
+                return Offer.PurchaseInvoices
+                    .SelectMany(x => x.InvoiseDetails)
+                    .Where(x => x.OfferItemId == Id)
+                    .ToList();
+            }
+        }
+
+        public IList<DeliveryItem> DeliveryItems { get; set; }
+
+        /// <summary>
+        /// المواد المسلمة الموافق عليها
+        /// </summary>
+        public double DeliveredQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.DeliveredQuantity) : 0;
+
     }
 }

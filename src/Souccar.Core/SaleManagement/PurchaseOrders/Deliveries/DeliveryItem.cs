@@ -1,5 +1,5 @@
 ﻿using Abp.Domain.Entities;
-using Souccar.SaleManagement.PurchaseOrders.Invoises;
+using Souccar.SaleManagement.PurchaseInvoices;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
@@ -35,7 +35,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public int? InvoiceItemId { get; set; }
 
         [ForeignKey(nameof(InvoiceItemId))]
-        public InvoiceItem InvoiceItem { get; set; }
+        public PurchaseInvoiceItem InvoiceItem { get; set; }
         #endregion
     }
 }

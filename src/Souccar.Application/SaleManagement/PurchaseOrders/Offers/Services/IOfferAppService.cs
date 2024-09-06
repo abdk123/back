@@ -12,6 +12,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         OfferDto GetOfferWithDetailId(int offerId);
         Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input);
         Task<string> GetPoForByOfferItemId(int offerItemId);
+        Task<OfferDto> ConvertToPurchaseInvoice(ConvertToPurchaseInvoiceDto input);
     }
 }
 

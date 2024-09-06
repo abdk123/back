@@ -3,7 +3,7 @@ using Souccar.SaleManagement.PurchaseOrders.Offers.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Map
 {
-   public class OfferMapProfile : Profile
+    public class OfferMapProfile : Profile
     {
         public OfferMapProfile()
         {

@@ -4,7 +4,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
 {
     public class ClearanceCompanyCashFlowCreateEventData : EventData
     {
-        public ClearanceCompanyCashFlowCreateEventData(double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName, int? clearanceCompanyId)
+        public ClearanceCompanyCashFlowCreateEventData(double amountDollar, double amountDinar, TransactionName transactionName, int? clearanceCompanyId, int? relatedId = null, string transactionDetails = "", string note = "")
         {
             AmountDollar = amountDollar;
             AmountDinar = amountDinar;
@@ -12,6 +12,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
             Note = note;
             TransactionName = transactionName;
             ClearanceCompanyId = clearanceCompanyId;
+            RelatedId = relatedId;
         }
 
         public double AmountDollar { get; set; }
@@ -20,5 +21,6 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
         public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
         public int? ClearanceCompanyId { get; set; }
+        public int? RelatedId { get; set; }
     }
 }

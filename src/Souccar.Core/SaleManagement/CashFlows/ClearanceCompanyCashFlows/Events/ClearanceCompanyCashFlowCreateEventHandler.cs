@@ -3,6 +3,7 @@ using Abp.Events.Bus.Handlers;
 using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services;
 using Souccar.SaleManagement.Settings.Currencies;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
@@ -18,10 +19,22 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
 
         public async Task HandleEventAsync(ClearanceCompanyCashFlowCreateEventData eventData)
         {
+            var cashFlow = await _clearanceCompanyCashFlowDomainService.
+                FirstOrDefaultAsync(x=>x.RelatedId == eventData.RelatedId && eventData.TransactionName == eventData.TransactionName);
+            
+            if(cashFlow == null)
+            {
+                await CreateClearanceCompanyCashFlowAsync(eventData);
+            }
+
+        }
+
+        private async Task CreateClearanceCompanyCashFlowAsync(ClearanceCompanyCashFlowCreateEventData eventData)
+        {
             double newCurrentBalanceDinar = 0;
             double newCurrentBalanceDollar = 0;
 
-            var oldCurrentBalanceDinar = await _clearanceCompanyCashFlowDomainService.GetLastBalance(eventData.ClearanceCompanyId,Currency.Dinar,DateTime.Now);
+            var oldCurrentBalanceDinar = await _clearanceCompanyCashFlowDomainService.GetLastBalance(eventData.ClearanceCompanyId, Currency.Dinar, DateTime.Now);
             var oldCurrentBalanceDollar = await _clearanceCompanyCashFlowDomainService.GetLastBalance(eventData.ClearanceCompanyId, Currency.Dollar, DateTime.Now);
 
             newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
@@ -40,6 +53,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
             };
 
             await _clearanceCompanyCashFlowDomainService.InsertAsync(clearanceCompanyCashFlow);
+
         }
     }
 }

@@ -4,8 +4,13 @@
     {
         //صرف
         Spend,
-
         //قبض
-        Receive
+        Receive,
+        //كلفة تخليص
+        ClearanceCost,
+        //كلفة نقل
+        TransportCost,
+        //كلفة المادة المستلمة
+        ReceivingCost
     }
 }

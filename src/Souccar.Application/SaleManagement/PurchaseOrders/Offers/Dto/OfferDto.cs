@@ -18,12 +18,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public DateTime? OfferEndDate { get; set; }
         public int Currency { get; set; }
         public int? CustomerId { get; set; }
-        public int? SupplierId { get; set; }
         public double TotalQuantity { get; set; }
         public double TotalPrice { get; set; }
         public CustomerDto Customer { get; set; }
-        public CustomerDto Supplier { get; set; }
         public DateTime CreationTime { get; set; }
+        public DateTime? ApproveDate { get; set; }
         public IList<OfferItemDto> OfferItems { get; set; }
     }
 }

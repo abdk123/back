@@ -10,9 +10,6 @@ using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Stores;
 using Souccar.SaleManagement.Settings.Units;
 using Souccar.SaleManagement.Stocks;
-using Souccar.SaleManagement.PurchaseOrders.Receives;
-using Souccar.SaleManagement.PurchaseOrders.Invoises;
-using Souccar.SaleManagement.PurchaseOrders.Offers;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows;
 using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows;
@@ -20,6 +17,9 @@ using Souccar.SaleManagement.CachFlows.TransportCompanyCachFlows;
 using Souccar.SaleManagement.PurchaseOrders.SaleInvoices;
 using Souccar.SaleManagement.Logs;
 using Souccar.Hr.Employees;
+using Souccar.SaleManagement.PurchaseInvoices;
+using Souccar.SaleManagement.PurchaseOrders.Offers;
+using Souccar.SaleManagement.PurchaseInvoices.Receives;
 
 namespace Souccar.EntityFrameworkCore
 {
@@ -39,8 +39,8 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<Category> Category { get; set; }
         public DbSet<ClearanceCompanyVoucher> ClearanceCompanyBalance { get; set; }
         public DbSet<TransportCompanyVoucher> TransportCompanyBalance { get; set; }
-        public DbSet<Invoice> Invoice { get; set; }
-        public DbSet<InvoiceItem> InvoiceItem { get; set; }
+        public DbSet<PurchaseInvoice> Invoice { get; set; }
+        public DbSet<PurchaseInvoiceItem> InvoiceItem { get; set; }
         public DbSet<Offer> Offer { get; set; }
         public DbSet<OfferItem> OfferItem { get; set; }
         public DbSet<Delivery> Delivery { get; set; }

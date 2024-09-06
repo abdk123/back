@@ -1,9 +1,10 @@
 using AutoMapper;
+using Souccar.SaleManagement.PurchaseInvoices.Receives;
 using Souccar.SaleManagement.PurchaseOrders.Receives.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives.Map
 {
-   public class ReceivingMapProfile : Profile
+    public class ReceivingMapProfile : Profile
     {
         public ReceivingMapProfile()
         {

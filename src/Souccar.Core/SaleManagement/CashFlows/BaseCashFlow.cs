@@ -12,5 +12,6 @@ namespace Souccar.SaleManagement.CachFlows
         public string TransactionDetails { get; set; }
         public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
+        public int? RelatedId { get; set; }
     }
 }

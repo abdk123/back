@@ -47,7 +47,6 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
-                        "", "",
                         voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
                         voucher.TransportCompanyId
                         ));
@@ -72,7 +71,6 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
-                        "", "",
                         voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
                         voucher.TransportCompanyId
                         ));

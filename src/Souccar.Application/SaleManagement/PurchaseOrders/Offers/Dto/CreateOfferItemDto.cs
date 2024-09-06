@@ -2,6 +2,8 @@
 {
     public class CreateOfferItemDto
     {
+        public string MaterialName { get; set; }
+        public string UnitName { get; set; }
         public int? MaterialId { get; set; }
         public int? SizeId { get; set; }
         public int? UnitId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
 using System;
@@ -14,6 +15,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         public Offer()
         {
             OfferItems = new List<OfferItem>();
+            PurchaseInvoices = new List<PurchaseInvoice>();
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// <summary>
         /// تاريخ الموافقة على العرض
         /// </summary>
-        public DateTime ApproveDate { get; set; }
+        public DateTime? ApproveDate { get; set; }
 
         /// <summary>
         /// العملة
@@ -61,17 +63,8 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         public Customer Customer { get; set; }
         #endregion
 
-        /// <summary>
-        /// المورد
-        /// </summary>
-        #region Supplier
-        public int? SupplierId { get; set; }
-
-        [ForeignKey(nameof(SupplierId))]
-        public Customer Supplier { get; set; }
-        #endregion
-
         public IList<OfferItem> OfferItems { get; set; }
+        public IList<PurchaseInvoice> PurchaseInvoices { get; set; }
 
         #region Getters
         public double TotalQuantity => OfferItems.Any() ? OfferItems.Sum(x => x.Quantity) : 0;

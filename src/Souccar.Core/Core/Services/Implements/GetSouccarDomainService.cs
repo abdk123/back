@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,9 +57,12 @@ namespace Souccar.Core.Services.Implements
             return GetAsync(id);
         }
 
-        public virtual IQueryable<TEntity> GetAllWithIncluding(string including)
+        public virtual IQueryable<TEntity> GetAllWithIncluding(string including, bool multiLevel = false)
         {
-            
+            if (multiLevel)
+            {
+                return GetAllIncludingMultiLevel(including);
+            }
             if (!string.IsNullOrEmpty(including))
             {
                 var array = including.Split(',').ToList();
@@ -105,6 +109,11 @@ namespace Souccar.Core.Services.Implements
             return GetAll();
         }
 
+        IQueryable<TEntity> GetAllIncludingMultiLevel(string including)
+        {
+            var result = _repository.GetAll().Include(including);
+            return result;
+        }
         public virtual async Task<TEntity> GetAsync(TPrimaryKey id)
         {
             return await _repository.GetAsync(id);
@@ -114,6 +123,11 @@ namespace Souccar.Core.Services.Implements
         {
             return _repository.GetAllIncluding(includes)
                 .FirstOrDefault<TEntity>(x=>x.Id.Equals(id));
+        }
+
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicat)
+        {
+            return await _repository.FirstOrDefaultAsync(predicat);
         }
     }
 }

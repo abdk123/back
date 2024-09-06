@@ -24,4 +24,13 @@ namespace Souccar
         public const string PoIsRequired = "PoIsRequired";
         public const string SupplierIsRequired = "SupplierIsRequired";
     }
+
+    public class LocalizationResource
+    { 
+        public const string ClearanceCost = "ClearanceCost";
+        public const string TransportCost = "TransportCost";
+        public const string ReceivingCost = "ReceivingCost";
+        public const string CostOfReceivingTheMaterial = "CostOfReceivingTheMaterial{0}";
+
+    }
 }

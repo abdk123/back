@@ -1,17 +1,14 @@
-using Abp.Application.Services.Dto;
 using Abp.Events.Bus;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
 using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
-using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Souccar.SaleManagement.PurchaseOrders.Invoises;
 using System;
-using Abp.Domain.Entities;
+using Souccar.SaleManagement.PurchaseInvoices.Services;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
 {

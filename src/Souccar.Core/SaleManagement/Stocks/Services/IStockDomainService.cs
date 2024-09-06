@@ -7,6 +7,7 @@ namespace Souccar.SaleManagement.Stocks.Services
     public interface IStockDomainService : ISouccarDomainService<Stock, int>
     {
         Task<List<Stock>> GetAllByMaterialIdAsync(int materialId);
+        Task<Stock> GetFirstByMaterialId(int? materialId);
     }
 }
 
