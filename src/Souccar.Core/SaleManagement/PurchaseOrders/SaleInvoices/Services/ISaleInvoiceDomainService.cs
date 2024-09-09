@@ -1,11 +1,12 @@
 ﻿using Souccar.Core.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
 {
     public interface ISaleInvoiceDomainService : ISouccarDomainService<SaleInvoice, int>
     {
-        void CheckSaleInvoiceAsync();
+        Task CheckSaleInvoiceAsync(Abp.UserIdentifier[] identifiers);
         Task<SaleInvoice> GetWithDetailsByIdAsync(int saleInvoiceId);
     }
 }

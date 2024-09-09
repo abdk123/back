@@ -11,6 +11,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         Offer GetOfferWithDetail(int offerId);
         Task<string> GetPoForByOfferItemId(int offerItemId);
         Task<OfferItem> GetItemById(int? itemId);
+        IList<OfferItem> GetForDelivery(int customerId);
     }
 }
 

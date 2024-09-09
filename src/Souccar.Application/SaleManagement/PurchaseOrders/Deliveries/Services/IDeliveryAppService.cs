@@ -12,6 +12,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         Task<List<DeliveryDto>> GetAllDeliverdAsync();
         IList<DeliveryDto> GetAllByCustomerId(int customerId);
         Task<DeliveryItemDto> ChangeItemStatusAsync(ChangeItemStatusInputDto input);
+        Task<DeliveryDto> RejectDeliveryAsync(RejectDeliveryDto input);
     }
 }
 

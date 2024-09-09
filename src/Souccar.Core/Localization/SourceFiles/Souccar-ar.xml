@@ -258,7 +258,6 @@
 		<text name="EditTransportCompanyVoucher">تعديل سند شركة النقل</text>
 		<text name="DeleteTransportCompanyVoucher">حذف سند شركة النقل</text>
 		<text name="Receiving">Receiving</text>
-		<text name="Receivings">Receivings</text>
 		<text name="CreateNewReceiving">إضافة استلام جديد</text>
 		<text name="EditReceiving">تعديل استلام</text>
 		<text name="DeleteReceiving">حذف استلام</text>
@@ -268,7 +267,7 @@
 		<text name="DriverPhoneNumber">رقم هاتف السائق</text>
 		<text name="TotalReceivedQuantity">اجمالي المواد المستلمة</text>
 		<text name="ClearanceCost">كلفة التخليص الجمركي</text>
-		<text name="ClearanceCostCurrency">Clearance Cost Currency</text>
+		<text name="ClearanceCostCurrency">عملة التخليص الجمركي</text>
 		<text name="Invoice">فاتورة شراء</text>
 		<text name="Supplier">المورد</text>
 		<text name="ReceivingItems">بنود الاستلام</text>
@@ -420,5 +419,13 @@
 		<text name="PorchaseInvoices">فواتير الشراء</text>
 		<text name="UpdateInvoice">تعديل فاتورة</text>
 		<text name="Receivings">استلام المواد</text>
+		<text name="CostOfReceivingTheMaterial{0}">سعر المادة المستلمة {0}</text>
+		<text name="Reject">رفض</text>
+		<text name="BackToClearanceCompanyList">عودة إلى قائمة شركات التخليص</text>
+		<text name="BackToTransportCompanyList">عودة إلى قائمة شركات النقل</text>
+		<text name="BackToCustomerCompanyList">عودة إلى قائمة الزبائن</text>
+		<text name="ClearanceCompanyCashFlow">كشف رصيد شركة التخليص</text>
+		<text name="TranspartCompanyCashFlow">كشف رصيد شركة النقل</text>
+		<text name="CustomerCompanyCashFlow">كشف رصيد العميل</text>
 	</texts>
 </localizationDictionary>

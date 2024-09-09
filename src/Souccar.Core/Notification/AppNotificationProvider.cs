@@ -7,13 +7,13 @@ namespace Souccar.Notification
     {
         public override void SetNotifications(INotificationDefinitionContext context)
         {
-            //context.Manager.Add(
-            //    new NotificationDefinition(
-            //        AppNotificationNames.NewUserRegistered,
-            //        displayName: L("NewUserRegisteredNotificationDefinition")
-            //        //permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Administration_Users)
-            //        )
-            //    );
+            context.Manager.Add(
+                new NotificationDefinition(
+                    AppNotificationNames.SaleInvoiceMustPaid,
+                    displayName: L("SendSaleInvoiceNotify")
+                    //permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Administration_Users)
+                    )
+                );
 
             //context.Manager.Add(
             //    new NotificationDefinition(

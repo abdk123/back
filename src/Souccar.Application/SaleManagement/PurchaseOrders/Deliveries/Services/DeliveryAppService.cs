@@ -1,14 +1,12 @@
 using Abp.Events.Bus;
 using Souccar.Core.Dto.PagedRequests;
 using Souccar.Core.Services;
-using Souccar.SaleManagement.Logs.Events;
-using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
-using Souccar.SaleManagement.PurchaseInvoices.Services;
+using Souccar.SaleManagement.Stocks.Event;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
 {
@@ -16,11 +14,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
         AsyncSouccarAppService<Delivery, DeliveryDto, int, FullPagedRequestDto, CreateDeliveryDto, UpdateDeliveryDto>, IDeliveryAppService
     {
         private readonly IDeliveryDomainService _deliveryDomainService;
-        private readonly IInvoiceDomainService _invoiceDomainService;
-        public DeliveryAppService(IDeliveryDomainService deliveryDomainService, IInvoiceDomainService invoiceDomainService) : base(deliveryDomainService)
+        public DeliveryAppService(IDeliveryDomainService deliveryDomainService) : base(deliveryDomainService)
         {
             _deliveryDomainService = deliveryDomainService;
-            _invoiceDomainService = invoiceDomainService;
         }
 
         public async Task<DeliveryDto> GetWithDetailsByIdAsync(int deliveryId)
@@ -54,6 +50,21 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             return data;
         }
 
+        public async override Task<DeliveryDto> CreateAsync(CreateDeliveryDto input)
+        {
+            var createdDelivery = await base.CreateAsync(input);
+            var delivery = await _deliveryDomainService.GetWithDetailsByIdAsync(createdDelivery.Id);
+            foreach(var item in delivery.DeliveryItems)
+            {
+                var numberInLargeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : (item.DeliveredQuantity * -1);
+                var numberInSmallQuentity = item.OfferItem.AddedBySmallUnit ? (item.DeliveredQuantity * -1) : 0;
+                await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                    item.OfferItem.MaterialId,
+                    numberInLargeQuentity, numberInSmallQuentity));
+            }
+            return createdDelivery;
+        }
+
         public async override Task<DeliveryDto> UpdateAsync(UpdateDeliveryDto input)
         {
             var delivery =  await GetEntityByIdAsync(input.Id);
@@ -65,27 +76,45 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 var item = input.DeliveryItems.FirstOrDefault(x => x.Id == deliveryItem.Id);
                 if(item is not null)
                 {
-                    deliveryItem.TransportedQuantity = item.DeliveredQuantity;
+                    deliveryItem.ApprovedQuantity = item.DeliveredQuantity;
                     deliveryItem.DeliveryItemStatus = DeliveryItemStatus.Approved;
                 }
             }
             var updatedDelivery = await _deliveryDomainService.UpdateAsync(delivery);
-            var invoiceItemsIds = updatedDelivery.DeliveryItems.Select(x => x.InvoiceItemId.Value).ToArray();
-            var offersIds = _invoiceDomainService.GetOffersIds(invoiceItemsIds);
-            var currentUser = await GetCurrentUserAsync();
-            foreach (var offerId in offersIds)
-            {
-                await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
-                {
-                    ActionId = updatedDelivery.Id,
-                    RelatedId = offerId,
-                    Type = OrderLogType.UpdateDelivery,
-                    FullName = currentUser?.FullName
-                }));
-            }
             
             return ObjectMapper.Map<DeliveryDto>(updatedDelivery);
         }
+
+        public async Task<DeliveryDto> RejectDeliveryAsync(RejectDeliveryDto input)
+        {
+            var delivery = await GetEntityByIdAsync(input.DeliveryId);
+            foreach (var item in delivery.DeliveryItems)
+            {
+                if(item.Id == input.DeliveryItemId)
+                {
+                    item.RejectedQuantity = input.RejectedQuantity;
+                    item.DeliveryItemStatus = input.ReturnToSupplier ? DeliveryItemStatus.RejectAndReturnToSupplier : DeliveryItemStatus.RejectAndRecordAsDamaged;
+                    delivery.Status = DeliveryStatus.PartialRejected;
+                    if (delivery.DeliveryItems.All(x => x.DeliveredQuantity == x.RejectedQuantity))
+                    {
+                        delivery.Status = DeliveryStatus.Rejected;
+                    }
+                    await _deliveryDomainService.UpdateAsync(delivery);
+                }
+                if (!input.ReturnToSupplier) // «—Ã«⁄Â« ﬂ„Â ·ﬂ
+                {
+                    var numberInLargeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : (item.DeliveredQuantity);
+                    var numberInSmallQuentity = item.OfferItem.AddedBySmallUnit ? (item.DeliveredQuantity) : 0;
+                    await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                        item.OfferItem.MaterialId,
+                        0, 0, numberInLargeQuentity, numberInSmallQuentity));
+                }
+                break;
+            }
+            return ObjectMapper.Map<DeliveryDto>(delivery);
+        }
+
+        
     }
 }
 

@@ -17,7 +17,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public string GrNumber { get; set; }
         public string DriverPhoneNumber { get; set; }
         public int Status { get; set; }
-        public double TransportedQuantity { get; set; }
+        public double DeliveredQuantity { get; set; }
         public int? CustomerId { get; set; }
         public DateTime? ApproveDate { get; set; }
         public IList<UpdateDeliveryItemDto> DeliveryItems { get; set; }

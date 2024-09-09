@@ -18,52 +18,23 @@ namespace Souccar.Notification
         public AppNotifier(INotificationPublisher notificationPublisher)
         {
             _notificationPublisher = notificationPublisher;
-        }        
-
-        public async Task SendMaterialExpiryDate(User user, string name, DateTime date)
-        {
-            var param = new string[2] {name, date.ToString("dd/MM/yyyy") };
-            await _notificationPublisher.PublishAsync(
-                AppNotificationNames.MaterialExpirationWarning,
-                new MessageNotificationData(L("The{0}MaterialWillExpireOn{1}", param)),
-                severity: NotificationSeverity.Warn,
-                userIds: new[] { user.ToUserIdentifier() }
-                );
         }
 
-        public async Task SendCreateOutputRequst(User user, string title)
-        {
-            var param = new string[1] {title};
-
-            await _notificationPublisher.PublishAsync(
-                AppNotificationNames.AddOutputRequest,
-                new MessageNotificationData(L("{0}OutputRequestAdded", param)),
-                severity: NotificationSeverity.Warn,
-                userIds: new[] { user.ToUserIdentifier() }
-                );
-        }
-        public void SendSaleInvoiceNotify(SaleInvoice saleInvoice)
+        public async Task SendSaleInvoiceNotify(string title, Dictionary<string, object> dic, Abp.UserIdentifier[] identifiers)
         {
             try
             {
-                var title = "فاتورة مبيعات يجب دفعها من قبل الزبون " + saleInvoice.Customer.FullName;
                 var body = new MessageNotificationData(title);
-                var dic = new Dictionary<string, object>()
-            {
-                {"Id",saleInvoice.Id },
-                {"TotalQuantity",saleInvoice.InvoiceTotalQuantity },
-                {"DateForPaid",saleInvoice.DateForPaid },
-                {"Currency",saleInvoice.SaleCurrency },
-            };
+
                 body.Properties = dic;
-                AsyncHelper.RunSync(()=>_notificationPublisher.PublishAsync(
+                await _notificationPublisher.PublishAsync(
                     title,
                     body,
                     severity: NotificationSeverity.Warn,
-                    userIds: new[] { UserIdentifierHelper.Identifier }
-                    ));
+                    userIds: identifiers
+                    );
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

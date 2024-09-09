@@ -27,10 +27,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         /// <summary>
         /// الكمية المنقولة
         /// </summary>
-        public double TotalTransportedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.TransportedQuantity):0;
         public double TotalApprovedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.ApprovedQuantity):0;
         public double TotalRejectedQuantity => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.RejectedQuantity):0;
-        public double TotalPrice => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.ToralPrice):0;
+        public double TotalPrice => DeliveryItems.Any() ? DeliveryItems.Sum(x => x.TotalPrice) :0;
 
         #region Customer
         public int? CustomerId { get; set; }

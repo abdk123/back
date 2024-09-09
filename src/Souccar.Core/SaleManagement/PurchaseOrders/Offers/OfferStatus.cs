@@ -6,6 +6,7 @@
         Approved,
         TransformToPurchaseInvoice,
         Canceled,
-        Expired
+        Expired,
+        Delivered
     }
 }

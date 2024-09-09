@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Souccar.SaleManagement.PurchaseInvoices;
+using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
@@ -8,16 +9,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
     {
         public string BatchNumber { get; set; }
         public double DeliveredQuantity { get; set; }
-        public double TransportedQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
-        public double ToralPrice
+        public double TotalPrice
         {
             get
             {
-                if (InvoiceItem != null)
+                if (OfferItem != null)
                 {
-                    return InvoiceItem.TotalMaterilPrice * TransportedQuantity;
+                    return OfferItem.UnitPrice * ApprovedQuantity;
                 }
                 return 0;
             }
@@ -31,11 +31,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public Delivery Delivery { get; set; }
         #endregion
 
-        #region Invoice Item
-        public int? InvoiceItemId { get; set; }
+        #region Offer Item
+        public int? OfferItemId { get; set; }
 
-        [ForeignKey(nameof(InvoiceItemId))]
-        public PurchaseInvoiceItem InvoiceItem { get; set; }
+        [ForeignKey(nameof(OfferItemId))]
+        public OfferItem OfferItem { get; set; }
         #endregion
     }
 }

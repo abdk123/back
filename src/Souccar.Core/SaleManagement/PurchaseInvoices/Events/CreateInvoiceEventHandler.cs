@@ -28,6 +28,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Events
                 Status = PurchaseInvoiceStatus.NotPriced,
                 OfferId = eventData.OfferId,
                 SupplierId = eventData.SupplierId,
+                Currency = eventData.Currency,
                 InvoiseDetails = eventData.OfferItemsIds.Select(offerItemId => new PurchaseInvoiceItem()
                 {
                     OfferItemId = offerItemId,

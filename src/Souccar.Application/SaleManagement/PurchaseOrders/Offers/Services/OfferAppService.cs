@@ -10,6 +10,7 @@ using Abp.Events.Bus;
 using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseInvoices.Events;
+using Souccar.SaleManagement.Invoises.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -54,6 +55,31 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             return ObjectMapper.Map<OfferDto>(offer);
         }
 
+        public IList<OfferItemForDeliveryDto> GetForDelivery(int customerId)
+        {
+            var list = new List<OfferItemForDeliveryDto>();
+            var offers = _offerDomainService.GetForDelivery(customerId);
+            foreach (var item in offers)
+            {
+                list.Add(new OfferItemForDeliveryDto()
+                {
+                    MaterialName = item.Material?.Name,
+                    OfferItemId = item.Id,
+                    NumberInSmallUnit = item.NumberInSmallUnit,
+                    Quantity = item.Quantity,
+                    DeliveredQuantity = item.DeliveredQuantity,
+                    Unit = item.Unit?.Name,
+                    SmallUnit = item.Size?.Name,
+                    PoNumber = item.Offer.PorchaseOrderId,
+                    TotalPrice = item.TotalPrice,
+                    AddedBySmallUnit = item.AddedBySmallUnit,
+                    OfferId = item.OfferId
+                });
+            }
+
+            return list;
+        }
+
         public override async Task<OfferDto> UpdateAsync(UpdateOfferDto input)
         {
             var oldOffer = await _offerDomainService.GetAsync(input.Id);
@@ -83,20 +109,20 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
         public override async Task<OfferDto> CreateAsync(CreateOfferDto input)
         {
             var dto = await base.CreateAsync(input);
-            var currentUser = await GetCurrentUserAsync();
-            await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
-            {
-                ActionId = dto.Id,
-                RelatedId = dto.Id,
-                Type = OrderLogType.CreateOffer,
-                FullName = currentUser?.FullName,
-                Attributes = new List<OrderLogAttribute>()
-                {
-                    new OrderLogAttribute("OfferId",dto.Id.ToString()),
-                    new OrderLogAttribute("TotalQuantity",dto.TotalQuantity.ToString()),
-                    new OrderLogAttribute("TotalPrice",dto.TotalPrice.ToString()),
-                }
-            }));
+            //var currentUser = await GetCurrentUserAsync();
+            //await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()
+            //{
+            //    ActionId = dto.Id,
+            //    RelatedId = dto.Id,
+            //    Type = OrderLogType.CreateOffer,
+            //    FullName = currentUser?.FullName,
+            //    Attributes = new List<OrderLogAttribute>()
+            //    {
+            //        new OrderLogAttribute("OfferId",dto.Id.ToString()),
+            //        new OrderLogAttribute("TotalQuantity",dto.TotalQuantity.ToString()),
+            //        new OrderLogAttribute("TotalPrice",dto.TotalPrice.ToString()),
+            //    }
+            //}));
             return dto;
         }
 

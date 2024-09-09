@@ -15,6 +15,7 @@ using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.CashFlows;
 using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
+using Souccar.SaleManagement.Stocks.Event;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Receives.Services
 {
@@ -80,10 +81,16 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Services
                     invoice.Currency == Currency.Dollar ? invoiceItem.Quantity : 0,
                     invoice.Currency == Currency.Dinar ? invoiceItem.Quantity : 0,
                     TransactionName.TransportCost,
-                    receiving.TransportCompanyId,
+                    invoice.SupplierId,
                     receivingItem.Id,
                     L(LocalizationResource.CostOfReceivingTheMaterial, invoiceItem?.OfferItem?.Material?.Name)
                     ));
+
+                    var numberInLargeQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? 0 : invoiceItem.Quantity;
+                    var numberInSmallQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? invoiceItem.Quantity:0;
+                    await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                        invoiceItem.OfferItem.MaterialId,
+                        numberInLargeQuentity, numberInSmallQuentity));
                 }
             }
             return receiving;

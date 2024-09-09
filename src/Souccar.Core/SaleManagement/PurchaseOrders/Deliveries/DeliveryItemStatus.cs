@@ -4,7 +4,6 @@
     {
         Pending,
         Approved,
-        Rejected,
         RejectAndReturnToSupplier,
         RejectAndRecordAsDamaged
     }

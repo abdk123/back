@@ -14,6 +14,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Dto
         public int? UnitId { get; set; }
         public double Quantity { get; set; }
         public double UnitPrice { get; set; }
+        public double NumberInSmallUnit { get; set; }
         public string Specefecation { get; set; }
         public bool AddedBySmallUnit { get; set; }
         public SizeDto Size { get; set; }

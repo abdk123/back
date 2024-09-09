@@ -104,12 +104,20 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         {
             get
             {
-                var stocks = Material.Stocks.FirstOrDefault(x => x.SizeId == SizeId);
+                var stocks = Material?.Stocks?.FirstOrDefault(x => x.SizeId == SizeId);
                 if (stocks != null)
                 {
                     return stocks.Count;
                 }
                 return 0;
+            }
+        }
+
+        public double NumberInSmallUnit { get
+            {
+                if (AddedBySmallUnit)
+                    return Quantity;
+                return Quantity * TransitionValue;
             }
         }
 

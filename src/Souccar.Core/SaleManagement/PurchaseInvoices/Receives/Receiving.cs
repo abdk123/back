@@ -1,14 +1,9 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.Settings.Companies;
 using Souccar.SaleManagement.Settings.Currencies;
-using Souccar.SaleManagement.Settings.Customers;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.PurchaseInvoices.Receives
 {

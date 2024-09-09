@@ -3,6 +3,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Threading.BackgroundWorkers;
 using Souccar.Authorization;
+using Souccar.Notification;
 using Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Workers;
 
 namespace Souccar
@@ -15,6 +16,8 @@ namespace Souccar
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<SouccarAuthorizationProvider>();
+            Configuration.Notifications.Providers.Add<AppNotificationProvider>();
+
         }
 
         public override void Initialize()

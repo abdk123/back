@@ -19,8 +19,8 @@ namespace Souccar.SaleManagement.Stocks.Event
             var stock = await _stockDomainService.GetFirstByMaterialId(eventData.MaterialId);
             if(stock is not null)
             {
-                stock.NumberInLargeUnit += eventData.NumberInLargeUnit - eventData.DamagedNumberInLargeUnit;
-                stock.NumberInSmallUnit += eventData.NumberInSmallUnit - eventData.DamagedNumberInSmallUnit;
+                stock.NumberInLargeUnit += eventData.NumberInLargeUnit;
+                stock.NumberInSmallUnit += eventData.NumberInSmallUnit;
                 stock.DamagedNumberInLargeUnit += eventData.DamagedNumberInLargeUnit;
                 stock.DamagedNumberInSmallUnit += eventData.DamagedNumberInSmallUnit;
                 await _stockDomainService.UpdateAsync(stock);

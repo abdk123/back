@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using Souccar.SaleManagement.Invoises.Dto;
+using Souccar.SaleManagement.PurchaseOrders.Offers.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
 {
@@ -7,11 +7,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
     {
         public string BatchNumber { get; set; }
         public double DeliveredQuantity { get; set; }
-        public double TransportedQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
-        public InvoiceItemDto InvoiceItem { get; set; }
-        public double ToralPrice { get; set; }
+        public OfferItemDto OfferItem { get; set; }
+        public double TotalPrice { get; set; }
         public DeliveryItemStatus DeliveryItemStatus { get; set; }
 
     }

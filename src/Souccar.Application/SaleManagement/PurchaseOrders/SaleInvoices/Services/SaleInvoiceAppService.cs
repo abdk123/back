@@ -110,10 +110,5 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
                 throw new UserFriendlyException(ex.Message);
             }
         }
-
-        public async Task SendNotifications()
-        {
-            _saleInvoiceDomainService.CheckSaleInvoiceAsync();
-        }
     }
 }
