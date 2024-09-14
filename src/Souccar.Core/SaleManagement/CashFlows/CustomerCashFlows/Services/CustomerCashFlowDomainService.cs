@@ -53,26 +53,26 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
         //    return balanceDollar;
         //}
 
-        public async Task<double> GetLastBalance(int? transportCompanyId, Currency currency, DateTime toDate)
+        public async Task<double> GetLastBalance(int? customerId, Currency currency, DateTime toDate)
         {
-            var transportCompanyBalance = await _customerDomainService.GetCustomerBalance(transportCompanyId, currency);
+            var customerBalance = await _customerDomainService.GetCustomerBalance(customerId, currency);
 
-            var transportCompanyCashFlows = await _customerCashFlowRepository
-            .GetAllListAsync(x => x.CustomerId == transportCompanyId && x.CreationTime <= toDate);
+            var customerCashFlows = await _customerCashFlowRepository
+            .GetAllListAsync(x => x.CustomerId == customerId && x.CreationTime <= toDate);
 
-            if (transportCompanyCashFlows.Any())
+            if (customerCashFlows.Any())
             {
                 if (currency == Currency.Dinar)
                 {
-                    transportCompanyBalance += transportCompanyCashFlows.Sum(x => x.AmountDinar);
+                    customerBalance += customerCashFlows.Sum(x => x.AmountDinar);
                 }
                 else
                 {
-                    transportCompanyBalance += transportCompanyCashFlows.Sum(x => x.AmountDollar);
+                    customerBalance += customerCashFlows.Sum(x => x.AmountDollar);
                 }
             }
 
-            return transportCompanyBalance;
+            return customerBalance;
         }
     }
 }

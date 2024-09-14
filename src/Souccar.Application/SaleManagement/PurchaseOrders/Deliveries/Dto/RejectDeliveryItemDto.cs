@@ -18,7 +18,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Dto
         public string PoNumber => OfferItem?.Offer?.PorchaseOrderId ?? string.Empty;
         public int Currncy => (int)OfferItem.Offer.Currency;
         public string SizeName => OfferItem?.Size?.Name ?? string.Empty;
-        public string UnitName => OfferItem?.Unit?.Name ?? string.Empty;
+        public string UnitName => OfferItem?.Unit?.Name ?? SizeName;
         public string MaterialName => OfferItem?.Material?.Name ?? string.Empty;
 
     }

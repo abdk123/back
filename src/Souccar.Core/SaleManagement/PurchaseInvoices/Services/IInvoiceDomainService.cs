@@ -12,6 +12,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Services
         PurchaseInvoice GetWithDetail(int id);
         IQueryable<PurchaseInvoice> GetForDelivery(int customerId);
         IList<int> GetOffersIds(int[] invoiceItemsIds);
+        IQueryable<PurchaseInvoice> GetAllByOfferId(int offerId);
     }
 }
 

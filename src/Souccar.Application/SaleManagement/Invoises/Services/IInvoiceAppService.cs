@@ -10,7 +10,7 @@ namespace Souccar.SaleManagement.Invoises.Services
     {
         InvoiceDto GetWithDetail(int id);
         Task<InvoiceDto> SaveInvoiceDetail(InvoiceDto input);
-        Task<InvoiceDto> GetByOfferId(int offerId);
+        IList<InvoiceDto> GetByOfferId(int offerId);
         IList<InvoiceItemForDeliveryDto> GetForDelivery(int customerId);
     }
 }

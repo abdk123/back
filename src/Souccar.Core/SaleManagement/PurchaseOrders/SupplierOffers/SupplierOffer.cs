@@ -8,14 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 
-namespace Souccar.SaleManagement.PurchaseOrders.Offers
+namespace Souccar.SaleManagement.PurchaseOrders.SupplierOffers
 {
-    public class Offer : FullAuditedAggregateRoot
+    public class SupplierOffer : FullAuditedAggregateRoot
     {
-        public Offer()
+        public SupplierOffer()
         {
-            OfferItems = new List<OfferItem>();
-            //PurchaseInvoices = new List<PurchaseInvoice>();
+            SupplierOfferItems = new List<SupplierOfferItem>();
+            PurchaseInvoices = new List<PurchaseInvoice>();
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// <summary>
         /// حالة العرض
         /// </summary>
-        public OfferStatus Status { get; set; }
+        public SupplierOfferStatus Status { get; set; }
 
         /// <summary>
         /// تاريخ نهاية العرض
         /// </summary>
-        public DateTime OfferEndDate { get; set; }
+        public DateTime SupplierOfferEndDate { get; set; }
 
         /// <summary>
         /// تاريخ الموافقة على العرض
@@ -53,22 +53,22 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// </summary>
         public Currency Currency { get; set; }
 
+        public IList<SupplierOfferItem> SupplierOfferItems { get; set; }
+        public IList<PurchaseInvoice> PurchaseInvoices { get; set; }
+
         /// <summary>
         /// الزبون
         /// </summary>
-        #region Customer
-        public int? CustomerId { get; set; }
+        #region Supplier
+        public int? SupplierId { get; set; }
 
-        [ForeignKey(nameof(CustomerId))]
-        public Customer Customer { get; set; }
+        [ForeignKey(nameof(SupplierId))]
+        public Customer Supplier { get; set; }
         #endregion
 
-        public IList<OfferItem> OfferItems { get; set; }
-        //public IList<PurchaseInvoice> PurchaseInvoices { get; set; }
-
         #region Getters
-        public double TotalQuantity => OfferItems.Any() ? OfferItems.Sum(x => x.Quantity) : 0;
-        public double TotalPrice => OfferItems.Any() ? OfferItems.Sum(x => x.TotalPrice) : 0;
+        public double TotalQuantity => SupplierOfferItems.Any() ? SupplierOfferItems.Sum(x => x.Quantity) : 0;
+        public double TotalPrice => SupplierOfferItems.Any() ? SupplierOfferItems.Sum(x => x.TotalPrice) : 0;
         #endregion
     }
 }

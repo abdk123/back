@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240911181203_Add_Rejection_Date")]
+    partial class Add_Rejection_Date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1990,16 +1993,11 @@ namespace Souccar.Migrations
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SupplierOfferId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OfferId");
 
                     b.HasIndex("SupplierId");
-
-                    b.HasIndex("SupplierOfferId");
 
                     b.ToTable("Invoice");
                 });
@@ -2021,9 +2019,6 @@ namespace Souccar.Migrations
                     b.Property<double>("Quantity")
                         .HasColumnType("float");
 
-                    b.Property<int?>("SupplierOfferItemId")
-                        .HasColumnType("int");
-
                     b.Property<double>("TotalMaterilPrice")
                         .HasColumnType("float");
 
@@ -2032,8 +2027,6 @@ namespace Souccar.Migrations
                     b.HasIndex("InvoiceId");
 
                     b.HasIndex("OfferItemId");
-
-                    b.HasIndex("SupplierOfferItemId");
 
                     b.ToTable("InvoiceItem");
                 });
@@ -2231,16 +2224,11 @@ namespace Souccar.Migrations
                     b.Property<DateTime?>("RejectionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SupplierOfferItemId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DeliveryId");
 
                     b.HasIndex("OfferItemId");
-
-                    b.HasIndex("SupplierOfferItemId");
 
                     b.ToTable("DeliveryItem");
                 });
@@ -2460,122 +2448,6 @@ namespace Souccar.Migrations
                     b.HasIndex("SaleInvoiceId");
 
                     b.ToTable("SaleInvoiceItems");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOffer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("ApproveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Currency")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PorchaseOrderId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SupplierOfferEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("SupplierOffer");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOfferItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("AddedBySmallUnit")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MaterialName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Specefecation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupplierOfferId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UnitName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("UnitPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("SizeId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.HasIndex("SupplierOfferId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("SupplierOfferItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Categories.Category", b =>
@@ -3480,22 +3352,16 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", b =>
                 {
                     b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "Offer")
-                        .WithMany()
+                        .WithMany("PurchaseInvoices")
                         .HasForeignKey("OfferId");
 
                     b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
                         .WithMany()
                         .HasForeignKey("SupplierId");
 
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOffer", "SupplierOffer")
-                        .WithMany("PurchaseInvoices")
-                        .HasForeignKey("SupplierOfferId");
-
                     b.Navigation("Offer");
 
                     b.Navigation("Supplier");
-
-                    b.Navigation("SupplierOffer");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoiceItem", b =>
@@ -3508,15 +3374,9 @@ namespace Souccar.Migrations
                         .WithMany("PurchaseInvoiceItems")
                         .HasForeignKey("OfferItemId");
 
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOfferItem", "SupplierOfferItem")
-                        .WithMany("PurchaseInvoiceItems")
-                        .HasForeignKey("SupplierOfferItemId");
-
                     b.Navigation("Invoice");
 
                     b.Navigation("OfferItem");
-
-                    b.Navigation("SupplierOfferItem");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.Receives.Receiving", b =>
@@ -3526,7 +3386,7 @@ namespace Souccar.Migrations
                         .HasForeignKey("ClearanceCompanyId");
 
                     b.HasOne("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", "Invoice")
-                        .WithMany()
+                        .WithMany("Receivings")
                         .HasForeignKey("InvoiceId");
 
                     b.HasOne("Souccar.SaleManagement.Settings.Companies.TransportCompany", "TransportCompany")
@@ -3579,10 +3439,6 @@ namespace Souccar.Migrations
                     b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", "OfferItem")
                         .WithMany("DeliveryItems")
                         .HasForeignKey("OfferItemId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOfferItem", null)
-                        .WithMany("DeliveryItems")
-                        .HasForeignKey("SupplierOfferItemId");
 
                     b.Navigation("Delivery");
 
@@ -3653,48 +3509,6 @@ namespace Souccar.Migrations
                     b.Navigation("DeliveryItem");
 
                     b.Navigation("SaleInvoice");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOffer", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
-
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOfferItem", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Settings.Materials.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Units.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
-
-                    b.HasOne("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOffer", "SupplierOffer")
-                        .WithMany("SupplierOfferItems")
-                        .HasForeignKey("SupplierOfferId");
-
-                    b.HasOne("Souccar.SaleManagement.Settings.Units.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Size");
-
-                    b.Navigation("Supplier");
-
-                    b.Navigation("SupplierOffer");
-
-                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Companies.ClearanceCompanyVoucher", b =>
@@ -3854,6 +3668,8 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", b =>
                 {
                     b.Navigation("InvoiseDetails");
+
+                    b.Navigation("Receivings");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoiceItem", b =>
@@ -3874,6 +3690,8 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
                 {
                     b.Navigation("OfferItems");
+
+                    b.Navigation("PurchaseInvoices");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", b =>
@@ -3886,20 +3704,6 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SaleInvoices.SaleInvoice", b =>
                 {
                     b.Navigation("SaleInvoiceItems");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOffer", b =>
-                {
-                    b.Navigation("PurchaseInvoices");
-
-                    b.Navigation("SupplierOfferItems");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.SupplierOffers.SupplierOfferItem", b =>
-                {
-                    b.Navigation("DeliveryItems");
-
-                    b.Navigation("PurchaseInvoiceItems");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.Settings.Materials.Material", b =>

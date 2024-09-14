@@ -90,9 +90,13 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             var delivery = await GetEntityByIdAsync(input.DeliveryId);
             foreach (var item in delivery.DeliveryItems)
             {
-                if(item.Id == input.DeliveryItemId)
+                var gap = input.RejectedQuantity - item.RejectedQuantity;//old quantity - new 
+
+                if (item.Id == input.DeliveryItemId)
                 {
                     item.RejectedQuantity = input.RejectedQuantity;
+
+                    item.RejectionDate = input.RejectionDate != null ? input.RejectionDate : DateTime.Now;
                     item.DeliveryItemStatus = input.ReturnToSupplier ? DeliveryItemStatus.RejectAndReturnToSupplier : DeliveryItemStatus.RejectAndRecordAsDamaged;
                     delivery.Status = DeliveryStatus.PartialRejected;
                     if (delivery.DeliveryItems.All(x => x.DeliveredQuantity == x.RejectedQuantity))
@@ -100,16 +104,19 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                         delivery.Status = DeliveryStatus.Rejected;
                     }
                     await _deliveryDomainService.UpdateAsync(delivery);
+                    if (!input.ReturnToSupplier) // «—Ã«⁄Â« ﬂ„Â ·ﬂ
+                    {
+                        var largeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : (gap * -1);
+                        var smallQuentity = item.OfferItem.AddedBySmallUnit ? (gap * -1) : 0;
+                        var damagedLargeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : (gap);
+                        var damagedSmallQuentity = item.OfferItem.AddedBySmallUnit ? (gap) : 0;
+                        await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                            item.OfferItem.MaterialId,
+                            largeQuentity, smallQuentity, damagedLargeQuentity, damagedSmallQuentity));
+                    }
+                    break;
                 }
-                if (!input.ReturnToSupplier) // «—Ã«⁄Â« ﬂ„Â ·ﬂ
-                {
-                    var numberInLargeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : (item.DeliveredQuantity);
-                    var numberInSmallQuentity = item.OfferItem.AddedBySmallUnit ? (item.DeliveredQuantity) : 0;
-                    await EventBus.Default.TriggerAsync(new UpdateStockEventData(
-                        item.OfferItem.MaterialId,
-                        0, 0, numberInLargeQuentity, numberInSmallQuentity));
-                }
-                break;
+                
             }
             return ObjectMapper.Map<DeliveryDto>(delivery);
         }

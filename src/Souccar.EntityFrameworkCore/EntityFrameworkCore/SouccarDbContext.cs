@@ -20,6 +20,7 @@ using Souccar.Hr.Employees;
 using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
 using Souccar.SaleManagement.PurchaseInvoices.Receives;
+using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 
 namespace Souccar.EntityFrameworkCore
 {
@@ -43,6 +44,8 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<PurchaseInvoiceItem> InvoiceItem { get; set; }
         public DbSet<Offer> Offer { get; set; }
         public DbSet<OfferItem> OfferItem { get; set; }
+        public DbSet<SupplierOffer> SupplierOffer { get; set; }
+        public DbSet<SupplierOfferItem> SupplierOfferItem { get; set; }
         public DbSet<Delivery> Delivery { get; set; }
         public DbSet<DeliveryItem> DeliveryItem { get; set; }
         public DbSet<Receiving> Receiving { get; set; }
@@ -53,7 +56,6 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<SaleInvoice> SaleInvoices { get; set; }
         public DbSet<OrderLog> OrderLogs { get; set; }
         public DbSet<OrderLogAttribute> OrderLogAttributes { get; set; }
-
         public DbSet<SaleInvoiceItem> SaleInvoiceItems { get; set; }
         public DbSet<Employee> Employees { get; set; }
 

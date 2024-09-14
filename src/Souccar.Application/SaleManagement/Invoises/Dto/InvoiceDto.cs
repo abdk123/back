@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.PurchaseOrders.Receives.Dto;
 
 namespace Souccar.SaleManagement.Invoises.Dto
 {
@@ -17,9 +19,10 @@ namespace Souccar.SaleManagement.Invoises.Dto
         public double TotalPrice { get; set; }
         public string SupplierName { get; set; }
         public string SupplierId { get; set; }
-        public double TotalReceivedQuantity { get; set; }
+        public double TotalReceivedQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x=>x.ReceivedQuantity) : 0;
         public double TotalNotReceivedQuantity => TotalQuantity - TotalReceivedQuantity;
         public IList<InvoiceItemDto> InvoiseDetails { get; set; }
+        //public IList<ReceivingDto> Receivings { get; set; }
     }
 }
 

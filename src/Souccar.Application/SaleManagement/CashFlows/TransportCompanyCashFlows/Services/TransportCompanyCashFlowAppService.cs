@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using Souccar.SaleManagement.Settings.Currencies;
 
 namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
 {
@@ -40,5 +41,15 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
                  .Where(x => x.TransportCompanyId == transportCompanyId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch).ToList());
             return ObjectMapper.Map<List<TransportCompanyCashFlowDto>>(cashFlows);
         }
+        public async Task<BalanceInfoDto> GetBalance(int id)
+        {
+            var dollarBalance = await _transportCompanyCashFlowDomainService
+                .GetLastBalance(id, Currency.Dollar, DateTime.Now);
+            var dinarBalance = await _transportCompanyCashFlowDomainService
+                .GetLastBalance(id, Currency.Dinar, DateTime.Now);
+
+            return new BalanceInfoDto(id, dollarBalance, dinarBalance);
+        }
+    
     }
 }

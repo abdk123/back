@@ -22,7 +22,7 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
             double newCurrentBalanceDollar = 0;
 
             var oldCurrentBalanceDinar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dinar, DateTime.Now);
-            var oldCurrentBalanceDollar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dinar, DateTime.Now);
+            var oldCurrentBalanceDollar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dollar, DateTime.Now);
 
             newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
             newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;

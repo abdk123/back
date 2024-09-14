@@ -2,6 +2,8 @@
 using Souccar.Core.Services;
 using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Dto;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Dto;
+using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Dto;
+using Souccar.SaleManagement.Settings.Currencies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +41,15 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
                  Task.FromResult(_customerCashFlowDomainService.GetAllWithIncluding("Customer")
                  .Where(x => x.CustomerId == customerId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch).ToList());
             return ObjectMapper.Map<List<CustomerCashFlowDto>>(cashFlows);
+        }
+        public async Task<BalanceInfoDto> GetBalance(int id)
+        {
+            var dollarBalance = await _customerCashFlowDomainService
+                .GetLastBalance(id, Currency.Dollar, DateTime.Now);
+            var dinarBalance = await _customerCashFlowDomainService
+                .GetLastBalance(id, Currency.Dinar, DateTime.Now);
+
+            return new BalanceInfoDto(id, dollarBalance, dinarBalance);
         }
     }
 }

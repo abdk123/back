@@ -124,7 +124,7 @@
 		<text name="DeletionTime">Deletion Time</text>
 		<text name="LastModificationTime">Last Modification Time</text>
 		<text name="LastModifierUser">Last Modifier User</text>
-		<text name="CreationTime">Creation Time</text>
+		<text name="CreationTime">تاريخ الانشاء</text>
 		<text name="CreatorUser">Creator User</text>
 		<text name="Stock">مخزون</text>
 		<text name="Stocks">المخزون</text>
@@ -212,7 +212,7 @@
 		<text name="OffersList">قائمة العروض</text>
 		<text name="OfferDate">تاريخ العرض</text>
 		<text name="InvoiceDate">تاريخ فاتورة شراء</text>
-		<text name="PoNumber">PO رقم</text>
+		<text name="PoNumber">رقم PO</text>
 		<text name="OfferNumber">رقم العرض</text>
 		<text name="BackToOfferList">عودة إلى قائمة العروض</text>
 		<text name="BackToInvoiceList">عودة إلى قائمة فواتير الشاء</text>
@@ -427,5 +427,7 @@
 		<text name="ClearanceCompanyCashFlow">كشف رصيد شركة التخليص</text>
 		<text name="TranspartCompanyCashFlow">كشف رصيد شركة النقل</text>
 		<text name="CustomerCompanyCashFlow">كشف رصيد العميل</text>
+		<text name="RejectionDate">تاريخ الرفض</text>
+		<text name="RejectMaterial">رفض المادة</text>
 	</texts>
 </localizationDictionary>

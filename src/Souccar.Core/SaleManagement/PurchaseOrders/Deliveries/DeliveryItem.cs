@@ -1,5 +1,5 @@
-﻿using Abp.Domain.Entities;
-using Souccar.SaleManagement.PurchaseInvoices;
+﻿using System;
+using Abp.Domain.Entities;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +11,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries
         public double DeliveredQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
         public double RejectedQuantity { get; set; }
+        public DateTime? RejectionDate { get; set; }
         public double TotalPrice
         {
             get

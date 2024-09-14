@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using Souccar.SaleManagement.PurchaseInvoices.Receives;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
+using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         public PurchaseInvoice()
         {
             InvoiseDetails = new List<PurchaseInvoiceItem>();
-            Receivings = new List<Receiving>();
+            //Receivings = new List<Receiving>();
         }
         public PurchaseInvoiceStatus Status { get; set; }
         public string PoNumber => Offer != null ? Offer.PorchaseOrderId : string.Empty;
@@ -25,6 +26,13 @@ namespace Souccar.SaleManagement.PurchaseInvoices
 
         [ForeignKey(nameof(OfferId))]
         public Offer Offer { get; set; }
+        #endregion
+
+        #region Supplier Offer
+        public int? SupplierOfferId { get; set; }
+
+        [ForeignKey(nameof(SupplierOfferId))]
+        public SupplierOffer SupplierOffer { get; set; }
         #endregion
 
         /// <summary>
@@ -38,7 +46,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         #endregion
 
         public IList<PurchaseInvoiceItem> InvoiseDetails { get; set; }
-        public IList<Receiving> Receivings { get; set; }
+        //public IList<Receiving> Receivings { get; set; }
 
         #region Getters
         public double TotalQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x => x.Quantity) : 0;

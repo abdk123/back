@@ -20,10 +20,10 @@ namespace Souccar.SaleManagement.Invoises.Services
             _invoiceDomainService = invoiceDomainService;
         }
 
-        //protected override IQueryable<PurchaseInvoice> CreateFilteredQuery(FullPagedRequestDto input)
-        //{
-        //    return _invoiceDomainService.GetAllWithDetail();
-        //}
+        protected override IQueryable<PurchaseInvoice> CreateFilteredQuery(FullPagedRequestDto input)
+        {
+            return _invoiceDomainService.GetAllWithDetail();
+        }
 
         protected override IQueryable<PurchaseInvoice> ApplySearching(IQueryable<PurchaseInvoice> query, Type typeDto, FullPagedRequestDto input)
         {
@@ -48,16 +48,18 @@ namespace Souccar.SaleManagement.Invoises.Services
                 var dto = input.InvoiseDetails.FirstOrDefault(x => x.Id == item.Id);
                 item.TotalMaterilPrice = dto.TotalMaterilPrice;
                 item.Quantity = dto.Quantity;
+                item.OfferItemId = dto.OfferItemId;
             }
 
             await _invoiceDomainService.UpdateAsync(invoice);
             return ObjectMapper.Map<InvoiceDto>(invoice);
         }
 
-        public async Task<InvoiceDto> GetByOfferId(int offerId)
+        public IList<InvoiceDto> GetByOfferId(int offerId)
         {
-            var invoice = _invoiceDomainService.GetByOfferIdAsync(offerId);
-            return ObjectMapper.Map<InvoiceDto>(invoice);
+            var invoices = _invoiceDomainService.GetAllByOfferId(offerId).ToList();
+            var dto = ObjectMapper.Map<List<InvoiceDto>>(invoices);
+            return dto;
         }
 
         public IList<InvoiceItemForDeliveryDto> GetForDelivery(int customerId)

@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace Souccar.SaleManagement.PurchaseOrders.Offers
+namespace Souccar.SaleManagement.PurchaseOrders.SupplierOffers
 {
-    public class OfferItem : Entity
+    public class SupplierOfferItem : Entity
     {
         /// <summary>
         /// اسم المادة من الزبون
@@ -60,11 +60,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
         /// <summary>
         /// طلب المشتريات
         /// </summary>
-        #region Offer
-        public int? OfferId { get; set; }
+        #region SupplierOffer
+        public int? SupplierOfferId { get; set; }
 
-        [ForeignKey(nameof(OfferId))]
-        public Offer Offer { get; set; }
+        [ForeignKey(nameof(SupplierOfferId))]
+        public SupplierOffer SupplierOffer { get; set; }
         #endregion
 
         /// <summary>
@@ -121,19 +121,19 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers
             }
         }
 
-        public IList<PurchaseInvoiceItem> PurchaseInvoiceItems { get; set; }
-        //{
-        //    get
-        //    {
-        //        if(Offer == null)
-        //            return new List<PurchaseInvoiceItem>();
+        public IList<PurchaseInvoiceItem> PurchaseInvoiceItems
+        {
+            get
+            {
+                if(SupplierOffer == null)
+                    return new List<PurchaseInvoiceItem>();
 
-        //        return Offer.PurchaseInvoices
-        //            .SelectMany(x => x.InvoiseDetails)
-        //            .Where(x => x.OfferItemId == Id)
-        //            .ToList();
-        //    }
-        //}
+                return SupplierOffer.PurchaseInvoices
+                    .SelectMany(x => x.InvoiseDetails)
+                    .Where(x => x.SupplierOfferItemId == Id)
+                    .ToList();
+            }
+        }
 
         public IList<DeliveryItem> DeliveryItems { get; set; }
 

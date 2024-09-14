@@ -20,6 +20,7 @@ namespace Souccar.Notification
             _notificationPublisher = notificationPublisher;
         }
 
+        [UnitOfWork]
         public async Task SendSaleInvoiceNotify(string title, Dictionary<string, object> dic, Abp.UserIdentifier[] identifiers)
         {
             try

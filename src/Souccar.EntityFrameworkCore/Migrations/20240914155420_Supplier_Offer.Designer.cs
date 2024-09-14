@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240914155420_Supplier_Offer")]
+    partial class Supplier_Offer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3480,7 +3483,7 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", b =>
                 {
                     b.HasOne("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", "Offer")
-                        .WithMany()
+                        .WithMany("PurchaseInvoices")
                         .HasForeignKey("OfferId");
 
                     b.HasOne("Souccar.SaleManagement.Settings.Customers.Customer", "Supplier")
@@ -3526,7 +3529,7 @@ namespace Souccar.Migrations
                         .HasForeignKey("ClearanceCompanyId");
 
                     b.HasOne("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", "Invoice")
-                        .WithMany()
+                        .WithMany("Receivings")
                         .HasForeignKey("InvoiceId");
 
                     b.HasOne("Souccar.SaleManagement.Settings.Companies.TransportCompany", "TransportCompany")
@@ -3854,6 +3857,8 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoice", b =>
                 {
                     b.Navigation("InvoiseDetails");
+
+                    b.Navigation("Receivings");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseInvoices.PurchaseInvoiceItem", b =>
@@ -3874,6 +3879,8 @@ namespace Souccar.Migrations
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.Offer", b =>
                 {
                     b.Navigation("OfferItems");
+
+                    b.Navigation("PurchaseInvoices");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.PurchaseOrders.Offers.OfferItem", b =>

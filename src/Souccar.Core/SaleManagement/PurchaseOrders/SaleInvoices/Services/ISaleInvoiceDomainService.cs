@@ -6,7 +6,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
 {
     public interface ISaleInvoiceDomainService : ISouccarDomainService<SaleInvoice, int>
     {
-        Task CheckSaleInvoiceAsync(Abp.UserIdentifier[] identifiers);
+        Task<IList<SaleInvoice>> CheckSaleInvoiceAsync();
         Task<SaleInvoice> GetWithDetailsByIdAsync(int saleInvoiceId);
     }
 }

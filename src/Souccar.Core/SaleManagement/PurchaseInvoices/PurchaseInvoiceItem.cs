@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using Souccar.SaleManagement.PurchaseInvoices.Receives;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
+using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,6 +24,13 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         public OfferItem OfferItem { get; set; }
         #endregion
 
+        #region Supplier Offer Item
+        public int? SupplierOfferItemId { get; set; }
+
+        [ForeignKey(nameof(SupplierOfferItemId))]
+        public SupplierOfferItem SupplierOfferItem { get; set; }
+        #endregion
+
         #region Invoice
         public int? InvoiceId { get; set; }
 
@@ -31,19 +39,19 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         #endregion
 
         #region
-        public IList<ReceivingItem> ReceivingItems
-        {
-            get
-            {
-                if (Invoice == null)
-                    return new List<ReceivingItem>();
+        public IList<ReceivingItem> ReceivingItems { get; set; }
+        //{
+        //    get
+        //    {
+        //        if (Invoice == null)
+        //            return new List<ReceivingItem>();
 
-                return Invoice.Receivings
-                    .SelectMany(x => x.ReceivingItems)
-                    .Where(x => x.InvoiceItemId == Id)
-                    .ToList();
-            }
-        }
+        //        return Invoice.Receivings
+        //            .SelectMany(x => x.ReceivingItems)
+        //            .Where(x => x.InvoiceItemId == Id)
+        //            .ToList();
+        //    }
+        //}
 
         /// <summary>
         /// السعر الكلي الجديد

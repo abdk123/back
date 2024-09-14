@@ -16,11 +16,30 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Services
         }
         public IQueryable<PurchaseInvoice> GetAllWithDetail()
         {
-            return _invoiceRepository.GetAll()
+            return _invoiceRepository.GetAllIncluding(
+                x => x.Supplier,
+                i => i.InvoiseDetails,
+                o => o.Offer)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.ClearanceCompany)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.TransportCompany)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size);
+
+        }
+        public IQueryable<PurchaseInvoice> GetAllByOfferId(int offerId)
+        {
+            return _invoiceRepository.GetAllIncluding(
+                x => x.Supplier,
+                i => i.InvoiseDetails,
+                o => o.Offer)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.ClearanceCompany)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.TransportCompany)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems);
+                .Where(x => x.OfferId == offerId);
+
         }
         public IQueryable<PurchaseInvoice> GetForDelivery(int customerId)
         {
@@ -44,13 +63,15 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Services
         }
         public PurchaseInvoice GetWithDetail(int id)
         {
-            return _invoiceRepository.GetAll()
-                .Include(s => s.Offer).ThenInclude(s => s.Customer)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks)
+            return _invoiceRepository.GetAllIncluding(
+                x => x.Supplier,
+                i => i.InvoiseDetails,
+                o => o.Offer)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.ClearanceCompany)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.TransportCompany)
+                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Supplier)
-                .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems)
                 .FirstOrDefault(x => x.Id == id);
         }
         public IList<int> GetOffersIds(int[] invoiceItemsIds)

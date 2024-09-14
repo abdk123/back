@@ -4,7 +4,9 @@ using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Souccar.Authorization;
 using Souccar.Authorization.Users;
+using Souccar.Notification;
 using Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,13 +16,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Workers
     {
         private readonly ISaleInvoiceDomainService _saleInvoiceDomainService;
         private readonly UserManager _userManager;
+        private readonly IAppNotifier _appNotifier;
 
-        public CheckRemainingDaysForPaidWorker(AbpAsyncTimer timer, ISaleInvoiceDomainService saleInvoiceDomainService, UserManager userManager)
+        public CheckRemainingDaysForPaidWorker(AbpAsyncTimer timer, ISaleInvoiceDomainService saleInvoiceDomainService, UserManager userManager, IAppNotifier appNotifier)
             : base(timer)
         {
             Timer.Period = 15000;
             _saleInvoiceDomainService = saleInvoiceDomainService;
             _userManager = userManager;
+            _appNotifier = appNotifier;
         }
 
         [UnitOfWork]
@@ -33,7 +37,19 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Workers
                 {
                     return user.ToUserIdentifier();
                 }).ToArray();
-                await _saleInvoiceDomainService.CheckSaleInvoiceAsync(identifiers);
+                var invoices = await _saleInvoiceDomainService.CheckSaleInvoiceAsync();
+                foreach (var saleInvoice in invoices)
+                {
+                    var title = "فاتورة مبيعات يجب دفعها من قبل الزبون " + saleInvoice.Customer.FullName;
+                    var dic = new Dictionary<string, object>()
+                        {
+                            {"Id",saleInvoice.Id },
+                            {"TotalQuantity",saleInvoice.InvoiceTotalQuantity },
+                            {"DateForPaid",saleInvoice.DateForPaid },
+                            {"Currency",saleInvoice.SaleCurrency },
+                        };
+                    await _appNotifier.SendSaleInvoiceNotify(title, dic, identifiers);
+                }
             }
         }
     }
