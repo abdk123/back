@@ -31,6 +31,12 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             return ObjectMapper.Map<List<DeliveryDto>>(receiving);
         }
 
+        public IList<DeliveryDto> GetForSaleInvoice(int customerId)
+        {
+            var receiving = _deliveryDomainService.GetForSaleInvoice(customerId).ToList();
+            return ObjectMapper.Map<List<DeliveryDto>>(receiving);
+        }
+
         public async Task<List<DeliveryDto>> GetAllDeliverdAsync()
         {
             var deliveries = await _deliveryDomainService.GetAllDeliverdAsync();
@@ -61,7 +67,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 await EventBus.Default.TriggerAsync(new UpdateStockEventData(
                     item.OfferItem.MaterialId,
                     numberInLargeQuentity, numberInSmallQuentity));
+
+                //999 Õ—ﬂ… ⁄·Ï —’Ìœ «·“»Ê‰
             }
+            //999 ﬂ·›… «·‰ﬁ· ⁄·Ï «·“»Ê‰
             return createdDelivery;
         }
 

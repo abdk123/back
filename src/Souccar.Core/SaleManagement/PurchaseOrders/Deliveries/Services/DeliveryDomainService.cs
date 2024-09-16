@@ -81,6 +81,18 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 .Include(i => i.DeliveryItems).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
                 .Where(x => x.Status == DeliveryStatus.PartialRejected || x.Status == DeliveryStatus.Rejected);
         }
+
+        public IQueryable<Delivery> GetForSaleInvoice(int customerId)
+        {
+            return _deliveryRepository.GetAll().AsNoTracking()
+                .Include(c => c.Customer)
+                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.OfferItem).ThenInclude(of => of.Offer)
+                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.OfferItem).ThenInclude(m => m.Material).ThenInclude(x => x.Stocks)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.DeliveryItems).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Where(x => x.CustomerId == customerId && x.Status != DeliveryStatus.WaitingApprove && x.Status != DeliveryStatus.PartialRejected && x.Status != DeliveryStatus.Rejected);
+
+        }
     }
 }
 
