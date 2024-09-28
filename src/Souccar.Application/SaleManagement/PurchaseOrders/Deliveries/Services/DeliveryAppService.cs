@@ -130,7 +130,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             return ObjectMapper.Map<DeliveryDto>(delivery);
         }
 
-        
+        public IList<DeliveryDto> GetByOfferItems(int[] offerItemsIds)
+        {
+            var deliveryItems = _deliveryDomainService.GetByOfferItems(offerItemsIds);
+            return ObjectMapper.Map<List<DeliveryDto>>(deliveryItems);
+        }
     }
 }
 

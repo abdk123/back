@@ -11,6 +11,7 @@ using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseInvoices.Events;
 using Souccar.SaleManagement.Invoises.Dto;
+using Souccar.SaleManagement.PurchaseOrders.Offers.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
 {
@@ -149,7 +150,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             {
                 throw new UserFriendlyException(ValidationMessage.TheOfferMustBeApprovedFirst);
             }
+
             await EventBus.Default.TriggerAsync(new CreateInvoiceEventData(input.SupplierId,input.OfferId,input.OfferItemsIds,offer.Currency));
+            await EventBus.Default.TriggerAsync(new ChangeOfferStatusEventData(input.OfferId,OfferStatus.TransformToPurchaseInvoice));
 
             //var currentUser = await GetCurrentUserAsync();
             //await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()

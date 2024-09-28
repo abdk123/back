@@ -110,5 +110,11 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
                 throw new UserFriendlyException(ex.Message);
             }
         }
+
+        public IList<SaleInvoiceDto> GetByOfferItems(int[] offerItemsIds)
+        {
+            var invoices = _saleInvoiceDomainService.GetByOfferItems(offerItemsIds);
+            return ObjectMapper.Map<List<SaleInvoiceDto>>(invoices);
+        }
     }
 }

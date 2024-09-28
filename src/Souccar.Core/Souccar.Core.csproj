@@ -25,6 +25,5 @@
   <ItemGroup>
     <Folder Include="SaleManagement\PurchaseOrders\SupplierOffers\" />
     <Folder Include="SaleManagement\PurchaseOrders\Deliveries\Event\" />
-    <Folder Include="SaleManagement\PurchaseOrders\Offers\Events\" />
   </ItemGroup>
 </Project>

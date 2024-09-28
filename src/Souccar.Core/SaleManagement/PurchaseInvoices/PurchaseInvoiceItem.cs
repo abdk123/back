@@ -11,6 +11,10 @@ namespace Souccar.SaleManagement.PurchaseInvoices
 {
     public class PurchaseInvoiceItem : Entity
     {
+        public PurchaseInvoiceItem()
+        {
+            ReceivingItems = new List<ReceivingItem>();
+        }
         /// <summary>
         /// الكمية الجديدة     
         /// </summary>

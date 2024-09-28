@@ -44,6 +44,23 @@ namespace Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services
             return saleInvoices;
         }
 
+        public IList<SaleInvoice> GetByOfferItems(int[] offerItemsIds)
+        {
+            var data = _saleInvoiceRepository.GetAllIncluding(s => s.Customer)
+                .Include(i => i.SaleInvoiceItems).ThenInclude(a => a.DeliveryItem)
+                .ThenInclude(m => m.OfferItem).ThenInclude(f => f.Material)
+                .Include(i => i.SaleInvoiceItems).ThenInclude(a => a.DeliveryItem)
+                .ThenInclude(m => m.OfferItem).ThenInclude(f => f.Unit)
+                .Include(i => i.SaleInvoiceItems).ThenInclude(a => a.DeliveryItem)
+                .ThenInclude(m => m.OfferItem).ThenInclude(f => f.Size)
+                .Where(x=>x.SaleInvoiceItems.Any(i=> offerItemsIds.Contains(i.DeliveryItem.OfferItemId.Value)));
+            if (!data.Any())
+            {
+                return new List<SaleInvoice>();
+            }
+            return data.ToList();
+        }
+
         public async Task<SaleInvoice> GetWithDetailsByIdAsync(int saleInvoiceId)
         {
             return await _saleInvoiceRepository.GetAllIncluding(s => s.Customer)

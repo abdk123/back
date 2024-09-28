@@ -296,7 +296,7 @@
 		<text name="InvoiseDetails">تفاصيل الفاتورة</text>
 		<text name="DeliveryItems">بود الدلفري</text>
 		<text name="TotalMaterilPrice">السعر الاجمالي للمادة</text>
-		<text name="DeliveredQuantity">الكمية المسلمة</text>
+		<text name="DeliveredQuantity">الكمية المرسلة</text>
 		<text name="Delivery">دلفري</text>
 		<text name="Deliveries">الدلفري</text>
 		<text name="CreateNewDelivery">إضافة دلفري</text>
