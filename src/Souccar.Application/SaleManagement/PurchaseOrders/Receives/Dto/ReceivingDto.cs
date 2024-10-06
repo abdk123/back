@@ -26,6 +26,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Dto
         public double TotalReceivedQuantity { get; set; }
         public IList<ReceivingItemDto> ReceivingItems { get; set; }
         public string CreationTime { get; set; }
+        public string CreatorUser { get; set; }
     }
 }
 

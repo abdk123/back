@@ -152,7 +152,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
             }
 
             await EventBus.Default.TriggerAsync(new CreateInvoiceEventData(input.SupplierId,input.OfferId,input.OfferItemsIds,offer.Currency));
-            await EventBus.Default.TriggerAsync(new ChangeOfferStatusEventData(input.OfferId,OfferStatus.TransformToPurchaseInvoice));
+            //await EventBus.Default.TriggerAsync(new ChangeOfferStatusEventData(input.OfferId,OfferStatus.TransformToPurchaseInvoice));
 
             //var currentUser = await GetCurrentUserAsync();
             //await EventBus.Default.TriggerAsync(new CreateOrderLogEventData(new OrderLog()

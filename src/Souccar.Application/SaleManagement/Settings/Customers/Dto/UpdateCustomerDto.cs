@@ -10,7 +10,7 @@ namespace Souccar.SaleManagement.Settings.Customers.Dto
         public string Address { get; set; }
         public double BalanceInDollar { get; set; }
         public double BalanceInDinar { get; set; }
-        public double InitialBalance { get; set; }
+        //public double InitialBalance { get; set; }
         public int Type { get; set; }
     }
 }

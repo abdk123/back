@@ -19,12 +19,12 @@ namespace Souccar.EntityFrameworkCore.Seed.Host
         private void CreateUnits()
         {
 
-            if (_context.Unit.IgnoreQueryFilters().Any(l => l.Name.Contains("طن")))
+            if (_context.Units.IgnoreQueryFilters().Any(l => l.Name.Contains("طن")))
             {
                 return;
             }
 
-            _context.Unit.Add(new SaleManagement.Settings.Units.Unit() { Name ="طن"});
+            _context.Units.Add(new SaleManagement.Settings.Units.Unit() { Name ="طن"});
             _context.SaveChanges();
         }
     }

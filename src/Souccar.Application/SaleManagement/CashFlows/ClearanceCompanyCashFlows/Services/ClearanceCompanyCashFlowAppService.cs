@@ -20,7 +20,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             _clearanceCompanyCashFlowDomainService = clearanceCompanyCashFlowDomainService;
         }
 
-        public async Task<List<ClearanceCompanyCashFlowDto>> GetAllByClearanceCompanyId(int clearanceCompanyId, string fromDate, string toDate)
+        public async Task<List<ClearanceCompanyCashFlowDto>> GetAllByClearanceCompanyId(int clearanceCompanyId, string fromDate, string toDate,Currency? currency)
         {
             var fromDateSearch = DateTime.Now;
             if (!string.IsNullOrEmpty(fromDate))
@@ -38,8 +38,18 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
 
             var cashFlows = await
                  Task.FromResult(_clearanceCompanyCashFlowDomainService.GetAllWithIncluding("ClearanceCompany")
-                 .Where(x => x.ClearanceCompanyId == clearanceCompanyId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch).ToList());
-            return ObjectMapper.Map<List<ClearanceCompanyCashFlowDto>>(cashFlows);
+                 .Where(x => x.ClearanceCompanyId == clearanceCompanyId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch));
+            var afat = cashFlows.ToList();
+            if (currency == Currency.Dollar)
+            {
+                cashFlows = cashFlows.Where(x => x.AmountDollar !=0);
+            }
+            else if (currency == Currency.Dinar)
+            {
+                cashFlows = cashFlows.Where(x => x.AmountDinar != 0);
+            }
+            
+            return ObjectMapper.Map<List<ClearanceCompanyCashFlowDto>>(cashFlows.ToList());
         }
 
         public async Task<BalanceInfoDto> GetBalance(int id)
@@ -51,5 +61,6 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
 
             return new BalanceInfoDto(id, dollarBalance, dinarBalance);
         }
+
     }
 }

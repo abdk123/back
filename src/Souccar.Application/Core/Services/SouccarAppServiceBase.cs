@@ -133,7 +133,6 @@ namespace Souccar.Core.Services
         /// <param name="input">The input.</param>
         protected virtual IQueryable<TEntity> CreateFilteredQuery(TGetAllInput input)
         {
-            var tt = typeof(TGetAllInput).GetInterfaces().ToList();
             var containIncluding = typeof(TGetAllInput).GetInterfaces().Any(i => i.Name == "IIncludeResultRequest");
             if (containIncluding)
             {

@@ -8,7 +8,9 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Map
     {
         public ReceivingMapProfile()
         {
-            CreateMap<Receiving, ReceivingDto>().ReverseMap();
+            CreateMap<Receiving, ReceivingDto>()
+                .ForMember(x => x.CreatorUser, opt => opt.MapFrom((src, des, context) => src.CreatorUser?.FullName));
+            CreateMap<ReceivingDto, Receiving>();
             CreateMap<ReceivingItem, ReceivingItemDto>().ReverseMap();
             CreateMap<Receiving, ReadReceivingDto>();
             CreateMap<CreateReceivingDto, Receiving>().ReverseMap();

@@ -5,12 +5,12 @@
         //صرف
         Spend,
         //قبض
-        Receive,
+        Receipt,
         //كلفة تخليص
         ClearanceCost,
         //كلفة نقل
         TransportCost,
         //كلفة المادة المستلمة
-        ReceivingCost
+        ReceivingCostcc
     }
 }

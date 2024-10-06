@@ -1,5 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using Souccar.SaleManagement.PurchaseInvoices.Receives;
+using Souccar.Authorization.Users;
 using Souccar.SaleManagement.PurchaseOrders.Offers;
 using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 using Souccar.SaleManagement.Settings.Currencies;
@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseInvoices
 {
-    public class PurchaseInvoice : FullAuditedAggregateRoot
+    public class PurchaseInvoice : FullAuditedAggregateRoot<int, User>
     {
         public PurchaseInvoice()
         {

@@ -4,6 +4,7 @@ using Souccar.Core.Services.Implements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Souccar.Extinsions;
 
 namespace Souccar.SaleManagement.PurchaseInvoices.Services
 {
@@ -19,7 +20,8 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Services
             return _invoiceRepository.GetAllIncluding(
                 x => x.Supplier,
                 i => i.InvoiseDetails,
-                o => o.Offer)
+                o => o.Offer,
+                u=> u.CreatorUser)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.ClearanceCompany)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.ReceivingItems).ThenInclude(x => x.Receiving).ThenInclude(x => x.TransportCompany)
                 .Include(i => i.InvoiseDetails).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material)
@@ -85,6 +87,14 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Services
             }
 
             return new List<int>();
+        }
+
+        public IList<PurchaseInvoice> GetWithIncludeMultiple(string[] includes)
+        {
+            var data = _invoiceRepository.GetAll()
+                .IncludeMultiple(includes).ToList();
+
+            return data;
         }
     }
 }

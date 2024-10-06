@@ -20,7 +20,7 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
             _transportCompanyCashFlowDomainService = transportCompanyCashFlowDomainService;
         }
 
-        public async Task<List<TransportCompanyCashFlowDto>> GetAllByTransportCompanyId(int transportCompanyId, string fromDate, string toDate)
+        public async Task<List<TransportCompanyCashFlowDto>> GetAllByTransportCompanyId(int transportCompanyId, string fromDate, string toDate, Currency? currency)
         {
             var fromDateSearch = DateTime.Now;
             if (!string.IsNullOrEmpty(fromDate))
@@ -38,7 +38,16 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
 
             var cashFlows = await
                  Task.FromResult(_transportCompanyCashFlowDomainService.GetAllWithIncluding("TransportCompany")
-                 .Where(x => x.TransportCompanyId == transportCompanyId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch).ToList());
+                 .Where(x => x.TransportCompanyId == transportCompanyId && x.CreationTime >= fromDateSearch && x.CreationTime <= toDateSearch));
+
+            if (currency == Currency.Dollar)
+            {
+                cashFlows = cashFlows.Where(x => x.AmountDollar != 0);
+            }
+            else if (currency == Currency.Dinar)
+            {
+                cashFlows = cashFlows.Where(x => x.AmountDinar != 0);
+            }
             return ObjectMapper.Map<List<TransportCompanyCashFlowDto>>(cashFlows);
         }
         public async Task<BalanceInfoDto> GetBalance(int id)

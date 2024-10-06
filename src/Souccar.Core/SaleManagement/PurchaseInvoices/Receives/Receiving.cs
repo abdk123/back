@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using Souccar.Authorization.Users;
 using Souccar.SaleManagement.Settings.Companies;
 using Souccar.SaleManagement.Settings.Currencies;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace Souccar.SaleManagement.PurchaseInvoices.Receives
 {
-    public class Receiving : FullAuditedAggregateRoot
+    public class Receiving : FullAuditedAggregateRoot<int, User>
     {
         public Receiving()
         {

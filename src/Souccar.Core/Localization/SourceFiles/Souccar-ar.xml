@@ -125,7 +125,7 @@
 		<text name="LastModificationTime">Last Modification Time</text>
 		<text name="LastModifierUser">Last Modifier User</text>
 		<text name="CreationTime">تاريخ الانشاء</text>
-		<text name="CreatorUser">Creator User</text>
+		<text name="CreatorUser"> المنشئ</text>
 		<text name="Stock">مخزون</text>
 		<text name="Stocks">المخزون</text>
 		<text name="CreateNewStock">إضافة مخزون جديد</text>
@@ -323,8 +323,8 @@
 		<text name="CurrentBalanceDollar">الرصيد الحالي بالدولار</text>
 		<text name="AmountDinar">المبلغ بالدينار</text>
 		<text name="CurrentBalanceDinar">الرصيد الحالي بالدينار</text>
-		<text name="TransactionDetails">Transaction Details</text>
-		<text name="TransactionName">Transaction Name</text>
+		<text name="TransactionDetails">التفاصيل</text>
+		<text name="TransactionName">العنوان</text>
 		<text name="NotReceivedQuantity">الكمية الغير مستلمة</text>
 		<text name="InvoiceMaterials">مواد الفاتورة</text>
 		<text name="SendDelivery">ارسال دلفري</text>
@@ -423,11 +423,19 @@
 		<text name="Reject">رفض</text>
 		<text name="BackToClearanceCompanyList">عودة إلى قائمة شركات التخليص</text>
 		<text name="BackToTransportCompanyList">عودة إلى قائمة شركات النقل</text>
-		<text name="BackToCustomerCompanyList">عودة إلى قائمة الزبائن</text>
+		<text name="BackToCustomerList">عودة إلى قائمة الزبائن</text>
 		<text name="ClearanceCompanyCashFlow">كشف رصيد شركة التخليص</text>
 		<text name="TranspartCompanyCashFlow">كشف رصيد شركة النقل</text>
-		<text name="CustomerCompanyCashFlow">كشف رصيد العميل</text>
+		<text name="CustomerCashFlow">كشف رصيد العميل</text>
 		<text name="RejectionDate">تاريخ الرفض</text>
 		<text name="RejectMaterial">رفض المادة</text>
+		<text name="Spend">صرف</text>
+		<text name="Receipt">قبض</text>
+		<text name="FromDate">من تاريخ</text>
+		<text name="ToDate">إلى تاريخ</text>
+		<text name="OnHim">عليه</text>
+		<text name="ForHim">له</text>
+		<text name="TransactionType">نوع العملية</text>
+		<text name="CustomerAndSupplier">مورد وزبون</text>
 	</texts>
 </localizationDictionary>

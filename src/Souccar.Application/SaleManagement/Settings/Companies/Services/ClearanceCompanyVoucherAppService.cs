@@ -27,7 +27,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
                 new ClearanceCompanyCashFlowDeleteEventData(
                         oldVoucher.Currency == Currencies.Currency.Dollar ? oldVoucher.Amount : 0,
                         oldVoucher.Currency == Currencies.Currency.Dinar ? oldVoucher.Amount : 0,
-                        "", "", oldVoucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
+                        "", "", oldVoucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
                         oldVoucher.ClearanceCompanyId
                     ));
 
@@ -37,17 +37,17 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
             EventBus.Default.Trigger(
                     new ClearanceCompanyCashFlowCreateEventData(
                         voucher.Currency == Currencies.Currency.Dollar &&
-                        voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dollar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
                         voucher.Currency == Currencies.Currency.Dinar &&
-                        voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
                         
-                        voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
                         voucher.ClearanceCompanyId,
                         voucherDto.Id
                         ));
@@ -63,16 +63,16 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
             EventBus.Default.Trigger(
                     new ClearanceCompanyCashFlowCreateEventData(
                         voucher.Currency == Currencies.Currency.Dollar &&
-                        voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dollar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
                         voucher.Currency == Currencies.Currency.Dinar &&
-                        voucher.VoucherType == Customers.VoucherType.Receive ? voucher.Amount :
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? voucher.Amount :
                         voucher.Currency == Currencies.Currency.Dinar &&
                         voucher.VoucherType == Customers.VoucherType.Spend ? (-1 * voucher.Amount) : 0,
 
-                        voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
                         voucher.ClearanceCompanyId,
                         voucherDto.Id
                         ));
@@ -87,7 +87,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
                 new ClearanceCompanyCashFlowDeleteEventData(
                         voucher.Currency == Currencies.Currency.Dollar ? voucher.Amount : 0,
                         voucher.Currency == Currencies.Currency.Dinar ? voucher.Amount : 0,
-                        "", "", voucher.VoucherType == Customers.VoucherType.Receive ? CashFlows.TransactionName.Receive : CashFlows.TransactionName.Spend,
+                        "", "", voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
                         voucher.ClearanceCompanyId
                     ));
 

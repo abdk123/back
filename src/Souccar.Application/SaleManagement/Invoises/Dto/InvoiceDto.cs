@@ -19,6 +19,7 @@ namespace Souccar.SaleManagement.Invoises.Dto
         public double TotalPrice { get; set; }
         public string SupplierName { get; set; }
         public string SupplierId { get; set; }
+        public string CreatorUser { get; set; }
         public double TotalReceivedQuantity => InvoiseDetails.Any() ? InvoiseDetails.Sum(x=>x.ReceivedQuantity) : 0;
         public double TotalNotReceivedQuantity => TotalQuantity - TotalReceivedQuantity;
         public IList<InvoiceItemDto> InvoiseDetails { get; set; }

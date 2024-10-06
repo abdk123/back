@@ -6,6 +6,6 @@
         Spend,
 
         //قبض
-        Receive
+        Receipt
     }
 }

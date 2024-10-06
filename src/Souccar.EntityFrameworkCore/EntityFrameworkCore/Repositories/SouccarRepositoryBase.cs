@@ -2,6 +2,7 @@
 using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
+using System.Linq;
 
 namespace Souccar.EntityFrameworkCore.Repositories
 {
@@ -18,7 +19,10 @@ namespace Souccar.EntityFrameworkCore.Repositories
         {
         }
 
-        // Add your common methods for all repositories
+        //public IQueryable<TEntity> GetIncludeMultiple(string includes)
+        //{
+        //    var query
+        //}
     }
 
     /// <summary>

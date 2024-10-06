@@ -17,7 +17,7 @@ namespace Souccar.SaleManagement.Invoises.Map
                     }
                     return 0;
                 }))
-
+                .ForMember(x => x.CreatorUser, opt => opt.MapFrom(src => src.CreatorUser.FullName))
                 .ForMember(x => x.PoNumber, op => op.MapFrom(src => src.Offer.PorchaseOrderId))
                 .ForMember(x => x.OfferDate, op => op.MapFrom(src => src.Offer.CreationTime))
                 .ForMember(x => x.ApproveDate, op => op.MapFrom(src => src.Offer.ApproveDate))

@@ -27,32 +27,32 @@ namespace Souccar.EntityFrameworkCore
     public class SouccarDbContext : AbpZeroDbContext<Tenant, Role, User, SouccarDbContext>
     {
         /* Define a DbSet for each entity of the application */
-        public DbSet<Stock> Stock { get; set; }
-        public DbSet<Size> Size { get; set; }
-        public DbSet<Unit> Unit { get; set; }
-        public DbSet<UnitSize> UnitSize { get; set; }
-        public DbSet<Store> Store { get; set; }
-        public DbSet<Material> Material { get; set; }
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<CustomerVoucher> CustomerBalance { get; set; }
-        public DbSet<ClearanceCompany> ClearanceCompany { get; set; }
-        public DbSet<TransportCompany> TransportCompany { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<ClearanceCompanyVoucher> ClearanceCompanyBalance { get; set; }
-        public DbSet<TransportCompanyVoucher> TransportCompanyBalance { get; set; }
-        public DbSet<PurchaseInvoice> Invoice { get; set; }
-        public DbSet<PurchaseInvoiceItem> InvoiceItem { get; set; }
-        public DbSet<Offer> Offer { get; set; }
-        public DbSet<OfferItem> OfferItem { get; set; }
-        public DbSet<SupplierOffer> SupplierOffer { get; set; }
-        public DbSet<SupplierOfferItem> SupplierOfferItem { get; set; }
-        public DbSet<Delivery> Delivery { get; set; }
-        public DbSet<DeliveryItem> DeliveryItem { get; set; }
-        public DbSet<Receiving> Receiving { get; set; }
-        public DbSet<ReceivingItem> ReceivingItem { get; set; }
-        public DbSet<CustomerCashFlow> CustomerCashFlow { get; set; }
-        public DbSet<ClearanceCompanyCashFlow> ClearanceCompanyCashFlow { get; set; }
-        public DbSet<TransportCompanyCashFlow> TransportCompanyCashFlow { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Unit> Units { get; set; }
+        public DbSet<UnitSize> UnitSizes { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Material> Materials { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerVoucher> CustomerBalances { get; set; }
+        public DbSet<ClearanceCompany> ClearanceCompanies { get; set; }
+        public DbSet<TransportCompany> TransportCompanies { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ClearanceCompanyVoucher> ClearanceCompanyBalances { get; set; }
+        public DbSet<TransportCompanyVoucher> TransportCompanyBalances { get; set; }
+        public DbSet<PurchaseInvoice> Invoices { get; set; }
+        public DbSet<PurchaseInvoiceItem> InvoiceItems { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        public DbSet<OfferItem> OfferItems { get; set; }
+        public DbSet<SupplierOffer> SupplierOffers { get; set; }
+        public DbSet<SupplierOfferItem> SupplierOfferItems { get; set; }
+        public DbSet<Delivery> Deliverys { get; set; }
+        public DbSet<DeliveryItem> DeliveryItems { get; set; }
+        public DbSet<Receiving> Receivings { get; set; }
+        public DbSet<ReceivingItem> ReceivingItems { get; set; }
+        public DbSet<CustomerCashFlow> CustomerCashFlows { get; set; }
+        public DbSet<ClearanceCompanyCashFlow> ClearanceCompanyCashFlows { get; set; }
+        public DbSet<TransportCompanyCashFlow> TransportCompanyCashFlows { get; set; }
         public DbSet<SaleInvoice> SaleInvoices { get; set; }
         public DbSet<OrderLog> OrderLogs { get; set; }
         public DbSet<OrderLogAttribute> OrderLogAttributes { get; set; }
