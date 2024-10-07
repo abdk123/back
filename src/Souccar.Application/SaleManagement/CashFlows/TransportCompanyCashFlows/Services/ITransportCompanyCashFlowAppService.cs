@@ -11,5 +11,6 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
     {
         Task<List<TransportCompanyCashFlowDto>> GetAllByTransportCompanyId(int TransportCompanyId, string fromDate, string toDate, Currency? currency);
         Task<BalanceInfoDto> GetBalance(int id);
+        IList<BalanceInfoDto> GetAllBalances();
     }
 }

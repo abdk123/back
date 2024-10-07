@@ -74,5 +74,6 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
 
             return customerBalance;
         }
+
     }
 }

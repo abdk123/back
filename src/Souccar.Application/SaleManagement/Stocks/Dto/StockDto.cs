@@ -1,9 +1,9 @@
-using System;
 using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.Settings.Units.Dto;
 
 namespace Souccar.SaleManagement.Stocks.Dto
 {
-   public class StockDto : EntityDto<int>
+    public class StockDto : EntityDto<int>
     {
         public string Barcode { get; set; }
         public string Note { get; set; }
@@ -17,6 +17,8 @@ namespace Souccar.SaleManagement.Stocks.Dto
         public int? MaterialId { get; set; }
         public string Material { get; set; }
         public int? StoreId { get; set; }
+        public UnitDto Unit { get; set; }
+        public SizeDto Size { get; set; }
     }
 }
 

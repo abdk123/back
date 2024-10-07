@@ -10,9 +10,11 @@ namespace Souccar.SaleManagement.Settings.Customers.Map
             CreateMap<CustomerVoucher, CustomerVoucherDto>();
             CreateMap<CustomerVoucher, ReadCustomerVoucherDto>();
             CreateMap<CustomerVoucherDto, CustomerVoucher>();
-            CreateMap<CreateCustomerVoucherDto, CustomerVoucher>();
+            CreateMap<CreateCustomerVoucherDto, CustomerVoucher>()
+                .ForMember(x=>x.VoucherDate, opt=>opt.Ignore());
             CreateMap<CustomerVoucher, CreateCustomerVoucherDto>();
-            CreateMap<UpdateCustomerVoucherDto, CustomerVoucher>();
+            CreateMap<UpdateCustomerVoucherDto, CustomerVoucher>()
+                 .ForMember(x => x.VoucherDate, opt => opt.Ignore());
             CreateMap<CustomerVoucher, UpdateCustomerVoucherDto>();
         }
     }

@@ -11,6 +11,10 @@
         //كلفة نقل
         TransportCost,
         //كلفة المادة المستلمة
-        ReceivingCostcc
+        ReceivingCost,
+        //كلفة نقل
+        DeliveryTransportCost,
+        //كلفة دلفري
+        DeliveryCost,
     }
 }

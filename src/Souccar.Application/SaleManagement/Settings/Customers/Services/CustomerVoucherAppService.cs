@@ -7,6 +7,8 @@ using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
 using Souccar.SaleManagement.Settings.Companies.Dto;
 using Souccar.SaleManagement.Settings.Companies;
 using System.Threading.Tasks;
+using System;
+using System.Globalization;
 
 namespace Souccar.SaleManagement.Settings.Customers.Services
 {
@@ -55,9 +57,10 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
 
         public override async Task<CustomerVoucherDto> CreateAsync(CreateCustomerVoucherDto input)
         {
-            var voucherDto = await base.CreateAsync(input);
-            var voucher = ObjectMapper.Map<CustomerVoucher>(voucherDto);
-
+            var data = ObjectMapper.Map<CustomerVoucher>(input);
+            data.VoucherDate = DateTime.ParseExact(input.VoucherDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            var voucher = await _customerVoucherDomainService.InsertAsync(data);
+            
             EventBus.Default.Trigger(
                     new CustomerCashFlowCreateEventData(
                         voucher.Currency == Currencies.Currency.Dollar &&
@@ -74,7 +77,7 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
                         voucher.CustomerId
                         ));
 
-            return voucherDto;
+            return ObjectMapper.Map<CustomerVoucherDto>(voucher);
         }
 
         public override async Task DeleteAsync(EntityDto<int> input)

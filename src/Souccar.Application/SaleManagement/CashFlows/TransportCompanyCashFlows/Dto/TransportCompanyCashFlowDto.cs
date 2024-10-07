@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Souccar.SaleManagement.Settings.Companies.Dto;
+using System;
 
 namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Dto
 {
@@ -14,5 +15,7 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Dto
         public TransactionName TransactionName { get; set; }
         public int? TransportCompanyId { get; set; }
         public TransportCompanyDto TransportCompany { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

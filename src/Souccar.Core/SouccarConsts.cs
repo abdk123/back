@@ -31,6 +31,9 @@ namespace Souccar
         public const string TransportCost = "TransportCost";
         public const string ReceivingCost = "ReceivingCost";
         public const string CostOfReceivingTheMaterial = "CostOfReceivingTheMaterial{0}";
+        public const string DeliveryTransportCost = "DeliveryTransportCost";
+        public const string DeliveryCost = "DeliveryCost";
+        public const string DeliveryCostForMaterial = "DeliveryCostForMaterial{0}andOffer{1}";
 
     }
 }

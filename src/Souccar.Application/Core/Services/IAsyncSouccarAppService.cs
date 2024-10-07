@@ -12,6 +12,7 @@ namespace Souccar.Core.Services
         where TUpdateInput : IEntityDto<TPrimaryKey>
     {
         Task<TEntityDto> GetAsync(EntityDto<TPrimaryKey> input);
+        Task<TEntityDto> GetAggregateAsync(EntityDto<TPrimaryKey> input);
         Task<TUpdateInput> GetForEditAsync(EntityDto<TPrimaryKey> input);
         Task<PagedResultDto<TEntityDto>> GetAllAsync(TGetAllInput input);
         Task<PagedResultDto<TEntityDto>> ReadAsync(TGetAllInput input);

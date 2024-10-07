@@ -437,5 +437,16 @@
 		<text name="ForHim">له</text>
 		<text name="TransactionType">نوع العملية</text>
 		<text name="CustomerAndSupplier">مورد وزبون</text>
+		<text name="OfferMaterials">مواد العرض</text>
+		<text name="EditReveivingMaterials">تعديل استلام المواد</text>
+		<text name ="ReceivingCost">كلفة المادة المستلمة</text>
+		<text name="DeliveryTransportCost">كلفة نقل دليفري</text>
+		<text name="DeliveryCostForMaterial{0}andOffer{1}">كلفة دلفري للمادة {0} ورالعرض {1}</text>
+		<text name="DeliveryCost">كلفة دليفري</text>
+		<text name ="CustomersCashFlow">كشف ارصدة العملاء</text>
+		<text name ="ClearancesCashFlow">كشف ارصدة شركات التخليص</text>
+		<text name ="TransportsCashFlow">كشف ارصدة شركات النقل</text>
+		<text name="Details">تفاصيل</text>
+		<text name="Total">الاجمالي</text>
 	</texts>
 </localizationDictionary>

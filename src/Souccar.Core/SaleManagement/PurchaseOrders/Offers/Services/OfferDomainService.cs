@@ -61,7 +61,7 @@ namespace Souccar.SaleManagement.PurchaseOrders.Offers.Services
                 .Include(o => o.OfferItems).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks).ThenInclude(x => x.Size)
                 .Include(o => o.OfferItems).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks).ThenInclude(x => x.Unit)
                 .Where(x => x.CustomerId == customerId).ToList();
-            return offers.SelectMany(x=>x.OfferItems).Where(x=>x.Quantity > x.DeliveredQuantity).ToList();
+            return offers.SelectMany(x=>x.OfferItems).Where(x=>x.Quantity > x.DeliveredQuantity && x.Offer.Status == OfferStatus.Approved).ToList();
         }
     }
 }

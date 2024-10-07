@@ -33,6 +33,14 @@ namespace Souccar.Core.Services
             return MapToEntityDto(entity);
         }
 
+        public virtual async Task<TEntityDto> GetAggregateAsync(EntityDto<TPrimaryKey> input)
+        {
+            CheckGetPermission();
+
+            var entity = await _domainService.GetAgreggateAsync(input.Id);
+            return MapToEntityDto(entity);
+        }
+
         public virtual async Task<TUpdateInput> GetForEditAsync(EntityDto<TPrimaryKey> input)
         {
             var data = await _domainService.GetAgreggateAsync(input.Id);

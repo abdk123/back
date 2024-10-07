@@ -15,8 +15,10 @@ namespace Souccar.SaleManagement.PurchaseOrders.Receives.Map
             CreateMap<Receiving, ReadReceivingDto>();
             CreateMap<CreateReceivingDto, Receiving>().ReverseMap();
             CreateMap<CreateReceivingItemDto, ReceivingItem>().ReverseMap();
-            CreateMap<UpdateReceivingDto, Receiving>().ReverseMap();
-            CreateMap<UpdateReceivingItemDto, ReceivingItem>().ReverseMap();
+            CreateMap<UpdateReceivingDto, Receiving>()
+                .ForMember(x => x.ReceivingItems, opt => opt.Ignore());
+            CreateMap<ReceivingItem, UpdateReceivingItemDto>();
+
         }
     }
 }

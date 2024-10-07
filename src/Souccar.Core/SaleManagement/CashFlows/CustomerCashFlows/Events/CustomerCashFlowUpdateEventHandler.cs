@@ -1,23 +1,34 @@
 ﻿using Abp.Dependency;
 using Abp.Events.Bus.Handlers;
+using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services;
 using Souccar.SaleManagement.Settings.Currencies;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
 {
-    public class CustomerCashFlowCreateEventHandler : IAsyncEventHandler<CustomerCashFlowCreateEventData>, ITransientDependency
+    public class CustomerCashFlowUpdateEventHandler : IAsyncEventHandler<CustomerCashFlowUpdateEventData>, ITransientDependency
     {
         private readonly ICustomerCashFlowDomainService _customerCashFlowDomainService;
 
-        public CustomerCashFlowCreateEventHandler(ICustomerCashFlowDomainService customerCashFlowDomainService)
+        public CustomerCashFlowUpdateEventHandler(ICustomerCashFlowDomainService customerCashFlowDomainService)
         {
             _customerCashFlowDomainService = customerCashFlowDomainService;
         }
 
-        public async Task HandleEventAsync(CustomerCashFlowCreateEventData eventData)
+        public async Task HandleEventAsync(CustomerCashFlowUpdateEventData eventData)
         {
+            var cashFlow = await _customerCashFlowDomainService.
+                FirstOrDefaultAsync(x=>x.RelatedId == eventData.RelatedId && x.TransactionName == eventData.TransactionName);
+            
+            if(cashFlow != null)
+            {
+                
+                await _customerCashFlowDomainService.DeleteAsync(cashFlow.Id);
+            }
+
             double newCurrentBalanceDinar = 0;
             double newCurrentBalanceDollar = 0;
 
@@ -42,5 +53,6 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
 
             await _customerCashFlowDomainService.InsertAsync(customerCashFlow);
         }
+        
     }
 }

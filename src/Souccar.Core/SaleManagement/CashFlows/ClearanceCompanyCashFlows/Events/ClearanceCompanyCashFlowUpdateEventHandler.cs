@@ -8,28 +8,29 @@ using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
 {
-    public class ClearanceCompanyCashFlowCreateEventHandler : IAsyncEventHandler<ClearanceCompanyCashFlowCreateEventData>, ITransientDependency
+    public class ClearanceCompanyCashFlowUpdateEventHandler : IAsyncEventHandler<ClearanceCompanyCashFlowUpdateEventData>, ITransientDependency
     {
         private readonly IClearanceCompanyCashFlowDomainService _clearanceCompanyCashFlowDomainService;
 
-        public ClearanceCompanyCashFlowCreateEventHandler(IClearanceCompanyCashFlowDomainService clearanceCompanyCashFlowDomainService)
+        public ClearanceCompanyCashFlowUpdateEventHandler(IClearanceCompanyCashFlowDomainService clearanceCompanyCashFlowDomainService)
         {
             _clearanceCompanyCashFlowDomainService = clearanceCompanyCashFlowDomainService;
         }
 
-        public async Task HandleEventAsync(ClearanceCompanyCashFlowCreateEventData eventData)
+        public async Task HandleEventAsync(ClearanceCompanyCashFlowUpdateEventData eventData)
         {
             var cashFlow = await _clearanceCompanyCashFlowDomainService.
                 FirstOrDefaultAsync(x=>x.RelatedId == eventData.RelatedId && x.TransactionName == eventData.TransactionName);
             
-            if(cashFlow == null)
+            if(cashFlow != null)
             {
-                await CreateClearanceCompanyCashFlowAsync(eventData);
+                await _clearanceCompanyCashFlowDomainService.DeleteAsync(cashFlow.Id);
             }
 
+            await CreateClearanceCompanyCashFlowAsync(eventData);
         }
 
-        private async Task CreateClearanceCompanyCashFlowAsync(ClearanceCompanyCashFlowCreateEventData eventData)
+        private async Task CreateClearanceCompanyCashFlowAsync(ClearanceCompanyCashFlowUpdateEventData eventData)
         {
             double newCurrentBalanceDinar = 0;
             double newCurrentBalanceDollar = 0;
@@ -41,7 +42,8 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
             newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
 
             var clearanceCompanyCashFlow = new ClearanceCompanyCashFlow()
-            {RelatedId = eventData.RelatedId,
+            {
+                RelatedId = eventData.RelatedId,
                 AmountDinar = eventData.AmountDinar,
                 AmountDollar = eventData.AmountDollar,
                 ClearanceCompanyId = eventData.ClearanceCompanyId,

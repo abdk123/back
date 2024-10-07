@@ -39,6 +39,8 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Receives.Services
         {
             await _receivingItemRepository.DeleteAsync(itemId);
         }
+
+        
     }
 }
 

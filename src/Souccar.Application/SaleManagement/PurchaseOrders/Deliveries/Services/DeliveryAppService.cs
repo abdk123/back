@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Souccar.SaleManagement.Stocks.Event;
+using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events;
+using Souccar.SaleManagement.CashFlows;
+using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
 
 namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
 {
@@ -80,6 +83,15 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
             delivery.Status = (DeliveryStatus)input.Status;
             delivery.GrNumber = input.GrNumber;
             delivery.ApproveDate = DateTime.Now;
+            
+            await EventBus.Default.TriggerAsync(new CustomerCashFlowCreateEventData(
+                    (int)delivery.TransportCostCurrency == 1 ? -1 * delivery.TransportCost : 0,
+                    (int)delivery.TransportCostCurrency == 0 ? -1 * delivery.TransportCost : 0,
+                    TransactionName.DeliveryTransportCost,
+                    delivery.CustomerId,
+                    delivery.Id,
+                    L(LocalizationResource.DeliveryTransportCost)
+                    ));
             foreach (var deliveryItem in delivery.DeliveryItems)
             {
                 var item = input.DeliveryItems.FirstOrDefault(x => x.Id == deliveryItem.Id);
@@ -87,11 +99,30 @@ namespace Souccar.SaleManagement.PurchaseOrders.Deliveries.Services
                 {
                     deliveryItem.ApprovedQuantity = item.DeliveredQuantity;
                     deliveryItem.DeliveryItemStatus = DeliveryItemStatus.Approved;
+                   
                 }
             }
             var updatedDelivery = await _deliveryDomainService.UpdateAsync(delivery);
-            
-            return ObjectMapper.Map<DeliveryDto>(updatedDelivery);
+
+            var deliveryWithDetail = await _deliveryDomainService.GetWithDetailsByIdAsync(input.Id);
+            foreach (var deliveryItem in deliveryWithDetail.DeliveryItems)
+            {
+                var item = delivery.DeliveryItems.FirstOrDefault(x => x.Id == deliveryItem.Id);
+                if(item is not null)
+                {
+                    var currency = (int)deliveryItem.OfferItem.Offer.Currency;
+                    await EventBus.Default.TriggerAsync(new CustomerCashFlowCreateEventData(
+                       currency == 1 ? -1 * (item.ApprovedQuantity * deliveryItem.OfferItem.UnitPrice) : 0,
+                       currency == 0 ? -1 * (item.ApprovedQuantity * deliveryItem.OfferItem.UnitPrice) : 0,
+                       TransactionName.DeliveryCost,
+                       delivery.CustomerId,
+                       delivery.Id,
+                       L(LocalizationResource.DeliveryCostForMaterial, new[] { deliveryItem?.OfferItem?.Material?.Name, deliveryItem?.OfferItem?.Offer?.PorchaseOrderId })
+                       ));
+                }
+               
+            }
+                return ObjectMapper.Map<DeliveryDto>(updatedDelivery);
         }
 
         public async Task<DeliveryDto> RejectDeliveryAsync(RejectDeliveryDto input)
