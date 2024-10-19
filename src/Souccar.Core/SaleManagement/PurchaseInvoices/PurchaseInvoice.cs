@@ -1,9 +1,9 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using Souccar.Authorization.Users;
-using Souccar.SaleManagement.PurchaseOrders.Offers;
-using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
+using Souccar.SaleManagement.Offers;
 using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.Settings.Customers;
+using Souccar.SaleManagement.SupplierOffers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;

@@ -446,7 +446,14 @@
 		<text name ="CustomersCashFlow">كشف ارصدة العملاء</text>
 		<text name ="ClearancesCashFlow">كشف ارصدة شركات التخليص</text>
 		<text name ="TransportsCashFlow">كشف ارصدة شركات النقل</text>
+		<text name ="MaterialReport">كشف تقرير المواد</text>
 		<text name="Details">تفاصيل</text>
 		<text name="Total">الاجمالي</text>
+		<text name="Reports">التقارير</text>
+		<text name="NameAlreadyExist">الاسم موجود مسبقاً</text>
+		<text name="OfferToCustomer">عرض إلى زبون</text>
+		<text name="OfferFromSupplier">عرض من مورد</text>
+		<text name="Print">طباعة</text>
+		<text name="SupplierOffers">عروض الموردين</text>
 	</texts>
 </localizationDictionary>

@@ -1,5 +1,4 @@
 ﻿using Abp.Events.Bus;
-using Souccar.SaleManagement.PurchaseOrders.Deliveries;
 
 namespace Souccar.SaleManagement.PurchaseInvoices.Events
 {

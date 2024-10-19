@@ -1,8 +1,6 @@
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Implements;
-using Souccar.SaleManagement.PurchaseInvoices.Receives;
-using Souccar.SaleManagement.PurchaseOrders.Offers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

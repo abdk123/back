@@ -10,7 +10,7 @@ namespace Souccar.SaleManagement.SupplierOffers.Dto
         {
             SupplierOfferItems = new List<UpdateSupplierOfferItemDto>();
         }
-        public string OfferEndDate { get; set; }
+        public string SupplierOfferEndDate { get; set; }
         public int Currency { get; set; }
         public int? SupplierId { get; set; }
         public string Note { get; set; }

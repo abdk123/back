@@ -1,0 +1,18 @@
+using Souccar.Core.Services.Interfaces;
+using Souccar.SaleManagement.Offers;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Souccar.SaleManagement.Offers.Services
+{
+    public interface IOfferDomainService : ISouccarDomainService<Offer, int>
+    {
+        IList<OfferItem> GetItemsByOfferId(int offerId);
+        Task DeleteItemAsync(int itemId);
+        Offer GetOfferWithDetail(int offerId);
+        Task<string> GetPoForByOfferItemId(int offerItemId);
+        Task<OfferItem> GetItemById(int? itemId);
+        IList<OfferItem> GetForDelivery(int customerId);
+    }
+}
+

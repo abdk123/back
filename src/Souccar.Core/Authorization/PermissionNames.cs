@@ -89,6 +89,12 @@
         public const string Setting_Offers_Update = "Setting.Offers.Update";
         public const string Setting_Offers_Delete = "Setting.Offers.Delete";
 
+        //SupplierOffers
+        public const string Setting_SupplierOffers = "Setting.SupplierOffers";
+        public const string Setting_SupplierOffers_Create = "Setting.SupplierOffers.Create";
+        public const string Setting_SupplierOffers_Update = "Setting.SupplierOffers.Update";
+        public const string Setting_SupplierOffers_Delete = "Setting.SupplierOffers.Delete";
+
         //CustomerVouchers
         public const string Setting_CustomerVouchers = "PurshaseOrder.CustomerVouchers";
         public const string Setting_CustomerVouchers_Create = "PurshaseOrder.CustomerVouchers.Create";

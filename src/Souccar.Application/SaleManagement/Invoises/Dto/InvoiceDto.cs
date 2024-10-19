@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Abp.Application.Services.Dto;
-using Souccar.SaleManagement.PurchaseOrders.Receives.Dto;
 
 namespace Souccar.SaleManagement.Invoises.Dto
 {

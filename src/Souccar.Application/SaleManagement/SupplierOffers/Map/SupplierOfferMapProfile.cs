@@ -1,4 +1,5 @@
 using AutoMapper;
+using Souccar.SaleManagement.SupplierOffers;
 using Souccar.SaleManagement.SupplierOffers.Dto;
 
 namespace Souccar.SaleManagement.PurchaseOrders.SupplierOffers.Map

@@ -1,7 +1,7 @@
 ﻿using Abp.Domain.Entities;
+using Souccar.SaleManagement.Offers;
 using Souccar.SaleManagement.PurchaseInvoices.Receives;
-using Souccar.SaleManagement.PurchaseOrders.Offers;
-using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
+using Souccar.SaleManagement.SupplierOffers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

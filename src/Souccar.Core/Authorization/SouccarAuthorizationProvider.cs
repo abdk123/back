@@ -120,6 +120,12 @@ namespace Souccar.Authorization
             context.CreatePermission(PermissionNames.Setting_Offers_Update, L("EditOffer"));
             context.CreatePermission(PermissionNames.Setting_Offers_Delete, L("DeleteOffer"));
 
+            //SupplierOffers
+            context.CreatePermission(PermissionNames.Setting_SupplierOffers, L("SupplierOffer"));
+            context.CreatePermission(PermissionNames.Setting_SupplierOffers_Create, L("CreateNewSupplierOffer"));
+            context.CreatePermission(PermissionNames.Setting_SupplierOffers_Update, L("EditSupplierOffer"));
+            context.CreatePermission(PermissionNames.Setting_SupplierOffers_Delete, L("DeleteSupplierOffer"));
+
             //OfferItems
             context.CreatePermission(PermissionNames.Setting_OfferItems, L("OfferItem"));
             context.CreatePermission(PermissionNames.Setting_OfferItems_Create, L("CreateNewOfferItem"));

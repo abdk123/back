@@ -23,6 +23,8 @@ namespace Souccar
         public const string TheOfferMustBeApprovedFirst = "TheOfferMustBeApprovedFirst";
         public const string PoIsRequired = "PoIsRequired";
         public const string SupplierIsRequired = "SupplierIsRequired";
+        public const string NameAlreadyExist = "NameAlreadyExist";
+        public const string ValueAlreadyExist = "ValueAlreadyExist";
     }
 
     public class LocalizationResource

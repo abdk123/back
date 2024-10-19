@@ -5,14 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.UI;
 using System;
-using Abp.Events.Bus;
-using Souccar.SaleManagement.Logs.Events;
-using Souccar.SaleManagement.Logs;
-using Souccar.SaleManagement.PurchaseInvoices.Events;
-using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 using Souccar.SaleManagement.SupplierOffers.Dto;
-using Souccar.SaleManagement.PurchaseOrders.SupplierOffers.Services;
-using Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Services;
 using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.PurchaseInvoices.Services;
 

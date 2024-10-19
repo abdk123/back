@@ -13,7 +13,6 @@ using Souccar.Authentication.JwtBearer;
 using Souccar.Configuration;
 using Souccar.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Abp.Threading.BackgroundWorkers;
 
 namespace Souccar
 {

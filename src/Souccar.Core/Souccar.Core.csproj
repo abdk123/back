@@ -23,7 +23,7 @@
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SaleManagement\PurchaseOrders\SupplierOffers\" />
-    <Folder Include="SaleManagement\PurchaseOrders\Deliveries\Event\" />
+    <Folder Include="SaleManagement\SupplierOffers\" />
+    <Folder Include="SaleManagement\Deliveries\Event\" />
   </ItemGroup>
 </Project>

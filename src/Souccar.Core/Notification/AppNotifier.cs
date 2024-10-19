@@ -1,12 +1,7 @@
 ﻿using Abp.Domain.Uow;
 using Abp.Notifications;
-using Abp.Threading;
-using Souccar.Authorization;
-using Souccar.Authorization.Users;
-using Souccar.SaleManagement.PurchaseOrders.SaleInvoices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Souccar.Notification

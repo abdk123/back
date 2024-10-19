@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using Souccar.SaleManagement.PurchaseOrders.Offers.Dto;
+using Souccar.SaleManagement.Offers.Dto;
 
 namespace Souccar.SaleManagement.Invoises.Dto
 {

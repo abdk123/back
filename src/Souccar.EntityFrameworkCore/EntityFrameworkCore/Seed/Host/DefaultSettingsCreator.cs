@@ -34,7 +34,7 @@ namespace Souccar.EntityFrameworkCore.Seed.Host
             //AddSettingIfNotExists(AppSettingNames.Hcpc.ExpiryDurationNotify, "30", tenantId);
 
             // Languages
-            AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "en", tenantId);
+            AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "ar", tenantId);
         }
 
         private void AddSettingIfNotExists(string name, string value, int? tenantId = null)

@@ -1,10 +1,11 @@
 ﻿using Abp.AutoMapper;
+using Abp.Localization.Sources;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Threading.BackgroundWorkers;
 using Souccar.Authorization;
 using Souccar.Notification;
-using Souccar.SaleManagement.PurchaseOrders.SaleInvoices.Workers;
+using Souccar.SaleManagement.SaleInvoices.Workers;
 
 namespace Souccar
 {
@@ -30,6 +31,7 @@ namespace Souccar
                 // Scan the assembly for classes which inherit from AutoMapper.Profile
                 cfg => cfg.AddMaps(thisAssembly)
             );
+            
         }
 
         public override void PostInitialize()

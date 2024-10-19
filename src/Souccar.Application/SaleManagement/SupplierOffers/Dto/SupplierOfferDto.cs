@@ -15,7 +15,7 @@ namespace Souccar.SaleManagement.SupplierOffers.Dto
         }
 
         public int Status { get; set; }
-        public DateTime? OfferEndDate { get; set; }
+        public DateTime? SupplierOfferEndDate { get; set; }
         public int Currency { get; set; }
         public int? SupplierId { get; set; }
         public double TotalQuantity { get; set; }

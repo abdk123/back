@@ -381,5 +381,7 @@
 		<text name="FileUploadedSuccessfully">File uploaded successfully</text>
 		<text name="ErrorWhenUploadFilePleaseTryAgain">Error when upload file, please try again</text>
 		<text name="UrnNumberSavedSuccessfully">Urn number saved successfully</text>
+		<text name="{0}AlreadyExist">{0} موجود مسبقاً</text>
+
 	</texts>
 </localizationDictionary>
