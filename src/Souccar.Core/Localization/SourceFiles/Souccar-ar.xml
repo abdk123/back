@@ -215,7 +215,7 @@
 		<text name="PoNumber">رقم PO</text>
 		<text name="OfferNumber">رقم العرض</text>
 		<text name="BackToOfferList">عودة إلى قائمة العروض</text>
-		<text name="BackToInvoiceList">عودة إلى قائمة فواتير الشاء</text>
+		<text name="BackToInvoiceList">عودة إلى قائمة فواتير الشراء</text>
 		<text name="TransportCompanyVoucher">سندات شركات النقل</text>
 		<text name="ClearanceCompanyVoucher">سندات شركات التخليص</text>
 		<text name="Vouchers">السندات</text>
@@ -455,5 +455,11 @@
 		<text name="OfferFromSupplier">عرض من مورد</text>
 		<text name="Print">طباعة</text>
 		<text name="SupplierOffers">عروض الموردين</text>
+		<text name="UpdateOffer">تعديل العرض</text>
+		<text name="PackingType">نوع التعبئة</text>
+		<text name="TheOffer">العرض</text>
+		<text name="OfferType">نوع العرض</text>
+		<text name="CompleteReceivingInfo">استكمال بيانات الاستلام</text>
+		<text name="AddReceive">إضافة استلام</text>
 	</texts>
 </localizationDictionary>

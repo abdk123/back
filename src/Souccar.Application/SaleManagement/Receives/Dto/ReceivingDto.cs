@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.Invoises.Dto;
 using Souccar.SaleManagement.Settings.Companies;
 using Souccar.SaleManagement.Settings.Companies.Dto;
 
@@ -27,6 +28,7 @@ namespace Souccar.SaleManagement.Receives.Dto
         public IList<ReceivingItemDto> ReceivingItems { get; set; }
         public string CreationTime { get; set; }
         public string CreatorUser { get; set; }
+        public InvoiceDto Invoice { get; set; }
     }
 }
 

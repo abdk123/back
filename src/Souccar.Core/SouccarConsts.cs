@@ -25,6 +25,11 @@ namespace Souccar
         public const string SupplierIsRequired = "SupplierIsRequired";
         public const string NameAlreadyExist = "NameAlreadyExist";
         public const string ValueAlreadyExist = "ValueAlreadyExist";
+        public static string CheckMaterialQuantity(string name, string opertor, string value)
+        {
+            return $"المادة {name} يجب ان تكون {opertor} {value}";
+        }
+
     }
 
     public class LocalizationResource

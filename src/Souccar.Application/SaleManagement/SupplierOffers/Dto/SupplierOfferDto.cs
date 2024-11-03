@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities.Auditing;
-using Souccar.SaleManagement.PurchaseOrders.SupplierOffers;
 using Souccar.SaleManagement.Settings.Customers.Dto;
 
 namespace Souccar.SaleManagement.SupplierOffers.Dto
@@ -14,6 +13,7 @@ namespace Souccar.SaleManagement.SupplierOffers.Dto
             SupplierOfferItems = new List<SupplierOfferItemDto>();
         }
 
+        public string PorchaseOrderId { get; set; }
         public int Status { get; set; }
         public DateTime? SupplierOfferEndDate { get; set; }
         public int Currency { get; set; }

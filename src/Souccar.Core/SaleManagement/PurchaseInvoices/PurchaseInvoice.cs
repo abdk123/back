@@ -20,6 +20,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         public PurchaseInvoiceStatus Status { get; set; }
         public string PoNumber => Offer != null ? Offer.PorchaseOrderId : string.Empty;
         public Currency Currency { get; set; }
+        public PurchaseInvoiceType InvoiceType { get; set; }
 
         #region Offer
         public int? OfferId { get; set; }
@@ -34,7 +35,6 @@ namespace Souccar.SaleManagement.PurchaseInvoices
         [ForeignKey(nameof(SupplierOfferId))]
         public SupplierOffer SupplierOffer { get; set; }
         #endregion
-
         /// <summary>
         /// المورد
         /// </summary>

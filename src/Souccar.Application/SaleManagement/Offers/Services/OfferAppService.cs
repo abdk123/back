@@ -10,6 +10,8 @@ using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseInvoices.Events;
 using Souccar.SaleManagement.Offers.Dto;
+using Souccar.SaleManagement.SupplierOffers.Dto;
+using Souccar.SaleManagement.Stocks;
 
 namespace Souccar.SaleManagement.Offers.Services
 {
@@ -162,6 +164,27 @@ namespace Souccar.SaleManagement.Offers.Services
             //    Attributes = new List<OrderLogAttribute>()
             //}));
             return ObjectMapper.Map<OfferDto>(offer);
+        }
+
+        public IList<OfferDto> GetByCustomerId(int customerId)
+        {
+            var offers = _offerDomainService.Get(x => x.CustomerId == customerId);
+            return ObjectMapper.Map<List<OfferDto>>(offers);
+        }
+
+        public IList<OfferDto> GetApproved()
+        {
+            var includes = new string[]
+            {
+                $"{nameof(OfferDto.Customer)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Unit)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Size)}",
+            };
+            var offers = _offerDomainService
+                .Get(filter: x => x.Status == OfferStatus.Approved,
+                include: includes)
+                .ToList();
+            return ObjectMapper.Map<List<OfferDto>>(offers);
         }
     }
 }

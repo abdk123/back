@@ -8,6 +8,9 @@ using System;
 using Souccar.SaleManagement.SupplierOffers.Dto;
 using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.PurchaseInvoices.Services;
+using Souccar.SaleManagement.Offers.Dto;
+using Souccar.SaleManagement.Offers;
+using Souccar.SaleManagement.Stocks;
 
 namespace Souccar.SaleManagement.SupplierOffers.Services
 {
@@ -24,6 +27,24 @@ namespace Souccar.SaleManagement.SupplierOffers.Services
             _invoiceDomainService = invoiceDomainService;
         }
 
+        public async Task<SupplierOfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
+        {
+            var offer = await _supplierOfferDomainService.GetAsync(input.Id);
+
+            if (string.IsNullOrEmpty(input.PorchaseOrderId))
+            {
+                throw new UserFriendlyException(ValidationMessage.PoIsRequired);
+            }
+
+            offer.PorchaseOrderId = input.PorchaseOrderId;
+            var approveDate = DateTime.Now;
+            DateTime.TryParse(input.ApproveDate, out approveDate);
+            offer.ApproveDate = approveDate;
+            offer.Status = (SupplierOfferStatus)input.Status;
+            await _supplierOfferDomainService.UpdateAsync(offer);
+            return GetSupplierOfferWithDetailId(input.Id);
+        }
+
         public IList<UpdateSupplierOfferItemDto> GetItemsBySupplierOfferId(int offerId)
         {
             var items = _supplierOfferDomainService.GetItemsBySupplierOfferId(offerId);
@@ -36,7 +57,6 @@ namespace Souccar.SaleManagement.SupplierOffers.Services
             return ObjectMapper.Map<SupplierOfferDto>(offer);
         }
 
-        
         public override async Task<SupplierOfferDto> UpdateAsync(UpdateSupplierOfferDto input)
         {
             var oldSupplierOffer = await _supplierOfferDomainService.GetAsync(input.Id);
@@ -113,6 +133,27 @@ namespace Souccar.SaleManagement.SupplierOffers.Services
             await _invoiceDomainService.InsertAsync(invoice);
 
             return ObjectMapper.Map<SupplierOfferDto>(offer);
+        }
+
+        public IList<SupplierOfferDto> GetBySupplierId(int supplierId)
+        {
+            var offers = _supplierOfferDomainService.Get(x => x.SupplierId == supplierId);
+            return ObjectMapper.Map<List<SupplierOfferDto>>(offers);
+        }
+
+        public IList<SupplierOfferDto> GetApproved()
+        {
+            var includes = new string[]
+            {
+                $"{nameof(OfferDto.Customer)}",
+                $"{nameof(SupplierOffer.SupplierOfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Unit)}",
+                $"{nameof(SupplierOffer.SupplierOfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Size)}",
+            };
+            var offers = _supplierOfferDomainService
+                .Get(filter: x => x.Status == SupplierOfferStatus.Approved,
+                include: new string[] { $"{nameof(SupplierOfferDto.Supplier)}" })
+                .ToList();
+            return ObjectMapper.Map<List<SupplierOfferDto>>(offers);
         }
     }
 }

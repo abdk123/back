@@ -12,6 +12,7 @@ namespace Souccar.Core.Services.Interfaces
         where TEntity : class, IEntity<TPrimaryKey>
     {
         IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, string[] include = null);
         IQueryable<TEntity> GetAllWithIncluding(string including, bool multiLevel = false);
         TEntity GetWithIncluding(TPrimaryKey id, Expression<Func<TEntity, object>> [] includes);
         TEntity Get(TPrimaryKey id);

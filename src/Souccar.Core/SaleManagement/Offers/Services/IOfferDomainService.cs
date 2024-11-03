@@ -1,5 +1,4 @@
 using Souccar.Core.Services.Interfaces;
-using Souccar.SaleManagement.Offers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

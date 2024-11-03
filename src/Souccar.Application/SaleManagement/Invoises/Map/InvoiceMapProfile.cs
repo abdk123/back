@@ -37,6 +37,8 @@ namespace Souccar.SaleManagement.Invoises.Map
 
             //Invoice Item
             CreateMap<PurchaseInvoiceItem, InvoiceItemDto>().ReverseMap();
+            CreateMap<PurchaseInvoiceItem, CreateInvoiceItemDto>().ReverseMap();
+
         }
     }
 }

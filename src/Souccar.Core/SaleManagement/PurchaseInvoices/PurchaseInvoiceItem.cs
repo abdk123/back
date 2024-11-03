@@ -44,18 +44,6 @@ namespace Souccar.SaleManagement.PurchaseInvoices
 
         #region
         public IList<ReceivingItem> ReceivingItems { get; set; }
-        //{
-        //    get
-        //    {
-        //        if (Invoice == null)
-        //            return new List<ReceivingItem>();
-
-        //        return Invoice.Receivings
-        //            .SelectMany(x => x.ReceivingItems)
-        //            .Where(x => x.InvoiceItemId == Id)
-        //            .ToList();
-        //    }
-        //}
 
         /// <summary>
         /// السعر الكلي الجديد

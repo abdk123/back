@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Souccar.Extinsions;
 
 namespace Souccar.Core.Services.Implements
 {
@@ -128,6 +129,16 @@ namespace Souccar.Core.Services.Implements
         public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicat)
         {
             return await _repository.FirstOrDefaultAsync(predicat);
+        }
+
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, string[] includes = null)
+        {
+            var query = _repository.GetAll();
+            if (includes != null)
+                query = query.IncludeMultiple(includes);
+            if (filter != null)
+                return query.Where(filter);
+            return query;
         }
     }
 }
