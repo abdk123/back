@@ -2,6 +2,7 @@
 using Souccar.Authorization.Users;
 using Souccar.SaleManagement.Settings.Companies;
 using Souccar.SaleManagement.Settings.Currencies;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Receives
         {
             ReceivingItems = new List<ReceivingItem>();
         }
+        public DateTime? ReceivingDate { get; set; }
+        public string Note { get; set; }
 
         #region Transport Company Info
         /// <summary>

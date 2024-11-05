@@ -1,5 +1,4 @@
-using Souccar.Core.Dto.PagedRequests;
-using Souccar.Core.Services;
+using Souccar.Extinsions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,21 +14,28 @@ using Souccar.SaleManagement.CashFlows;
 using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
 using Souccar.SaleManagement.Stocks.Event;
-using System.ComponentModel.DataAnnotations;
-using Abp.Application.Services.Dto;
 using Souccar.SaleManagement.Receives.Dto;
+using System.Linq.Expressions;
+using System;
+using Abp.Application.Services;
+using Abp.Domain.Repositories;
 
 namespace Souccar.SaleManagement.Receives.Services
 {
-    public class ReceivingAppService :
-        AsyncSouccarAppService<Receiving, ReceivingDto, int, FullPagedRequestDto, CreateReceivingDto, UpdateReceivingDto>, IReceivingAppService
+    public class ReceivingAppService
+         : AsyncCrudAppService<Receiving, ReceivingDto, int, PagedReceivingResultRequestDto, CreateReceivingDto, ReceivingDto>, IReceivingAppService
     {
         private readonly IReceivingDomainService _receivingDomainService;
         private readonly IInvoiceDomainService _invoiceDomainService;
-        public ReceivingAppService(IReceivingDomainService receivingDomainService, IInvoiceDomainService invoiceDomainService) : base(receivingDomainService)
+        private readonly IRepository<Receiving> _receivingRepository;
+
+        public Expression<Func<Receiving, bool>> include { get; private set; }
+
+        public ReceivingAppService(IReceivingDomainService receivingDomainService, IInvoiceDomainService invoiceDomainService, IRepository<Receiving> receivingRepository) : base(receivingRepository)
         {
             _receivingDomainService = receivingDomainService;
             _invoiceDomainService = invoiceDomainService;
+            _receivingRepository = receivingRepository;
         }
 
         public IList<ReceivingDto> GetAllByInvoiceId(int invoiceId)
@@ -37,7 +43,15 @@ namespace Souccar.SaleManagement.Receives.Services
             var receiving = _receivingDomainService.GetAllByInvoiceId(invoiceId).ToList();
             return ObjectMapper.Map<List<ReceivingDto>>(receiving);
         }
-
+        protected override IQueryable<Receiving> CreateFilteredQuery(PagedReceivingResultRequestDto input)
+        {
+            var query = _receivingDomainService.GetAllByInvoiceId(input.InvoiceId);
+            if(!string.IsNullOrEmpty(input.Keyword))
+            {
+                query = query.Where(x => x.ClearanceCompany.Name.Contains(input.Keyword) || x.TransportCompany.Name.Contains(input.Keyword));
+            }
+            return query;
+        }
         public override async Task<ReceivingDto> CreateAsync(CreateReceivingDto input)
         {
             var receiving = await base.CreateAsync(input);
@@ -98,14 +112,18 @@ namespace Souccar.SaleManagement.Receives.Services
             return receiving;
         }
 
-        public override async Task<ReceivingDto> UpdateAsync(UpdateReceivingDto input)
+        public override async Task<ReceivingDto> UpdateAsync(ReceivingDto input)
         {
-            var oldReceivedQuantities = (await GetAggregateAsync(new EntityDto() { Id = input.Id })).ReceivingItems.Select(x => new
+            var oldreceive = _receivingRepository
+                .GetAllIncluding(x => x.ReceivingItems)
+                .FirstOrDefault(x => x.Id == input.Id);
+
+            var oldReceivedQuantities = oldreceive.ReceivingItems.Select(x => new
             {
                 ItemId = x.Id,
                 x.ReceivedQuantity
             }).ToList();
-            var oldreceive = await _receivingDomainService.GetAgreggateAsync(input.Id);
+
 
             ObjectMapper.Map(input, oldreceive);
             foreach (var item in oldreceive.ReceivingItems)
@@ -188,6 +206,13 @@ namespace Souccar.SaleManagement.Receives.Services
                 _invoiceDomainService.Update(invoice);
             }
             return ObjectMapper.Map<ReceivingDto>(newReceive);
+        }
+
+        public ReceivingDto GetWithDetail(int receiveId)
+        {
+            var receiving = _receivingRepository.GetAllIncluding(x => x.ReceivingItems)
+                .FirstOrDefault(x => x.Id == receiveId);
+            return ObjectMapper.Map<ReceivingDto>(receiving);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 using Souccar.SaleManagement.Invoises.Dto;
@@ -12,6 +13,8 @@ namespace Souccar.SaleManagement.Receives.Dto
         {
             ReceivingItems = new List<ReceivingItemDto>();
         }
+        public DateTime? ReceivingDate { get; set; }
+        public string Note { get; set; }
         public double TransportCost { get; set; }
         public int TransportCostCurrency { get; set; }
         public string DriverName { get; set; }

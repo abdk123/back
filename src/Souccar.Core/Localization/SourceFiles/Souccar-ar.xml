@@ -461,5 +461,6 @@
 		<text name="OfferType">نوع العرض</text>
 		<text name="CompleteReceivingInfo">استكمال بيانات الاستلام</text>
 		<text name="AddReceive">إضافة استلام</text>
+		<text name="ReceivingDate">تاريخ الاستلام</text>
 	</texts>
 </localizationDictionary>

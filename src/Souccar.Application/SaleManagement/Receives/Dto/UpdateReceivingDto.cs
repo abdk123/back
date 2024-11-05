@@ -6,6 +6,8 @@ namespace Souccar.SaleManagement.Receives.Dto
 {
     public class UpdateReceivingDto : EntityDto<int>
     {
+        public DateTime? ReceivingDate { get; set; }
+        public string Note { get; set; }
         public double TransportCost { get; set; }
         public int TransportCostCurrency { get; set; }
         public string DriverName { get; set; }
