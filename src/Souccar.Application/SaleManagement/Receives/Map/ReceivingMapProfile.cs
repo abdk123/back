@@ -18,7 +18,7 @@ namespace Souccar.SaleManagement.Receives.Map
             CreateMap<UpdateReceivingDto, Receiving>()
                 .ForMember(x => x.ReceivingItems, opt => opt.Ignore());
             CreateMap<ReceivingItem, UpdateReceivingItemDto>();
-
+            CreateMap<CompleteReceivingDto, Receiving>();
         }
     }
 }

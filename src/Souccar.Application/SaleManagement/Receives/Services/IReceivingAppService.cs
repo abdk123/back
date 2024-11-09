@@ -9,6 +9,7 @@ namespace Souccar.SaleManagement.Receives.Services
     {
         IList<ReceivingDto> GetAllByInvoiceId(int invoiceId);
         ReceivingDto GetWithDetail(int receiveId);
+        ReceivingDto CompleteInfo(CompleteReceivingDto input);
     }
 }
 

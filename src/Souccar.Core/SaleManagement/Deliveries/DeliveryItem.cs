@@ -2,11 +2,16 @@
 using Abp.Domain.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 using Souccar.SaleManagement.Offers;
+using System.Collections.Generic;
 
 namespace Souccar.SaleManagement.Deliveries
 {
     public class DeliveryItem : Entity
     {
+        public DeliveryItem()
+        {
+            RejectedMaterials = new List<RejectedMaterial>();
+        }
         public string BatchNumber { get; set; }
         public double DeliveredQuantity { get; set; }
         public double ApprovedQuantity { get; set; }
@@ -38,5 +43,7 @@ namespace Souccar.SaleManagement.Deliveries
         [ForeignKey(nameof(OfferItemId))]
         public OfferItem OfferItem { get; set; }
         #endregion
+
+        public IList<RejectedMaterial> RejectedMaterials {  get; set; }
     }
 }

@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
+using Souccar.SaleManagement.Settings.Companies.Dto;
 
 namespace Souccar.SaleManagement.Receives.Dto
 {
-    public class UpdateReceivingDto : EntityDto<int>
+    public class CompleteReceivingDto: EntityDto
     {
-        public string ReceivingDate { get; set; }
-        public string Note { get; set; }
         public double TransportCost { get; set; }
         public int TransportCostCurrency { get; set; }
         public string DriverName { get; set; }
@@ -16,9 +13,5 @@ namespace Souccar.SaleManagement.Receives.Dto
         public double ClearanceCost { get; set; }
         public int ClearanceCostCurrency { get; set; }
         public int? ClearanceCompanyId { get; set; }
-        public int? InvoiceId { get; set; }
-        public int? SupplierId { get; set; }
-        public IList<UpdateReceivingItemDto> ReceivingItems { get; set; }
     }
 }
-

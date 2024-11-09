@@ -10,7 +10,7 @@ namespace Souccar.SaleManagement.Receives.Dto
         {
             ReceivingItems = new List<CreateReceivingItemDto>();
         }
-        public DateTime? ReceivingDate { get; set; }
+        public string ReceivingDate { get; set; }
         public string Note { get; set; }
         public double TransportCost { get; set; }
         public int TransportCostCurrency { get; set; }

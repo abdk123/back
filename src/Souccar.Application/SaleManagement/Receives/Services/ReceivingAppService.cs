@@ -19,6 +19,9 @@ using System.Linq.Expressions;
 using System;
 using Abp.Application.Services;
 using Abp.Domain.Repositories;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
+using Souccar.SaleManagement.Settings.Companies.Services;
 
 namespace Souccar.SaleManagement.Receives.Services
 {
@@ -27,17 +30,19 @@ namespace Souccar.SaleManagement.Receives.Services
     {
         private readonly IReceivingDomainService _receivingDomainService;
         private readonly IInvoiceDomainService _invoiceDomainService;
+        private readonly IClearanceCompanyDomainService _clearanceCompanyDomainService;
+        private readonly ITransportCompanyDomainService _transportCompanyDomainService;
         private readonly IRepository<Receiving> _receivingRepository;
 
         public Expression<Func<Receiving, bool>> include { get; private set; }
-
-        public ReceivingAppService(IReceivingDomainService receivingDomainService, IInvoiceDomainService invoiceDomainService, IRepository<Receiving> receivingRepository) : base(receivingRepository)
+        public ReceivingAppService(IReceivingDomainService receivingDomainService, IInvoiceDomainService invoiceDomainService, IRepository<Receiving> receivingRepository, IClearanceCompanyDomainService clearanceCompanyDomainService, ITransportCompanyDomainService transportCompanyDomainService) : base(receivingRepository)
         {
             _receivingDomainService = receivingDomainService;
             _invoiceDomainService = invoiceDomainService;
             _receivingRepository = receivingRepository;
+            _clearanceCompanyDomainService = clearanceCompanyDomainService;
+            _transportCompanyDomainService = transportCompanyDomainService;
         }
-
         public IList<ReceivingDto> GetAllByInvoiceId(int invoiceId)
         {
             var receiving = _receivingDomainService.GetAllByInvoiceId(invoiceId).ToList();
@@ -66,31 +71,11 @@ namespace Souccar.SaleManagement.Receives.Services
 
             await _invoiceDomainService.UpdateAsync(invoice);
 
-            if (receiving.ClearanceCompanyId != null)
-            {
-                await EventBus.Default.TriggerAsync(new ClearanceCompanyCashFlowCreateEventData(
-                    receiving.ClearanceCostCurrency == 1 ? receiving.ClearanceCost : 0,
-                    receiving.ClearanceCostCurrency == 0 ? receiving.ClearanceCost : 0,
-                    TransactionName.ClearanceCost,
-                    receiving.ClearanceCompanyId,
-                    receiving.Id,
-                    L(LocalizationResource.ClearanceCost)
-                    ));
-            }
-            if (receiving.TransportCompanyId != null)
-            {
-                await EventBus.Default.TriggerAsync(new TransportCompanyCashFlowCreateEventData(
-                    receiving.TransportCostCurrency == 1 ? receiving.TransportCost : 0,
-                    receiving.TransportCostCurrency == 0 ? receiving.TransportCost : 0,
-                    TransactionName.TransportCost,
-                    receiving.TransportCompanyId,
-                    receiving.Id,
-                    L(LocalizationResource.TransportCost)
-                    ));
-            }
+            this.LocalizationSourceName = "Souccar";
             foreach (var receivingItem in receiving.ReceivingItems)
             {
                 var invoiceItem = invoice.InvoiseDetails.FirstOrDefault(x => x.Id == receivingItem.InvoiceItemId);
+                
                 if (invoiceItem is not null)
                 {
                     await EventBus.Default.TriggerAsync(new CustomerCashFlowCreateEventData(
@@ -111,7 +96,6 @@ namespace Souccar.SaleManagement.Receives.Services
             }
             return receiving;
         }
-
         public override async Task<ReceivingDto> UpdateAsync(ReceivingDto input)
         {
             var oldreceive = _receivingRepository
@@ -207,12 +191,101 @@ namespace Souccar.SaleManagement.Receives.Services
             }
             return ObjectMapper.Map<ReceivingDto>(newReceive);
         }
-
         public ReceivingDto GetWithDetail(int receiveId)
         {
             var receiving = _receivingRepository.GetAllIncluding(x => x.ReceivingItems)
                 .FirstOrDefault(x => x.Id == receiveId);
             return ObjectMapper.Map<ReceivingDto>(receiving);
+        }
+        public ReceivingDto CompleteInfo(CompleteReceivingDto input)
+        {
+            var receiving = _receivingRepository.Get(input.Id);
+            ObjectMapper.Map<CompleteReceivingDto, Receiving>(input, receiving);
+            var updateReceiving = _receivingRepository.Update(receiving);
+
+            var receiveWithDetail = _receivingDomainService.GetAllByInvoiceId(receiving.InvoiceId.Value)
+                .FirstOrDefault(x => x.Id == receiving.Id);
+            this.LocalizationSourceName = "Souccar";
+            if (receiving.ClearanceCompanyId != null)
+            {
+                var clearanceTransactionDetail = GetClearanceTransactionDetail(receiveWithDetail);
+                EventBus.Default.Trigger(new ClearanceCompanyCashFlowCreateEventData(
+                    receiving.ClearanceCostCurrency == Currency.Dollar ? receiving.ClearanceCost : 0,
+                    receiving.ClearanceCostCurrency == Currency.Dinar ? receiving.ClearanceCost : 0,
+                    TransactionName.ClearanceCost,
+                    receiving.ClearanceCompanyId,
+                    receiving.Id,
+                    L(LocalizationResource.ClearanceCost),
+                    clearanceTransactionDetail
+                    ));
+            }
+            if (receiving.TransportCompanyId != null)
+            {
+                var transportTransactionDetail = GetTransportTransactionDetail(receiveWithDetail);
+                EventBus.Default.Trigger(new TransportCompanyCashFlowCreateEventData(
+                    receiving.TransportCostCurrency == Currency.Dollar ? receiving.TransportCost : 0,
+                    receiving.TransportCostCurrency == Currency.Dinar ? receiving.TransportCost : 0,
+                    TransactionName.TransportCost,
+                    receiving.TransportCompanyId,
+                    receiving.Id,
+                    L(LocalizationResource.TransportCost),
+                    transportTransactionDetail
+                    ));
+            }
+            return ObjectMapper.Map<ReceivingDto>(updateReceiving);
+        }
+
+        private string GetTransportTransactionDetail(Receiving receiving)
+        {
+            var builder = new StringBuilder();
+            builder.Append(L(LocalizationResource.TransportCost));
+            builder.Append(L(LocalizationResource.ForCompany));
+            builder.Append(":");
+            var company = _clearanceCompanyDomainService.Get(receiving.TransportCompanyId.Value);
+            builder.Append(company?.Name);
+            builder.Append(" | ");
+            builder.Append(L(LocalizationResource.Materials));
+            builder.Append(":");
+            var materialsNames = "";
+            foreach (var item in receiving.ReceivingItems)
+            {
+                materialsNames += item.InvoiceItem.OfferItem.Material.Name + "-";
+            }
+            materialsNames = materialsNames.Substring(0, materialsNames.Length - 1);
+            builder.Append($"({materialsNames})");
+            builder.Append(" | ");
+            builder.Append(L(LocalizationResource.InvoiceNumber));
+            builder.Append(":");
+            builder.Append(receiving.InvoiceId);
+            builder.Append(" | ");
+            builder.Append(L(LocalizationResource.DriverName));
+            builder.Append(":");
+            builder.Append(receiving.DriverName);
+            return builder.ToString();
+        }
+        private string GetClearanceTransactionDetail(Receiving receiving)
+        {
+            var builder = new StringBuilder();
+            builder.Append(L(LocalizationResource.TransportCost));
+            builder.Append(L(LocalizationResource.ForCompany));
+            builder.Append(":");
+            var company = _clearanceCompanyDomainService.Get(receiving.ClearanceCompanyId.Value);
+            builder.Append(company?.Name);
+            builder.Append(" | ");
+            builder.Append(L(LocalizationResource.Materials));
+            builder.Append(":");
+            var materialsNames = "";
+            foreach (var item in receiving.ReceivingItems)
+            {
+                materialsNames += item.InvoiceItem.OfferItem.Material.Name + "-";
+            }
+            materialsNames = materialsNames.Substring(0, materialsNames.Length - 1);
+            builder.Append($"({materialsNames})");
+            builder.Append(" | ");
+            builder.Append(L(LocalizationResource.InvoiceNumber));
+            builder.Append(":");
+            builder.Append(receiving.InvoiceId);
+            return builder.ToString();
         }
     }
 }

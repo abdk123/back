@@ -3,6 +3,8 @@ using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Implements;
 using Souccar.SaleManagement.Deliveries;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,10 +14,13 @@ namespace Souccar.SaleManagement.Deliveries.Services
     {
         private readonly IRepository<Delivery, int> _deliveryRepository;
         private readonly IRepository<DeliveryItem, int> _deliveryItemRepository;
-        public DeliveryDomainService(IRepository<Delivery, int> deliveryRepository, IRepository<DeliveryItem, int> deliveryItemRepository) : base(deliveryRepository)
+        private readonly IRepository<RejectedMaterial, int> _rejectedMaterialRepository;
+
+        public DeliveryDomainService(IRepository<Delivery, int> deliveryRepository, IRepository<DeliveryItem, int> deliveryItemRepository, IRepository<RejectedMaterial, int> rejectedMaterialRepository) : base(deliveryRepository)
         {
             _deliveryRepository = deliveryRepository;
             _deliveryItemRepository = deliveryItemRepository;
+            _rejectedMaterialRepository = rejectedMaterialRepository;
         }
 
         public async Task<Delivery> GetWithDetailsByIdAsync(int id)
@@ -64,8 +69,7 @@ namespace Souccar.SaleManagement.Deliveries.Services
             }
 
             deliveryItem.DeliveryItemStatus = (DeliveryItemStatus)status;
-            if (deliveryItem.DeliveryItemStatus == DeliveryItemStatus.RejectAndReturnToSupplier ||
-                deliveryItem.DeliveryItemStatus == DeliveryItemStatus.RejectAndRecordAsDamaged)
+            if (deliveryItem.DeliveryItemStatus == DeliveryItemStatus.Rejected)
             {
                 deliveryItem.RejectedQuantity = deliveryItem.DeliveredQuantity;
             }
@@ -106,7 +110,26 @@ namespace Souccar.SaleManagement.Deliveries.Services
                 .Where(x => x.DeliveryItems.Any(d => offerItemIds.Contains(d.OfferItemId.Value)));
         }
 
+        public async Task<IList<RejectedMaterial>> CreateRejectedMaterials(List<RejectedMaterial> rejectedMaterials)
+        {
+            var updatedItems = new List<RejectedMaterial>();
+            foreach (var item in rejectedMaterials)
+            {
+                var updatedItem = await _rejectedMaterialRepository.UpdateAsync(item);
+                updatedItems.Add(updatedItem);
+            }
+            return updatedItems;
+        }
 
+        public DeliveryItem GetItemById(int? itemId)
+        {
+            var deliveryItem = _deliveryItemRepository.GetAllIncluding(x => x.Delivery)
+                .Include(x=>x.OfferItem).ThenInclude(x=>x.Material)
+                .Include(x=>x.OfferItem).ThenInclude(x=>x.Unit)
+                .Include(x=>x.OfferItem).ThenInclude(x=>x.Size)
+                .FirstOrDefault(x => x.Id == itemId);
+            return deliveryItem;
+        }
     }
 }
 

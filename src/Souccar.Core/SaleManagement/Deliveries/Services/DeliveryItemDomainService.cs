@@ -3,6 +3,7 @@ using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using Souccar.Core.Services.Implements;
 using Souccar.SaleManagement.Deliveries;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,10 +13,16 @@ namespace Souccar.SaleManagement.Deliveries.Services
     {
         private readonly IRepository<Delivery, int> _deliveryRepository;
         private readonly IRepository<DeliveryItem, int> _deliveryItemRepository;
+
         public DeliveryItemDomainService(IRepository<Delivery, int> deliveryRepository, IRepository<DeliveryItem, int> deliveryItemRepository) : base(deliveryItemRepository)
         {
             _deliveryRepository = deliveryRepository;
             _deliveryItemRepository = deliveryItemRepository;
+        }
+
+        public Task<RejectedMaterial> CreateList(List<RejectedMaterial> rejectedMaterials)
+        {
+            throw new System.NotImplementedException();
         }
 
         public IQueryable<Delivery> GetAllRejected()

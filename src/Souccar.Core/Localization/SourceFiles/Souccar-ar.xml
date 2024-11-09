@@ -175,6 +175,7 @@
 		<text name="EditCustomerType">تعديل نوع زبون</text>
 		<text name="DeleteCustomerType">حذف نوع زبون</text>
 		<text name="Company">شركة</text>
+		<text name="ForCompany">لشركة</text>
 		<text name="Companies">الشركات</text>
 		<text name="CreateNewCompany">إضافة شركة جديدة</text>
 		<text name="EditCompany">تعديل شركة</text>
@@ -462,5 +463,7 @@
 		<text name="CompleteReceivingInfo">استكمال بيانات الاستلام</text>
 		<text name="AddReceive">إضافة استلام</text>
 		<text name="ReceivingDate">تاريخ الاستلام</text>
+		<text name="For">لـ</text>
+		<text name="Materials">المواد</text>
 	</texts>
 </localizationDictionary>

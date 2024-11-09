@@ -125,19 +125,21 @@ namespace Souccar.SaleManagement.Deliveries.Services
             return ObjectMapper.Map<DeliveryDto>(updatedDelivery);
         }
 
-        public async Task<DeliveryDto> RejectDeliveryAsync(RejectDeliveryDto input)
+        public async Task<DeliveryDto> RejectDeliveryAsync(List<RejectedMaterialDto> list)
         {
-            var delivery = await GetEntityByIdAsync(input.DeliveryId);
-            foreach (var item in delivery.DeliveryItems)
+            var deliveryItem = _deliveryDomainService.GetItemById(list[0].DeliveryItemId.Value);
+            var delivery = deliveryItem.Delivery;
+            await _deliveryDomainService.CreateRejectedMaterials(list);
+            foreach (var input in list)
             {
-                var gap = input.RejectedQuantity - item.RejectedQuantity;//old quantity - new 
+                var gap = input.RejectedQuantity - deliveryItem.RejectedQuantity;//old quantity - new 
 
-                if (item.Id == input.DeliveryItemId)
+                if (deliveryItem.Id == input.DeliveryItemId)
                 {
-                    item.RejectedQuantity = input.RejectedQuantity;
+                    deliveryItem.RejectedQuantity = input.RejectedQuantity;
 
-                    item.RejectionDate = input.RejectionDate != null ? input.RejectionDate : DateTime.Now;
-                    item.DeliveryItemStatus = input.ReturnToSupplier ? DeliveryItemStatus.RejectAndReturnToSupplier : DeliveryItemStatus.RejectAndRecordAsDamaged;
+                    deliveryItem.RejectionDate = input.RejectionDate != null ? input.RejectionDate : DateTime.Now;
+                    deliveryItem.DeliveryItemStatus = input.MaterialSource ? MaterialSource.Store: DeliveryItemStatus.RejectAndRecordAsDamaged;
                     delivery.Status = DeliveryStatus.PartialRejected;
                     if (delivery.DeliveryItems.All(x => x.DeliveredQuantity == x.RejectedQuantity))
                     {
@@ -146,12 +148,12 @@ namespace Souccar.SaleManagement.Deliveries.Services
                     await _deliveryDomainService.UpdateAsync(delivery);
                     if (!input.ReturnToSupplier) // «—Ã«⁄Â« ﬂ„Â ·ﬂ
                     {
-                        var largeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : gap * -1;
-                        var smallQuentity = item.OfferItem.AddedBySmallUnit ? gap * -1 : 0;
-                        var damagedLargeQuentity = item.OfferItem.AddedBySmallUnit ? 0 : gap;
-                        var damagedSmallQuentity = item.OfferItem.AddedBySmallUnit ? gap : 0;
+                        var largeQuentity = deliveryItem.OfferItem.AddedBySmallUnit ? 0 : gap * -1;
+                        var smallQuentity = deliveryItem.OfferItem.AddedBySmallUnit ? gap * -1 : 0;
+                        var damagedLargeQuentity = deliveryItem.OfferItem.AddedBySmallUnit ? 0 : gap;
+                        var damagedSmallQuentity = deliveryItem.OfferItem.AddedBySmallUnit ? gap : 0;
                         await EventBus.Default.TriggerAsync(new UpdateStockEventData(
-                            item.OfferItem.MaterialId,
+                            deliveryItem.OfferItem.MaterialId,
                             largeQuentity, smallQuentity, damagedLargeQuentity, damagedSmallQuentity));
                     }
                     break;

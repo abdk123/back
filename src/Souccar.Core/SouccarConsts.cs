@@ -35,7 +35,13 @@ namespace Souccar
     public class LocalizationResource
     { 
         public const string ClearanceCost = "ClearanceCost";
+        public const string ClearanceCostFor = "ClearanceCostForCompany{0}InvoiceNumber{1}";
         public const string TransportCost = "TransportCost";
+        public const string TransportCostFor = "TransportCostForCompany{0}InvoiceNumber{1}Driver{2}";
+        public const string Materials = "Materials";
+        public const string DriverName = "DriverName"; 
+        public const string ForCompany = "ForCompany";
+        public const string InvoiceNumber = "InvoiceNumber";
         public const string ReceivingCost = "ReceivingCost";
         public const string CostOfReceivingTheMaterial = "CostOfReceivingTheMaterial{0}";
         public const string DeliveryTransportCost = "DeliveryTransportCost";
