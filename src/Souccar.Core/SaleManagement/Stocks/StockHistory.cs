@@ -9,7 +9,7 @@ namespace Souccar.SaleManagement.Stocks
         public StockReason Reason { get; set; }
         public string Title { get; set; }
         public double Quantity { get; set; }
-
+        public int? RelatedId { get; set; }
         #region Stock
         public int? StockId { get; set; }
 

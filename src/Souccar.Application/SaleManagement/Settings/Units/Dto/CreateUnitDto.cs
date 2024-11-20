@@ -10,32 +10,32 @@ using Souccar.SaleManagement.Settings.Materials;
 
 namespace Souccar.SaleManagement.Settings.Units.Dto
 {
-   public class CreateUnitDto : EntityDto<int>, ICustomValidate
+   public class CreateUnitDto : EntityDto<int>//, ICustomValidate
     {
         public string Name { get; set; }
-        public void AddValidationErrors(CustomValidationContext context)
-        {
-            using (var scope = context.IocResolver.CreateScope())
-            {
-                using (var uow = scope.Resolve<IUnitOfWorkManager>().Begin())
-                {
-                    var repository = scope.Resolve<IRepository<Unit, int>>();
+        //public void AddValidationErrors(CustomValidationContext context)
+        //{
+        //    using (var scope = context.IocResolver.CreateScope())
+        //    {
+        //        using (var uow = scope.Resolve<IUnitOfWorkManager>().Begin())
+        //        {
+        //            var repository = scope.Resolve<IRepository<Unit, int>>();
 
-                    var nameExists = repository.GetAll()
-                        .Any(x => x.Name == Name && x.Id != Id);
+        //            var nameExists = repository.GetAll()
+        //                .Any(x => x.Name == Name && x.Id != Id);
 
-                    if (nameExists)
-                    {
-                        var key = ValidationMessage.NameAlreadyExist;
-                        var errorMessage = context.Localize(SouccarConsts.LocalizationSourceName, key);
-                        var memberNames = new[] { nameof(Name) };
-                        context.Results.Add(new ValidationResult(errorMessage, memberNames));
-                    }
+        //            if (nameExists)
+        //            {
+        //                var key = ValidationMessage.NameAlreadyExist;
+        //                var errorMessage = context.Localize(SouccarConsts.LocalizationSourceName, key);
+        //                var memberNames = new[] { nameof(Name) };
+        //                context.Results.Add(new ValidationResult(errorMessage, memberNames));
+        //            }
 
-                    uow.Complete();
-                }
-            }
-        }
+        //            uow.Complete();
+        //        }
+        //    }
+        //}
     }
 }
 

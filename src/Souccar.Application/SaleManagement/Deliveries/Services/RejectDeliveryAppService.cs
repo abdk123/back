@@ -21,7 +21,7 @@ namespace Souccar.SaleManagement.Deliveries.Services
             if (!deliveries.Any())
                 return null;
             return deliveries.
-                SelectMany(x => x.DeliveryItems).Where(x => x.DeliveryItemStatus == DeliveryItemStatus.RejectAndRecordAsDamaged || x.DeliveryItemStatus == DeliveryItemStatus.RejectAndReturnToSupplier);
+                SelectMany(x => x.DeliveryItems).Where(x => x.DeliveryItemStatus == DeliveryItemStatus.Rejected || x.DeliveryItemStatus == DeliveryItemStatus.PartialRejected);
         }
     }
 }

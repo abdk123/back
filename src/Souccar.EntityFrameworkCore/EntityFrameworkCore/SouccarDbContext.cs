@@ -59,6 +59,7 @@ namespace Souccar.EntityFrameworkCore
         public DbSet<SaleInvoiceItem> SaleInvoiceItems { get;set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<StockHistory> StockHistories { get; set; }
+        public DbSet<RejectedMaterial> RejectedMaterials { get; set; }
 
         public SouccarDbContext(DbContextOptions<SouccarDbContext> options)
             : base(options)

@@ -12,7 +12,8 @@ namespace Souccar.SaleManagement.Settings.Materials.Map
             CreateMap<Material, ReadMaterialDto>();
             CreateMap<CreateMaterialDto, Material>();
             CreateMap<Material, CreateMaterialDto>();
-            CreateMap<UpdateMaterialDto, Material>();
+            CreateMap<UpdateMaterialDto, Material>()
+                .ForMember(x => x.Stocks, op => op.Ignore());
             CreateMap<Material, UpdateMaterialDto>();
             CreateMap<Material, DropdownDto>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));

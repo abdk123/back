@@ -76,15 +76,12 @@ namespace Souccar.SaleManagement.Deliveries.Services
             return await _deliveryItemRepository.UpdateAsync(deliveryItem);
         }
 
-        public IQueryable<Delivery> GetAllRejected()
+        public IQueryable<RejectedMaterial> GetAllRejected()
         {
-            return _deliveryRepository.GetAll().AsNoTracking()
-                .Include(c => c.Customer)
-                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.OfferItem).ThenInclude(of => of.Offer)
-                .Include(i => i.DeliveryItems).ThenInclude(inv => inv.OfferItem).ThenInclude(m => m.Material).ThenInclude(x => x.Stocks)
-                .Include(i => i.DeliveryItems).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
-                .Include(i => i.DeliveryItems).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
-                .Where(x => x.Status == DeliveryStatus.PartialRejected || x.Status == DeliveryStatus.Rejected);
+            return _rejectedMaterialRepository.GetAll().AsNoTracking()
+                .Include(i => i.DeliveryItem).ThenInclude(inv => inv.OfferItem).ThenInclude(of => of.Offer)
+                .Include(i => i.Supplier)
+                .Where(x => x.DeliveryItem.DeliveryItemStatus == DeliveryItemStatus.PartialRejected || x.DeliveryItem.DeliveryItemStatus == DeliveryItemStatus.Rejected);
         }
 
         public IQueryable<Delivery> GetForSaleInvoice(int customerId)
@@ -115,7 +112,7 @@ namespace Souccar.SaleManagement.Deliveries.Services
             var updatedItems = new List<RejectedMaterial>();
             foreach (var item in rejectedMaterials)
             {
-                var updatedItem = await _rejectedMaterialRepository.UpdateAsync(item);
+                var updatedItem = await _rejectedMaterialRepository.InsertOrUpdateAsync(item);
                 updatedItems.Add(updatedItem);
             }
             return updatedItems;
@@ -123,12 +120,13 @@ namespace Souccar.SaleManagement.Deliveries.Services
 
         public DeliveryItem GetItemById(int? itemId)
         {
-            var deliveryItem = _deliveryItemRepository.GetAllIncluding(x => x.Delivery)
-                .Include(x=>x.OfferItem).ThenInclude(x=>x.Material)
-                .Include(x=>x.OfferItem).ThenInclude(x=>x.Unit)
-                .Include(x=>x.OfferItem).ThenInclude(x=>x.Size)
-                .FirstOrDefault(x => x.Id == itemId);
+            var deliveryItem = _deliveryItemRepository.Get(itemId.Value);
             return deliveryItem;
+        }
+
+        public async Task<DeliveryItem> UpdateItemAsync(DeliveryItem deliveryItem)
+        {
+            return await _deliveryItemRepository.UpdateAsync(deliveryItem);
         }
     }
 }

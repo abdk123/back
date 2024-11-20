@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souccar.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Souccar.EntityFrameworkCore;
 namespace Souccar.Migrations
 {
     [DbContext(typeof(SouccarDbContext))]
-    partial class SouccarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241113170531_Update_Stock_History")]
+    partial class Update_Stock_History
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3171,7 +3174,7 @@ namespace Souccar.Migrations
                     b.Property<int?>("RelatedId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StockId")
+                    b.Property<int?>("SizeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -3180,9 +3183,10 @@ namespace Souccar.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UnitId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("StockId");
+                    b.HasKey("Id");
 
                     b.ToTable("StockHistories");
                 });
@@ -3889,15 +3893,6 @@ namespace Souccar.Migrations
                     b.Navigation("Store");
 
                     b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("Souccar.SaleManagement.Stocks.StockHistory", b =>
-                {
-                    b.HasOne("Souccar.SaleManagement.Stocks.Stock", "Stock")
-                        .WithMany()
-                        .HasForeignKey("StockId");
-
-                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("Souccar.SaleManagement.SupplierOffers.SupplierOffer", b =>

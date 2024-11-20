@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.Settings.Currencies;
 
 namespace Souccar.SaleManagement.Invoises.Dto
@@ -14,6 +15,7 @@ namespace Souccar.SaleManagement.Invoises.Dto
         public int? SupplierOfferId { get; set; }
         public int? SupplierId { get; set; }
         public Currency Currency { get; set; }
+        public int Status { get; set; }
         public IList<CreateInvoiceItemDto> InvoiseDetails { get; set; }
 
         //public void AddValidationErrors(CustomValidationContext context)

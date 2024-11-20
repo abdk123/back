@@ -44,6 +44,12 @@ namespace Souccar.EntityFrameworkCore.Seed.Host
                 return;
             }
 
+            if (_context.Users.IgnoreQueryFilters().Any(s => s.TenantId == tenantId && s.Id == 1)
+                && !_context.Settings.IgnoreQueryFilters().Any(s => s.Name == name && s.TenantId == tenantId && s.UserId == 1))
+            {
+                _context.Settings.Add(new Setting(tenantId, 1, name, value));
+            }
+
             _context.Settings.Add(new Setting(tenantId, null, name, value));
             _context.SaveChanges();
         }

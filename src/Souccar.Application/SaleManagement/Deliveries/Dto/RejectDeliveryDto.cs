@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Souccar.SaleManagement.Deliveries.Dto
 {
@@ -6,9 +7,12 @@ namespace Souccar.SaleManagement.Deliveries.Dto
     {
         public int DeliveryId { get; set; }
         public int DeliveryItemId { get; set; }
-        public double RejectedQuantity { get; set; }
-        public bool ReturnToSupplier { get; set; }
         public DateTime? RejectionDate { get; set; }
+        public IList<RejectedMaterialDto> RejectedMaterials { get; set; }
 
+        public RejectDeliveryDto()
+        {
+            RejectedMaterials = new List<RejectedMaterialDto>();
+        }
     }
 }

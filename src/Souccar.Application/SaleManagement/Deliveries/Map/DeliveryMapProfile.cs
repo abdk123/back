@@ -15,7 +15,7 @@ namespace Souccar.SaleManagement.Deliveries.Map
             CreateMap<UpdateDeliveryItemDto, DeliveryItem>().ReverseMap();
             CreateMap<DeliveryItem, DeliveryItemDto>().ReverseMap();
             CreateMap<DeliveryItem, RejectDeliveryItemDto>().ReverseMap();
-            CreateMap<RejectedMaterial, RejectedMaterialDto>().ReverseMap();
+            CreateMap<RejectedMaterialDto, RejectedMaterial>().ReverseMap();
         }
     }
 }

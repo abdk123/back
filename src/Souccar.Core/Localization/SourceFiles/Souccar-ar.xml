@@ -137,16 +137,17 @@
 		<text name="NumberInLargeUnit">العدد بالوحدة الكبيرة</text>
 		<text name="NumberInSmallUnit">العدد بالوحدة الصغيرة</text>
 		<text name="QuantityInLargeUnit">الكمية بالوحدة الكبيرة</text>
+		<text name="QuantityInSmallUnit">الكمية بالوحدة الصغيرة</text>
 		<text name="TotalNumberInSmallUnit">الاجمالي بالوحدة الصغيرة</text>
 		<text name="Unit">الوحدة</text>
 		<text name="Size">وحدة التعبئة</text>
 		<text name="Material">المادة</text>
 		<text name="Store">المخزن</text>
-		<text name="UnitSize">Unit Size</text>
-		<text name="UnitSizes">Unit Sizes</text>
-		<text name="CreateNewUnitSize">إضافة Unit Size</text>
-		<text name="EditUnitSize">تعديل Unit Size</text>
-		<text name="DeleteUnitSize">حذف Unit Size</text>
+		<text name="UnitSize">وحدة تعبئة</text>
+		<text name="UnitSizes">وحدات التعبئة</text>
+		<text name="CreateNewUnit">إضافة وحدة تعبئة</text>
+		<text name="EditUnit">تعديل وحدة تعبئة</text>
+		<text name="DeleteUnitSize">حذف وحدة تعبئة</text>
 		<text name="Description">الوصف</text>
 		<text name="Specification">المواصفات</text>
 		<text name="Category">الفئة</text>
@@ -465,5 +466,15 @@
 		<text name="ReceivingDate">تاريخ الاستلام</text>
 		<text name="For">لـ</text>
 		<text name="Materials">المواد</text>
+		<text name="MaterialSource">مصدر المادة</text>
+		<text name="RejectedMaterial">المواد المرفوضة</text>
+		<text name="ConversionValue">قيمة التحويل</text>
+		<text name="QuantityEnteredInUnit">الكمية المدخلة بالوحدة</text>
+		<text name="SendDeliveryForCustomer{0}">ارسال دلفري للزبون {0}</text>
+		<text name="ReceiveFromSupplier{0}">استلام من الزبون {0}</text>
+		<text name="CreateNewCategory">إضافة فئة جديدة</text>
+		<text name="EditCategory">تعديل فئة</text>
+		<text name="CreateNewStore">إضافة مخزن جديدة</text>
+		<text name="InitialBalanceForMaterial{0}Size{1}">رصيد اولي للمادة {0} ووحدة التعبئة {1}</text>
 	</texts>
 </localizationDictionary>

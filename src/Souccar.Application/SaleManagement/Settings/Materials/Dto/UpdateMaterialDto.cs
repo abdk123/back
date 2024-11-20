@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Abp.Application.Services.Dto;
@@ -5,14 +6,20 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Runtime.Validation;
+using Souccar.SaleManagement.Stocks.Dto;
 
 namespace Souccar.SaleManagement.Settings.Materials.Dto
 {
     public class UpdateMaterialDto : EntityDto<int>,ICustomValidate
     {
+        public UpdateMaterialDto()
+        {
+            Stocks = new List<UpdateStockDto>();
+        }
         public string Name { get; set; }
         public string Specification { get; set; }
         public int? CategoryId { get; set; }
+        public IList<UpdateStockDto> Stocks { get; set; } 
         public void AddValidationErrors(CustomValidationContext context)
         {
             using (var scope = context.IocResolver.CreateScope())

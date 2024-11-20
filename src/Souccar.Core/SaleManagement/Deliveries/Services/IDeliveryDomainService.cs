@@ -13,11 +13,12 @@ namespace Souccar.SaleManagement.Deliveries.Services
         Task<Delivery> GetWithDetailsByIdAsync(int id);
         Task<IQueryable<Delivery>> GetAllDeliverdAsync();
         Task<DeliveryItem> ChangeItemStatusAsync(int id, int status);
-        IQueryable<Delivery> GetAllRejected();
+        IQueryable<RejectedMaterial> GetAllRejected();
         IQueryable<Delivery> GetForSaleInvoice(int customerId);
         IQueryable<Delivery> GetByOfferItems(int[] offerItems);
         Task<IList<RejectedMaterial>> CreateRejectedMaterials(List<RejectedMaterial> rejectedMaterials);
         DeliveryItem GetItemById(int? itemId);
+        Task<DeliveryItem> UpdateItemAsync(DeliveryItem deliveryItem);
     }
 }
 

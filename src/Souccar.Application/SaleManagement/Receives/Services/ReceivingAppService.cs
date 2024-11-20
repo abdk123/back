@@ -22,6 +22,9 @@ using Abp.Domain.Repositories;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Souccar.SaleManagement.Settings.Companies.Services;
+using Souccar.SaleManagement.Deliveries;
+using Souccar.SaleManagement.StockHistories.Event;
+using Souccar.SaleManagement.Stocks;
 
 namespace Souccar.SaleManagement.Receives.Services
 {
@@ -87,11 +90,21 @@ namespace Souccar.SaleManagement.Receives.Services
                     L(LocalizationResource.CostOfReceivingTheMaterial, invoiceItem?.OfferItem?.Material?.Name)
                     ));
 
-                    var numberInLargeQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? 0 : receivingItem.ReceivedQuantity;
-                    var numberInSmallQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? receivingItem.ReceivedQuantity : 0;
-                    await EventBus.Default.TriggerAsync(new UpdateStockEventData(
-                        invoiceItem.OfferItem.MaterialId,
-                        numberInLargeQuentity, numberInSmallQuentity));
+                    //var numberInLargeQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? 0 : receivingItem.ReceivedQuantity;
+                    //var numberInSmallQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? receivingItem.ReceivedQuantity : 0;
+                    //await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                    //    invoiceItem.OfferItem.MaterialId,
+                    //    numberInLargeQuentity, numberInSmallQuentity));
+                    await EventBus.Default.TriggerAsync(new StockHistoryEventUpdateData(
+                    StockType.Exit,
+                    StockReason.Delivery,
+                    L(LocalizationResource.ReceiveFromSupplier, invoice.Supplier?.FullName),
+                    receivingItem.ReceivedQuantity,
+                    receivingItem.Id,
+                    invoiceItem.OfferItem.UnitId,
+                    invoiceItem.OfferItem.SizeId,
+                    invoiceItem.OfferItem.MaterialId
+                    ));
                 }
             }
             return receiving;
@@ -174,11 +187,21 @@ namespace Souccar.SaleManagement.Receives.Services
                     L(LocalizationResource.CostOfReceivingTheMaterial, invoiceItem?.OfferItem?.Material?.Name)
                     ));
 
-                    var numberInLargeQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? 0 : -difQuantity;
-                    var numberInSmallQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? -difQuantity : 0;
-                    await EventBus.Default.TriggerAsync(new UpdateStockEventData(
-                        invoiceItem.OfferItem.MaterialId,
-                        numberInLargeQuentity, numberInSmallQuentity));
+                    //var numberInLargeQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? 0 : -difQuantity;
+                    //var numberInSmallQuentity = invoiceItem.OfferItem.AddedBySmallUnit ? -difQuantity : 0;
+                    //await EventBus.Default.TriggerAsync(new UpdateStockEventData(
+                    //    invoiceItem.OfferItem.MaterialId,
+                    //    numberInLargeQuentity, numberInSmallQuentity));
+                    await EventBus.Default.TriggerAsync(new StockHistoryEventUpdateData(
+                    StockType.Exit,
+                    StockReason.Delivery,
+                    L(LocalizationResource.ReceiveFromSupplier, invoice.Supplier?.FullName),
+                    receivingItem.ReceivedQuantity,
+                    receivingItem.Id,
+                    invoiceItem.OfferItem.UnitId,
+                    invoiceItem.OfferItem.SizeId,
+                    invoiceItem.OfferItem.MaterialId
+                    ));
                 }
             }
             var invoiceStatus = invoice.TotalReceivedQuantity == invoice.TotalQuantity ?
@@ -239,6 +262,7 @@ namespace Souccar.SaleManagement.Receives.Services
         {
             var builder = new StringBuilder();
             builder.Append(L(LocalizationResource.TransportCost));
+            builder.Append(" ");
             builder.Append(L(LocalizationResource.ForCompany));
             builder.Append(":");
             var company = _clearanceCompanyDomainService.Get(receiving.TransportCompanyId.Value);
@@ -267,6 +291,7 @@ namespace Souccar.SaleManagement.Receives.Services
         {
             var builder = new StringBuilder();
             builder.Append(L(LocalizationResource.TransportCost));
+            builder.Append(" ");
             builder.Append(L(LocalizationResource.ForCompany));
             builder.Append(":");
             var company = _clearanceCompanyDomainService.Get(receiving.ClearanceCompanyId.Value);

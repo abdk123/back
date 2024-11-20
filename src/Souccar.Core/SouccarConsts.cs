@@ -47,6 +47,8 @@ namespace Souccar
         public const string DeliveryTransportCost = "DeliveryTransportCost";
         public const string DeliveryCost = "DeliveryCost";
         public const string DeliveryCostForMaterial = "DeliveryCostForMaterial{0}andOffer{1}";
-
+        public const string SendDeliveryForCustomer = "SendDeliveryForCustomer{0}";
+        public const string ReceiveFromSupplier = "ReceiveFromSupplier{0}";
+        public const string InitialBalanceForMaterial = "InitialBalanceForMaterial{0}Size{1}";
     }
 }
