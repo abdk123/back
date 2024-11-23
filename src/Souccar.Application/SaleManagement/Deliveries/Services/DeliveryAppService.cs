@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
-using Souccar.SaleManagement.Stocks.Event;
 using Souccar.SaleManagement.CashFlows;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
 using Souccar.SaleManagement.Deliveries.Dto;

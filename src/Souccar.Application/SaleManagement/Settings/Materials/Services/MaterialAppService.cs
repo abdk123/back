@@ -50,7 +50,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     type: StockType.Entry,
                     reason: StockReason.InitialBalance,
                     title: L(LocalizationResource.InitialBalanceForMaterial, output.Name,stock.Size?.Name),
-                    quantity: stock.QuantityInLargeUnit,
+                    quantity: stock.Quantity,
                     relatedId: stock.Id,
                     unitId: material.UnitId,
                     sizeId: stock.SizeId,
@@ -59,14 +59,13 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
             }
             return output;
         }
-
         public async override Task<MaterialDto> UpdateAsync(UpdateMaterialDto input)
         {
             var material = await _materialDomainService.GetAsync(input.Id);
             ObjectMapper.Map<UpdateMaterialDto, Material>(input, material);
             var output = await _materialDomainService.UpdateAsync(material);
             var materials = _materialDomainService
-                .Get(filter: x => x.Id == output.Id, include: new string[] { "Stocks.Unit", "Stocks.Size" })
+                .Get(filter: x => x.Id == output.Id, include: new string[] { "Unit", "Stocks.Size" })
                 .FirstOrDefault();
 
             foreach (var stock in materials.Stocks)
@@ -75,7 +74,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     type: StockType.Entry,
                     reason: StockReason.InitialBalance,
                     title: L(LocalizationResource.InitialBalanceForMaterial, output.Name, stock.Size?.Name),
-                    quantity: stock.QuantityInLargeUnit,
+                    quantity: stock.Quantity,
                     relatedId: stock.Id,
                     unitId: material.UnitId,
                     sizeId: stock.SizeId,
@@ -85,7 +84,6 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
             return ObjectMapper.Map<MaterialDto>(output);
             
         }
-
         public IList<MaterialDto> GetAllByIds(int[] materialsIds)
         {
             var includes = new string[] 
@@ -98,13 +96,13 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                 include: includes).ToList();
             return ObjectMapper.Map<List<MaterialDto>>(materials);
         }
-
         public MaterialDto GetById(int id)
         {
             var includes = new string[]
             {
                 $"{nameof(Material.Unit)}",
-                $"{nameof(Material.Stocks)}.{nameof(Stock.Size)}"
+                $"{nameof(Material.Stocks)}.{nameof(Stock.Size)}",
+                $"{nameof(Material.Stocks)}.{nameof(Stock.Store)}",
             };
             var material = _materialDomainService.Get(
                 filter: x => x.Id == id,

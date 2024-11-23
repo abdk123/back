@@ -107,7 +107,7 @@ namespace Souccar.SaleManagement.SupplierOffers
                 var stocks = Material?.Stocks?.FirstOrDefault(x => x.SizeId == SizeId);
                 if (stocks != null)
                 {
-                    return stocks.Count;
+                    return stocks.ConversionValue;
                 }
                 return 0;
             }

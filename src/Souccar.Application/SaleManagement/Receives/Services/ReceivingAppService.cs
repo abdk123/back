@@ -13,7 +13,6 @@ using Souccar.SaleManagement.Settings.Currencies;
 using Souccar.SaleManagement.CashFlows;
 using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events;
 using Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events;
-using Souccar.SaleManagement.Stocks.Event;
 using Souccar.SaleManagement.Receives.Dto;
 using System.Linq.Expressions;
 using System;

@@ -23,48 +23,28 @@ namespace Souccar.SaleManagement.Stocks
         /// <summary>
         /// قيمة التحويل بين الوحدة الكبيرة والصغيرة
         /// </summary>
-        public double Count { get; set; }
+        public double ConversionValue { get; set; }
 
         /// <summary>
-        /// العدد الموجود بالوحدة الكبيرة
+        /// الكمية الموجود بالوحدة الكبيرة
         /// </summary>
-        public double NumberInLargeUnit { get; set; }
-
-        /// <summary>
-        /// العدد التالف الموجود بالوحدة الصغيرة
-        /// </summary>
-        public double NumberInSmallUnit { get; set; }
-
-        /// <summary>
-        /// العدد التالف الموجود بالوحدة الكبيرة
-        /// </summary>
-        public double DamagedNumberInLargeUnit { get; set; }
+        public double Quantity { get; set; }
 
         /// <summary>
         /// العدد الموجود بالوحدة الصغيرة
         /// </summary>
-        public double DamagedNumberInSmallUnit { get; set; }
+        public double NumberInSmallUnit => Math.Round(Quantity / ConversionValue, 1);
 
         /// <summary>
-        ///  كمية الوحدة الكبيرة
+        /// العدد التالف الموجود بالوحدة الكبيرة
         /// </summary>
-        public double QuantityInLargeUnit => Math.Round(NumberInLargeUnit * Count, 1);
+        public double DamagedQuantity { get; set; }
 
         /// <summary>
-        /// العدد الكلي بالوحدة الصغيرة
+        /// العدد الموجود بالوحدة الصغيرة
         /// </summary>
-        public double TotalNumberInSmallUnit => (QuantityInLargeUnit + NumberInSmallUnit);
-
-        /// <summary>
-        ///  كمية الوحدة الكبيرة التالفة
-        /// </summary>
-        public double DamagedQuantityInLargeUnit => Math.Round(DamagedNumberInLargeUnit * Count, 1);
-
-        /// <summary>
-        /// العدد الكلي بالوحدة الصغيرة التالفة
-        /// </summary>
-        public double DamagedTotalNumberInSmallUnit => (DamagedQuantityInLargeUnit + DamagedNumberInSmallUnit);
-
+        public double DamagedNumberInSmallUnit => Math.Round(DamagedQuantity / ConversionValue,1);
+        
 
         #region الوحدة الصغيرة
         public int? SizeId { get; set; }
