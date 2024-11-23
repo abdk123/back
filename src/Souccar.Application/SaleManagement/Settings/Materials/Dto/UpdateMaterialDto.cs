@@ -19,6 +19,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Dto
         public string Name { get; set; }
         public string Specification { get; set; }
         public int? CategoryId { get; set; }
+        public int? UnitId { get; set; }
         public IList<UpdateStockDto> Stocks { get; set; } 
         public void AddValidationErrors(CustomValidationContext context)
         {

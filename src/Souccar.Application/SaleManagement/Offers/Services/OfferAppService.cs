@@ -177,7 +177,7 @@ namespace Souccar.SaleManagement.Offers.Services
             var includes = new string[]
             {
                 $"{nameof(OfferDto.Customer)}",
-                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Unit)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Unit)}",
                 $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}.{nameof(Stock.Size)}",
             };
             var offers = _offerDomainService

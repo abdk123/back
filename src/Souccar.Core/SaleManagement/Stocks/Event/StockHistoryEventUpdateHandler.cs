@@ -36,7 +36,7 @@ namespace Souccar.SaleManagement.StockHistories.Event
             {
                 int? stockId = null;
                 var stock = await _stockDomainService
-                    .FirstOrDefaultAsync(x => x.UnitId == eventData.UnitId && x.SizeId == eventData.SizeId);
+                    .FirstOrDefaultAsync(x => x.SizeId == eventData.SizeId);
                 if(stock is not null)
                 {
                     stockId = stock.Id;
@@ -46,7 +46,6 @@ namespace Souccar.SaleManagement.StockHistories.Event
                     Store store = _storeDomainService.GetAll().FirstOrDefault();
                     var createdStok = new Stock
                     {
-                        UnitId = eventData.UnitId,
                         SizeId = eventData.SizeId,
                         MaterialId = eventData.MaterialId,
                         StoreId = store?.Id

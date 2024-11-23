@@ -59,7 +59,7 @@ namespace Souccar.SaleManagement.Offers.Services
             var offers = _offerRepository.GetAll()
                 .Include(o => o.OfferItems).ThenInclude(o => o.DeliveryItems)
                 .Include(o => o.OfferItems).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks).ThenInclude(x => x.Size)
-                .Include(o => o.OfferItems).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks).ThenInclude(x => x.Unit)
+                .Include(o => o.OfferItems).ThenInclude(x => x.Material).ThenInclude(x => x.Unit)
                 .Where(x => x.CustomerId == customerId).ToList();
             return offers.SelectMany(x => x.OfferItems).Where(x => x.Quantity > x.DeliveredQuantity && x.Offer.Status == OfferStatus.Approved).ToList();
         }

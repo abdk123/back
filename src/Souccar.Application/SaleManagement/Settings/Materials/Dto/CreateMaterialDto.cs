@@ -6,6 +6,7 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Runtime.Validation;
+using Souccar.SaleManagement.Settings.Units.Dto;
 using Souccar.SaleManagement.Stocks.Dto;
 
 namespace Souccar.SaleManagement.Settings.Materials.Dto
@@ -18,6 +19,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Dto
         }
         public string Name { get; set; }
         public string Specification { get; set; }
+        public int? UnitId { get; set; }
         public int? CategoryId { get; set; }
         public IList<CreateStockDto> Stocks { get; set; }
         public void AddValidationErrors(CustomValidationContext context)

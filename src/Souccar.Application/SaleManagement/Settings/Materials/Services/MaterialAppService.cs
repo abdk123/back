@@ -40,11 +40,11 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
         public async override Task<MaterialDto> CreateAsync(CreateMaterialDto input)
         {
             var output = await base.CreateAsync(input);
-            var materials = _materialDomainService
-                .Get(filter: x => x.Id == output.Id, include: new string[] { "Stocks.Unit", "Stocks.Size" })
+            var material = _materialDomainService
+                .Get(filter: x => x.Id == output.Id, include: new string[] { "Unit", "Stocks.Size" })
                 .FirstOrDefault();
                 
-            foreach (var stock in materials.Stocks)
+            foreach (var stock in material.Stocks)
             {
                 await EventBus.Default.TriggerAsync(new StockHistoryEventUpdateData(
                     type: StockType.Entry,
@@ -52,7 +52,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     title: L(LocalizationResource.InitialBalanceForMaterial, output.Name,stock.Size?.Name),
                     quantity: stock.QuantityInLargeUnit,
                     relatedId: stock.Id,
-                    unitId: stock.UnitId,
+                    unitId: material.UnitId,
                     sizeId: stock.SizeId,
                     materialId: output.Id
                     ));
@@ -77,13 +77,39 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     title: L(LocalizationResource.InitialBalanceForMaterial, output.Name, stock.Size?.Name),
                     quantity: stock.QuantityInLargeUnit,
                     relatedId: stock.Id,
-                    unitId: stock.UnitId,
+                    unitId: material.UnitId,
                     sizeId: stock.SizeId,
                     materialId: output.Id
                     ));
             }
             return ObjectMapper.Map<MaterialDto>(output);
-            ;
+            
+        }
+
+        public IList<MaterialDto> GetAllByIds(int[] materialsIds)
+        {
+            var includes = new string[] 
+            { 
+                $"{nameof(Material.Unit)}",
+                $"{nameof(Material.Stocks)}.{nameof(Stock.Size)}"
+            };
+            var materials = _materialDomainService.Get(
+                filter: x => materialsIds.Contains(x.Id),
+                include: includes).ToList();
+            return ObjectMapper.Map<List<MaterialDto>>(materials);
+        }
+
+        public MaterialDto GetById(int id)
+        {
+            var includes = new string[]
+            {
+                $"{nameof(Material.Unit)}",
+                $"{nameof(Material.Stocks)}.{nameof(Stock.Size)}"
+            };
+            var material = _materialDomainService.Get(
+                filter: x => x.Id == id,
+                include: includes).FirstOrDefault();
+            return ObjectMapper.Map<MaterialDto>(material);
         }
     }
 }

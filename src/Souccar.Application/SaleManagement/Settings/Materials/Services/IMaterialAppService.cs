@@ -9,7 +9,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
     public interface IMaterialAppService : IAsyncSouccarAppService<MaterialDto, int, FullPagedRequestDto, CreateMaterialDto, UpdateMaterialDto>
     {
         IList<DropdownDto> GetForDropdown();
-        
+        IList<MaterialDto> GetAllByIds(int[] materialsIds);
     }
 }
 

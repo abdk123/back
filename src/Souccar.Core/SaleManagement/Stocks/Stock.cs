@@ -66,13 +66,6 @@ namespace Souccar.SaleManagement.Stocks
         public double DamagedTotalNumberInSmallUnit => (DamagedQuantityInLargeUnit + DamagedNumberInSmallUnit);
 
 
-        #region الوحدة
-        public int? UnitId { get; set; }
-
-        [ForeignKey("UnitId")]
-        public Unit Unit { get; set; }
-        #endregion
-
         #region الوحدة الصغيرة
         public int? SizeId { get; set; }
 
