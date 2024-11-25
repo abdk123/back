@@ -30,7 +30,7 @@ namespace Souccar.SaleManagement.StockHistories.Event
             if(existingHistory != null)
             {
                 existingHistory.Quantity = eventData.Quantity;
-                await _historyDomainService.InsertAsync(existingHistory);
+                await _historyDomainService.UpdateAsync(existingHistory);
             }
             else
             {

@@ -10,6 +10,11 @@ using Souccar.SaleManagement.StockHistories.Event;
 using Souccar.SaleManagement.Stocks;
 using Souccar.SaleManagement.Stocks.Services;
 using Abp.Application.Services.Dto;
+using Abp.Domain.Uow;
+using System.Transactions;
+using Souccar.SaleManagement.Stocks.Dto;
+using Souccar.SaleManagement.Settings.Units.Services;
+
 
 namespace Souccar.SaleManagement.Settings.Materials.Services
 {
@@ -18,10 +23,12 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
     {
         private readonly IMaterialDomainService _materialDomainService;
         private readonly IStockDomainService _stockDomainService;
-        public MaterialAppService(IMaterialDomainService materialDomainService, IStockDomainService stockDomainService) : base(materialDomainService)
+        private readonly ISizeDomainService _sizeDomainService;
+        public MaterialAppService(IMaterialDomainService materialDomainService, IStockDomainService stockDomainService, ISizeDomainService sizeDomainService) : base(materialDomainService)
         {
             _materialDomainService = materialDomainService;
             _stockDomainService = stockDomainService;
+            _sizeDomainService = sizeDomainService;
         }
 
         public IList<DropdownDto> GetForDropdown()
@@ -62,27 +69,50 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
         public async override Task<MaterialDto> UpdateAsync(UpdateMaterialDto input)
         {
             var material = await _materialDomainService.GetAsync(input.Id);
+            var stocks = _stockDomainService.GetAll().Where(x => x.MaterialId == input.Id).ToList();
             ObjectMapper.Map<UpdateMaterialDto, Material>(input, material);
-            var output = await _materialDomainService.UpdateAsync(material);
+            var updatedMaterial = await _materialDomainService.UpdateAsync(material);
+
+            //Stock
+            var createdList = input.Stocks.Where(x=>x.Id == 0);
+            var deletedList = stocks.ExceptBy(input.Stocks.Select(a => a.Id), e => e.Id);
+            foreach (var item in createdList)
+            {
+                var stock = ObjectMapper.Map<Stock>(item);
+                await _stockDomainService.InsertAsync(stock);
+            }
+            foreach (var item in deletedList)
+            {
+                await _stockDomainService.DeleteAsync(item.Id);
+            }
             var materials = _materialDomainService
-                .Get(filter: x => x.Id == output.Id, include: new string[] { "Unit", "Stocks.Size" })
-                .FirstOrDefault();
+            .Get(filter: x => x.Id == updatedMaterial.Id, include: new string[] { "Unit", "Stocks.Size" })
+            .FirstOrDefault();
 
             foreach (var stock in materials.Stocks)
             {
                 await EventBus.Default.TriggerAsync(new StockHistoryEventUpdateData(
                     type: StockType.Entry,
                     reason: StockReason.InitialBalance,
-                    title: L(LocalizationResource.InitialBalanceForMaterial, output.Name, stock.Size?.Name),
+                    title: L(LocalizationResource.InitialBalanceForMaterial, updatedMaterial.Name, stock.Size?.Name),
                     quantity: stock.Quantity,
                     relatedId: stock.Id,
                     unitId: material.UnitId,
                     sizeId: stock.SizeId,
-                    materialId: output.Id
+                    materialId: updatedMaterial.Id
                     ));
             }
-            return ObjectMapper.Map<MaterialDto>(output);
-            
+
+            foreach (var stock in deletedList)
+            {
+                await EventBus.Default.TriggerAsync(new StockHistoryEventDeleteData(
+                    type: StockType.Entry,
+                    reason: StockReason.InitialBalance,
+                    relatedId: stock.Id
+                    ));
+            }
+
+            return ObjectMapper.Map<MaterialDto>(updatedMaterial);
         }
         public IList<MaterialDto> GetAllByIds(int[] materialsIds)
         {
