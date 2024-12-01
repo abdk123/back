@@ -13,6 +13,8 @@ namespace Souccar.SaleManagement.Stocks.Dto
         public int? SizeId { get; set; }
         public int? MaterialId { get; set; }
         public int? StoreId { get; set; }
+        public double Price { get; set; }
+
     }
 }
 

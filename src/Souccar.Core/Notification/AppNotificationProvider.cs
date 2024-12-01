@@ -1,5 +1,7 @@
-﻿using Abp.Localization;
+﻿using Abp.Authorization;
+using Abp.Localization;
 using Abp.Notifications;
+using Souccar.Authorization;
 
 namespace Souccar.Notification
 {
@@ -15,13 +17,13 @@ namespace Souccar.Notification
                     )
                 );
 
-            //context.Manager.Add(
-            //    new NotificationDefinition(
-            //        AppNotificationNames.NewTenantRegistered,
-            //        displayName: L("NewTenantRegisteredNotificationDefinition"),
-            //        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Tenants)
-            //        )
-            //    );
+            context.Manager.Add(
+                new NotificationDefinition(
+                    AppNotificationNames.ReceiveMaterials,
+                    displayName: L("ReceiveMaterials")
+                    //permissionDependency: new SimplePermissionDependency(PermissionNames.Setting_Notifications_Receive_Material)
+                    )
+                );
         }
 
         private static ILocalizableString L(string name)

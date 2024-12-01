@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
-using Souccar.SaleManagement.Settings.Currencies;
 
 namespace Souccar.SaleManagement.Offers.Dto
 {

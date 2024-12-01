@@ -35,5 +35,25 @@ namespace Souccar.Notification
 
             }
         }
+
+        public async Task SendAsync(string title, Dictionary<string, object> dic, Abp.UserIdentifier[] identifiers)
+        {
+            try
+            {
+                var body = new MessageNotificationData(title);
+
+                body.Properties = dic;
+                await _notificationPublisher.PublishAsync(
+                    title,
+                    body,
+                    severity: NotificationSeverity.Warn,
+                    userIds: identifiers
+                    );
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

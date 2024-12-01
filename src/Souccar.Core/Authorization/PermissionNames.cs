@@ -162,5 +162,9 @@
         public const string Hr_Employees_Delete = "Hr.Employees.Delete";
 
 
+        //Notification
+        public const string Setting_Notifications_Receive_Material = "Setting.Notifications.Receive.Material";
+
+
     }
 }

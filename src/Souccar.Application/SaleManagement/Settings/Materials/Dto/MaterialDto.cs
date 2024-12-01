@@ -18,6 +18,7 @@ namespace Souccar.SaleManagement.Settings.Materials.Dto
         public int? UnitId { get; set; }
         public UnitDto Unit { get; set; }
         public double TotalQuantity { get; set; }
+        public double TotalPrice { get; set; }
         public CategoryForDropdownDto Category { get; set; }
         public IList<StockDto> Stocks { get; set; }
     }

@@ -77,11 +77,12 @@ namespace Souccar.SaleManagement.Deliveries.Services
                     StockType.Exit,
                     StockReason.Delivery,
                     L(LocalizationResource.SendDeliveryForCustomer, delivery.Customer?.FullName),
-                    item.DeliveredQuantity,
+                    (-1 * item.DeliveredQuantity),
                     item.Id,
                     item.OfferItem.UnitId,
                     item.OfferItem.SizeId,
-                    item.OfferItem.MaterialId
+                    item.OfferItem.MaterialId,
+                    item.OfferItem.UnitPrice
                     ));
 
                 //999 Õ—ﬂ… ⁄·Ï —’Ìœ «·“»Ê‰

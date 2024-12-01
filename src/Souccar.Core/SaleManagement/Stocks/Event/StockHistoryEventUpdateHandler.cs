@@ -61,6 +61,7 @@ namespace Souccar.SaleManagement.StockHistories.Event
                     Title = eventData.Title,
                     Type = eventData.Type,
                     RelatedId = eventData.RelatedId,
+                    Price = eventData.Price
                 };
                 await _historyDomainService.InsertAsync(stockHistory);
             }

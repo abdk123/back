@@ -259,7 +259,7 @@
 		<text name="CreateNewTransportCompanyVoucher">إضافة سند شركة النقل</text>
 		<text name="EditTransportCompanyVoucher">تعديل سند شركة النقل</text>
 		<text name="DeleteTransportCompanyVoucher">حذف سند شركة النقل</text>
-		<text name="Receiving">Receiving</text>
+		<text name="Receiving">استلام</text>
 		<text name="CreateNewReceiving">إضافة استلام جديد</text>
 		<text name="EditReceiving">تعديل استلام</text>
 		<text name="DeleteReceiving">حذف استلام</text>
@@ -476,5 +476,19 @@
 		<text name="EditCategory">تعديل فئة</text>
 		<text name="CreateNewStore">إضافة مخزن جديدة</text>
 		<text name="InitialBalanceForMaterial{0}Size{1}">رصيد اولي للمادة {0} ووحدة التعبئة {1}</text>
+		<text name="PricePerTon">سعر الطن</text>
+		<text name="CreateNewInvoice">إضافة فاتورة جديدة</text>
+		<text name="QuantityInOffer">الكمية المدخلة بالعرض</text>
+		<text name="Notes">ملاحظات</text>
+		<text name="MaterialsBalancesReport">تقرير ارصدة المواد</text>
+		<text name="MaterialBalanceReport">تقرير بحركة المادة</text>
+		<text name="Entry">إدخال</text>
+		<text name="Exit">إخراج</text>
+		<text name="TransferToDamaged">تحويل إلى تالف</text>
+		<text name="ReturnedToSuppleir">مرجعة للمورد</text>
+		<text name="ReturnedFromCustomer">مرجعة من الزبون</text>
+		<text name="DamagedMaterial">مواد تالفة</text>
+		<text name="Incoming">وارد</text>
+		<text name="Outgoing">صادر</text>
 	</texts>
 </localizationDictionary>

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using Souccar.SaleManagement.PurchaseInvoices.Services;
 using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.Invoises.Dto;
+using Souccar.SaleManagement.Settings.Customers.Dto;
+using Souccar.SaleManagement.Offers;
 
 namespace Souccar.SaleManagement.Invoises.Services
 {
@@ -90,7 +92,16 @@ namespace Souccar.SaleManagement.Invoises.Services
             return list;
         }
 
-        
+        public CustomerDto GetSupplierByOfferItem(int offerItemId)
+        {
+            var include = new string[] 
+            { 
+                $"{nameof(PurchaseInvoice.InvoiseDetails)}",
+                $"{nameof(PurchaseInvoice.Supplier)}"
+            };
+            var invoice = _invoiceDomainService.Get(x => x.InvoiseDetails.Any(x => x.OfferItemId == offerItemId), include).FirstOrDefault();
+            return ObjectMapper.Map<CustomerDto>(invoice.Supplier);
+        }
     }
 }
 

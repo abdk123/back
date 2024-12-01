@@ -1,15 +1,20 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using Souccar.SaleManagement.Settings.Categories;
 using Souccar.SaleManagement.Settings.Materials;
 using Souccar.SaleManagement.Settings.Stores;
 using Souccar.SaleManagement.Settings.Units;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souccar.SaleManagement.Stocks
 {
     public class Stock : FullAuditedAggregateRoot
     {
+        public Stock()
+        {
+            StockHistories = new List<StockHistory>();
+        }
+        
         /// <summary>
         /// باركود
         /// </summary>
@@ -41,10 +46,19 @@ namespace Souccar.SaleManagement.Stocks
         public double DamagedQuantity { get; set; }
 
         /// <summary>
+        /// سعر شراء الطن
+        /// </summary>
+        public double Price { get; set; }
+
+        /// <summary>
         /// العدد الموجود بالوحدة الصغيرة
         /// </summary>
         public double DamagedNumberInSmallUnit => Math.Round(DamagedQuantity / ConversionValue,1);
-        
+
+        /// <summary>
+        /// مبلغ المخزون
+        /// </summary>
+        public double StockAmount => Math.Round(Price / Quantity, 2);
 
         #region الوحدة الصغيرة
         public int? SizeId { get; set; }
@@ -67,6 +81,6 @@ namespace Souccar.SaleManagement.Stocks
         public Store Store { get; set; }
         #endregion
 
-
+        public IList<StockHistory> StockHistories { get; set; }
     }
 }

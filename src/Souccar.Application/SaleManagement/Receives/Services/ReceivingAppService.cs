@@ -102,7 +102,8 @@ namespace Souccar.SaleManagement.Receives.Services
                     receivingItem.Id,
                     invoiceItem.OfferItem.UnitId,
                     invoiceItem.OfferItem.SizeId,
-                    invoiceItem.OfferItem.MaterialId
+                    invoiceItem.OfferItem.MaterialId,
+                    invoiceItem.TotalMaterilPrice
                     ));
                 }
             }
@@ -199,7 +200,8 @@ namespace Souccar.SaleManagement.Receives.Services
                     receivingItem.Id,
                     invoiceItem.OfferItem.UnitId,
                     invoiceItem.OfferItem.SizeId,
-                    invoiceItem.OfferItem.MaterialId
+                    invoiceItem.OfferItem.MaterialId,
+                    invoiceItem.OfferItem.UnitPrice
                     ));
                 }
             }

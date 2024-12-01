@@ -61,7 +61,8 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     relatedId: stock.Id,
                     unitId: material.UnitId,
                     sizeId: stock.SizeId,
-                    materialId: output.Id
+                    materialId: output.Id,
+                    price:stock.Price
                     ));
             }
             return output;
@@ -85,6 +86,16 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
             {
                 await _stockDomainService.DeleteAsync(item.Id);
             }
+            var updatedList = stocks.Where(x 
+                => !createdList.Any(y => y.Id == x.Id) 
+                && !deletedList.Any(y => y.Id == x.Id));
+
+            foreach (var item in updatedList)
+            {
+                var inputStock = input.Stocks.First(x => x.Id == item.Id);
+                ObjectMapper.Map(inputStock, item);
+                await _stockDomainService.UpdateAsync(item);
+            }
             var materials = _materialDomainService
             .Get(filter: x => x.Id == updatedMaterial.Id, include: new string[] { "Unit", "Stocks.Size" })
             .FirstOrDefault();
@@ -99,7 +110,8 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                     relatedId: stock.Id,
                     unitId: material.UnitId,
                     sizeId: stock.SizeId,
-                    materialId: updatedMaterial.Id
+                    materialId: updatedMaterial.Id,
+                    price:stock.Price
                     ));
             }
 

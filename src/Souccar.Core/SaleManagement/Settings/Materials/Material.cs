@@ -17,6 +17,7 @@ namespace Souccar.SaleManagement.Settings.Materials
         public string Name { get; set; }
         public string Specification { get; set; }
         public double TotalQuantity => Stocks.Any() ? Stocks.Sum(x => x.Quantity) : 0;
+        public double TotalPrice => Stocks.Any() ? Stocks.Sum(x => x.StockAmount) : 0;
 
         #region Category
         public int? CategoryId { get; set; }

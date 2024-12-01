@@ -5,7 +5,7 @@ namespace Souccar.SaleManagement.StockHistories.Event
 {
     public class StockHistoryEventUpdateData : EventData
     {
-        public StockHistoryEventUpdateData(StockType type, StockReason reason, string title, double quantity, int? relatedId, int? unitId, int? sizeId, int? materialId)
+        public StockHistoryEventUpdateData(StockType type, StockReason reason, string title, double quantity, int? relatedId, int? unitId, int? sizeId, int? materialId, double price)
         {
             Type = type;
             Reason = reason;
@@ -15,12 +15,14 @@ namespace Souccar.SaleManagement.StockHistories.Event
             RelatedId = relatedId;
             SizeId = sizeId;
             MaterialId = materialId;
+            Price = price;
         }
 
         public StockType Type { get; set; }
         public StockReason Reason { get; set; }
         public string Title { get; set; }
         public double Quantity { get; set; }
+        public double Price { get; set; }
         public int? UnitId { get; set; }
         public int? SizeId { get; set; }
         public int? RelatedId { get; set; }
