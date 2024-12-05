@@ -27,8 +27,7 @@ namespace Souccar.SaleManagement.Stocks.Dto
                 {
                     info += $"({stock.Quantity} {stock.SizeName}) ";
                 }
-
-                return info.Substring(0, Stocks.Count - 1);
+                return info.Substring(0, info.Length - 1);
             } 
         }
         public IList<StockBalanceDto> Stocks { get; set; }

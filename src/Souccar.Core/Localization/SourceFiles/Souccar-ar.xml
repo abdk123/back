@@ -490,5 +490,6 @@
 		<text name="DamagedMaterial">مواد تالفة</text>
 		<text name="Incoming">وارد</text>
 		<text name="Outgoing">صادر</text>
+		<text name="Reason">السبب</text>
 	</texts>
 </localizationDictionary>

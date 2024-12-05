@@ -29,7 +29,7 @@ namespace Souccar.SaleManagement.Stocks.Services
                 var materialBalance = new MaterialBalanceDto()
                 {
                     MaterialId = material.Id,
-                    UnitName = material.Name,
+                    UnitName = material.Unit.Name,
                     Name = material.Name,
                     Stocks = new List<StockBalanceDto>()
                 };
@@ -40,7 +40,7 @@ namespace Souccar.SaleManagement.Stocks.Services
                     {
                         var stockBalance = new StockBalanceDto()
                         {
-                            SizeName = material.Name,
+                            SizeName = stock.Size.Name,
                             Price = stock.Price,
                             Quantity = stockHistories.Any() ? stockHistories.Sum(x => x.Quantity) : 0
                         };
