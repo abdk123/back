@@ -491,5 +491,7 @@
 		<text name="Incoming">وارد</text>
 		<text name="Outgoing">صادر</text>
 		<text name="Reason">السبب</text>
+		<text name="ConfirmationDeleteTheItem{0}">تأكيد حذف البند {0}</text>
+		<text name="GeneralSetting">الاعدادات العامة</text>
 	</texts>
 </localizationDictionary>

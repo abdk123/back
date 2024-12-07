@@ -3,13 +3,12 @@ using Souccar.Core.Services;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
-using Abp.Events.Bus;
 using System.Collections.Generic;
 using Souccar.SaleManagement.PurchaseInvoices.Services;
 using Souccar.SaleManagement.PurchaseInvoices;
 using Souccar.SaleManagement.Invoises.Dto;
 using Souccar.SaleManagement.Settings.Customers.Dto;
-using Souccar.SaleManagement.Offers;
+using Abp.Application.Services.Dto;
 
 namespace Souccar.SaleManagement.Invoises.Services
 {
@@ -40,6 +39,11 @@ namespace Souccar.SaleManagement.Invoises.Services
             return ObjectMapper.Map<InvoiceDto>(invoice);
         }
 
+        public async override Task<UpdateInvoiceDto> GetForEditAsync(EntityDto<int> input)
+        {
+            var data = await _domainService.GetAgreggateAsync(input.Id);
+            return ObjectMapper.Map<UpdateInvoiceDto>(data);
+        }
         public async Task<InvoiceDto> SaveInvoiceDetail(InvoiceDto input)
         {
             var invoice = _invoiceDomainService.GetAllWithIncluding("InvoiseDetails")
@@ -88,7 +92,6 @@ namespace Souccar.SaleManagement.Invoises.Services
                     });
                 }
             }
-
             return list;
         }
 
