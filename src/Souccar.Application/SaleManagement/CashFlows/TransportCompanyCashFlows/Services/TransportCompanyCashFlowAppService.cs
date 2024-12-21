@@ -32,7 +32,7 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
             {
                 fromDateSearch = DateTime.Parse(fromDate);
             }
-            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 12, 0, 0);
+            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 0, 0, 0);
 
             var toDateSearch = DateTime.Now;
             if (!string.IsNullOrEmpty(toDate))
@@ -75,8 +75,8 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
             var cashFlows = _transportCompanyCashFlowDomainService.GetAll().ToList();
             foreach (var transportCompany in transportCompanys)
             {
-                var dinarBalance = transportCompany.BalanceInDinar;
-                var dollarBalance = transportCompany.BalanceInDollar;
+                var dinarBalance = 0.0;
+                var dollarBalance = 0.0;
                 if (cashFlows.Any())
                 {
                     var transportCompanyCashFlows = cashFlows.Where(x => x.TransportCompanyId == transportCompany.Id);

@@ -7,9 +7,8 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
 {
     public interface IClearanceCompanyCashFlowDomainService : ISouccarDomainService<ClearanceCompanyCashFlow, int>
     {
-        //Task<double> GetLastBalanceDinar(int? clearanceCompanyId);
-        //Task<double> GetLastBalanceDollar(int? clearanceCompanyId);
-        Task<ClearanceCompanyCashFlow> GetByInfo(int? clearanceCompanyId,double amountDollar,double amountDinar,string transactionDetails,string note, TransactionName transactionName);
+        Task<ClearanceCompanyCashFlow> GetByInfo(int? clearanceCompanyId,double amountDollar,double amountDinar,string transactionDetails,TransactionName transactionName);
         Task<double> GetLastBalance(int? clearanceCompanyId, Currency currency, DateTime toDate);
+        Task<ClearanceCompanyCashFlow> GetCashFlow(int? id, int? relatedId, TransactionName transactionName);
     }
 }

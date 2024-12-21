@@ -18,29 +18,30 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Events
 
         public async Task HandleEventAsync(CustomerCashFlowCreateEventData eventData)
         {
-            double newCurrentBalanceDinar = 0;
-            double newCurrentBalanceDollar = 0;
-
-            var oldCurrentBalanceDinar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dinar, DateTime.Now);
-            var oldCurrentBalanceDollar = await _customerCashFlowDomainService.GetLastBalance(eventData.CustomerId, Currency.Dollar, DateTime.Now);
-
-            newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
-            newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
-
-            var customerCashFlow = new CustomerCashFlow()
+           var cashFlow = await _customerCashFlowDomainService.GetCashFlow(eventData.CustomerId, eventData.RelatedId,eventData.TransactionName);
+            if(cashFlow != null)
             {
-                RelatedId = eventData.RelatedId,
-                AmountDinar = eventData.AmountDinar,
-                AmountDollar = eventData.AmountDollar,
-                CustomerId = eventData.CustomerId,
-                CurrentBalanceDinar = newCurrentBalanceDinar,
-                CurrentBalanceDollar = newCurrentBalanceDollar,
-                Note = eventData.Note,
-                TransactionName = eventData.TransactionName,
-                TransactionDetails = eventData.TransactionDetails,
-            };
-
-            await _customerCashFlowDomainService.InsertAsync(customerCashFlow);
+                cashFlow.RelatedId = eventData.RelatedId;
+                cashFlow.AmountDinar = eventData.AmountDinar;
+                cashFlow.AmountDollar = eventData.AmountDollar;
+                cashFlow.CustomerId = eventData.CustomerId;
+                cashFlow.TransactionName = eventData.TransactionName;
+                cashFlow.TransactionDetails = eventData.TransactionDetails;
+                await _customerCashFlowDomainService.UpdateAsync(cashFlow);
+            }
+            else
+            {
+                var customerCashFlow = new CustomerCashFlow()
+                {
+                    RelatedId = eventData.RelatedId,
+                    AmountDinar = eventData.AmountDinar,
+                    AmountDollar = eventData.AmountDollar,
+                    CustomerId = eventData.CustomerId,
+                    TransactionName = eventData.TransactionName,
+                    TransactionDetails = eventData.TransactionDetails,
+                };
+                await _customerCashFlowDomainService.InsertAsync(customerCashFlow);
+            }
         }
     }
 }

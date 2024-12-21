@@ -19,43 +19,29 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
             _customerDomainService = customerDomainService;
         }
 
-        public async Task<CustomerCashFlow> GetByInfo(int? customerId, double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName)
+        public async Task<CustomerCashFlow> GetCashFlow(int? customerId, int? relatedId, TransactionName transactionName)
+        {
+            return await _customerCashFlowRepository.FirstOrDefaultAsync(x =>
+                x.CustomerId == customerId &&
+                x.RelatedId == relatedId &&
+                x.TransactionName == transactionName
+            );
+        }
+
+        public async Task<CustomerCashFlow> GetByInfo(int? customerId, double amountDollar, double amountDinar, string transactionDetails, TransactionName transactionName)
         {
             return await _customerCashFlowRepository.FirstOrDefaultAsync(x =>
                 x.CustomerId == customerId &&
                 x.AmountDollar == amountDollar &&
                 x.AmountDinar == amountDinar &&
                 x.TransactionDetails == transactionDetails &&
-                x.Note == note &&
                 x.TransactionName == transactionName
             );
         }
 
-        //public async Task<double> GetLastBalanceDinar(int? customerId)
-        //{
-        //    double balanceDinar = 0;
-        //    var customerCashFlow = await _customerCashFlowRepository.GetAllListAsync(x => x.CustomerId == customerId);
-        //    if (customerCashFlow.Any())
-        //    {
-        //        balanceDinar = customerCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDinar).FirstOrDefault();
-        //    }
-        //    return balanceDinar;
-        //}
-
-        //public async Task<double> GetLastBalanceDollar(int? customerId)
-        //{
-        //    double balanceDollar = 0;
-        //    var customerCashFlow = await _customerCashFlowRepository.GetAllListAsync(x => x.CustomerId == customerId);
-        //    if (customerCashFlow.Any())
-        //    {
-        //        balanceDollar = customerCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDollar).FirstOrDefault();
-        //    }
-        //    return balanceDollar;
-        //}
-
         public async Task<double> GetLastBalance(int? customerId, Currency currency, DateTime toDate)
         {
-            var customerBalance = await _customerDomainService.GetCustomerBalance(customerId, currency);
+            var customerBalance = 0.0;
 
             var customerCashFlows = await _customerCashFlowRepository
             .GetAllListAsync(x => x.CustomerId == customerId && x.CreationTime <= toDate);

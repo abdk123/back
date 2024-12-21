@@ -32,7 +32,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             {
                 fromDateSearch = DateTime.Parse(fromDate);
             }
-            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 12, 0, 0);
+            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 0, 0, 0);
 
             var toDateSearch = DateTime.Now;
             if (!string.IsNullOrEmpty(toDate))
@@ -74,8 +74,8 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             var cashFlows = _clearanceCompanyCashFlowDomainService.GetAll().ToList();
             foreach (var clearanceCompany in clearanceCompanys)
             {
-                var dinarBalance = clearanceCompany.BalanceInDinar;
-                var dollarBalance = clearanceCompany.BalanceInDollar;
+                var dinarBalance = 0.0;
+                var dollarBalance = 0.0;
                 if (cashFlows.Any())
                 {
                     var clearanceCompanyCashFlows = cashFlows.Where(x => x.ClearanceCompanyId == clearanceCompany.Id);

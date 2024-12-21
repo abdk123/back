@@ -31,7 +31,7 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
             {
                 fromDateSearch = DateTime.Parse(fromDate);
             }
-            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 12, 0, 0);
+            fromDateSearch = new DateTime(fromDateSearch.Year, fromDateSearch.Month, fromDateSearch.Day, 0, 0, 0);
 
             var toDateSearch = DateTime.Now;
             if (!string.IsNullOrEmpty(toDate))
@@ -85,8 +85,8 @@ namespace Souccar.SaleManagement.CashFlows.CustomerCashFlows.Services
             var cashFlows = _customerCashFlowDomainService.GetAll().ToList();
             foreach (var customer in customers)
             {
-                var dinarBalance = customer.BalanceInDinar;
-                var dollarBalance = customer.BalanceInDollar;
+                var dinarBalance = 0.0;
+                var dollarBalance = 0.0;
                 if (cashFlows.Any())
                 {
                     var customerCashFlows = cashFlows.Where(x => x.CustomerId == customer.Id);

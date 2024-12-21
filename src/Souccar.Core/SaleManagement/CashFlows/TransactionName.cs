@@ -16,5 +16,7 @@
         DeliveryTransportCost,
         //كلفة دلفري
         DeliveryCost,
+        //رصيد اولي
+        InitialBalance
     }
 }

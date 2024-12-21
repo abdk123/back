@@ -50,5 +50,6 @@ namespace Souccar
         public const string SendDeliveryForCustomer = "SendDeliveryForCustomer{0}";
         public const string ReceiveFromSupplier = "ReceiveFromSupplier{0}";
         public const string InitialBalanceForMaterial = "InitialBalanceForMaterial{0}Size{1}";
+        public const string InitialBalanceFor = "InitialBalanceFor{0}";
     }
 }

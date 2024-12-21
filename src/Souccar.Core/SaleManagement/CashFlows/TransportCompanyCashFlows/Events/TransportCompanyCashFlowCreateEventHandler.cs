@@ -34,9 +34,6 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
                 AmountDinar = eventData.AmountDinar,
                 AmountDollar = eventData.AmountDollar,
                 TransportCompanyId = eventData.TransportCompanyId,
-                CurrentBalanceDinar = newCurrentBalanceDinar,
-                CurrentBalanceDollar = newCurrentBalanceDollar,
-                Note = eventData.Note,
                 TransactionName = eventData.TransactionName,
                 TransactionDetails = eventData.TransactionDetails,
             };

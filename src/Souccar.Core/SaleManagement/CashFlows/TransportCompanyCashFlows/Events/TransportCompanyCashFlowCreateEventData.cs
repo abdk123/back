@@ -4,12 +4,11 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
 {
     public class TransportCompanyCashFlowCreateEventData : EventData
     {
-        public TransportCompanyCashFlowCreateEventData(double amountDollar, double amountDinar, TransactionName transactionName, int? transportCompanyId, int? relatedId = null, string transactionDetails = "", string note = "")
+        public TransportCompanyCashFlowCreateEventData(double amountDollar, double amountDinar, TransactionName transactionName, int? transportCompanyId, int? relatedId = null, string transactionDetails = "")
         {
             AmountDollar = amountDollar;
             AmountDinar = amountDinar;
             TransactionDetails = transactionDetails;
-            Note = note;
             TransactionName = transactionName;
             TransportCompanyId = transportCompanyId;
             RelatedId = relatedId;
@@ -18,7 +17,6 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
         public double AmountDollar { get; set; }
         public double AmountDinar { get; set; }
         public string TransactionDetails { get; set; }
-        public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
         public int? TransportCompanyId { get; set; }
         public int? RelatedId { get; set; }

@@ -5,21 +5,15 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
 {
     public class TransportCompanyCashFlowDeleteEventData : EventData
     {
-        public TransportCompanyCashFlowDeleteEventData(double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName, int? transportCompanyId)
+        public TransportCompanyCashFlowDeleteEventData(TransactionName transactionName, int? transportCompanyId, int? relatedId)
         {
-            AmountDollar = amountDollar;
-            AmountDinar = amountDinar;
-            TransactionDetails = transactionDetails;
-            Note = note;
             TransactionName = transactionName;
             TransportCompanyId = transportCompanyId;
+            RelatedId = relatedId;
         }
 
-        public double AmountDollar { get; set; }
-        public double AmountDinar { get; set; }
-        public string TransactionDetails { get; set; }
-        public string Note { get; set; }
         public TransactionName TransactionName { get; set; }
         public int? TransportCompanyId { get; set; }
+        public int? RelatedId { get; set; }
     }
 }

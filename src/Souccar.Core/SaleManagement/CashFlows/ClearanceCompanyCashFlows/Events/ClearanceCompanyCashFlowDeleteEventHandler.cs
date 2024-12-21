@@ -16,7 +16,7 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events
 
         public async Task HandleEventAsync(ClearanceCompanyCashFlowDeleteEventData eventData)
         {
-            var clearanceCompanyCashFlow = await _clearanceCompanyCashFlowDomainService.GetByInfo(eventData.ClearanceCompanyId,eventData.AmountDollar,eventData.AmountDinar,eventData.TransactionDetails,eventData.Note,eventData.TransactionName);
+            var clearanceCompanyCashFlow = await _clearanceCompanyCashFlowDomainService.GetCashFlow(eventData.ClearanceCompanyId,eventData.RelatedId, eventData.TransactionName);
             if(clearanceCompanyCashFlow != null)
             {
                 await _clearanceCompanyCashFlowDomainService.DeleteAsync(clearanceCompanyCashFlow.Id);

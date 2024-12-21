@@ -4,6 +4,10 @@ using Souccar.Core.Services;
 using Souccar.Core.Dto;
 using System.Collections.Generic;
 using System.Linq;
+using Abp.Events.Bus;
+using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events;
+using Souccar.SaleManagement.CashFlows;
+using System.Threading.Tasks;
 
 namespace Souccar.SaleManagement.Settings.Companies.Services
 {
@@ -23,6 +27,34 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
                 return ObjectMapper.Map<List<DropdownDto>>(entities.ToList());
 
             return new List<DropdownDto>();
+        }
+
+        public async override Task<TransportCompanyDto> CreateAsync(CreateTransportCompanyDto input)
+        {
+            var createdCompany = await base.CreateAsync(input);
+            EventBus.Default.Trigger(new TransportCompanyCashFlowCreateEventData(
+                    createdCompany.BalanceInDollar,
+                    createdCompany.BalanceInDinar,
+                    TransactionName.InitialBalance,
+                    createdCompany.Id,
+                    createdCompany.Id,
+                    L(LocalizationResource.InitialBalanceFor, input.Name)
+                    ));
+            return createdCompany;
+        }
+
+        public async override Task<TransportCompanyDto> UpdateAsync(UpdateTransportCompanyDto input)
+        {
+            var updatedCompany = await base.UpdateAsync(input);
+            EventBus.Default.Trigger(new TransportCompanyCashFlowCreateEventData(
+                    updatedCompany.BalanceInDollar,
+                    updatedCompany.BalanceInDinar,
+                    TransactionName.InitialBalance,
+                    updatedCompany.Id,
+                    updatedCompany.Id,
+                    L(LocalizationResource.InitialBalanceFor, input.Name)
+                    ));
+            return updatedCompany;
         }
     }
 }

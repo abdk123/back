@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Souccar.Core.Services.Implements;
+using Souccar.SaleManagement.CashFlows.CustomerCashFlows;
 using Souccar.SaleManagement.Settings.Companies.Services;
 using Souccar.SaleManagement.Settings.Currencies;
 using System;
@@ -19,43 +20,20 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             _clearanceCompanyDomainService = clearanceCompanyDomainService;
         }
 
-        public async Task<ClearanceCompanyCashFlow> GetByInfo(int? clearanceCompanyId, double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName)
+        public async Task<ClearanceCompanyCashFlow> GetByInfo(int? clearanceCompanyId, double amountDollar, double amountDinar, string transactionDetails, TransactionName transactionName)
         {
             return await _clearanceCompanyCashFlowRepository.FirstOrDefaultAsync(x =>
                 x.ClearanceCompanyId == clearanceCompanyId &&
                 x.AmountDollar == amountDollar &&
                 x.AmountDinar == amountDinar &&
                 x.TransactionDetails == transactionDetails &&
-                x.Note == note &&
                 x.TransactionName == transactionName
             );
         }
 
-        //public async Task<double> GetLastBalanceDinar(int? clearanceCompanyId)
-        //{
-        //    double balanceDinar = 0;
-        //    var clearanceCompanyCashFlow = await _clearanceCompanyCashFlowRepository.GetAllListAsync(x => x.ClearanceCompanyId == clearanceCompanyId);
-        //    if (clearanceCompanyCashFlow.Any())
-        //    {
-        //        balanceDinar = clearanceCompanyCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDinar).FirstOrDefault();
-        //    }
-        //    return balanceDinar;
-        //}
-
-        //public async Task<double> GetLastBalanceDollar(int? clearanceCompanyId)
-        //{
-        //    double balanceDollar = 0;
-        //    var clearanceCompanyCashFlow = await _clearanceCompanyCashFlowRepository.GetAllListAsync(x => x.ClearanceCompanyId == clearanceCompanyId);
-        //    if (clearanceCompanyCashFlow.Any())
-        //    {
-        //        balanceDollar = clearanceCompanyCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDollar).FirstOrDefault();
-        //    }
-        //    return balanceDollar;
-        //}
-
         public async Task<double> GetLastBalance(int? clearanceCompanyId, Currency currency, DateTime toDate)
         {
-            var clearanceCompanyBalance = await _clearanceCompanyDomainService.GetClearanceCompanyBalance(clearanceCompanyId, currency);
+            var clearanceCompanyBalance = 0.0;
 
             var clearanceCompanyCashFlows = await _clearanceCompanyCashFlowRepository
             .GetAllListAsync(x => x.ClearanceCompanyId == clearanceCompanyId && x.CreationTime <= toDate);
@@ -73,6 +51,15 @@ namespace Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Services
             }
 
             return clearanceCompanyBalance;
+        }
+
+        public async Task<ClearanceCompanyCashFlow> GetCashFlow(int? id, int? relatedId, TransactionName transactionName)
+        {
+            return await _clearanceCompanyCashFlowRepository.FirstOrDefaultAsync(x =>
+                x.ClearanceCompanyId == id &&
+                x.RelatedId == relatedId &&
+                x.TransactionName == transactionName
+            );
         }
     }
 }

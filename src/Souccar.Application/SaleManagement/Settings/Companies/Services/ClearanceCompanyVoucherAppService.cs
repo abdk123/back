@@ -25,10 +25,9 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
             var oldVoucher = await _clearanceCompanyVoucherDomainService.GetAsync(input.Id);
             EventBus.Default.Trigger(
                 new ClearanceCompanyCashFlowDeleteEventData(
-                        oldVoucher.Currency == Currencies.Currency.Dollar ? oldVoucher.Amount : 0,
-                        oldVoucher.Currency == Currencies.Currency.Dinar ? oldVoucher.Amount : 0,
-                        "", "", oldVoucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
-                        oldVoucher.ClearanceCompanyId
+                        oldVoucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
+                        oldVoucher.ClearanceCompanyId,
+                        input.Id
                     ));
 
             var voucherDto = await base.UpdateAsync(input);
@@ -85,10 +84,9 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
             var voucher = await _clearanceCompanyVoucherDomainService.GetAsync(input.Id);
             EventBus.Default.Trigger(
                 new ClearanceCompanyCashFlowDeleteEventData(
-                        voucher.Currency == Currencies.Currency.Dollar ? voucher.Amount : 0,
-                        voucher.Currency == Currencies.Currency.Dinar ? voucher.Amount : 0,
-                        "", "", voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
-                        voucher.ClearanceCompanyId
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
+                        voucher.ClearanceCompanyId,
+                        input.Id
                     ));
 
             await base.DeleteAsync(input);

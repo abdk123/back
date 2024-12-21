@@ -42,10 +42,9 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
             var voucher = await _repository.GetAsync(id);
             EventBus.Default.Trigger(
                 new CustomerCashFlowDeleteEventData(
-                        voucher.Currency == Currencies.Currency.Dollar ? voucher.Amount : 0,
-                        voucher.Currency == Currencies.Currency.Dinar ? voucher.Amount : 0,
-                        "", "", voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
-                        voucher.CustomerId
+                        voucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
+                        voucher.CustomerId,
+                        id
                     ));
             await base.DeleteAsync(id);
         }
@@ -55,10 +54,9 @@ namespace Souccar.SaleManagement.Settings.Customers.Services
             var oldVoucher = await _repository.GetAsync(input.Id);
             EventBus.Default.Trigger(
                 new CustomerCashFlowDeleteEventData(
-                        oldVoucher.Currency == Currencies.Currency.Dollar ? oldVoucher.Amount : 0,
-                        oldVoucher.Currency == Currencies.Currency.Dinar ? oldVoucher.Amount : 0,
-                        "", "", oldVoucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
-                        oldVoucher.CustomerId
+                        oldVoucher.VoucherType == Customers.VoucherType.Receipt ? CashFlows.TransactionName.Receipt : CashFlows.TransactionName.Spend,
+                        oldVoucher.CustomerId,
+                        input.Id
                     ));
 
             var voucher = await base.UpdateAsync(input);

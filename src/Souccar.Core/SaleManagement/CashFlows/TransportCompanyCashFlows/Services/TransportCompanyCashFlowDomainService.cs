@@ -21,43 +21,29 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services
             _transportCompanyDomainService = transportCompanyDomainService;
         }
 
-        public async Task<TransportCompanyCashFlow> GetByInfo(int? transportCompanyId, double amountDollar, double amountDinar, string transactionDetails, string note, TransactionName transactionName)
+        public async Task<TransportCompanyCashFlow> GetByInfo(int? transportCompanyId, double amountDollar, double amountDinar, string transactionDetails, TransactionName transactionName)
         {
             return await _transportCompanyCashFlowRepository.FirstOrDefaultAsync(x =>
                 x.TransportCompanyId == transportCompanyId &&
                 x.AmountDollar == amountDollar &&
                 x.AmountDinar == amountDinar &&
                 x.TransactionDetails == transactionDetails &&
-                x.Note == note &&
                 x.TransactionName == transactionName
             );
         }
 
-        //public async Task<double> GetLastBalanceDinar(int? transportCompanyId)
-        //{
-        //    double balanceDinar = 0;
-        //    var transportCompanyCashFlow = await _transportCompanyCashFlowRepository.GetAllListAsync(x => x.TransportCompanyId == transportCompanyId);
-        //    if (transportCompanyCashFlow.Any())
-        //    {
-        //        balanceDinar = transportCompanyCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDinar).FirstOrDefault();
-        //    }
-        //    return balanceDinar;
-        //}
-
-        //public async Task<double> GetLastBalanceDollar(int? transportCompanyId)
-        //{
-        //    double balanceDollar = 0;
-        //    var transportCompanyCashFlow = await _transportCompanyCashFlowRepository.GetAllListAsync(x => x.TransportCompanyId == transportCompanyId);
-        //    if (transportCompanyCashFlow.Any())
-        //    {
-        //        balanceDollar = transportCompanyCashFlow.OrderByDescending(x => x.CreationTime).Select(z => z.CurrentBalanceDollar).FirstOrDefault();
-        //    }
-        //    return balanceDollar;
-        //}
+        public async Task<TransportCompanyCashFlow> GetCashFlow(int? transportCompanyId, int? relatedId, TransactionName transactionName)
+        {
+            return await _transportCompanyCashFlowRepository.FirstOrDefaultAsync(x =>
+                x.TransportCompanyId == transportCompanyId &&
+                x.RelatedId == relatedId &&
+                x.TransactionName == transactionName
+            );
+        }
 
         public async Task<double> GetLastBalance(int? transportCompanyId, Currency currency, DateTime toDate)
         {
-            var transportCompanyBalance = await _transportCompanyDomainService.GetTransportCompanyBalance(transportCompanyId, currency);
+            var transportCompanyBalance = 0.0;
 
             var transportCompanyCashFlows = await _transportCompanyCashFlowRepository
             .GetAllListAsync(x => x.TransportCompanyId == transportCompanyId && x.CreationTime <= toDate);

@@ -493,5 +493,8 @@
 		<text name="Reason">السبب</text>
 		<text name="ConfirmationDeleteTheItem{0}">تأكيد حذف البند {0}</text>
 		<text name="GeneralSetting">الاعدادات العامة</text>
+		<text name="InitialBalanceFor{0}">رصيد اولي ل{0}</text>
+		<text name="Balance">الرصيد</text>
+
 	</texts>
 </localizationDictionary>

@@ -140,7 +140,7 @@ namespace Souccar.SaleManagement.Receives.Services
                 throw new UserFriendlyException($"ÇáßãíÉ ÇáãÓáãÉ áÇ íãßä Çä Êßæä ÇßÈÑ ãä {invoice.TotalQuantity}");
             if (newReceive.ClearanceCompanyId != null)
             {
-                await EventBus.Default.TriggerAsync(new ClearanceCompanyCashFlowUpdateEventData(
+                await EventBus.Default.TriggerAsync(new ClearanceCompanyCashFlowCreateEventData(
                     (int)newReceive.ClearanceCostCurrency == 1 ? newReceive.ClearanceCost : 0,
                     newReceive.ClearanceCostCurrency == 0 ? newReceive.ClearanceCost : 0,
                     TransactionName.ClearanceCost,
@@ -151,7 +151,7 @@ namespace Souccar.SaleManagement.Receives.Services
             }
             if (newReceive.TransportCompanyId != null)
             {
-                await EventBus.Default.TriggerAsync(new TransportCompanyCashFlowUpdateEventData(
+                await EventBus.Default.TriggerAsync(new TransportCompanyCashFlowCreateEventData(
                     (int)newReceive.TransportCostCurrency == 1 ? newReceive.TransportCost : 0,
                     newReceive.TransportCostCurrency == 0 ? newReceive.TransportCost : 0,
                     TransactionName.TransportCost,
@@ -178,7 +178,7 @@ namespace Souccar.SaleManagement.Receives.Services
                 var invoiceItem = invoice.InvoiseDetails.FirstOrDefault(x => x.Id == receivingItem.InvoiceItemId);
                 if (invoiceItem is not null)
                 {
-                    await EventBus.Default.TriggerAsync(new CustomerCashFlowUpdateEventData(
+                    await EventBus.Default.TriggerAsync(new CustomerCashFlowCreateEventData(
                     invoice.Currency == Currency.Dollar ? receivingItem.ReceivedQuantity * invoiceItem.TotalMaterilPrice : 0,
                     invoice.Currency == Currency.Dinar ? receivingItem.ReceivedQuantity * invoiceItem.TotalMaterilPrice : 0,
                     TransactionName.ReceivingCost,
@@ -239,7 +239,6 @@ namespace Souccar.SaleManagement.Receives.Services
                     TransactionName.ClearanceCost,
                     receiving.ClearanceCompanyId,
                     receiving.Id,
-                    L(LocalizationResource.ClearanceCost),
                     clearanceTransactionDetail
                     ));
             }
@@ -252,7 +251,6 @@ namespace Souccar.SaleManagement.Receives.Services
                     TransactionName.TransportCost,
                     receiving.TransportCompanyId,
                     receiving.Id,
-                    L(LocalizationResource.TransportCost),
                     transportTransactionDetail
                     ));
             }
