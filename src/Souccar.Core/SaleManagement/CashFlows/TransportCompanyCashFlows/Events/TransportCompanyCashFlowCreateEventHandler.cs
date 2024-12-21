@@ -3,8 +3,6 @@ using Abp.Events.Bus.Handlers;
 using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Services;
 using System.Threading.Tasks;
 using Souccar.SaleManagement.CachFlows.TransportCompanyCachFlows;
-using Souccar.SaleManagement.Settings.Currencies;
-using System;
 
 namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
 {
@@ -19,26 +17,30 @@ namespace Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events
 
         public async Task HandleEventAsync(TransportCompanyCashFlowCreateEventData eventData)
         {
-            double newCurrentBalanceDinar = 0;
-            double newCurrentBalanceDollar = 0;
-
-            var oldCurrentBalanceDinar = await _transportCompanyCashFlowDomainService.GetLastBalance(eventData.TransportCompanyId, Currency.Dinar, DateTime.Now);
-            var oldCurrentBalanceDollar = await _transportCompanyCashFlowDomainService.GetLastBalance(eventData.TransportCompanyId, Currency.Dollar, DateTime.Now);
-
-                newCurrentBalanceDinar = oldCurrentBalanceDinar + eventData.AmountDinar;
-                newCurrentBalanceDollar = oldCurrentBalanceDollar + eventData.AmountDollar;
-
-            var transportCompanyCashFlow = new TransportCompanyCashFlow()
+            var cashFlow = await _transportCompanyCashFlowDomainService.GetCashFlow(eventData.TransportCompanyId, eventData.RelatedId, eventData.TransactionName);
+            if (cashFlow != null)
             {
-                RelatedId = eventData.RelatedId,
-                AmountDinar = eventData.AmountDinar,
-                AmountDollar = eventData.AmountDollar,
-                TransportCompanyId = eventData.TransportCompanyId,
-                TransactionName = eventData.TransactionName,
-                TransactionDetails = eventData.TransactionDetails,
-            };
-
-            await _transportCompanyCashFlowDomainService.InsertAsync(transportCompanyCashFlow);
+                cashFlow.RelatedId = eventData.RelatedId;
+                cashFlow.AmountDinar = eventData.AmountDinar;
+                cashFlow.AmountDollar = eventData.AmountDollar;
+                cashFlow.TransportCompanyId = eventData.TransportCompanyId;
+                cashFlow.TransactionName = eventData.TransactionName;
+                cashFlow.TransactionDetails = eventData.TransactionDetails;
+                await _transportCompanyCashFlowDomainService.UpdateAsync(cashFlow);
+            }
+            else
+            {
+                var transportCompanyCashFlow = new TransportCompanyCashFlow()
+                {
+                    RelatedId = eventData.RelatedId,
+                    AmountDinar = eventData.AmountDinar,
+                    AmountDollar = eventData.AmountDollar,
+                    TransportCompanyId = eventData.TransportCompanyId,
+                    TransactionName = eventData.TransactionName,
+                    TransactionDetails = eventData.TransactionDetails,
+                };
+                await _transportCompanyCashFlowDomainService.InsertAsync(transportCompanyCashFlow);
+            }
         }
     }
 }

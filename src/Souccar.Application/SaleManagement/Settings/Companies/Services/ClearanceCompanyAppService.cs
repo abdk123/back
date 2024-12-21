@@ -10,6 +10,7 @@ using Souccar.SaleManagement.CashFlows.TransportCompanyCashFlows.Events;
 using Souccar.SaleManagement.CashFlows;
 using Souccar.SaleManagement.PurchaseInvoices.Receives;
 using Souccar.SaleManagement.Settings.Currencies;
+using Souccar.SaleManagement.CashFlows.ClearanceCompanyCashFlows.Events;
 
 namespace Souccar.SaleManagement.Settings.Companies.Services
 {
@@ -34,7 +35,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
         public async override Task<ClearanceCompanyDto> CreateAsync(CreateClearanceCompanyDto input)
         {
             var createdCompany = await base.CreateAsync(input);
-            EventBus.Default.Trigger(new TransportCompanyCashFlowCreateEventData(
+            EventBus.Default.Trigger(new ClearanceCompanyCashFlowCreateEventData(
                     createdCompany.BalanceInDollar,
                     createdCompany.BalanceInDinar,
                     TransactionName.InitialBalance,
@@ -48,7 +49,7 @@ namespace Souccar.SaleManagement.Settings.Companies.Services
         public async override Task<ClearanceCompanyDto> UpdateAsync(UpdateClearanceCompanyDto input)
         {
             var updatedCompany = await base.UpdateAsync(input);
-            EventBus.Default.Trigger(new TransportCompanyCashFlowCreateEventData(
+            EventBus.Default.Trigger(new ClearanceCompanyCashFlowCreateEventData(
                     updatedCompany.BalanceInDollar,
                     updatedCompany.BalanceInDinar,
                     TransactionName.InitialBalance,
