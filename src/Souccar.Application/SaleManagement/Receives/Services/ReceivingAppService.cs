@@ -264,7 +264,7 @@ namespace Souccar.SaleManagement.Receives.Services
             builder.Append(" ");
             builder.Append(L(LocalizationResource.ForCompany));
             builder.Append(":");
-            var company = _clearanceCompanyDomainService.Get(receiving.TransportCompanyId.Value);
+            var company = _transportCompanyDomainService.Get(receiving.TransportCompanyId.Value);
             builder.Append(company?.Name);
             builder.Append(" | ");
             builder.Append(L(LocalizationResource.Materials));

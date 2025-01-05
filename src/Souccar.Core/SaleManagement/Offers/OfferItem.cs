@@ -124,18 +124,6 @@ namespace Souccar.SaleManagement.Offers
         }
 
         public IList<PurchaseInvoiceItem> PurchaseInvoiceItems { get; set; }
-        //{
-        //    get
-        //    {
-        //        if(Offer == null)
-        //            return new List<PurchaseInvoiceItem>();
-
-        //        return Offer.PurchaseInvoices
-        //            .SelectMany(x => x.InvoiseDetails)
-        //            .Where(x => x.OfferItemId == Id)
-        //            .ToList();
-        //    }
-        //}
 
         public IList<DeliveryItem> DeliveryItems { get; set; }
 

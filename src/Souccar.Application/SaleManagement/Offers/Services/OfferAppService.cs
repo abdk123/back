@@ -12,6 +12,10 @@ using Souccar.SaleManagement.PurchaseInvoices.Events;
 using Souccar.SaleManagement.Offers.Dto;
 using Souccar.SaleManagement.SupplierOffers.Dto;
 using Souccar.SaleManagement.Stocks;
+using Souccar.SaleManagement.Deliveries;
+using Souccar.SaleManagement.SaleInvoices.Services;
+using Souccar.SaleManagement.SaleInvoices;
+using Souccar.SaleManagement.Settings.Materials;
 
 namespace Souccar.SaleManagement.Offers.Services
 {
@@ -19,11 +23,13 @@ namespace Souccar.SaleManagement.Offers.Services
         AsyncSouccarAppService<Offer, OfferDto, int, FullPagedRequestDto, CreateOfferDto, UpdateOfferDto>, IOfferAppService
     {
         private readonly IOfferDomainService _offerDomainService;
+        private readonly ISaleInvoiceDomainService _saleInvoiceDomainService;
 
-        public OfferAppService(IOfferDomainService offerDomainService)
+        public OfferAppService(IOfferDomainService offerDomainService, ISaleInvoiceDomainService saleInvoiceDomainService)
         : base(offerDomainService)
         {
             _offerDomainService = offerDomainService;
+            _saleInvoiceDomainService = saleInvoiceDomainService;
         }
 
         public async Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
@@ -185,6 +191,70 @@ namespace Souccar.SaleManagement.Offers.Services
                 include: includes)
                 .ToList();
             return ObjectMapper.Map<List<OfferDto>>(offers);
+        }
+
+        public ProfitDto GetProfit(int offerId)
+        {
+            var includes = new string[]
+            {
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.DeliveryItems)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.PurchaseInvoiceItems)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}",
+            };
+            var offer = _offerDomainService
+                .Get(filter: x => x.Status == OfferStatus.Approved,
+                include: includes)
+                .FirstOrDefault();
+
+            var deliveryItems = offer.OfferItems
+                .SelectMany(x => x.DeliveryItems)
+                .Where(x => x.DeliveryItemStatus == DeliveryItemStatus.Approved);
+
+            var profit = new ProfitDto(offer.Id);
+            foreach (var offerItem in offer.OfferItems)
+            {
+                var approvedQuantity = offerItem.DeliveryItems
+                    .Where(x => x.OfferItemId == offerItem.Id && x.DeliveryItemStatus == DeliveryItemStatus.Approved)
+                    .Sum(x => (x.ApprovedQuantity));
+
+                var sellingPrice = GetSellingPrice(offerItem, approvedQuantity);
+                    
+
+                var price = offerItem.PurchaseInvoiceItems.Any()
+                    ? offerItem.PurchaseInvoiceItems.Last().TotalMaterilPrice
+                    : offerItem.Material.Stocks.Last().Price;
+
+                var purchasePrice = approvedQuantity * price;
+                profit.ProfitItems.Add(
+                    new ProfitItemDto(
+                        offerItem.Id, 
+                        offerItem.Material.Name, 
+                        approvedQuantity, 
+                        sellingPrice, 
+                        purchasePrice));
+            }
+
+            return profit;
+        }
+
+        private double GetSellingPrice(OfferItem offerItem, double approvedQuantity)
+        {
+            if (!offerItem.AddedBySmallUnit)
+                return approvedQuantity * offerItem.UnitPrice;
+
+            return (approvedQuantity / offerItem.TransitionValue) * offerItem.UnitPrice;
+        }
+
+        private double GetPurchasePrice(OfferItem offerItem, double approvedQuantity)
+        {
+            var price = offerItem.PurchaseInvoiceItems.Any()
+                    ? offerItem.PurchaseInvoiceItems.Last().TotalMaterilPrice
+                    : offerItem.Material.Stocks.Last().Price;
+
+            if (!offerItem.AddedBySmallUnit)
+                return approvedQuantity * price;
+
+            return (approvedQuantity / offerItem.TransitionValue) * price;
         }
     }
 }
