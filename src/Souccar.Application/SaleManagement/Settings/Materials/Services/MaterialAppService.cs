@@ -10,10 +10,10 @@ using Souccar.SaleManagement.StockHistories.Event;
 using Souccar.SaleManagement.Stocks;
 using Souccar.SaleManagement.Stocks.Services;
 using Abp.Application.Services.Dto;
-using Abp.Domain.Uow;
-using System.Transactions;
-using Souccar.SaleManagement.Stocks.Dto;
-using Souccar.SaleManagement.Settings.Units.Services;
+using Souccar.SaleManagement.Offers.Services;
+using Abp.UI;
+using System;
+using Souccar.SaleManagement.SupplierOffers.Services;
 
 
 namespace Souccar.SaleManagement.Settings.Materials.Services
@@ -23,12 +23,19 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
     {
         private readonly IMaterialDomainService _materialDomainService;
         private readonly IStockDomainService _stockDomainService;
-        private readonly ISizeDomainService _sizeDomainService;
-        public MaterialAppService(IMaterialDomainService materialDomainService, IStockDomainService stockDomainService, ISizeDomainService sizeDomainService) : base(materialDomainService)
+        private readonly IOfferDomainService _offerDomainService;
+        private readonly ISupplierOfferDomainService _supplierOfferDomainService;
+        public MaterialAppService(
+            IMaterialDomainService materialDomainService, 
+            IStockDomainService stockDomainService, 
+            IOfferDomainService offerDomainService, 
+            ISupplierOfferDomainService supplierOfferDomainService) 
+            : base(materialDomainService)
         {
             _materialDomainService = materialDomainService;
             _stockDomainService = stockDomainService;
-            _sizeDomainService = sizeDomainService;
+            _offerDomainService = offerDomainService;
+            _supplierOfferDomainService = supplierOfferDomainService;
         }
 
         public IList<DropdownDto> GetForDropdown()
@@ -77,6 +84,10 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
             //Stock
             var createdList = input.Stocks.Where(x=>x.Id == 0);
             var deletedList = stocks.ExceptBy(input.Stocks.Select(a => a.Id), e => e.Id);
+            if (CheckStocksUsedInOffer(deletedList.Select(x=>x.Id)))
+            {
+                throw new UserFriendlyException(L("CanNotDeleteStockDueToRelatedOffer"));
+            }
             foreach (var item in createdList)
             {
                 var stock = ObjectMapper.Map<Stock>(item);
@@ -126,6 +137,25 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
 
             return ObjectMapper.Map<MaterialDto>(updatedMaterial);
         }
+
+        private bool CheckStocksUsedInOffer(IEnumerable<int> stocksIds)
+        {
+            var isUsed = _offerDomainService.Get(x => x.OfferItems.Any(o => o.Material.Stocks.Any(s => stocksIds.Contains(s.Id)))).Any();
+            if (isUsed)
+                return isUsed;
+
+            return _supplierOfferDomainService.Get(x => x.SupplierOfferItems.Any(o => o.Material.Stocks.Any(s => stocksIds.Contains(s.Id)))).Any();
+        }
+
+        private bool CheckMaterialUsedInOffer(int materialId)
+        {
+            var isUsed = _offerDomainService.Get(x => x.OfferItems.Any(o => o.Material.Id == materialId)).Any();
+            if (isUsed)
+                return isUsed;
+
+            return _supplierOfferDomainService.Get(x => x.SupplierOfferItems.Any(o => o.Material.Id == materialId)).Any();
+        }
+
         public IList<MaterialDto> GetAllByIds(int[] materialsIds)
         {
             var includes = new string[] 
@@ -150,6 +180,15 @@ namespace Souccar.SaleManagement.Settings.Materials.Services
                 filter: x => x.Id == id,
                 include: includes).FirstOrDefault();
             return ObjectMapper.Map<MaterialDto>(material);
+        }
+
+        public override Task DeleteAsync(EntityDto<int> input)
+        {
+            if (CheckMaterialUsedInOffer(input.Id))
+            {
+                throw new UserFriendlyException(L("CanNotDeleteMaterialDueToRelatedOffer"));
+            }
+            return base.DeleteAsync(input);
         }
     }
 }

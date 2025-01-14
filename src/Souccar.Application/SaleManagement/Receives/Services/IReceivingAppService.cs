@@ -8,6 +8,7 @@ namespace Souccar.SaleManagement.Receives.Services
     public interface IReceivingAppService : IAsyncCrudAppService<ReceivingDto, int, PagedReceivingResultRequestDto, CreateReceivingDto, ReceivingDto>
     {
         IList<ReceivingDto> GetAllByInvoiceId(int invoiceId);
+        IList<ReceivingDto> GetAllByInvoicesIds(int[] invoicesIds);
         ReceivingDto GetWithDetail(int receiveId);
         ReceivingDto CompleteInfo(CompleteReceivingDto input);
     }

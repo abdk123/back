@@ -495,6 +495,12 @@
 		<text name="GeneralSetting">الاعدادات العامة</text>
 		<text name="InitialBalanceFor{0}">رصيد اولي ل{0}</text>
 		<text name="Balance">الرصيد</text>
-
+		<text name="Profits">الارباح</text>
+		<text name="ProfitsDetails">تفاصيل الارباح</text>
+		<text name="SellingPrice">اجمالي البيع</text>
+		<text name="PurchasePrice">اجمالي الشراء</text>
+		<text name="EnterPoNumber">ادخل رقم ال PO</text>
+		<text name="CanNotDeleteStockDueToRelatedOffer">لا يمكن حذف المخزون يوجود عرض مرتبط</text>
+		<text name="CanNotDeleteMaterialDueToRelatedOffer">لا يمكن حذف المادة يوجود عرض مرتبط</text>
 	</texts>
 </localizationDictionary>

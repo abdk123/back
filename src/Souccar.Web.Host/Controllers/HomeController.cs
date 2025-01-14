@@ -20,7 +20,7 @@ namespace Souccar.Web.Host.Controllers
 
         public IActionResult Index()
         {
-            return Redirect("/swagger");
+            return Redirect("/");
         }
 
         /// <summary>

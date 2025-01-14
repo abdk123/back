@@ -27,6 +27,16 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Receives.Services
                 .Where(x => x.InvoiceId == invoiceId);
         }
 
+        public IQueryable<Receiving> GetAllByInvoicesIds(int[] invoicesIds)
+        {
+            return _receivingRepository.GetAllIncluding(c => c.ClearanceCompany, t => t.TransportCompany)
+                .Include(i => i.ReceivingItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Material).ThenInclude(x => x.Stocks)
+                .Include(i => i.ReceivingItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Unit)
+                .Include(i => i.ReceivingItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Size)
+                .Include(i => i.ReceivingItems).ThenInclude(x => x.InvoiceItem).ThenInclude(x => x.OfferItem).ThenInclude(x => x.Supplier)
+                .Where(x => invoicesIds.Contains(x.InvoiceId.Value));
+        }
+
         public IList<ReceivingItem> GetItemsByReceivingId(int receivingId)
         {
             var items = _receivingItemRepository.GetAll().Where(x => x.ReceivingId == receivingId).ToList();

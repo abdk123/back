@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using MySqlConnector;
 using Souccar.Models.Migrations;
 using System;
 
@@ -65,7 +66,7 @@ namespace Souccar.Controllers
         private string ClearDb(string query, string connectionSerting)
         {
             var message = "Success";
-            using (var connection = new SqlConnection(connectionSerting))
+            using (var connection = new MySqlConnection(connectionSerting))
             {
                 connection.Open();
                 var transaction = connection.BeginTransaction();

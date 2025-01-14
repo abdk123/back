@@ -256,7 +256,6 @@ namespace Souccar.SaleManagement.Receives.Services
             }
             return ObjectMapper.Map<ReceivingDto>(updateReceiving);
         }
-
         private string GetTransportTransactionDetail(Receiving receiving)
         {
             var builder = new StringBuilder();
@@ -310,6 +309,11 @@ namespace Souccar.SaleManagement.Receives.Services
             builder.Append(":");
             builder.Append(receiving.InvoiceId);
             return builder.ToString();
+        }
+        public IList<ReceivingDto> GetAllByInvoicesIds(int[] invoicesIds)
+        {
+            var receiving = _receivingDomainService.GetAllByInvoicesIds(invoicesIds).ToList();
+            return ObjectMapper.Map<List<ReceivingDto>>(receiving);
         }
     }
 }

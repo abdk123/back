@@ -10,12 +10,11 @@ using Souccar.SaleManagement.Logs.Events;
 using Souccar.SaleManagement.Logs;
 using Souccar.SaleManagement.PurchaseInvoices.Events;
 using Souccar.SaleManagement.Offers.Dto;
-using Souccar.SaleManagement.SupplierOffers.Dto;
 using Souccar.SaleManagement.Stocks;
 using Souccar.SaleManagement.Deliveries;
-using Souccar.SaleManagement.SaleInvoices.Services;
-using Souccar.SaleManagement.SaleInvoices;
-using Souccar.SaleManagement.Settings.Materials;
+using Souccar.SaleManagement.PurchaseInvoices.Receives.Services;
+using Souccar.SaleManagement.PurchaseInvoices;
+using Souccar.SaleManagement.PurchaseInvoices.Receives;
 
 namespace Souccar.SaleManagement.Offers.Services
 {
@@ -23,13 +22,13 @@ namespace Souccar.SaleManagement.Offers.Services
         AsyncSouccarAppService<Offer, OfferDto, int, FullPagedRequestDto, CreateOfferDto, UpdateOfferDto>, IOfferAppService
     {
         private readonly IOfferDomainService _offerDomainService;
-        private readonly ISaleInvoiceDomainService _saleInvoiceDomainService;
+        private readonly IReceivingDomainService _receivingDomainService;
 
-        public OfferAppService(IOfferDomainService offerDomainService, ISaleInvoiceDomainService saleInvoiceDomainService)
+        public OfferAppService(IOfferDomainService offerDomainService, IReceivingDomainService receivingDomainService)
         : base(offerDomainService)
         {
             _offerDomainService = offerDomainService;
-            _saleInvoiceDomainService = saleInvoiceDomainService;
+            _receivingDomainService = receivingDomainService;
         }
 
         public async Task<OfferDto> ChangeStatusAsync(ChangeOfferStatusDto input)
@@ -198,7 +197,7 @@ namespace Souccar.SaleManagement.Offers.Services
             var includes = new string[]
             {
                 $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.DeliveryItems)}",
-                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.PurchaseInvoiceItems)}",
+                $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.PurchaseInvoiceItems)}.{nameof(PurchaseInvoiceItem.ReceivingItems)}.{nameof(ReceivingItem.Receiving)}",
                 $"{nameof(Offer.OfferItems)}.{nameof(OfferItem.Material)}.{nameof(OfferItem.Material.Stocks)}",
             };
             var offer = _offerDomainService
@@ -218,7 +217,15 @@ namespace Souccar.SaleManagement.Offers.Services
                     .Sum(x => (x.ApprovedQuantity));
 
                 var sellingPrice = GetSellingPrice(offerItem, approvedQuantity);
-                    
+
+                //Transport cost & Clearance cost
+                var receivings = offerItem.PurchaseInvoiceItems.Any() ?
+                    offerItem.PurchaseInvoiceItems
+                    .SelectMany(x => x.ReceivingItems).Select(x => x.Receiving)
+                    .DistinctBy(x => x.Id) : new List<Receiving>();
+
+                var transportCost = receivings.Any() ? receivings.Sum(x => x.TransportCost) : 0.0;
+                var clearanceCost = receivings.Any() ? receivings.Sum(x => x.ClearanceCost) : 0.0;
 
                 var price = offerItem.PurchaseInvoiceItems.Any()
                     ? offerItem.PurchaseInvoiceItems.Last().TotalMaterilPrice
@@ -231,8 +238,12 @@ namespace Souccar.SaleManagement.Offers.Services
                         offerItem.Material.Name, 
                         approvedQuantity, 
                         sellingPrice, 
-                        purchasePrice));
+                        purchasePrice,
+                        transportCost,
+                        clearanceCost
+                        ));
             }
+
 
             return profit;
         }
@@ -255,6 +266,16 @@ namespace Souccar.SaleManagement.Offers.Services
                 return approvedQuantity * price;
 
             return (approvedQuantity / offerItem.TransitionValue) * price;
+        }
+
+        public OfferDto GetByPoNumber(string poNumber)
+        {
+            var offer = _offerDomainService.Get(filter: x=>x.PorchaseOrderId == poNumber);
+            if (offer.Any())
+            {
+                return ObjectMapper.Map<OfferDto>(offer.First());
+            }
+            return new OfferDto();
         }
     }
 }

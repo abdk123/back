@@ -9,6 +9,7 @@ namespace Souccar.SaleManagement.PurchaseInvoices.Receives.Services
     public interface IReceivingDomainService : ISouccarDomainService<Receiving, int>
     {
         IQueryable<Receiving> GetAllByInvoiceId(int invoiceId);
+        IQueryable<Receiving> GetAllByInvoicesIds(int[] invoicesIds);
         IList<ReceivingItem> GetItemsByReceivingId(int receivingId);
         Task DeleteItemAsync(int itemId);
     }
