@@ -96,7 +96,8 @@ namespace Souccar.Web.Host.Startup
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
-
+            //app.UseDynamicAppConfig(_appConfiguration);
+            //app.UseSpa();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -111,6 +112,7 @@ namespace Souccar.Web.Host.Startup
                 endpoints.MapHub<AbpCommonHub>("/signalr");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapFallbackToFile("index.html");
             });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
